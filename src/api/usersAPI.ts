@@ -1,8 +1,8 @@
 import { instance } from './instance'
 
 export const usersAPI = {
-	getUsers() {
-		return instance.get<GetUsersResponseType>('users')
+	getUsers(count: number, page: number) {
+		return instance.get<GetUsersResponseType>(`users?count=${count}&page=${page}`)
 	}
 }
 

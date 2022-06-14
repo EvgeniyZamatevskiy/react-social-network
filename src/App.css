@@ -11,3 +11,7 @@
   grid-area: c;
   background-color: cornflowerblue;
 }
+
+.activePage {
+  color: red;
+}
