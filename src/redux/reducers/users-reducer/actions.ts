@@ -1,15 +1,20 @@
+import { toggleIsLoadingAC } from './../app-reducer/actions'
+import { followAPI } from '../../../api/followAPI'
 import { usersAPI, UsersType } from '../../../api/usersAPI'
 import { ThunkType } from '../../store'
-import { toggleIsLoadingAC } from '../app-reducer/actions'
 
 // ActionCreators
-export const toggleFollowedAC = (userId: number) => ({ type: 'TOGGLE-FOLLOWED', userId } as const)
+export const followAC = (userId: number) => ({ type: 'FOLLOW', userId } as const)
 
-export const getUsersAC = (users: UsersType[]) => ({ type: 'GET-USERS', users } as const)
+export const unFollowAC = (userId: number) => ({ type: 'UN-FOLLOW', userId } as const)
+
+export const setUsersAC = (users: UsersType[]) => ({ type: 'SET-USERS', users } as const)
 
 export const setCurrentPageAC = (currentPage: number) => ({ type: 'SET-CURRENT-PAGE', currentPage } as const)
 
 export const setTotalUsersCountAC = (totalUsersCount: number) => ({ type: 'SET-TOTAL-USERS-COUNT', totalUsersCount } as const)
+
+export const toggleDisabledStatusAC = (userId: number, isDisabled: boolean) => ({ type: 'TOGGLE-DISABLED-STATUS', userId, isDisabled } as const)
 
 // ThunkCreators
 export const getUsersTC = (count: number, page: number): ThunkType => async (dispatch) => {
@@ -17,7 +22,7 @@ export const getUsersTC = (count: number, page: number): ThunkType => async (dis
 		dispatch(toggleIsLoadingAC(true))
 		dispatch(setCurrentPageAC(page))
 		const res = await usersAPI.getUsers(count, page)
-		dispatch(getUsersAC(res.data.items))
+		dispatch(setUsersAC(res.data.items))
 		dispatch(setTotalUsersCountAC(res.data.totalCount))
 		dispatch(toggleIsLoadingAC(false))
 	} catch (error: any) {
@@ -26,22 +31,63 @@ export const getUsersTC = (count: number, page: number): ThunkType => async (dis
 	}
 }
 
+export const followTC = (userId: number): ThunkType => async (dispatch) => {
+	dispatch(toggleDisabledStatusAC(userId, true))
+	try {
+		const res = await followAPI.follow(userId)
+		if (res.data.resultCode === 0) {
+			dispatch(followAC(userId))
+			dispatch(toggleDisabledStatusAC(userId, false))
+		} else {
+			alert(res.data.messages[0])
+			dispatch(toggleDisabledStatusAC(userId, false))
+		}
+	} catch (error: any) {
+		alert(error.message)
+		dispatch(toggleDisabledStatusAC(userId, false))
+	}
+}
+
+export const unFollowTC = (userId: number): ThunkType => async (dispatch) => {
+	dispatch(toggleDisabledStatusAC(userId, true))
+	try {
+		const res = await followAPI.unFollow(userId)
+		if (res.data.resultCode === 0) {
+			dispatch(unFollowAC(userId))
+			dispatch(toggleDisabledStatusAC(userId, false))
+		} else {
+			alert(res.data.messages[0])
+			dispatch(toggleDisabledStatusAC(userId, false))
+		}
+	} catch (error: any) {
+		alert(error.message)
+		dispatch(toggleDisabledStatusAC(userId, false))
+	}
+}
+
 export const usersAsyncActions = {
 	getUsersTC,
+	followTC,
+	unFollowTC
 }
 
 export const usersActions = {
-	toggleFollowedAC,
-	getUsersAC,
-	setCurrentPageAC
+	followAC,
+	setUsersAC,
+	setCurrentPageAC,
+	unFollowAC,
+	toggleDisabledStatusAC,
+	setTotalUsersCountAC
 }
 
 // types
 export type UsersReducerActionsType =
-	ToggleFollowedActionType | GetUsersActionType | SetCurrentPageActionType |
-	SetTotalUsersCountActionType
+	FollowActionType | UnFollowActionType | SetUsersActionType |
+	SetCurrentPageActionType | SetTotalUsersCountActionType | ToggleDisabledStatusActionType
 
-type ToggleFollowedActionType = ReturnType<typeof toggleFollowedAC>
-type GetUsersActionType = ReturnType<typeof getUsersAC>
+type FollowActionType = ReturnType<typeof followAC>
+type UnFollowActionType = ReturnType<typeof unFollowAC>
+type SetUsersActionType = ReturnType<typeof setUsersAC>
 type SetCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
 type SetTotalUsersCountActionType = ReturnType<typeof setTotalUsersCountAC>
+type ToggleDisabledStatusActionType = ReturnType<typeof toggleDisabledStatusAC>

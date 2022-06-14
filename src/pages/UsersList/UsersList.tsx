@@ -40,7 +40,7 @@ export const UsersList: FC<UsersListPropsType> = ({ }) => {
 				}
 
 				return (
-					<span onClick={setCurrentPageHandler} className={p === page ? 'activePage' : ''} key={p}>{p}</span>
+					<span key={p} onClick={setCurrentPageHandler} className={p === page ? 'activePage' : ''} >{p}</span>
 				)
 			})}
 			{users.map(user => <UsersItem key={user.id} user={user} />)}

@@ -7,6 +7,7 @@ type ProfilePropsType = {
 }
 
 export const Profile: FC<ProfilePropsType> = ({ }) => {
+
 	return (
 		<div>
 			<ProfileInfo />

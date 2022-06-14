@@ -1,3 +1,4 @@
+import { UserProfileResponseType } from '../../../api/profileAPI'
 import { ProfileReducerActionsType } from './actions'
 
 const initState: InitStateType = {
@@ -6,6 +7,7 @@ const initState: InitStateType = {
 		{ id: 2, message: 'It\'s my first post', likesCount: 11 },
 		{ id: 3, message: 'Hello', likesCount: 11 },
 	],
+	userProfile: null
 }
 
 export const profileReducer = (state: InitStateType = initState, action: ProfileReducerActionsType): InitStateType => {
@@ -13,6 +15,8 @@ export const profileReducer = (state: InitStateType = initState, action: Profile
 		case 'ADD-POST':
 			const newPost = { id: Date.now(), message: action.postTitle, likesCount: 0 }
 			return { ...state, posts: [...state.posts, newPost] }
+		case 'SET-USER-PROFILE':
+			return { ...state, userProfile: action.userProfile }
 
 		default:
 			return state
@@ -22,6 +26,7 @@ export const profileReducer = (state: InitStateType = initState, action: Profile
 // types
 type InitStateType = {
 	posts: PostsType[]
+	userProfile: UserProfileResponseType | null
 }
 
 export type PostsType = {

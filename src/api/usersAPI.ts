@@ -22,6 +22,7 @@ export type UsersType = {
 	followed: boolean
 }
 
+// common
 export type PhotosType = {
 	small: null | string
 	large: null | string

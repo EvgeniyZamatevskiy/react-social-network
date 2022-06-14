@@ -1,29 +1,35 @@
 import React, { FC } from 'react'
 import { NavLink } from 'react-router-dom'
-import { UsersType } from '../../../api/usersAPI'
 import { useActions } from '../../../redux/hooks'
 import { usersActionCreators } from '../../../redux/reducers/users-reducer'
+import { UsersSupplementedType } from '../../../redux/reducers/users-reducer/users-reducer'
 import s from './UsersItem.module.css'
 
 type UsersItemPropsType = {
-	user: UsersType
+	user: UsersSupplementedType
 }
 
 export const UsersItem: FC<UsersItemPropsType> = ({ user }) => {
 
-	const { toggleFollowedAC } = useActions(usersActionCreators)
+	const { followTC, unFollowTC } = useActions(usersActionCreators)
 
-	const toggleFollowedHandler = () => {
-		toggleFollowedAC(user.id)
+	const followHandler = () => {
+		followTC(user.id)
+	}
+
+	const unFollowHandler = () => {
+		unFollowTC(user.id)
 	}
 
 	return (
 		<div>
-			<NavLink to={`/${user.id}`}>
+			<NavLink to={`/profile/${user.id}`}>
 				<img className={s.userPhoto} src={user.photos.small ? user.photos.small : 'https://cdn2.iconfinder.com/data/icons/font-awesome/1792/user-512.png'} />
 			</NavLink>
 			<div>
-				<button onClick={toggleFollowedHandler}>{user.followed ? 'UnFollow' : 'Follow'}</button>
+				{user.followed
+					? <button disabled={user.disabledStatus} onClick={unFollowHandler}>UnFollow</button>
+					: <button disabled={user.disabledStatus} onClick={followHandler}>Follow</button>}
 			</div>
 			<div>
 				{user.name}
