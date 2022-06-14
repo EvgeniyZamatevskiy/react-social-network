@@ -1,5 +1,6 @@
 import { usersAPI, UsersType } from '../../../api/usersAPI'
 import { ThunkType } from '../../store'
+import { toggleIsLoadingAC } from '../app-reducer/actions'
 
 // ActionCreators
 export const toggleFollowedAC = (userId: number) => ({ type: 'TOGGLE-FOLLOWED', userId } as const)
@@ -13,12 +14,15 @@ export const setTotalUsersCountAC = (totalUsersCount: number) => ({ type: 'SET-T
 // ThunkCreators
 export const getUsersTC = (count: number, page: number): ThunkType => async (dispatch) => {
 	try {
+		dispatch(toggleIsLoadingAC(true))
 		dispatch(setCurrentPageAC(page))
 		const res = await usersAPI.getUsers(count, page)
 		dispatch(getUsersAC(res.data.items))
 		dispatch(setTotalUsersCountAC(res.data.totalCount))
+		dispatch(toggleIsLoadingAC(false))
 	} catch (error: any) {
 		alert(error.message)
+		dispatch(toggleIsLoadingAC(false))
 	}
 }
 

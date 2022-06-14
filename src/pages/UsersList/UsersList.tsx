@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useActions } from '../../redux/hooks'
+import { selectIsLoading } from '../../redux/reducers/app-reducer/selectors'
 import { usersActionCreators } from '../../redux/reducers/users-reducer'
 import { selectCount, selectPage, selectTotalUsersCount, selectUsers } from '../../redux/reducers/users-reducer/selectors'
 import { UsersItem } from './UsersItem/UsersItem'
@@ -16,6 +17,7 @@ export const UsersList: FC<UsersListPropsType> = ({ }) => {
 	const count = useSelector(selectCount)
 	const page = useSelector(selectPage)
 	const totalUsersCount = useSelector(selectTotalUsersCount)
+	const isLoading = useSelector(selectIsLoading)
 
 	let pagesCount = Math.ceil(totalUsersCount / count)
 
@@ -30,6 +32,7 @@ export const UsersList: FC<UsersListPropsType> = ({ }) => {
 
 	return (
 		<div>
+			{isLoading && <h1>Loading...</h1>}
 			{pages.map((p) => {
 
 				const setCurrentPageHandler = () => {

@@ -19,7 +19,7 @@ export const UsersItem: FC<UsersItemPropsType> = ({ user }) => {
 
 	return (
 		<div>
-			<NavLink to={`/profile/${user.id}`}>
+			<NavLink to={`/${user.id}`}>
 				<img className={s.userPhoto} src={user.photos.small ? user.photos.small : 'https://cdn2.iconfinder.com/data/icons/font-awesome/1792/user-512.png'} />
 			</NavLink>
 			<div>
