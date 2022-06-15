@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useActions } from '../../redux/hooks'
 import { selectIsLoading } from '../../redux/reducers/app-reducer/selectors'
 import { selectIsAuth } from '../../redux/reducers/auth-reducer/selectors'

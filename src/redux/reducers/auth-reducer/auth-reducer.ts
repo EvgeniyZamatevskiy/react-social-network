@@ -10,7 +10,9 @@ const initState: InitStateType = {
 export const authReducer = (state: InitStateType = initState, action: AuthReducerActionsType): InitStateType => {
 	switch (action.type) {
 		case 'SET-USER-DATA':
-			return { ...state, ...action.userData, isAuth: true }
+			return { ...state, ...action.userData, isAuth: action.isAuth }
+		case 'TOGGLE-IS-AUTH':
+			return { ...state, isAuth: action.isAuth }
 
 		default:
 			return state

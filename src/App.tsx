@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux'
 import { selectIsInitialized } from './redux/reducers/app-reducer/selectors'
 import { useActions } from './redux/hooks'
 import { authActionCreators } from './redux/reducers/auth-reducer'
-import { Login } from './components/Login/Login'
+import { Login } from './pages/Login/Login'
 import './App.css'
 
 export const App = () => {

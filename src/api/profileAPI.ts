@@ -1,3 +1,4 @@
+import { CommonResponseType } from './authAPI'
 import { instance } from './instance'
 import { PhotosType } from './usersAPI'
 
@@ -6,10 +7,10 @@ export const profileAPI = {
 		return instance.get<UserProfileResponseType>(`profile/${userId}`)
 	},
 	getStatus(userId: number) {
-		return instance.get<any>(`profile/status/${userId}`)
+		return instance.get<any>(`profile/status/${userId}`) // string
 	},
 	updateUserStatus(newStatus: string) {
-		return instance.put<UpdateUserStatusType>(`profile/status`, { status: newStatus })
+		return instance.put<CommonResponseType>(`profile/status`, { status: newStatus })
 	},
 }
 
@@ -33,11 +34,4 @@ export type ContactsType = {
 	youtube: null | string
 	github: null | string
 	mainLink: null | string
-}
-
-export type UpdateUserStatusType = {
-	data: {}
-	fieldsErrors: string[]
-	messages: string[]
-	resultCode: number
 }

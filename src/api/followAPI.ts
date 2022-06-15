@@ -1,17 +1,11 @@
+import { CommonResponseType } from './authAPI'
 import { instance } from './instance'
 
 export const followAPI = {
 	follow(userId: number) {
-		return instance.post<FollowResponseType>(`follow/${userId}`)
+		return instance.post<CommonResponseType>(`follow/${userId}`)
 	},
 	unFollow(userId: number) {
-		return instance.delete<FollowResponseType>(`follow/${userId}`)
+		return instance.delete<CommonResponseType>(`follow/${userId}`)
 	}
-}
-
-export type FollowResponseType = {
-	data: {}
-	fieldsErrors: string[]
-	messages: string[]
-	resultCode: number
 }

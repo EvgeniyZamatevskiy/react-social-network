@@ -1,4 +1,5 @@
-import React, { ChangeEvent, FC, KeyboardEvent, useEffect, useState } from 'react'
+import React, { FC, useState } from 'react'
+import { UniversalInput } from '../../../../components/UI/UniversalInput/UniversalInput'
 
 type ProfileStatusPropsType = {
 	currentValue: string
@@ -10,10 +11,6 @@ export const ProfileStatus: FC<ProfileStatusPropsType> = ({ currentValue, change
 	const [editMode, setEditMode] = useState<boolean>(false)
 	const [newValue, setNewValue] = useState<string>('')
 
-	const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-		setNewValue(e.currentTarget.value)
-	}
-
 	const onDoubleClickHandler = () => {
 		setEditMode(true)
 		setNewValue(currentValue)
@@ -24,11 +21,9 @@ export const ProfileStatus: FC<ProfileStatusPropsType> = ({ currentValue, change
 		changeValue(newValue)
 	}
 
-	const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-		if (e.key === 'Enter') {
-			setEditMode(false)
-			changeValue(newValue)
-		}
+	const onKeyDownHandler = () => {
+		setEditMode(false)
+		changeValue(newValue)
 	}
 
 	// useEffect(() => {
@@ -38,7 +33,7 @@ export const ProfileStatus: FC<ProfileStatusPropsType> = ({ currentValue, change
 	return (
 		<>
 			{editMode
-				? <input autoFocus value={newValue} onChange={onChangeHandler} onBlur={onBlurHandler} onKeyDown={onKeyDownHandler} />
+				? <UniversalInput autoFocus value={newValue} onChangeValue={setNewValue} onBlur={onBlurHandler} onClickEnter={onKeyDownHandler} />
 				: <span onDoubleClick={onDoubleClickHandler}>{currentValue ? currentValue : 'Add Status'}</span>}
 		</>
 	)

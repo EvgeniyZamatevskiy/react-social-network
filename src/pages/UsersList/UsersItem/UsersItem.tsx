@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { NavLink } from 'react-router-dom'
+import { UniversalButton } from '../../../components/UI/UniversalButton/UniversalButton'
 import { useActions } from '../../../redux/hooks'
 import { usersActionCreators } from '../../../redux/reducers/users-reducer'
 import { UsersSupplementedType } from '../../../redux/reducers/users-reducer/users-reducer'
@@ -28,8 +29,8 @@ export const UsersItem: FC<UsersItemPropsType> = ({ user }) => {
 			</NavLink>
 			<div>
 				{user.followed
-					? <button disabled={user.disabledStatus} onClick={unFollowHandler}>UnFollow</button>
-					: <button disabled={user.disabledStatus} onClick={followHandler}>Follow</button>}
+					? <UniversalButton disabled={user.disabledStatus} onClick={unFollowHandler}>UnFollow</UniversalButton>
+					: <UniversalButton disabled={user.disabledStatus} onClick={followHandler}>Follow</UniversalButton>}
 			</div>
 			<div>
 				{user.name}
