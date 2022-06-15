@@ -8,18 +8,17 @@ export const setUserDataAC = (userData: UserDataType, isAuth: boolean) => ({ typ
 export const toggleIsAuthAC = (isAuth: boolean) => ({ type: 'TOGGLE-IS-AUTH', isAuth } as const)
 
 // ThunkCreators
-export const getUserDataTC = (): ThunkType => (dispatch) => {
-	return authAPI.me()
-		.then((res) => {
-			if (res.data.resultCode === 0) {
-				dispatch(setUserDataAC(res.data.data, true))
-			} else {
-				alert(res.data.messages[0])
-			}
-		})
-		.catch((error: any) => {
-			alert(error.message)
-		})
+export const getUserDataTC = (): ThunkType => async (dispatch) => {
+	try {
+		const res = await authAPI.me()
+		if (res.data.resultCode === 0) {
+			dispatch(setUserDataAC(res.data.data, true))
+		} else {
+			alert(res.data.messages[0])
+		}
+	} catch (error: any) {
+		alert(error.message)
+	}
 }
 
 export const loginTC = (loginParams: LoginParamsType): ThunkType => async (dispatch) => {

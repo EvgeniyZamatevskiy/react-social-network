@@ -9,8 +9,7 @@ export const setAppIsInitializedAC = (isInitialized: boolean) => ({ type: 'SET-I
 
 // ThunkCreators
 export const initializeAppTC = (): ThunkType => (dispatch) => {
-	let p = dispatch(getUserDataTC())
-	//@ts-ignore
+	let p: any = dispatch(getUserDataTC())
 	p.then(() => {
 		dispatch(setAppIsInitializedAC(true))
 	})

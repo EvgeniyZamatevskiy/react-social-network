@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { useActions } from '../../redux/hooks'
 import { authActionCreators } from '../../redux/reducers/auth-reducer'
 import { selectIsAuth, selectLogin } from '../../redux/reducers/auth-reducer/selectors'
+import { UniversalButton } from '../UI/UniversalButton/UniversalButton'
 import s from './Header.module.css'
 
 type HeaderPropsType = {
@@ -24,7 +25,7 @@ export const Header: FC<HeaderPropsType> = ({ }) => {
 			<img src='https://www.freelogodesign.org/Content/img/logo-ex-7.png' />
 			<div className={s.loginBlock}>
 				{isAuth && login}
-				{isAuth && <button onClick={logoutHandler}>Logout</button>}
+				{isAuth && <UniversalButton onClick={logoutHandler}>Logout</UniversalButton>}
 			</div>
 		</header>
 	)

@@ -22,7 +22,9 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = ({ }) => {
 	return (
 		<div>
 			<div>
-				<img src={userProfile?.photos.small !== null ? userProfile?.photos.small : 'Loading...'} />
+				<img
+					style={{ width: '200px' }}
+					src={userProfile?.photos.small !== null ? userProfile?.photos.small : 'https://cdn2.iconfinder.com/data/icons/font-awesome/1792/user-512.png'} />
 				<ProfileStatus currentValue={userStatus} changeValue={changeUserStatusHandler} />
 			</div>
 		</div>

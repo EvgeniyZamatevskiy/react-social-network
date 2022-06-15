@@ -7,6 +7,7 @@ type PostsItemPropsType = {
 }
 
 export const PostsItem: FC<PostsItemPropsType> = ({ post }) => {
+
 	return (
 		<div className={s.item}>
 			<img src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/user-512.png' />

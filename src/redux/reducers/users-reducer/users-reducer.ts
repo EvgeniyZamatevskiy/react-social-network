@@ -3,7 +3,7 @@ import { UsersReducerActionsType } from './actions'
 
 const initState: InitStateType = {
 	users: [],
-	count: 5,
+	count: 10,
 	page: 1,
 	totalUsersCount: 0
 }

@@ -8,9 +8,9 @@ import { useSelector } from 'react-redux'
 import { selectIsInitialized } from './redux/reducers/app-reducer/selectors'
 import { useActions } from './redux/hooks'
 import { Login } from './pages/Login/Login'
-import './App.css'
 import { Route } from 'react-router-dom'
 import { appActionCreators } from './redux/reducers/app-reducer'
+import './App.css'
 
 export const App = () => {
 
