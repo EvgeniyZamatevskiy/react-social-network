@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { useActions } from '../../redux/hooks'
 import { selectIsLoading } from '../../redux/reducers/app-reducer/selectors'
 import { selectIsAuth } from '../../redux/reducers/auth-reducer/selectors'
@@ -28,16 +28,19 @@ export const UsersList: FC<UsersListPropsType> = ({ }) => {
 		pages.push(i)
 	}
 
-	const navigate = useNavigate()
+
 	const isAuth = useSelector(selectIsAuth)
 
 	useEffect(() => {
-		if (isAuth) {
-			getUsersTC(count, page)
-		} else {
-			navigate('/login')
+		if (!isAuth) {
+			return
 		}
-	}, [isAuth])
+		getUsersTC(count, page)
+	}, [])
+
+	if (!isAuth) {
+		return <Redirect to={'/login'} />
+	}
 
 	return (
 		<div>

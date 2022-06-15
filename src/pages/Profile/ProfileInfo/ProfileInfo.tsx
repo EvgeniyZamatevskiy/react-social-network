@@ -1,7 +1,8 @@
 import React, { FC, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { useActions } from '../../../redux/hooks'
+import { selectId } from '../../../redux/reducers/auth-reducer/selectors'
 import { profileActionCreators } from '../../../redux/reducers/profile-reducer'
 import { selectUserProfile, selectUserStatus } from '../../../redux/reducers/profile-reducer/selectors'
 import { ProfileStatus } from './ProfileStatus/ProfileStatus'
@@ -10,10 +11,11 @@ type ProfileInfoPropsType = {
 
 }
 
-export const ProfileInfo: FC<ProfileInfoPropsType> = ({ }) => {
+export const ProfileInfo = withRouter((props) => {
 
 	const userProfile = useSelector(selectUserProfile)
 	const userStatus = useSelector(selectUserStatus)
+	const authorizedUserId = useSelector(selectId)
 
 	const { getUserProfileTC, updateUserStatusTC, getStatusTC } = useActions(profileActionCreators)
 
@@ -21,11 +23,15 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = ({ }) => {
 		updateUserStatusTC(newStatus)
 	}
 
-	const params = useParams()
-
 	useEffect(() => {
-		getUserProfileTC(params.userId!)
-		getStatusTC(+params.userId!)
+
+		let userId = props.match.params.userId
+		if (!userId) {
+			userId = authorizedUserId
+		}
+
+		getUserProfileTC(userId)
+		getStatusTC(userId)
 	}, [])
 
 	return (
@@ -36,4 +42,4 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = ({ }) => {
 			</div>
 		</div>
 	)
-}
+})

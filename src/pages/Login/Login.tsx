@@ -4,7 +4,7 @@ import { authActionCreators } from '../../redux/reducers/auth-reducer'
 import { useActions } from '../../redux/hooks'
 import { useSelector } from 'react-redux'
 import { selectIsAuth } from '../../redux/reducers/auth-reducer/selectors'
-import { Navigate } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 type FormikErrorType = {
 	email?: string
@@ -46,7 +46,7 @@ export const Login = ({ }) => {
 	})
 
 	if (isAuth) {
-		return <Navigate to={'/profile/19283'} />
+		return <Redirect to={'/profile'} />
 	}
 
 	return (

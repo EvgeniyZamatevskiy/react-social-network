@@ -10,7 +10,7 @@ export const setUserStatusAC = (status: string) => ({ type: 'SET-USER-STATUS', s
 
 
 // ThunkCreators
-export const getUserProfileTC = (userId: string): ThunkType => async (dispatch) => {
+export const getUserProfileTC = (userId: any): ThunkType => async (dispatch) => {
 	try {
 		const res = await profileAPI.getUserProfile(userId)
 		dispatch(setUserProfileAC(res.data))
@@ -19,7 +19,7 @@ export const getUserProfileTC = (userId: string): ThunkType => async (dispatch) 
 	}
 }
 
-export const getStatusTC = (userId: number): ThunkType => async (dispatch) => {
+export const getStatusTC = (userId: any): ThunkType => async (dispatch) => {
 	try {
 		const res = await profileAPI.getStatus(userId)
 		dispatch(setUserStatusAC(res.data))
