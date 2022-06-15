@@ -7,18 +7,18 @@ import { UsersList } from './pages/UsersList/UsersList'
 import { useSelector } from 'react-redux'
 import { selectIsInitialized } from './redux/reducers/app-reducer/selectors'
 import { useActions } from './redux/hooks'
-import { authActionCreators } from './redux/reducers/auth-reducer'
 import { Login } from './pages/Login/Login'
 import './App.css'
 import { Route } from 'react-router-dom'
+import { appActionCreators } from './redux/reducers/app-reducer'
 
 export const App = () => {
 
   const isInitialized = useSelector(selectIsInitialized)
-  const { getUserDataTC } = useActions(authActionCreators)
+  const { initializeAppTC } = useActions(appActionCreators)
 
   useEffect(() => {
-    getUserDataTC()
+    initializeAppTC()
   }, [])
 
   if (!isInitialized) {
