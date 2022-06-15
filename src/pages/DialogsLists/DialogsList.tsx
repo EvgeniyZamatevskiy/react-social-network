@@ -7,6 +7,8 @@ import { selectDialogs, selectMessages } from '../../redux/reducers/dialogs-redu
 import { AddItemForm } from '../../components/AddItemForm/AddItemForm'
 import { useActions } from '../../redux/hooks'
 import { dialogsActionCreators } from '../../redux/reducers/dialogs-reducer'
+import { selectIsAuth } from '../../redux/reducers/auth-reducer/selectors'
+import { Navigate } from 'react-router-dom'
 
 type DialogsListPropsType = {
 
@@ -24,6 +26,12 @@ export const DialogsList: FC<DialogsListPropsType> = ({ }) => {
 
 	const dialogsElements = dialogs.map(d => <DialogsItem key={d.id} dialog={d} />)
 	const messagesElements = messages.map(m => <MessagesItem key={m.id} message={m} />)
+
+	const isAuth = useSelector(selectIsAuth)
+
+	if (!isAuth) {
+		return <Navigate to='/login' />
+	}
 
 	return (
 		<div className={s.dialogs}>

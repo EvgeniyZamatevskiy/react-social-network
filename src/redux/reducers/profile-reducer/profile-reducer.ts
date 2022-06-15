@@ -7,7 +7,8 @@ const initState: InitStateType = {
 		{ id: 2, message: 'It\'s my first post', likesCount: 11 },
 		{ id: 3, message: 'Hello', likesCount: 11 },
 	],
-	userProfile: null
+	userProfile: null,
+	userStatus: ''
 }
 
 export const profileReducer = (state: InitStateType = initState, action: ProfileReducerActionsType): InitStateType => {
@@ -17,6 +18,8 @@ export const profileReducer = (state: InitStateType = initState, action: Profile
 			return { ...state, posts: [...state.posts, newPost] }
 		case 'SET-USER-PROFILE':
 			return { ...state, userProfile: action.userProfile }
+		case 'SET-USER-STATUS':
+			return { ...state, userStatus: action.status }
 
 		default:
 			return state
@@ -27,6 +30,7 @@ export const profileReducer = (state: InitStateType = initState, action: Profile
 type InitStateType = {
 	posts: PostsType[]
 	userProfile: UserProfileResponseType | null
+	userStatus: string
 }
 
 export type PostsType = {

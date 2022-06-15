@@ -1,7 +1,9 @@
 import React, { FC, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { useActions } from '../../redux/hooks'
 import { selectIsLoading } from '../../redux/reducers/app-reducer/selectors'
+import { selectIsAuth } from '../../redux/reducers/auth-reducer/selectors'
 import { usersActionCreators } from '../../redux/reducers/users-reducer'
 import { selectCount, selectPage, selectTotalUsersCount, selectUsers } from '../../redux/reducers/users-reducer/selectors'
 import { UsersItem } from './UsersItem/UsersItem'
@@ -26,9 +28,16 @@ export const UsersList: FC<UsersListPropsType> = ({ }) => {
 		pages.push(i)
 	}
 
+	const navigate = useNavigate()
+	const isAuth = useSelector(selectIsAuth)
+
 	useEffect(() => {
-		getUsersTC(count, page)
-	}, [])
+		if (isAuth) {
+			getUsersTC(count, page)
+		} else {
+			navigate('/login')
+		}
+	}, [isAuth])
 
 	return (
 		<div>
