@@ -1,12 +1,12 @@
 import React, { FC } from 'react'
-import { PostsType } from '../../../../redux/reducers/profile-reducer/profile-reducer'
-import s from './PostsItem.module.css'
+import { PostsType } from '../../redux/reducers/profile-reducer/profile-reducer'
+import s from './PostItem.module.css'
 
-type PostsItemPropsType = {
+type PostItemPropsType = {
 	post: PostsType
 }
 
-export const PostsItem: FC<PostsItemPropsType> = ({ post }) => {
+export const PostItem: FC<PostItemPropsType> = ({ post }) => {
 
 	return (
 		<div className={s.item}>

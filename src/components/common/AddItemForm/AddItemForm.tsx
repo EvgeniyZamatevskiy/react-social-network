@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, useState } from 'react'
-import { UniversalButton } from '../UI/UniversalButton/UniversalButton'
-import { UniversalInput } from '../UI/UniversalInput/UniversalInput'
+import { UniversalButton } from '../UniversalButton/UniversalButton'
+import { UniversalInput } from '../UniversalInput/UniversalInput'
 
 type AddItemFormPropsType = {
 	addItem: (title: string) => void

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { useActions } from '../../redux/hooks'
 import { authActionCreators } from '../../redux/reducers/auth-reducer'
 import { selectIsAuth, selectLogin } from '../../redux/reducers/auth-reducer/selectors'
-import { UniversalButton } from '../UI/UniversalButton/UniversalButton'
+import { UniversalButton } from '../common/UniversalButton/UniversalButton'
 import s from './Header.module.css'
 
 type HeaderPropsType = {

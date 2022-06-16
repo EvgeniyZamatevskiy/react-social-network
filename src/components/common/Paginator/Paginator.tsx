@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react'
 import s from './Paginator.module.css'
-import { UniversalButton } from '../UI/UniversalButton/UniversalButton'
+import { UniversalButton } from '../UniversalButton/UniversalButton'
 
 type PaginatorPropsType = {
 	setCurrentPage: (currentPage: number) => void

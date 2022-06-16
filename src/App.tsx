@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { Header } from './components/Header/Header'
 import { Navbar } from './components/Navbar/Navbar'
-import { DialogsList } from './pages/DialogsLists/DialogsList'
 import { Profile } from './pages/Profile/Profile'
 import { UsersList } from './pages/UsersList/UsersList'
 import { useSelector } from 'react-redux'
@@ -11,6 +10,7 @@ import { Login } from './pages/Login/Login'
 import { Route } from 'react-router-dom'
 import { appActionCreators } from './redux/reducers/app-reducer'
 import './App.css'
+import { Dialogs } from './pages/Dialogs/Dialogs'
 
 export const App = () => {
 
@@ -32,7 +32,7 @@ export const App = () => {
       <Header />
       <Navbar />
       <div className='app-wrapper-content'>
-        <Route path={'/dialogs'} render={() => <DialogsList />} />
+        <Route path={'/dialogs'} render={() => <Dialogs />} />
         <Route path={'/profile/:userId?'} render={() => <Profile />} />
         <Route path={'/users'} render={() => <UsersList />} />
         <Route path={'/login'} render={() => <Login />} />

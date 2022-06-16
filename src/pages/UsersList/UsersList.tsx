@@ -6,8 +6,8 @@ import { selectIsLoading } from '../../redux/reducers/app-reducer/selectors'
 import { selectIsAuth } from '../../redux/reducers/auth-reducer/selectors'
 import { usersActionCreators } from '../../redux/reducers/users-reducer'
 import { selectCount, selectPage, selectTotalUsersCount, selectUsers } from '../../redux/reducers/users-reducer/selectors'
-import { Paginator } from '../../components/Paginator/Paginator'
-import { UsersItem } from './UsersItem/UsersItem'
+import { Paginator } from '../../components/common/Paginator/Paginator'
+import { UsersItem } from '../../components/UsersItem/UsersItem'
 
 type UsersListPropsType = {
 

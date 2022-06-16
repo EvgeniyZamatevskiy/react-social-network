@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { UniversalInput } from '../../../../components/UI/UniversalInput/UniversalInput'
+import { UniversalInput } from '../common/UniversalInput/UniversalInput'
 
 type ProfileStatusPropsType = {
 	currentValue: string
