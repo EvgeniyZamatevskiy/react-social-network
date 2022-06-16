@@ -29,7 +29,7 @@ export const profileAPI = {
 // profile
 export type UserProfileResponseType = {
 	aboutMe?: null | string
-	contacts?: any
+	contacts?: ContactsType
 	lookingForAJob?: boolean
 	lookingForAJobDescription?: null | string
 	fullName?: string
