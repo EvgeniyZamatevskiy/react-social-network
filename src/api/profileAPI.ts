@@ -3,11 +3,11 @@ import { instance } from './instance'
 import { PhotosType } from './usersAPI'
 
 export const profileAPI = {
-	getUserProfile(userId: string) {
+	getUserProfile(userId: number) {
 		return instance.get<UserProfileResponseType>(`profile/${userId}`)
 	},
 	getStatus(userId: number) {
-		return instance.get<any>(`profile/status/${userId}`) // string
+		return instance.get<string>(`profile/status/${userId}`)
 	},
 	updateUserStatus(newStatus: string) {
 		return instance.put<CommonResponseType>(`profile/status`, { status: newStatus })
@@ -15,35 +15,39 @@ export const profileAPI = {
 	savePhoto(file: File) {
 		const formData = new FormData()
 		formData.append('image', file)
-		return instance.put<CommonResponseType<PhotosType>>('profile/photo', formData, {
+		return instance.put<CommonResponseType<SavePhotoResponseDataType>>('profile/photo', formData, {
 			headers: {
 				'Content-Type': 'multipart/form-data'
 			}
 		})
 	},
-	saveProfile(profile: any) {
+	saveProfile(profile: UserProfileResponseType) {
 		return instance.put<CommonResponseType>('profile', profile)
 	}
 }
 
 // profile
 export type UserProfileResponseType = {
-	aboutMe?: null | string
-	contacts?: ContactsType
-	lookingForAJob?: boolean
-	lookingForAJobDescription?: null | string
-	fullName?: string
-	userId?: number
+	userId: number
+	lookingForAJob: boolean
+	lookingForAJobDescription: string
+	fullName: string
+	contacts: ContactsType
 	photos: PhotosType
+	aboutMe: string
 }
 
 export type ContactsType = {
-	facebook: null | string
-	website: null | string
-	vk: null | string
-	twitter: null | string
-	instagram: null | string
-	youtube: null | string
-	github: null | string
-	mainLink: null | string
+	github: string
+	vk: string
+	facebook: string
+	instagram: string
+	twitter: string
+	website: string
+	youtube: string
+	mainLink: string
+}
+
+export type SavePhotoResponseDataType = {
+	photos: PhotosType
 }

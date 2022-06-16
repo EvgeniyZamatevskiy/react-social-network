@@ -1,22 +1,21 @@
 import React, { ChangeEvent, FC, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { UserProfileResponseType } from '../../api/profileAPI'
 import { useActions } from '../../redux/hooks'
 import { profileActionCreators } from '../../redux/reducers/profile-reducer'
-import { selectUserStatus } from '../../redux/reducers/profile-reducer/selectors'
+import { selectUserProfile, selectUserStatus } from '../../redux/reducers/profile-reducer/selectors'
 import { ProfileData } from '../ProfileData/ProfileData'
 import { ProfileDataForm } from '../ProfileDataForm/ProfileDataForm'
 import { ProfileStatus } from '../ProfileStatus/ProfileStatus'
 
 type ProfileInfoPropsType = {
 	isOwner: boolean
-	userProfile: UserProfileResponseType | null
 }
 
-export const ProfileInfo: FC<ProfileInfoPropsType> = ({ isOwner, userProfile }) => {
+export const ProfileInfo: FC<ProfileInfoPropsType> = ({ isOwner }) => {
 
 	let [editMode, setEditMode] = useState(false)
 
+	const userProfile = useSelector(selectUserProfile)
 	const userStatus = useSelector(selectUserStatus)
 	const { updateUserStatusTC, savePhotoTC } = useActions(profileActionCreators)
 

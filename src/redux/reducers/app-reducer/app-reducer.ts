@@ -1,6 +1,6 @@
 import { AppReducerActionsType } from './actions'
 
-const initState: InitStateType = {
+const initState = {
 	isLoading: false,
 	isInitialized: false,
 }
@@ -18,7 +18,4 @@ export const appReducer = (state: InitStateType = initState, action: AppReducerA
 }
 
 // types
-type InitStateType = {
-	isLoading: boolean
-	isInitialized: boolean
-}
+export type InitStateType = typeof initState

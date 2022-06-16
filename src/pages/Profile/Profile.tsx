@@ -6,7 +6,6 @@ import { selectId, selectIsAuth } from '../../redux/reducers/auth-reducer/select
 import { profileActionCreators } from '../../redux/reducers/profile-reducer'
 import { PostsList } from '../../components/PostsList/PostsList'
 import { ProfileInfo } from '../../components/ProfileInfo/ProfileInfo'
-import { selectUserProfile } from '../../redux/reducers/profile-reducer/selectors'
 
 type ProfilePropsType = {
 
@@ -14,14 +13,9 @@ type ProfilePropsType = {
 
 export const Profile = withRouter((props) => {
 
-	const userProfile = useSelector(selectUserProfile)
 	const isAuth = useSelector(selectIsAuth)
 	const authorizedUserId = useSelector(selectId)
 	const { getUserProfileTC, getStatusTC } = useActions(profileActionCreators)
-
-	if (!isAuth) {
-		return <Redirect to={'/login'} />
-	}
 
 	useEffect(() => {
 		let userId = props.match.params.userId
@@ -29,13 +23,19 @@ export const Profile = withRouter((props) => {
 			userId = authorizedUserId
 		}
 
-		getUserProfileTC(userId)
-		getStatusTC(userId)
-	}, [props.match.params.userId, userProfile?.photos.large])
+		if (isAuth) {
+			getStatusTC(userId)
+			getUserProfileTC(userId)
+		}
+	}, [props.match.params.userId])
+
+	if (!isAuth) {
+		return <Redirect to={'/login'} />
+	}
 
 	return (
 		<div>
-			<ProfileInfo isOwner={!props.match.params.userId} userProfile={userProfile} />
+			<ProfileInfo isOwner={!props.match.params.userId} />
 			<PostsList />
 		</div>
 	)

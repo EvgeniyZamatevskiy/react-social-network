@@ -2,28 +2,28 @@ import { instance } from './instance'
 
 export const authAPI = {
 	me() {
-		return instance.get<CommonResponseType<UserDataType>>('auth/me')
+		return instance.get<CommonResponseType<MeResponseDataType>>('auth/me')
 	},
 	login(loginParams: LoginParamsType) {
-		return instance.post('auth/login', loginParams)
+		return instance.post<CommonResponseType<{ userId: number }>>('auth/login', loginParams)
 	},
 	logout() {
-		return instance.delete<CommonResponseType>('auth/login')
+		return instance.delete('auth/login')
 	}
 }
 
-// auth
-export type UserDataType = {
-	id: number | null
-	login: string | null
-	email: string | null
+//types
+type MeResponseDataType = {
+	id: number
+	email: string
+	login: string
 }
 
 export type LoginParamsType = {
 	email: string
 	password: string
 	rememberMe: boolean
-	captcha?: string
+	captcha?: null | string
 }
 
 //common

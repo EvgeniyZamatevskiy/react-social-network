@@ -1,16 +1,17 @@
 import { DialogsReducerActionsType } from './actions'
 
-const initState: InitStateType = {
+const initState = {
 	dialogs: [
 		{ id: 1, name: 'Dimych' },
 		{ id: 2, name: 'Andrew' },
 		{ id: 3, name: 'Sveta' },
-	],
+	] as DialogsType[],
+
 	messages: [
 		{ id: 1, message: 'Hi' },
 		{ id: 2, message: 'How is your it-kamasutra?' },
 		{ id: 3, message: 'Yo' },
-	],
+	] as MessagesType[],
 }
 
 export const dialogsReducer = (state: InitStateType = initState, action: DialogsReducerActionsType): InitStateType => {
@@ -25,10 +26,8 @@ export const dialogsReducer = (state: InitStateType = initState, action: Dialogs
 }
 
 // types
-type InitStateType = {
-	dialogs: DialogsType[]
-	messages: MessagesType[]
-}
+export type InitStateType = typeof initState
+
 
 export type DialogsType = {
 	id: number

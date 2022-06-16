@@ -13,7 +13,7 @@ export const savePhotoAC = (photos: PhotosType) => ({ type: 'SAVE-PHOTO', photos
 
 
 // ThunkCreators
-export const getUserProfileTC = (userId: any): ThunkType => async (dispatch) => {
+export const getUserProfileTC = (userId: number): ThunkType => async (dispatch) => {
 	try {
 		const res = await profileAPI.getUserProfile(userId)
 		dispatch(setUserProfileAC(res.data))
@@ -22,7 +22,7 @@ export const getUserProfileTC = (userId: any): ThunkType => async (dispatch) => 
 	}
 }
 
-export const getStatusTC = (userId: any): ThunkType => async (dispatch) => {
+export const getStatusTC = (userId: number): ThunkType => async (dispatch) => {
 	try {
 		const res = await profileAPI.getStatus(userId)
 		dispatch(setUserStatusAC(res.data))
@@ -48,7 +48,7 @@ export const savePhotoTC = (file: File): ThunkType => async (dispatch) => {
 	try {
 		const res = await profileAPI.savePhoto(file)
 		if (res.data.resultCode === 0) {
-			dispatch(savePhotoAC(res.data.data))
+			dispatch(savePhotoAC(res.data.data.photos))
 		} else {
 			alert(res.data.messages[0])
 		}
@@ -57,13 +57,13 @@ export const savePhotoTC = (file: File): ThunkType => async (dispatch) => {
 	}
 }
 
-export const saveProfileTC = (profile: any): ThunkType => async (dispatch, getState) => {
+export const saveProfileTC = (profile: UserProfileResponseType): ThunkType => async (dispatch, getState) => {
 	const userId = getState().auth.id
 
 	try {
 		const res = await profileAPI.saveProfile(profile)
 		if (res.data.resultCode === 0) {
-			dispatch(getUserProfileTC(userId))
+			dispatch(getUserProfileTC(userId!))
 		} else {
 			alert(res.data.messages[0])
 		}

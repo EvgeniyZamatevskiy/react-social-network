@@ -6,7 +6,7 @@ export const usersAPI = {
 	}
 }
 
-// users
+// types
 export type GetUsersResponseType = {
 	items: UsersType[]
 	totalCount: number
@@ -16,14 +16,12 @@ export type GetUsersResponseType = {
 export type UsersType = {
 	name: string
 	id: number
-	uniqueUrlName: null | string
 	photos: PhotosType
-	status: null | string
+	status: string
 	followed: boolean
 }
 
-// common
 export type PhotosType = {
-	small: any
-	large?: any
+	small: string | null
+	large: string | null
 }

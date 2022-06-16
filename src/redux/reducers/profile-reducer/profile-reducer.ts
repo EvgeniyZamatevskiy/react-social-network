@@ -1,13 +1,13 @@
 import { UserProfileResponseType } from '../../../api/profileAPI'
 import { ProfileReducerActionsType } from './actions'
 
-const initState: InitStateType = {
+const initState = {
 	posts: [
 		{ id: 1, message: 'Hi, how are you?', likesCount: 12 },
 		{ id: 2, message: 'It\'s my first post', likesCount: 11 },
 		{ id: 3, message: 'Hello', likesCount: 11 },
-	],
-	userProfile: null,
+	] as PostsType[],
+	userProfile: null as UserProfileResponseType | null,
 	userStatus: ''
 }
 
@@ -21,7 +21,7 @@ export const profileReducer = (state: InitStateType = initState, action: Profile
 		case 'SET-USER-STATUS':
 			return { ...state, userStatus: action.status }
 		case 'SAVE-PHOTO':
-			return { ...state, userProfile: { ...state.userProfile, photos: action.photos } }
+			return { ...state, userProfile: { ...state.userProfile, photos: action.photos } as UserProfileResponseType }
 
 		default:
 			return state
@@ -29,11 +29,7 @@ export const profileReducer = (state: InitStateType = initState, action: Profile
 }
 
 // types
-type InitStateType = {
-	posts: PostsType[]
-	userProfile: UserProfileResponseType | null
-	userStatus: string
-}
+export type InitStateType = typeof initState
 
 export type PostsType = {
 	id: number

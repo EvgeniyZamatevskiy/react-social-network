@@ -29,10 +29,9 @@ export const UsersList: FC<UsersListPropsType> = ({ }) => {
 	}
 
 	useEffect(() => {
-		if (!isAuth) {
-			return
+		if (isAuth) {
+			getUsersTC(count, page)
 		}
-		getUsersTC(count, page)
 	}, [])
 
 	if (!isAuth) {

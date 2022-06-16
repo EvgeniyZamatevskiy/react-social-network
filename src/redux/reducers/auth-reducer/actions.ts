@@ -1,5 +1,5 @@
 import { setAppIsInitializedAC } from './../app-reducer/actions'
-import { authAPI, LoginParamsType, UserDataType } from './../../../api/authAPI'
+import { authAPI, LoginParamsType } from './../../../api/authAPI'
 import { ThunkType } from '../../store'
 
 // ActionCreators
@@ -62,4 +62,10 @@ export const authActions = {
 export type AuthReducerActionsType = SetUserDataActionType | ToggleIsAuthActionType
 
 type SetUserDataActionType = ReturnType<typeof setUserDataAC>
-type ToggleIsAuthActionType = ReturnType<typeof toggleIsAuthAC> 
+type ToggleIsAuthActionType = ReturnType<typeof toggleIsAuthAC>
+
+type UserDataType = {
+	id: number | null,
+	email: string | null
+	login: string | null
+}
