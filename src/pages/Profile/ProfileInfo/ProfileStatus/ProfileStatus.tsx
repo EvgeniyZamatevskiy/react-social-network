@@ -30,7 +30,7 @@ export const ProfileStatus: FC<ProfileStatusPropsType> = ({ currentValue, change
 		<>
 			{editMode
 				? <UniversalInput autoFocus value={newValue} onChangeValue={setNewValue} onBlur={onBlurHandler} onClickEnter={onClickEnterHandler} />
-				: <span onDoubleClick={onDoubleClickHandler}>{currentValue ? currentValue : 'Set status'}</span>}
+				: <span onDoubleClick={onDoubleClickHandler}><b>status: </b>{currentValue ? currentValue : 'Set status'}</span>}
 		</>
 	)
 }

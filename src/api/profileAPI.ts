@@ -12,16 +12,28 @@ export const profileAPI = {
 	updateUserStatus(newStatus: string) {
 		return instance.put<CommonResponseType>(`profile/status`, { status: newStatus })
 	},
+	savePhoto(file: File) {
+		const formData = new FormData()
+		formData.append('image', file)
+		return instance.put<CommonResponseType<PhotosType>>('profile/photo', formData, {
+			headers: {
+				'Content-Type': 'multipart/form-data'
+			}
+		})
+	},
+	saveProfile(profile: any) {
+		return instance.put<CommonResponseType>('profile', profile)
+	}
 }
 
 // profile
 export type UserProfileResponseType = {
-	aboutMe: null | string
-	contacts: ContactsType
-	lookingForAJob: boolean
-	lookingForAJobDescription: null | string
-	fullName: string
-	userId: number
+	aboutMe?: null | string
+	contacts?: any
+	lookingForAJob?: boolean
+	lookingForAJobDescription?: null | string
+	fullName?: string
+	userId?: number
 	photos: PhotosType
 }
 

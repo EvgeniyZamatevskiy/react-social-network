@@ -24,6 +24,6 @@ export type UsersType = {
 
 // common
 export type PhotosType = {
-	small: null | string
-	large: null | string
+	small: any
+	large?: any
 }

@@ -20,6 +20,8 @@ export const profileReducer = (state: InitStateType = initState, action: Profile
 			return { ...state, userProfile: action.userProfile }
 		case 'SET-USER-STATUS':
 			return { ...state, userStatus: action.status }
+		case 'SAVE-PHOTO':
+			return { ...state, userProfile: { ...state.userProfile, photos: action.photos } }
 
 		default:
 			return state

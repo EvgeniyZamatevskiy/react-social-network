@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Redirect, withRouter } from 'react-router-dom'
+import { Redirect, RouteComponentProps, withRouter } from 'react-router-dom'
 import { useActions } from '../../redux/hooks'
 import { selectId, selectIsAuth } from '../../redux/reducers/auth-reducer/selectors'
 import { profileActionCreators } from '../../redux/reducers/profile-reducer'
@@ -22,22 +22,18 @@ export const Profile = withRouter((props) => {
 	}
 
 	useEffect(() => {
-
 		let userId = props.match.params.userId
 		if (!userId) {
 			userId = authorizedUserId
-			// if (!userId) {
-			// 	props.history.push('/login')
-			// }
 		}
 
 		getUserProfileTC(userId)
 		getStatusTC(userId)
-	}, [])
+	}, [props.match.params.userId])
 
 	return (
 		<div>
-			<ProfileInfo />
+			<ProfileInfo isOwner={!props.match.params.userId} />
 			<PostsList />
 		</div>
 	)
