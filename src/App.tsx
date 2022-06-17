@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 import { selectIsInitialized } from './redux/reducers/app-reducer/selectors'
 import { useActions } from './redux/hooks'
 import { Login } from './pages/Login/Login'
-import { Route } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import { appActionCreators } from './redux/reducers/app-reducer'
 import './App.css'
 import { Dialogs } from './pages/Dialogs/Dialogs'
@@ -32,10 +32,14 @@ export const App = () => {
       <Header />
       <Navbar />
       <div className='app-wrapper-content'>
-        <Route path={'/dialogs'} render={() => <Dialogs />} />
-        <Route path={'/profile/:userId?'} render={() => <Profile />} />
-        <Route path={'/users'} render={() => <UsersList />} />
-        <Route path={'/login'} render={() => <Login />} />
+        <Switch>
+          <Route path={'/dialogs'} render={() => <Dialogs />} />
+          <Route path={'/profile/:userId?'} render={() => <Profile />} />
+          <Route path={'/users'} render={() => <UsersList />} />
+          <Route path={'/login'} render={() => <Login />} />
+          <Redirect from="/" to="/profile" />
+          <Route path={'*'} render={() => <div>404 page not found</div>} />
+        </Switch>
       </div>
     </div>
   )

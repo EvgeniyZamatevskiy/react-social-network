@@ -4,7 +4,8 @@ const initState: InitStateType = {
 	id: null,
 	login: null,
 	email: null,
-	isAuth: false
+	isAuth: false,
+	captchaUrl: null
 }
 
 export const authReducer = (state: InitStateType = initState, action: AuthReducerActionsType): InitStateType => {
@@ -13,6 +14,8 @@ export const authReducer = (state: InitStateType = initState, action: AuthReduce
 			return { ...state, ...action.userData, isAuth: action.isAuth }
 		case 'TOGGLE-IS-AUTH':
 			return { ...state, isAuth: action.isAuth }
+		case 'GET-CAPTCHA-URL':
+			return { ...state, captchaUrl: action.captchaUrl }
 
 		default:
 			return state
@@ -24,5 +27,6 @@ type InitStateType = {
 	id: null | number
 	login: null | string
 	email: null | string
-	isAuth: boolean
+	isAuth: boolean,
+	captchaUrl: string | null
 }

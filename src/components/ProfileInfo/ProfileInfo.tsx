@@ -17,7 +17,7 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = ({ isOwner }) => {
 
 	const userProfile = useSelector(selectUserProfile)
 	const userStatus = useSelector(selectUserStatus)
-	const { updateUserStatusTC, savePhotoTC } = useActions(profileActionCreators)
+	const { updateUserStatusTC, savePhotoTC, getUserProfileTC } = useActions(profileActionCreators)
 
 	const changeUserStatusHandler = (newStatus: string) => {
 		updateUserStatusTC(newStatus)

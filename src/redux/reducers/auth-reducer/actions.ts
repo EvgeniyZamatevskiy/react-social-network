@@ -1,11 +1,13 @@
-import { setAppIsInitializedAC } from './../app-reducer/actions'
 import { authAPI, LoginParamsType } from './../../../api/authAPI'
 import { ThunkType } from '../../store'
+import { securityAPI } from '../../../api/securityAPI'
 
 // ActionCreators
 export const setUserDataAC = (userData: UserDataType, isAuth: boolean) => ({ type: 'SET-USER-DATA', userData, isAuth } as const)
 
 export const toggleIsAuthAC = (isAuth: boolean) => ({ type: 'TOGGLE-IS-AUTH', isAuth } as const)
+
+export const getCaptchaUrlAC = (captchaUrl: string) => ({ type: 'GET-CAPTCHA-URL', captchaUrl } as const)
 
 // ThunkCreators
 export const getUserDataTC = (): ThunkType => async (dispatch) => {
@@ -27,6 +29,9 @@ export const loginTC = (loginParams: LoginParamsType): ThunkType => async (dispa
 		if (res.data.resultCode === 0) {
 			dispatch(getUserDataTC())
 		} else {
+			if (res.data.resultCode === 10) {
+				dispatch(getCaptchaUrlTC())
+			}
 			alert(res.data.messages[0])
 		}
 	} catch (error: any) {
@@ -47,22 +52,34 @@ export const logoutTC = (): ThunkType => async (dispatch) => {
 	}
 }
 
+export const getCaptchaUrlTC = (): ThunkType => async (dispatch) => {
+	try {
+		const res = await securityAPI.getCaptchaUrl()
+		dispatch(getCaptchaUrlAC(res.data.url))
+	} catch (error: any) {
+		alert(error.message)
+	}
+}
+
 export const authAsyncActions = {
 	getUserDataTC,
 	loginTC,
-	logoutTC
+	logoutTC,
+	getCaptchaUrlTC
 }
 
 export const authActions = {
 	setUserDataAC,
-	toggleIsAuthAC
+	toggleIsAuthAC,
+	getCaptchaUrlAC
 }
 
 // types
-export type AuthReducerActionsType = SetUserDataActionType | ToggleIsAuthActionType
+export type AuthReducerActionsType = SetUserDataActionType | ToggleIsAuthActionType | GetCaptchaUrlAC
 
 type SetUserDataActionType = ReturnType<typeof setUserDataAC>
 type ToggleIsAuthActionType = ReturnType<typeof toggleIsAuthAC>
+type GetCaptchaUrlAC = ReturnType<typeof getCaptchaUrlAC>
 
 type UserDataType = {
 	id: number | null,

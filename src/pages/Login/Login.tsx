@@ -3,7 +3,7 @@ import { useFormik } from 'formik'
 import { authActionCreators } from '../../redux/reducers/auth-reducer'
 import { useActions } from '../../redux/hooks'
 import { useSelector } from 'react-redux'
-import { selectIsAuth } from '../../redux/reducers/auth-reducer/selectors'
+import { selectCaptchaUrl, selectIsAuth } from '../../redux/reducers/auth-reducer/selectors'
 import { Redirect } from 'react-router-dom'
 
 type FormikErrorType = {
@@ -16,12 +16,14 @@ export const Login = ({ }) => {
 
 	const { loginTC } = useActions(authActionCreators)
 	const isAuth = useSelector(selectIsAuth)
+	const captchaUrl = useSelector(selectCaptchaUrl)
 
 	const formik = useFormik({
 		initialValues: {
 			email: '',
 			password: '',
-			rememberMe: false
+			rememberMe: false,
+			captcha: ''
 		},
 		validate: (values) => {
 			const errors: FormikErrorType = {}
@@ -41,6 +43,7 @@ export const Login = ({ }) => {
 		},
 		onSubmit: values => {
 			loginTC(values)
+			console.log(values)
 			// formik.resetForm()
 		},
 	})
@@ -63,6 +66,8 @@ export const Login = ({ }) => {
 						{...formik.getFieldProps('password')} />
 					{formik.touched.password && formik.errors.password && <div style={{ color: 'red' }}>{formik.errors.password}</div>}
 				</div>
+				{captchaUrl && <img src={captchaUrl} />}
+				{captchaUrl && <input placeholder={'captcha'} {...formik.getFieldProps('captcha')} />}
 				<div>
 					<input type={'checkbox'}
 						{...formik.getFieldProps('rememberMe')} />remember me

@@ -1,4 +1,3 @@
-import { useFormik } from 'formik'
 import React, { FC } from 'react'
 import { useForm } from 'react-hook-form'
 import { UserProfileResponseType } from '../../api/profileAPI'
@@ -10,53 +9,14 @@ type ProfileDataFormPropsType = {
 	setEditMode: (editMode: boolean) => void
 }
 
-type FormikErrorType = {
-	contacts?: {
-		facebook?: string
-	}
-}
-
 export const ProfileDataForm: FC<ProfileDataFormPropsType> = ({ userProfile, setEditMode }) => {
 
 	const { saveProfileTC } = useActions(profileActionCreators)
 
-	// const formik = useFormik({
-	// 	initialValues: {
-	// 		aboutMe: '',
-	// 		lookingForAJob: false,
-	// 		lookingForAJobDescription: '',
-	// 		fullName: '',
-	// 		contacts: {
-	// 			facebook: '',
-	// 			website: '',
-	// 			vk: '',
-	// 			twitter: '',
-	// 			instagram: '',
-	// 			youtube: '',
-	// 			github: '',
-	// 			mainLink: '',
-	// 		}
-	// 	},
-	// 	validate: (values) => {
-	// 		const errors: FormikErrorType = { contacts: {} }
-	// 		// if (!values.contacts.facebook) {
-	// 		// 	errors.contacts!.facebook = 'Email is required'
-	// 		// } else if (!/(http|https):\/\/([\w.]+\/?)\S*/i.test(values.contacts.facebook)) {
-	// 		// 	errors.contacts!.facebook = 'Invalid email address'
-	// 		// }
-	// 		// console.log(errors)
-
-	// 		return errors
-	// 	},
-	// 	onSubmit: values => {
-	// 		saveProfileTC(values)
-	// 		setEditMode(false)
-	// 		// formik.resetForm()
-	// 		console.log(values)
-	// 	},
-	// })
-
-	const { register, handleSubmit, reset, formState: { errors }, } = useForm<any>({ mode: 'onBlur' })
+	const { register, handleSubmit, reset, formState: { errors }, } = useForm<any>({
+		mode: 'onBlur',
+		defaultValues: { ...userProfile },
+	})
 
 	const onSubmit: any = (data: any) => {
 		saveProfileTC(data)
@@ -70,10 +30,7 @@ export const ProfileDataForm: FC<ProfileDataFormPropsType> = ({ userProfile, set
 			<div>
 				<b>Full name</b>: <input placeholder='fullName' {...register('fullName', {
 					required: 'Поле обязательно к заполнению!',
-					minLength: {
-						value: 3,
-						message: 'Минимум 3 символа!'
-					}
+					minLength: { value: 3, message: 'Минимум 3 символа!' },
 				})} />
 				{errors?.fullName && <p>{errors?.fullName?.message}</p>}
 			</div>
@@ -85,10 +42,7 @@ export const ProfileDataForm: FC<ProfileDataFormPropsType> = ({ userProfile, set
 			<div>
 				<b>My professional skills</b>: <input placeholder='lookingForAJobDescription' {...register('lookingForAJobDescription', {
 					required: 'Поле обязательно к заполнению!',
-					minLength: {
-						value: 3,
-						message: 'Минимум 3 символа!'
-					}
+					minLength: { value: 3, message: 'Минимум 3 символа!' }
 				})} />
 				{errors?.lookingForAJobDescription && <p>{errors?.lookingForAJobDescription?.message}</p>}
 			</div>
@@ -96,86 +50,58 @@ export const ProfileDataForm: FC<ProfileDataFormPropsType> = ({ userProfile, set
 			<div>
 				<b>About me</b>: <input placeholder='aboutMe' {...register('aboutMe', {
 					required: 'Поле обязательно к заполнению!',
-					minLength: {
-						value: 3,
-						message: 'Минимум 3 символа!'
-					}
+					minLength: { value: 3, message: 'Минимум 3 символа!' }
 				})} />
 				{errors?.aboutMe && <p>{errors?.aboutMe?.message}</p>}
-
 			</div>
 
 			<div>
 				<h3>Contacts</h3>:
 				<div>
 					<b>github</b>: <input placeholder='github' {...register('contacts.github', {
-						pattern: {
-							value: /(http|https):\/\/([\w.]+\/?)\S*/,
-							message: 'Некорректный github!',
-						}
+						pattern: { value: /(http|https):\/\/([\w.]+\/?)\S*/, message: 'Некорректный github!', }
 					})} />
 					{errors?.contacts?.github && <p>{errors?.contacts?.github.message}</p>}
 				</div>
 				<div>
 					<b>instagram</b>: <input placeholder='instagram' {...register('contacts.instagram', {
-						pattern: {
-							value: /(http|https):\/\/([\w.]+\/?)\S*/,
-							message: 'Некорректный instagram!',
-						}
+						pattern: { value: /(http|https):\/\/([\w.]+\/?)\S*/, message: 'Некорректный instagram!', }
 					})} />
 					{errors?.contacts?.instagram && <p>{errors?.contacts?.instagram.message}</p>}
 				</div>
 				<div>
 					<b>youtube</b>:<input placeholder='youtube' {...register('contacts.youtube', {
-						pattern: {
-							value: /(http|https):\/\/([\w.]+\/?)\S*/,
-							message: 'Некорректный youtube!',
-						}
+						pattern: { value: /(http|https):\/\/([\w.]+\/?)\S*/, message: 'Некорректный youtube!', }
 					})} />
 					{errors?.contacts?.youtube && <p>{errors?.contacts?.youtube.message}</p>}
 				</div>
 				<div>
 					<b>mainLink</b>: <input placeholder='mainLink' {...register('contacts.mainLink', {
-						pattern: {
-							value: /(http|https):\/\/([\w.]+\/?)\S*/,
-							message: 'Некорректный mainLink!',
-						}
+						pattern: { value: /(http|https):\/\/([\w.]+\/?)\S*/, message: 'Некорректный mainLink!', }
 					})} />
 					{errors?.contacts?.mainLink && <p>{errors?.contacts?.mainLink.message}</p>}
 				</div>
 				<div>
 					<b>twitter</b>: <input placeholder='twitter' {...register('contacts.twitter', {
-						pattern: {
-							value: /(http|https):\/\/([\w.]+\/?)\S*/,
-							message: 'Некорректный twitter!',
-						}
+						pattern: { value: /(http|https):\/\/([\w.]+\/?)\S*/, message: 'Некорректный twitter!', }
 					})} />
 					{errors?.contacts?.twitter && <p>{errors?.contacts?.twitter.message}</p>}
 				</div>
 				<div>
 					<b>vk</b>: <input placeholder='vk' {...register('contacts.vk', {
-						pattern: {
-							value: /(http|https):\/\/([\w.]+\/?)\S*/,
-							message: 'Некорректный vk!',
-						}
+						pattern: { value: /(http|https):\/\/([\w.]+\/?)\S*/, message: 'Некорректный vk!', }
 					})} />
 					{errors?.contacts?.vk && <p>{errors?.contacts?.vk.message}</p>}
 				</div>
 				<div>
 					<b>website</b>: <input placeholder='website' {...register('contacts.website', {
-						pattern: {
-							value: /(http|https):\/\/([\w.]+\/?)\S*/,
-							message: 'Некорректный website!',
-						}
+						pattern: { value: /(http|https):\/\/([\w.]+\/?)\S*/, message: 'Некорректный website!', }
 					})} />
 					{errors?.contacts?.website && <p>{errors?.contacts?.website.message}</p>}
 				</div>
 				<div>
 					<b>facebook</b>: <input placeholder='facebook' {...register('contacts.facebook', {
-						pattern: {
-							value: /(http|https):\/\/([\w.]+\/?)\S*/,
-							message: 'Некорректный facebook!',
-						}
+						pattern: { value: /(http|https):\/\/([\w.]+\/?)\S*/, message: 'Некорректный facebook!', }
 					})} />
 					{errors?.contacts?.facebook && <p>{errors?.contacts?.facebook.message}</p>}
 				</div>

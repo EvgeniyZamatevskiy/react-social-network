@@ -23,7 +23,7 @@ export type LoginParamsType = {
 	email: string
 	password: string
 	rememberMe: boolean
-	captcha?: null | string
+	captcha: null | string
 }
 
 //common
