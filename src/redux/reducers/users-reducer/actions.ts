@@ -1,7 +1,7 @@
 import { toggleIsLoadingAC } from './../app-reducer/actions'
 import { followAPI } from '../../../api/followAPI'
 import { usersAPI, UsersType } from '../../../api/usersAPI'
-import { ThunkType } from '../../store'
+import { InferActionsTypes, ThunkType } from '../../store'
 
 // ActionCreators
 export const followAC = (userId: number) => ({ type: 'FOLLOW', userId } as const)
@@ -81,9 +81,7 @@ export const usersActions = {
 }
 
 // types
-export type UsersReducerActionsType =
-	FollowActionType | UnFollowActionType | SetUsersActionType |
-	SetCurrentPageActionType | SetTotalUsersCountActionType | ToggleDisabledStatusActionType
+export type UsersReducerActionsType = InferActionsTypes<typeof usersActions>
 
 type FollowActionType = ReturnType<typeof followAC>
 type UnFollowActionType = ReturnType<typeof unFollowAC>

@@ -1,6 +1,7 @@
 import { authAPI, LoginParamsType } from './../../../api/authAPI'
 import { ThunkType } from '../../store'
 import { securityAPI } from '../../../api/securityAPI'
+import { ResultCodeForCaptcha, ResultCodes } from '../../../enums/enums'
 
 // ActionCreators
 export const setUserDataAC = (userData: UserDataType, isAuth: boolean) => ({ type: 'SET-USER-DATA', userData, isAuth } as const)
@@ -12,11 +13,11 @@ export const getCaptchaUrlAC = (captchaUrl: string) => ({ type: 'GET-CAPTCHA-URL
 // ThunkCreators
 export const getUserDataTC = (): ThunkType => async (dispatch) => {
 	try {
-		const res = await authAPI.me()
-		if (res.data.resultCode === 0) {
-			dispatch(setUserDataAC(res.data.data, true))
+		const data = await authAPI.me()
+		if (data.resultCode === ResultCodes.Success) {
+			dispatch(setUserDataAC(data.data, true))
 		} else {
-			alert(res.data.messages[0])
+			alert(data.messages[0])
 		}
 	} catch (error: any) {
 		alert(error.message)
@@ -29,7 +30,7 @@ export const loginTC = (loginParams: LoginParamsType): ThunkType => async (dispa
 		if (res.data.resultCode === 0) {
 			dispatch(getUserDataTC())
 		} else {
-			if (res.data.resultCode === 10) {
+			if (res.data.resultCode === ResultCodeForCaptcha.CaptchaIsRequired) {
 				dispatch(getCaptchaUrlTC())
 			}
 			alert(res.data.messages[0])

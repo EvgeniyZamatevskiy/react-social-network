@@ -1,8 +1,8 @@
 import { UsersType } from '../../../api/usersAPI'
 import { UsersReducerActionsType } from './actions'
 
-const initState: InitStateType = {
-	users: [],
+const initState = {
+	users: [] as UsersSupplementedType[],
 	count: 10,
 	page: 1,
 	totalUsersCount: 0
@@ -28,14 +28,9 @@ export const usersReducer = (state: InitStateType = initState, action: UsersRedu
 	}
 }
 
+// types
+type InitStateType = typeof initState
+
 export type UsersSupplementedType = UsersType & {
 	disabledStatus: boolean
-}
-
-// types
-type InitStateType = {
-	users: UsersSupplementedType[]
-	count: number
-	page: number
-	totalUsersCount: number
 }

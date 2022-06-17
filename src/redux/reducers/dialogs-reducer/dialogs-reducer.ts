@@ -28,7 +28,6 @@ export const dialogsReducer = (state: InitStateType = initState, action: Dialogs
 // types
 export type InitStateType = typeof initState
 
-
 export type DialogsType = {
 	id: number
 	name: string

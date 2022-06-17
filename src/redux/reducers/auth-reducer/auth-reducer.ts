@@ -1,11 +1,11 @@
 import { AuthReducerActionsType } from './actions'
 
-const initState: InitStateType = {
-	id: null,
-	login: null,
-	email: null,
+const initState = {
+	id: null as number | null,
+	login: null as string | null,
+	email: null as string | null,
 	isAuth: false,
-	captchaUrl: null
+	captchaUrl: null as string | null
 }
 
 export const authReducer = (state: InitStateType = initState, action: AuthReducerActionsType): InitStateType => {
@@ -23,10 +23,4 @@ export const authReducer = (state: InitStateType = initState, action: AuthReduce
 }
 
 // types
-type InitStateType = {
-	id: null | number
-	login: null | string
-	email: null | string
-	isAuth: boolean,
-	captchaUrl: string | null
-}
+type InitStateType = typeof initState

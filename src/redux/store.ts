@@ -29,3 +29,10 @@ export type AllActionsType =
 	AppReducerActionsType | AuthReducerActionsType
 export type ThunkType<ReturnType = void> = ThunkAction<ReturnType, RootReducerType, unknown, AllActionsType>
 export type DispatchType = ThunkDispatch<RootReducerType, unknown, AllActionsType>
+
+
+
+export type InferActionsTypes<T> = T extends { [keys: string]: (...args: any[]) => infer U } ? U : never
+
+
+//export type all = InferActionsTypes<typeof usersActions>
