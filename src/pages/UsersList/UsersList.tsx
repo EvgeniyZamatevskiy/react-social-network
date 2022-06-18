@@ -46,7 +46,7 @@ export const UsersList: FC<UsersListPropsType> = ({ }) => {
 
 	return (
 		<div>
-			<h1>Пользователи</h1>
+			<h1>Developers</h1>
 			{isLoading && <h1>Loading...</h1>}
 			<UsersSearchForm onFilterChanged={onFilterChanged} />
 			<Paginator setCurrentPage={setCurrentPage} totalItemsCount={totalUsersCount} page={page} count={count} />

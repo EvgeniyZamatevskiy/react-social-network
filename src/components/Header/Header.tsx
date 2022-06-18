@@ -25,7 +25,7 @@ export const Header: FC<HeaderPropsType> = ({ }) => {
 			<img src='https://www.freelogodesign.org/Content/img/logo-ex-7.png' />
 			<div className={s.loginBlock}>
 				{isAuth && login}
-				{isAuth && <UniversalButton onClick={logoutHandler}>Logout</UniversalButton>}
+				{isAuth && <UniversalButton onClick={logoutHandler}>Log Out</UniversalButton>}
 			</div>
 		</header>
 	)
