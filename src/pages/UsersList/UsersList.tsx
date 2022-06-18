@@ -27,11 +27,11 @@ export const UsersList: FC<UsersListPropsType> = ({ }) => {
 	const isAuth = useSelector(selectIsAuth)
 
 	const setCurrentPage = (currentPage: number) => {
-		getUsersTC(count, currentPage, filter.term)
+		getUsersTC(count, currentPage, filter)
 	}
 
 	const onFilterChanged = (filter: any) => {
-		getUsersTC(count, page, filter)
+		getUsersTC(count, 1, filter)
 	}
 
 	useEffect(() => {
