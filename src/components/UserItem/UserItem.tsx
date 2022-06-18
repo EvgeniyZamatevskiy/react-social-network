@@ -4,13 +4,13 @@ import { UniversalButton } from '../common/UniversalButton/UniversalButton'
 import { useActions } from '../../redux/hooks'
 import { usersActionCreators } from '../../redux/reducers/users-reducer'
 import { UsersSupplementedType } from '../../redux/reducers/users-reducer/users-reducer'
-import s from './UsersItem.module.css'
+import s from './UserItem.module.css'
 
-type UsersItemPropsType = {
+type UserItemPropsType = {
 	user: UsersSupplementedType
 }
 
-export const UsersItem: FC<UsersItemPropsType> = ({ user }) => {
+export const UserItem: FC<UserItemPropsType> = ({ user }) => {
 
 	const { followTC, unFollowTC } = useActions(usersActionCreators)
 
