@@ -1,8 +1,8 @@
 import { instance } from './instance'
 
 export const usersAPI = {
-	getUsers(count: number, page: number) {
-		return instance.get<GetUsersResponseType>(`users?count=${count}&page=${page}`)
+	getUsers(count: number, page: number, term: string, friend: null | boolean = null) {
+		return instance.get<GetUsersResponseType>(`users?count=${count}&page=${page}&term=${term}` + (friend === null ? '' : `&friend=${friend}`))
 	}
 }
 

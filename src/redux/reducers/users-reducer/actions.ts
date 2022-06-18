@@ -12,16 +12,19 @@ export const setUsersAC = (users: UsersType[]) => ({ type: 'SET-USERS', users } 
 
 export const setCurrentPageAC = (currentPage: number) => ({ type: 'SET-CURRENT-PAGE', currentPage } as const)
 
+export const setFilterAC = (filter: any) => ({ type: 'SET-FILTER', payload: filter } as const)
+
 export const setTotalUsersCountAC = (totalUsersCount: number) => ({ type: 'SET-TOTAL-USERS-COUNT', totalUsersCount } as const)
 
 export const toggleDisabledStatusAC = (userId: number, isDisabled: boolean) => ({ type: 'TOGGLE-DISABLED-STATUS', userId, isDisabled } as const)
 
 // ThunkCreators
-export const getUsersTC = (count: number, page: number): ThunkType => async (dispatch) => {
+export const getUsersTC = (count: number, page: number, filter: any): ThunkType => async (dispatch) => {
 	try {
 		dispatch(toggleIsLoadingAC(true))
 		dispatch(setCurrentPageAC(page))
-		const res = await usersAPI.getUsers(count, page)
+		dispatch(setFilterAC(filter))
+		const res = await usersAPI.getUsers(count, page, filter.term, filter.friend)
 		dispatch(setUsersAC(res.data.items))
 		dispatch(setTotalUsersCountAC(res.data.totalCount))
 		dispatch(toggleIsLoadingAC(false))
@@ -77,7 +80,8 @@ export const usersActions = {
 	setCurrentPageAC,
 	unFollowAC,
 	toggleDisabledStatusAC,
-	setTotalUsersCountAC
+	setTotalUsersCountAC,
+	setFilterAC
 }
 
 // types

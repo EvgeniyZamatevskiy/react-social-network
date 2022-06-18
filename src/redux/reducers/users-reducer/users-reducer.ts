@@ -5,7 +5,8 @@ const initState = {
 	users: [] as UsersSupplementedType[],
 	count: 10,
 	page: 1,
-	totalUsersCount: 0
+	totalUsersCount: 0,
+	filter: { term: '', friend: null as boolean | null }
 }
 
 export const usersReducer = (state: InitStateType = initState, action: UsersReducerActionsType): InitStateType => {
@@ -18,6 +19,8 @@ export const usersReducer = (state: InitStateType = initState, action: UsersRedu
 			return { ...state, users: action.users.map(u => ({ ...u, disabledStatus: false })) }
 		case 'SET-CURRENT-PAGE':
 			return { ...state, page: action.currentPage }
+		case 'SET-FILTER':
+			return { ...state, filter: action.payload }
 		case 'SET-TOTAL-USERS-COUNT':
 			return { ...state, totalUsersCount: action.totalUsersCount }
 		case 'TOGGLE-DISABLED-STATUS':

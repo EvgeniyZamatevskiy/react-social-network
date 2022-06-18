@@ -5,7 +5,7 @@ import { useActions } from '../../redux/hooks'
 import { selectIsLoading } from '../../redux/reducers/app-reducer/selectors'
 import { selectIsAuth } from '../../redux/reducers/auth-reducer/selectors'
 import { usersActionCreators } from '../../redux/reducers/users-reducer'
-import { selectCount, selectPage, selectTotalUsersCount, selectUsers } from '../../redux/reducers/users-reducer/selectors'
+import { selectCount, selectFilter, selectPage, selectTotalUsersCount, selectUsers } from '../../redux/reducers/users-reducer/selectors'
 import { Paginator } from '../../components/common/Paginator/Paginator'
 import { UsersItem } from '../../components/UsersItem/UsersItem'
 import { UsersSearchForm } from '../../components/UsersSearchForm/UsersSearchForm'
@@ -22,16 +22,21 @@ export const UsersList: FC<UsersListPropsType> = ({ }) => {
 	const page = useSelector(selectPage)
 	const isLoading = useSelector(selectIsLoading)
 	const totalUsersCount = useSelector(selectTotalUsersCount)
+	const filter = useSelector(selectFilter)
 
 	const isAuth = useSelector(selectIsAuth)
 
 	const setCurrentPage = (currentPage: number) => {
-		getUsersTC(count, currentPage)
+		getUsersTC(count, currentPage, filter.term)
+	}
+
+	const onFilterChanged = (filter: any) => {
+		getUsersTC(count, page, filter)
 	}
 
 	useEffect(() => {
 		if (isAuth) {
-			getUsersTC(count, page)
+			getUsersTC(count, page, filter)
 		}
 	}, [])
 
@@ -42,8 +47,8 @@ export const UsersList: FC<UsersListPropsType> = ({ }) => {
 	return (
 		<div>
 			{isLoading && <h1>Loading...</h1>}
-			<UsersSearchForm />
-			<Paginator setCurrentPage={setCurrentPage} totalItemsCount={totalUsersCount} page={page} count={page} />
+			<UsersSearchForm onFilterChanged={onFilterChanged} />
+			<Paginator setCurrentPage={setCurrentPage} totalItemsCount={totalUsersCount} page={page} count={count} />
 			{users.map(user => <UsersItem key={user.id} user={user} />)}
 		</div>
 	)
