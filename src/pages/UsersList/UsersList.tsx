@@ -8,6 +8,7 @@ import { usersActionCreators } from '../../redux/reducers/users-reducer'
 import { selectCount, selectPage, selectTotalUsersCount, selectUsers } from '../../redux/reducers/users-reducer/selectors'
 import { Paginator } from '../../components/common/Paginator/Paginator'
 import { UsersItem } from '../../components/UsersItem/UsersItem'
+import { UsersSearchForm } from '../../components/UsersSearchForm/UsersSearchForm'
 
 type UsersListPropsType = {
 
@@ -41,6 +42,7 @@ export const UsersList: FC<UsersListPropsType> = ({ }) => {
 	return (
 		<div>
 			{isLoading && <h1>Loading...</h1>}
+			<UsersSearchForm />
 			<Paginator setCurrentPage={setCurrentPage} totalItemsCount={totalUsersCount} page={page} count={page} />
 			{users.map(user => <UsersItem key={user.id} user={user} />)}
 		</div>

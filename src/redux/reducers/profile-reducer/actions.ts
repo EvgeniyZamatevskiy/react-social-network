@@ -1,6 +1,6 @@
 import { profileAPI, UserProfileResponseType } from '../../../api/profileAPI'
 import { PhotosType } from '../../../api/usersAPI'
-import { ThunkType } from '../../store'
+import { InferActionsTypes, ThunkType } from '../../store'
 
 // ActionCreators
 export const addPostAC = (postTitle: string) => ({ type: 'ADD-POST', postTitle } as const)
@@ -88,11 +88,4 @@ export const profileActions = {
 }
 
 // types
-export type ProfileReducerActionsType =
-	AddPostActionType | SetUserProfileActionType | SetUserStatusActionType |
-	SavePhotoActionType
-
-type AddPostActionType = ReturnType<typeof addPostAC>
-type SetUserProfileActionType = ReturnType<typeof setUserProfileAC>
-type SetUserStatusActionType = ReturnType<typeof setUserStatusAC>
-type SavePhotoActionType = ReturnType<typeof savePhotoAC>
+export type ProfileReducerActionsType = InferActionsTypes<typeof profileActions>

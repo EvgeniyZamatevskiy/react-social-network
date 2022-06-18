@@ -10,7 +10,7 @@ export const authAPI = {
 		return instance.post<CommonResponseType<{ userId: number }>>('auth/login', loginParams)
 	},
 	logout() {
-		return instance.delete('auth/login')
+		return instance.delete<CommonResponseType>('auth/login')
 	}
 }
 

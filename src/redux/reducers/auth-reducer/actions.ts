@@ -76,12 +76,6 @@ export const authActions = {
 }
 
 // types
-export type AuthReducerActionsType = SetUserDataActionType | ToggleIsAuthActionType | GetCaptchaUrlAC
-
-type SetUserDataActionType = ReturnType<typeof setUserDataAC>
-type ToggleIsAuthActionType = ReturnType<typeof toggleIsAuthAC>
-type GetCaptchaUrlAC = ReturnType<typeof getCaptchaUrlAC>
-
 type UserDataType = {
 	id: number | null,
 	email: string | null

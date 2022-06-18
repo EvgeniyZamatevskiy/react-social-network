@@ -17,15 +17,15 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = ({ isOwner }) => {
 
 	const userProfile = useSelector(selectUserProfile)
 	const userStatus = useSelector(selectUserStatus)
-	const { updateUserStatusTC, savePhotoTC, getUserProfileTC } = useActions(profileActionCreators)
+	const { updateUserStatusTC, savePhotoTC } = useActions(profileActionCreators)
 
 	const changeUserStatusHandler = (newStatus: string) => {
 		updateUserStatusTC(newStatus)
 	}
 
 	const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-		if (e.target.files?.length) {
-			savePhotoTC(e.target.files[0])
+		if (e.currentTarget.files?.length) {
+			savePhotoTC(e.currentTarget.files[0])
 		}
 	}
 
@@ -38,18 +38,22 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = ({ isOwner }) => {
 	}
 
 	return (
-		<div>
-			<div>
+		<div >
+			<div >
 				<img
 					style={{ width: '200px' }}
 					src={userProfile.photos.large || 'https://cdn2.iconfinder.com/data/icons/font-awesome/1792/user-512.png'} />
 				{isOwner && <input type={'file'} onChange={onChangeHandler} />}
-
-				{editMode
-					? <ProfileDataForm userProfile={userProfile} setEditMode={setEditMode} />
-					: <ProfileData goToEditMode={goToEditMode} userProfile={userProfile} isOwner={isOwner} />}
-
-				<ProfileStatus currentValue={userStatus} changeValue={changeUserStatusHandler} />
+				<div >
+					{isOwner
+						? <ProfileStatus currentValue={userStatus} changeValue={changeUserStatusHandler} />
+						: <div><b>status</b>: {userStatus}</div>}
+				</div>
+				<div>
+					{editMode
+						? <ProfileDataForm userProfile={userProfile} setEditMode={setEditMode} />
+						: <ProfileData goToEditMode={goToEditMode} userProfile={userProfile} isOwner={isOwner} />}
+				</div>
 			</div>
 		</div>
 	)

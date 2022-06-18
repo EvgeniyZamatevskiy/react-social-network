@@ -1,4 +1,5 @@
-import { AuthReducerActionsType } from './actions'
+import { InferActionsTypes } from '../../store'
+import { authActions } from './actions'
 
 const initState = {
 	id: null as number | null,
@@ -24,3 +25,4 @@ export const authReducer = (state: InitStateType = initState, action: AuthReduce
 
 // types
 type InitStateType = typeof initState
+type AuthReducerActionsType = InferActionsTypes<typeof authActions>

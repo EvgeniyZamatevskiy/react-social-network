@@ -43,7 +43,6 @@ export const Login = ({ }) => {
 		},
 		onSubmit: values => {
 			loginTC(values)
-			console.log(values)
 			// formik.resetForm()
 		},
 	})

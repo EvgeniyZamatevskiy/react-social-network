@@ -1,4 +1,4 @@
-import { ThunkType } from '../../store'
+import { InferActionsTypes, ThunkType } from '../../store'
 
 // ActionCreators
 export const sendMessageAC = (message: string) => ({ type: 'SEND-MESSAGE', message } as const)
@@ -17,6 +17,4 @@ export const dialogsActions = {
 }
 
 // types
-export type DialogsReducerActionsType = SendMessageActionType
-
-type SendMessageActionType = ReturnType<typeof sendMessageAC>
+export type DialogsReducerActionsType = InferActionsTypes<typeof dialogsActions>

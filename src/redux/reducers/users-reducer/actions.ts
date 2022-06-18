@@ -82,10 +82,3 @@ export const usersActions = {
 
 // types
 export type UsersReducerActionsType = InferActionsTypes<typeof usersActions>
-
-type FollowActionType = ReturnType<typeof followAC>
-type UnFollowActionType = ReturnType<typeof unFollowAC>
-type SetUsersActionType = ReturnType<typeof setUsersAC>
-type SetCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
-type SetTotalUsersCountActionType = ReturnType<typeof setTotalUsersCountAC>
-type ToggleDisabledStatusActionType = ReturnType<typeof toggleDisabledStatusAC>
