@@ -1,5 +1,5 @@
+import { UserProfileResponseType } from 'api/profileAPI'
 import React, { FC } from 'react'
-import { UserProfileResponseType } from '../../api/profileAPI'
 
 type ProfileDataPropsType = {
 	goToEditMode: () => void

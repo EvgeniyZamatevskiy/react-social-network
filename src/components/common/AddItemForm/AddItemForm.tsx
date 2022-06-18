@@ -1,6 +1,7 @@
+import { EMPTY_STRING } from '../../../constants'
 import React, { ChangeEvent, FC, useState } from 'react'
-import { UniversalButton } from '../UniversalButton/UniversalButton'
-import { UniversalInput } from '../UniversalInput/UniversalInput'
+import { UniversalButton } from '../UniversalButton'
+import { UniversalInput } from '../UniversalInput'
 
 type AddItemFormPropsType = {
 	addItem: (title: string) => void
@@ -9,7 +10,7 @@ type AddItemFormPropsType = {
 
 export const AddItemForm: FC<AddItemFormPropsType> = ({ addItem, buttonTitle }) => {
 
-	const [title, setTitle] = useState('')
+	const [title, setTitle] = useState(EMPTY_STRING)
 	const [error, setError] = useState('')
 
 	const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {

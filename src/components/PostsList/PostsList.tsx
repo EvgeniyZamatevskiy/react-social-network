@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
-import { AddItemForm } from '../common/AddItemForm/AddItemForm'
 import { useActions } from '../../redux/hooks'
 import { profileActionCreators } from '../../redux/reducers/profile-reducer'
 import { selectPosts } from '../../redux/reducers/profile-reducer/selectors'
 import s from './PostsList.module.css'
-import { PostItem } from '../PostItem/PostItem'
+import { PostItem } from 'components/PostItem'
+import { AddItemForm } from 'components/common'
 
 type PostsListPropsType = {
 
@@ -25,7 +25,7 @@ export const PostsList: FC<PostsListPropsType> = ({ }) => {
 			<h2>My posts</h2>
 			<AddItemForm addItem={addPostHandler} buttonTitle={'Add post'} />
 			<div className={s.posts}>
-				{posts.map(p => <PostItem key={p.id} post={p} />)}
+				{posts.map(post => <PostItem key={post.id} post={post} />)}
 			</div>
 		</div>
 	)

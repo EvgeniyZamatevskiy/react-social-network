@@ -1,7 +1,8 @@
-import { authAPI, LoginParamsType } from './../../../api/authAPI'
 import { ThunkType } from '../../store'
 import { securityAPI } from '../../../api/securityAPI'
-import { ResultCodeForCaptcha, ResultCodes } from '../../../enums/enums'
+import { ResultCodes, ResultCodeForCaptcha } from 'api/enums'
+import { authAPI } from 'api'
+import { LoginParamsType } from 'api/apiAuth/types'
 
 // ActionCreators
 export const setUserDataAC = (userData: UserDataType, isAuth: boolean) => ({ type: 'SET-USER-DATA', userData, isAuth } as const)

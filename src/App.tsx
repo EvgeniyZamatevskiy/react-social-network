@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react'
-import { Header } from './components/Header/Header'
-import { Navbar } from './components/Navbar/Navbar'
-import { Profile } from './pages/Profile/Profile'
-import { UsersList } from './pages/UsersList/UsersList'
 import { useSelector } from 'react-redux'
-import { selectIsInitialized } from './redux/reducers/app-reducer/selectors'
-import { useActions } from './redux/hooks'
-import { Login } from './pages/Login/Login'
+import { selectIsInitialized } from 'redux/reducers/app-reducer/selectors'
+import { useActions } from 'redux/hooks'
 import { Redirect, Route, Switch } from 'react-router-dom'
-import { appActionCreators } from './redux/reducers/app-reducer'
+import { appActionCreators } from 'redux/reducers/app-reducer'
+import { Header, Navbar } from 'components'
+import { Dialogs, Login, Profile, UsersList } from 'pages'
 import './App.css'
-import { Dialogs } from './pages/Dialogs/Dialogs'
 
 export const App = () => {
 

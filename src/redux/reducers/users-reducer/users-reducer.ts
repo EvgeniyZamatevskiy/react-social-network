@@ -12,11 +12,11 @@ const initState = {
 export const usersReducer = (state: InitStateType = initState, action: UsersReducerActionsType): InitStateType => {
 	switch (action.type) {
 		case 'FOLLOW':
-			return { ...state, users: state.users.map(u => u.id === action.userId ? { ...u, followed: true } : u) }
+			return { ...state, users: state.users.map(user => user.id === action.userId ? { ...user, followed: true } : user) }
 		case 'UN-FOLLOW':
-			return { ...state, users: state.users.map(u => u.id === action.userId ? { ...u, followed: false } : u) }
+			return { ...state, users: state.users.map(user => user.id === action.userId ? { ...user, followed: false } : user) }
 		case 'SET-USERS':
-			return { ...state, users: action.users.map(u => ({ ...u, disabledStatus: false })) }
+			return { ...state, users: action.users.map(user => ({ ...user, disabledStatus: false })) }
 		case 'SET-CURRENT-PAGE':
 			return { ...state, page: action.currentPage }
 		case 'SET-FILTER':
@@ -24,7 +24,7 @@ export const usersReducer = (state: InitStateType = initState, action: UsersRedu
 		case 'SET-TOTAL-USERS-COUNT':
 			return { ...state, totalUsersCount: action.totalUsersCount }
 		case 'TOGGLE-DISABLED-STATUS':
-			return { ...state, users: state.users.map(u => u.id === action.userId ? { ...u, disabledStatus: action.isDisabled } : u) }
+			return { ...state, users: state.users.map(user => user.id === action.userId ? { ...user, disabledStatus: action.isDisabled } : user) }
 
 		default:
 			return state

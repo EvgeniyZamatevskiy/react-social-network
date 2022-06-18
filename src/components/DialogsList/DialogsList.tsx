@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
-import { DialogItem } from '../DialogItem/DialogItem'
-import { MessageItem } from '../MessageItem/MessageItem'
 import s from './DialogsList.module.css'
 import { useSelector } from 'react-redux'
 import { selectDialogs, selectMessages } from '../../redux/reducers/dialogs-reducer/selectors'
+import { DialogItem } from 'components/DialogItem'
+import { MessageItem } from 'components/MessageItem'
 
 type DialogsListPropsType = {
 
@@ -17,10 +17,10 @@ export const DialogsList: FC<DialogsListPropsType> = ({ }) => {
 	return (
 		<div className={s.dialogs}>
 			<div className={s.dialogsItems}>
-				{dialogs.map(d => <DialogItem key={d.id} dialog={d} />)}
+				{dialogs.map(dialog => <DialogItem key={dialog.id} dialog={dialog} />)}
 			</div>
 			<div className={s.messages}>
-				{messages.map(m => <MessageItem key={m.id} message={m} />)}
+				{messages.map(message => <MessageItem key={message.id} message={message} />)}
 			</div>
 		</div>
 	)

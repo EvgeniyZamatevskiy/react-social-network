@@ -1,3 +1,4 @@
+import { DialogsList } from 'components'
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
@@ -5,7 +6,6 @@ import { AddItemForm } from '../../components/common/AddItemForm/AddItemForm'
 import { useActions } from '../../redux/hooks'
 import { selectIsAuth } from '../../redux/reducers/auth-reducer/selectors'
 import { dialogsActionCreators } from '../../redux/reducers/dialogs-reducer'
-import { DialogsList } from '../../components/DialogsLists/DialogsList'
 
 type DialogsPropsType = {
 

@@ -4,8 +4,7 @@ import { Redirect, withRouter } from 'react-router-dom'
 import { useActions } from '../../redux/hooks'
 import { selectId, selectIsAuth } from '../../redux/reducers/auth-reducer/selectors'
 import { profileActionCreators } from '../../redux/reducers/profile-reducer'
-import { PostsList } from '../../components/PostsList/PostsList'
-import { ProfileInfo } from '../../components/ProfileInfo/ProfileInfo'
+import { PostsList, ProfileInfo } from 'components'
 
 type ProfilePropsType = {
 

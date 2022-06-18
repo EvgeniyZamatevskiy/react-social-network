@@ -1,12 +1,13 @@
+import { Nullable } from 'types/Nullable'
 import { InferActionsTypes } from '../../store'
 import { authActions } from './actions'
 
 const initState = {
-	id: null as number | null,
-	login: null as string | null,
-	email: null as string | null,
+	id: null as Nullable<number>,
+	login: null as Nullable<string>,
+	email: null as Nullable<string>,
 	isAuth: false,
-	captchaUrl: null as string | null
+	captchaUrl: null as Nullable<string>
 }
 
 export const authReducer = (state: InitStateType = initState, action: AuthReducerActionsType): InitStateType => {

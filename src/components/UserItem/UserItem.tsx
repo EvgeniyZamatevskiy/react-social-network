@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 import { NavLink } from 'react-router-dom'
-import { UniversalButton } from '../common/UniversalButton/UniversalButton'
-import { useActions } from '../../redux/hooks'
-import { usersActionCreators } from '../../redux/reducers/users-reducer'
-import { UsersSupplementedType } from '../../redux/reducers/users-reducer/users-reducer'
 import s from './UserItem.module.css'
+import { UsersSupplementedType } from 'redux/reducers/users-reducer/users-reducer'
+import { usersActionCreators } from 'redux/reducers/users-reducer'
+import { useActions } from 'redux/hooks'
+import { UniversalButton } from 'components/common/UniversalButton/UniversalButton'
 
 type UserItemPropsType = {
 	user: UsersSupplementedType

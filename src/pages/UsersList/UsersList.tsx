@@ -7,8 +7,8 @@ import { selectIsAuth } from '../../redux/reducers/auth-reducer/selectors'
 import { usersActionCreators } from '../../redux/reducers/users-reducer'
 import { selectCount, selectFilter, selectPage, selectTotalUsersCount, selectUsers } from '../../redux/reducers/users-reducer/selectors'
 import { Paginator } from '../../components/common/Paginator/Paginator'
-import { UserItem } from '../../components/UserItem/UserItem'
 import { UsersSearchForm } from '../../components/UsersSearchForm/UsersSearchForm'
+import { UserItem } from 'components/UserItem'
 
 type UsersListPropsType = {
 

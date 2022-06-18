@@ -1,8 +1,8 @@
+import { UserProfileResponseType } from 'api/profileAPI'
 import React, { FC } from 'react'
 import { useForm } from 'react-hook-form'
-import { UserProfileResponseType } from '../../api/profileAPI'
-import { useActions } from '../../redux/hooks'
-import { profileActionCreators } from '../../redux/reducers/profile-reducer'
+import { useActions } from 'redux/hooks'
+import { profileActionCreators } from 'redux/reducers/profile-reducer'
 
 type ProfileDataFormPropsType = {
 	userProfile: UserProfileResponseType

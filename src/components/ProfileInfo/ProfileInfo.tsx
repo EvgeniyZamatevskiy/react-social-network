@@ -1,11 +1,12 @@
+import { ProfileData } from 'components/ProfileData'
+import { ProfileDataForm } from 'components/ProfileDataForm'
+import { ProfileStatus } from 'components/ProfileStatus'
+import { FIRST_ELEMENT_IN_ARRAY } from '../../constants'
 import React, { ChangeEvent, FC, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useActions } from '../../redux/hooks'
 import { profileActionCreators } from '../../redux/reducers/profile-reducer'
 import { selectUserProfile, selectUserStatus } from '../../redux/reducers/profile-reducer/selectors'
-import { ProfileData } from '../ProfileData/ProfileData'
-import { ProfileDataForm } from '../ProfileDataForm/ProfileDataForm'
-import { ProfileStatus } from '../ProfileStatus/ProfileStatus'
 
 type ProfileInfoPropsType = {
 	isOwner: boolean
@@ -25,7 +26,7 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = ({ isOwner }) => {
 
 	const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		if (e.currentTarget.files?.length) {
-			savePhotoTC(e.currentTarget.files[0])
+			savePhotoTC(e.currentTarget.files[FIRST_ELEMENT_IN_ARRAY])
 		}
 	}
 

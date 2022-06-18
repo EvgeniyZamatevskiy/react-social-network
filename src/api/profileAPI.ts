@@ -1,28 +1,28 @@
-import { CommonResponseType } from './authAPI'
-import { instance } from './instance'
+import { CommonResponseType } from './apiAuth/types'
+import { axiosConfig } from './apiConfig'
 import { PhotosType } from './usersAPI'
 
 export const profileAPI = {
 	getUserProfile(userId: number) {
-		return instance.get<UserProfileResponseType>(`profile/${userId}`)
+		return axiosConfig.get<UserProfileResponseType>(`profile/${userId}`)
 	},
 	getStatus(userId: number) {
-		return instance.get<string>(`profile/status/${userId}`)
+		return axiosConfig.get<string>(`profile/status/${userId}`)
 	},
 	updateUserStatus(newStatus: string) {
-		return instance.put<CommonResponseType>(`profile/status`, { status: newStatus })
+		return axiosConfig.put<CommonResponseType>(`profile/status`, { status: newStatus })
 	},
 	savePhoto(file: File) {
 		const formData = new FormData()
 		formData.append('image', file)
-		return instance.put<CommonResponseType<SavePhotoResponseDataType>>('profile/photo', formData, {
+		return axiosConfig.put<CommonResponseType<SavePhotoResponseDataType>>('profile/photo', formData, {
 			headers: {
 				'Content-Type': 'multipart/form-data'
 			}
 		})
 	},
 	saveProfile(profile: UserProfileResponseType) {
-		return instance.put<CommonResponseType>('profile', profile)
+		return axiosConfig.put<CommonResponseType>('profile', profile)
 	}
 }
 
