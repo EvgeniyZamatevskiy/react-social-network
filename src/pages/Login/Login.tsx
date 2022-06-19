@@ -1,18 +1,14 @@
 import React from 'react'
 import { useFormik } from 'formik'
-import { useActions } from '../../store/hooks'
 import { useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { getIsAuth, getCaptchaUrl } from 'store/selectors/auth'
-import { authActionCreators } from 'store/action-creators'
+import { FormikErrorType } from './types'
+import { ReturnComponentType } from 'types'
+import { useActions } from 'store/hooks/useActions/useActions'
+import { authActionCreators } from 'store/actions'
 
-type FormikErrorType = {
-	email?: string
-	password?: string
-	rememberMe?: boolean
-}
-
-export const Login = ({ }) => {
+export const Login = ({ }): ReturnComponentType => {
 
 	const { loginTC } = useActions(authActionCreators)
 	const isAuth = useSelector(getIsAuth)

@@ -1,4 +1,4 @@
 export { AddItemForm } from './AddItemForm'
-export { Paginator } from './Paginator'
+export { Pagination } from './Pagination'
 export { UniversalButton } from './UniversalButton'
 export { UniversalInput } from './UniversalInput'

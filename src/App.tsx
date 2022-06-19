@@ -1,18 +1,19 @@
-import React, { ReactElement, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useActions } from 'store/hooks'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { Header, Navbar } from 'components'
-import { Dialogs, Login, Profile, UsersList } from 'pages'
-import './App.css'
+import { Login, Profile, UsersList } from 'pages'
 import { getIsInitialized } from 'store/selectors'
-import { appActionCreators } from 'store/action-creators'
 import { ReturnComponentType } from 'types'
+import { useActions } from 'store/hooks/useActions/useActions'
+import { appActionCreators } from 'store/actions'
+import './App.css'
 
 export const App = (): ReturnComponentType => {
 
-  const isInitialized = useSelector(getIsInitialized)
   const { initializeAppTC } = useActions(appActionCreators)
+
+  const isInitialized = useSelector(getIsInitialized)
 
   useEffect(() => {
     initializeAppTC()
@@ -30,7 +31,6 @@ export const App = (): ReturnComponentType => {
       <Navbar />
       <div className='app-wrapper-content'>
         <Switch>
-          <Route path={'/dialogs'} render={() => <Dialogs />} />
           <Route path={'/profile/:userId?'} render={() => <Profile />} />
           <Route path={'/users'} render={() => <UsersList />} />
           <Route path={'/login'} render={() => <Login />} />

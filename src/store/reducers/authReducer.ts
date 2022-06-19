@@ -1,4 +1,4 @@
-import { authActions } from 'store/action-creators/auth'
+import { authActions } from 'store/actions/auth/auth'
 import { Nullable } from 'types/Nullable'
 import { InferActionsTypes } from '../store'
 

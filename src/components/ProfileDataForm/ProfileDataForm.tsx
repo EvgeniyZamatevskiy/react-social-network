@@ -1,15 +1,11 @@
-import { UserProfileResponseType } from 'api/types/profile'
 import React, { FC } from 'react'
 import { useForm } from 'react-hook-form'
-import { profileActionCreators } from 'store/action-creators'
-import { useActions } from 'store/hooks'
+import { profileActionCreators } from 'store/actions'
+import { useActions } from 'store/hooks/useActions/useActions'
+import { ReturnComponentType } from 'types'
+import { ProfileDataFormPropsType } from './types'
 
-type ProfileDataFormPropsType = {
-	userProfile: UserProfileResponseType
-	setEditMode: (editMode: boolean) => void
-}
-
-export const ProfileDataForm: FC<ProfileDataFormPropsType> = ({ userProfile, setEditMode }) => {
+export const ProfileDataForm: FC<ProfileDataFormPropsType> = ({ userProfile, setEditMode }): ReturnComponentType => {
 
 	const { saveProfileTC } = useActions(profileActionCreators)
 
@@ -18,7 +14,7 @@ export const ProfileDataForm: FC<ProfileDataFormPropsType> = ({ userProfile, set
 		defaultValues: { ...userProfile },
 	})
 
-	const onSubmit: any = (data: any) => {
+	const onSubmit: any = (data: any): void => {
 		saveProfileTC(data)
 		setEditMode(false)
 		// reset()

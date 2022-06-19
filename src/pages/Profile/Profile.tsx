@@ -1,23 +1,25 @@
-import React, { FC, ReactElement, useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Redirect, withRouter } from 'react-router-dom'
-import { useActions } from '../../store/hooks'
 import { PostsList, ProfileInfo } from 'components'
 import { getIsAuth, getId } from 'store/selectors/auth'
-import { profileActionCreators } from 'store/action-creators'
+import { ReturnComponentType } from 'types'
+import { useActions } from 'store/hooks/useActions/useActions'
+import { profileActionCreators } from 'store/actions'
+import { Path } from 'enums'
 
-type ProfilePropsType = {
+export const Profile = withRouter((props): ReturnComponentType => {
 
-}
-
-export const Profile = withRouter((props): ReactElement => {
+	const { getUserProfileTC, getStatusTC } = useActions(profileActionCreators)
 
 	const isAuth = useSelector(getIsAuth)
 	const authorizedUserId = useSelector(getId)
-	const { getUserProfileTC, getStatusTC } = useActions(profileActionCreators)
+
+	const isOwner = !props.match.params.userId
 
 	useEffect(() => {
 		let userId = props.match.params.userId
+
 		if (!userId) {
 			userId = authorizedUserId
 		}
@@ -29,13 +31,13 @@ export const Profile = withRouter((props): ReactElement => {
 	}, [props.match.params.userId])
 
 	if (!isAuth) {
-		return <Redirect to={'/login'} />
+		return <Redirect to={Path.login} />
 	}
 
 	return (
 		<div>
-			<ProfileInfo isOwner={!props.match.params.userId} />
-			<PostsList />
+			<ProfileInfo isOwner={isOwner} />
+			<PostsList isOwner={isOwner} />
 		</div>
 	)
 })

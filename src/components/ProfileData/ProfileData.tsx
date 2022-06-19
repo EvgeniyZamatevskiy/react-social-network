@@ -1,16 +1,11 @@
-import { UserProfileResponseType } from 'api/types/profile'
 import React, { FC } from 'react'
+import { ReturnComponentType } from 'types'
+import { ProfileDataPropsType } from './types'
 
-type ProfileDataPropsType = {
-	goToEditMode: () => void
-	userProfile: UserProfileResponseType
-	isOwner: boolean
-}
-
-export const ProfileData: FC<ProfileDataPropsType> = ({ goToEditMode, userProfile, isOwner }) => {
+export const ProfileData: FC<ProfileDataPropsType> = ({ onActivateEditModeClick, userProfile, isOwner }): ReturnComponentType => {
 	return (
 		<div>
-			{isOwner && <div><button onClick={goToEditMode}>edit</button></div>}
+			{isOwner && <div><button onClick={onActivateEditModeClick}>edit</button></div>}
 			<div>
 				<b>Full name</b>: {userProfile.fullName}
 			</div>

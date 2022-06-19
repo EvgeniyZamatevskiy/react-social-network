@@ -1,31 +1,28 @@
 import React, { FC } from 'react'
+import { UniversalButton } from 'components/common'
 import { useSelector } from 'react-redux'
-import { authActionCreators } from 'store/action-creators'
-import { getLogin, getIsAuth } from 'store/selectors/auth'
-import { useActions } from '../../store/hooks'
-import { UniversalButton } from '../common/UniversalButton/UniversalButton'
-import s from './Header.module.css'
+import { getLogin, getIsAuth } from 'store/selectors'
+import { ReturnComponentType } from 'types'
+import { useActions } from 'store/hooks/useActions/useActions'
+import { authActionCreators } from 'store/actions'
+import style from './style/Header.module.css'
 
-type HeaderPropsType = {
+export const Header: FC = ({ }): ReturnComponentType => {
 
-}
-
-export const Header: FC<HeaderPropsType> = ({ }) => {
+	const { logoutTC } = useActions(authActionCreators)
 
 	const login = useSelector(getLogin)
 	const isAuth = useSelector(getIsAuth)
-	const { logoutTC } = useActions(authActionCreators)
 
-	const logoutHandler = () => {
+	const handleLogOutClick = (): void => {
 		logoutTC()
 	}
 
 	return (
-		<header className={s.header}>
-			<img src='https://www.freelogodesign.org/Content/img/logo-ex-7.png' />
-			<div className={s.loginBlock}>
+		<header className={style.header}>
+			<div className={style.loginBlock}>
 				{isAuth && login}
-				{isAuth && <UniversalButton onClick={logoutHandler}>Log Out</UniversalButton>}
+				{isAuth && <UniversalButton onClick={handleLogOutClick}>Log Out</UniversalButton>}
 			</div>
 		</header>
 	)

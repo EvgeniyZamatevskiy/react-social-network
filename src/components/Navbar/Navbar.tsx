@@ -1,22 +1,17 @@
 import React, { FC } from 'react'
+import { Path } from 'enums'
 import { NavLink } from 'react-router-dom'
-import s from './Navbar.module.css'
+import { ReturnComponentType } from 'types'
+import style from './style/NavBar.module.css'
 
-type NavbarPropsType = {
-
-}
-
-export const Navbar: FC<NavbarPropsType> = ({ }) => {
+export const Navbar: FC = ({ }): ReturnComponentType => {
 	return (
-		<nav className={s.nav}>
-			<div className={s.item}>
-				<NavLink to='/profile'>Profile</NavLink>
+		<nav className={style.nav}>
+			<div className={style.item}>
+				<NavLink to={Path.profile}>Profile</NavLink>
 			</div>
-			<div className={s.item}>
-				<NavLink to='/dialogs'>Messages</NavLink>
-			</div>
-			<div className={s.item}>
-				<NavLink to='/users'>Users</NavLink>
+			<div className={style.item}>
+				<NavLink to={Path.users}>Users</NavLink>
 			</div>
 		</nav>
 	)

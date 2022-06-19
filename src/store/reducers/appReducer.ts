@@ -1,4 +1,4 @@
-import { AppReducerActionsType } from "store/action-creators/app"
+import { AppReducerActionsType } from "store/actions/app/app"
 
 const initState = {
 	isLoading: false,

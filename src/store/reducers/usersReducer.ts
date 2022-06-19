@@ -1,5 +1,5 @@
-import { UsersType } from 'api/types/users'
-import { UsersReducerActionsType } from 'store/action-creators/users'
+import { UsersType } from 'api/usersAPI/types'
+import { UsersReducerActionsType } from 'store/actions/users/users'
 
 const initState = {
 	users: [] as UsersSupplementedType[],

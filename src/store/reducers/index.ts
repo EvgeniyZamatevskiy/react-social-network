@@ -1,5 +1,4 @@
 export { authReducer } from './authReducer'
 export { appReducer } from './appReducer'
-export { dialogsReducer } from './dialogsReducer'
 export { profileReducer } from './profileReducer'
 export { usersReducer } from './usersReducer'

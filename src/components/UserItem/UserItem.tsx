@@ -1,36 +1,36 @@
-import React, { FC, ReactElement } from 'react'
+import React, { FC } from 'react'
 import { NavLink } from 'react-router-dom'
-import s from './UserItem.module.css'
-import { useActions } from 'store/hooks'
 import { UniversalButton } from 'components/common/UniversalButton/UniversalButton'
-import { UsersSupplementedType } from 'store/reducers/usersReducer'
-import { usersActionCreators } from 'store/action-creators'
+import { UserItemPropsType } from './types'
+import { ReturnComponentType } from 'types'
+import { Path } from 'enums'
+import { useActions } from 'store/hooks/useActions/useActions'
+import style from './style/UserItem.module.css'
+import { usersActionCreators } from 'store/actions'
 
-type UserItemPropsType = {
-	user: UsersSupplementedType
-}
-
-export const UserItem: FC<UserItemPropsType> = ({ user }): ReactElement => {
+export const UserItem: FC<UserItemPropsType> = ({ user }): ReturnComponentType => {
 
 	const { followTC, unFollowTC } = useActions(usersActionCreators)
 
-	const followHandler = () => {
+	const handleFollowClick = (): void => {
 		followTC(user.id)
 	}
 
-	const unFollowHandler = () => {
+	const handleUnFollowClick = (): void => {
 		unFollowTC(user.id)
 	}
 
 	return (
 		<div>
-			<NavLink to={`/profile/${user.id}`}>
-				<img className={s.userPhoto} src={user.photos.small ? user.photos.small : 'https://cdn2.iconfinder.com/data/icons/font-awesome/1792/user-512.png'} />
+			<NavLink to={`${Path.profile}/${user.id}`}>
+				<img
+					className={style.userPhoto}
+					src={user.photos.small ? user.photos.small : 'https://cdn2.iconfinder.com/data/icons/font-awesome/1792/user-512.png'} />
 			</NavLink>
 			<div>
 				{user.followed
-					? <UniversalButton disabled={user.disabledStatus} onClick={unFollowHandler}>UnFollow</UniversalButton>
-					: <UniversalButton disabled={user.disabledStatus} onClick={followHandler}>Follow</UniversalButton>}
+					? <UniversalButton disabled={user.disabledStatus} onClick={handleUnFollowClick}>UnFollow</UniversalButton>
+					: <UniversalButton disabled={user.disabledStatus} onClick={handleFollowClick}>Follow</UniversalButton>}
 			</div>
 			<div>
 				{user.name}

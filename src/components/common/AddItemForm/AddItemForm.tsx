@@ -1,29 +1,29 @@
-import { EMPTY_STRING } from '../../../constants'
 import React, { ChangeEvent, FC, useState } from 'react'
+import { EMPTY_STRING } from '../../../constants'
+import { Nullable, ReturnComponentType } from 'types'
 import { UniversalButton } from '../UniversalButton'
 import { UniversalInput } from '../UniversalInput'
 import { AddItemFormPropsType } from './types'
 
-export const AddItemForm: FC<AddItemFormPropsType> = ({ addItem, buttonTitle }) => {
+export const AddItemForm: FC<AddItemFormPropsType> = ({ onAddItemClick, buttonTitle }): ReturnComponentType => {
 
-	const [title, setTitle] = useState<string>(EMPTY_STRING)
-	const [error, setError] = useState<string>(EMPTY_STRING)
+	const [value, setValue] = useState<string>(EMPTY_STRING)
+	const [error, setError] = useState<Nullable<string>>(null)
 
-	const onChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
-		const currentValue = e.currentTarget.value
-		setTitle(currentValue)
+	const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
+		setValue(e.currentTarget.value)
 
-		if (error !== '') {
-			setError('')
+		if (error !== null) {
+			setError(null)
 		}
 	}
 
 	const handleAddItemClick = (): void => {
-		const trimmedTitle = title.trim()
+		const trimmedValue = value.trim()
 
-		if (trimmedTitle !== EMPTY_STRING) {
-			addItem(trimmedTitle)
-			setTitle(EMPTY_STRING)
+		if (trimmedValue !== EMPTY_STRING) {
+			onAddItemClick(trimmedValue)
+			setValue(EMPTY_STRING)
 
 			return
 		}
@@ -32,9 +32,8 @@ export const AddItemForm: FC<AddItemFormPropsType> = ({ addItem, buttonTitle }) 
 
 	return (
 		<>
-			<UniversalInput value={title} onChange={onChangeHandler} onEnterKeyPress={handleAddItemClick} />
+			<UniversalInput value={value} onChange={handleInputChange} handleEnterKeyPress={handleAddItemClick} error={error} />
 			<UniversalButton onClick={handleAddItemClick}>{buttonTitle}</UniversalButton>
-			{error && <div style={{ color: 'red' }}>{error}</div>}
 		</>
 	)
 }

@@ -1,15 +1,11 @@
 import React, { FC } from 'react'
-import { PostsType } from 'store/reducers/profileReducer'
-import s from './PostItem.module.css'
+import { ReturnComponentType } from 'types'
+import { PostItemPropsType } from './types'
+import style from './style/PostItem.module.css'
 
-type PostItemPropsType = {
-	post: PostsType
-}
-
-export const PostItem: FC<PostItemPropsType> = ({ post }) => {
-
+export const PostItem: FC<PostItemPropsType> = ({ post }): ReturnComponentType => {
 	return (
-		<div className={s.item}>
+		<div className={style.item}>
 			<img src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/user-512.png' />
 			{post.message}
 			<div>

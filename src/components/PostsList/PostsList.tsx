@@ -1,32 +1,37 @@
 import React, { FC } from 'react'
-import { useSelector } from 'react-redux'
-import { useActions } from '../../store/hooks'
-import s from './PostsList.module.css'
-import { PostItem } from 'components/PostItem'
 import { AddItemForm } from 'components/common'
-import { getPosts } from 'store/selectors/profile'
-import { profileActionCreators } from 'store/action-creators'
+import { PostItem } from 'components/PostItem'
+import { useSelector } from 'react-redux'
+import { getPosts } from 'store/selectors'
+import { ReturnComponentType } from 'types'
+import { PostsListPropsType } from './types'
+import { useActions } from 'store/hooks/useActions/useActions'
+import style from './style/PostsList.module.css'
+import { profileActionCreators } from 'store/actions'
 
-type PostsListPropsType = {
-
-}
-
-export const PostsList: FC<PostsListPropsType> = ({ }) => {
+export const PostsList: FC<PostsListPropsType> = ({ isOwner }): ReturnComponentType => {
 
 	const { addPostAC } = useActions(profileActionCreators)
+
 	const posts = useSelector(getPosts)
 
-	const addPostHandler = (postTitle: string) => {
+	const mappedPosts = posts.map(post => <PostItem key={post.id} post={post} />)
+
+	const handleAddPostClick = (postTitle: string): void => {
 		addPostAC(postTitle)
 	}
 
 	return (
-		<div className={s.postsBlock}>
+		<div className={style.postsBlock}>
 			<h2>My posts</h2>
-			<AddItemForm addItem={addPostHandler} buttonTitle={'Add post'} />
-			<div className={s.posts}>
-				{posts.map(post => <PostItem key={post.id} post={post} />)}
-			</div>
+			{isOwner &&
+				<>
+					<AddItemForm onAddItemClick={handleAddPostClick} buttonTitle={'Add post'} />
+					<div className={style.posts}>
+						{mappedPosts}
+					</div>
+				</>
+			}
 		</div>
 	)
 }

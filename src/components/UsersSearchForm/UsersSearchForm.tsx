@@ -1,16 +1,9 @@
 import React, { FC } from 'react'
 import { useForm } from 'react-hook-form'
+import { ReturnComponentType } from 'types'
+import { FormType, UsersSearchFormPropsType } from './types'
 
-type UsersSearchFormPropsType = {
-	onFilterChanged: (filter: any) => void
-}
-
-export const UsersSearchForm: FC<UsersSearchFormPropsType> = ({ onFilterChanged }) => {
-
-	type FormType = {
-		term: string,
-		friend: 'true' | 'false' | 'null' | boolean | null
-	}
+export const UsersSearchForm: FC<UsersSearchFormPropsType> = ({ onFilterChanged }): ReturnComponentType => {
 
 	const { register, handleSubmit, reset, formState: { errors } } = useForm<any>({
 		mode: 'onBlur',

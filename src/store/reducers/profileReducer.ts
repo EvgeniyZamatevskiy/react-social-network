@@ -1,5 +1,5 @@
-import { UserProfileResponseType } from 'api/types/profile'
-import { ProfileReducerActionsType } from 'store/action-creators/profile'
+import { UserProfileResponseType } from 'api/profileAPI/types'
+import { ProfileReducerActionsType } from 'store/actions/profile/profile'
 
 const initState = {
 	posts: [

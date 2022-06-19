@@ -1,5 +1,11 @@
-export type { LoginParamsType, MeResponseDataType } from './auth'
-export type { CommonResponseType, PhotosType } from './common'
-export type { ContactsType, SavePhotoResponseDataType, UserProfileResponseType } from './profile'
-export type { SecurityResponseType } from './security'
-export type { GetUsersResponseType, UsersType } from './users'
+export type CommonResponseType<T = {}> = {
+	data: T
+	messages: string[]
+	fieldsErrors: string[]
+	resultCode: number
+}
+
+export type PhotosType = {
+	small: string | null
+	large: string | null
+}

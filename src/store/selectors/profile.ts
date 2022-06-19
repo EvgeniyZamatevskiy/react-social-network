@@ -1,4 +1,4 @@
-import { UserProfileResponseType } from 'api/types/profile'
+import { UserProfileResponseType } from 'api/profileAPI/types'
 import { PostsType } from 'store/reducers/profileReducer'
 import { RootReducerType } from 'store/store'
 import { Nullable } from 'types'

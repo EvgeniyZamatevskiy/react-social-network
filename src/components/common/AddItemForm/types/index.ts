@@ -1,4 +1,4 @@
 export type AddItemFormPropsType = {
-	addItem: (title: string) => void
+	onAddItemClick: (value: string) => void
 	buttonTitle: string
 }
