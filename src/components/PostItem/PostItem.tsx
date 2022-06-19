@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { PostsType } from '../../redux/reducers/profile-reducer/profile-reducer'
+import { PostsType } from 'store/reducers/profileReducer'
 import s from './PostItem.module.css'
 
 type PostItemPropsType = {

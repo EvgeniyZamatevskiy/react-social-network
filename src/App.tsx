@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { ReactElement, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { selectIsInitialized } from 'redux/reducers/app-reducer/selectors'
-import { useActions } from 'redux/hooks'
+import { useActions } from 'store/hooks'
 import { Redirect, Route, Switch } from 'react-router-dom'
-import { appActionCreators } from 'redux/reducers/app-reducer'
 import { Header, Navbar } from 'components'
 import { Dialogs, Login, Profile, UsersList } from 'pages'
 import './App.css'
+import { getIsInitialized } from 'store/selectors'
+import { appActionCreators } from 'store/action-creators'
+import { ReturnComponentType } from 'types'
 
-export const App = () => {
+export const App = (): ReturnComponentType => {
 
-  const isInitialized = useSelector(selectIsInitialized)
+  const isInitialized = useSelector(getIsInitialized)
   const { initializeAppTC } = useActions(appActionCreators)
 
   useEffect(() => {

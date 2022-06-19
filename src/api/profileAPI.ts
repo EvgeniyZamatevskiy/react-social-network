@@ -1,53 +1,32 @@
-import { CommonResponseType } from './apiAuth/types'
-import { axiosConfig } from './apiConfig'
-import { PhotosType } from './usersAPI'
+import { axiosInstance } from './config'
+import { CommonResponseType } from './types/common'
+import { UserProfileResponseType, SavePhotoResponseDataType } from './types/profile'
 
 export const profileAPI = {
-	getUserProfile(userId: number) {
-		return axiosConfig.get<UserProfileResponseType>(`profile/${userId}`)
+	async getUserProfile(userId: number) {
+		const res = await axiosInstance.get<UserProfileResponseType>(`profile/${userId}`)
+		return res.data
 	},
-	getStatus(userId: number) {
-		return axiosConfig.get<string>(`profile/status/${userId}`)
+	async getStatus(userId: number) {
+		const res = await axiosInstance.get<string>(`profile/status/${userId}`)
+		return res.data
 	},
-	updateUserStatus(newStatus: string) {
-		return axiosConfig.put<CommonResponseType>(`profile/status`, { status: newStatus })
+	async updateUserStatus(status: string) {
+		const res = await axiosInstance.put<CommonResponseType>(`profile/status`, { status })
+		return res.data
 	},
-	savePhoto(file: File) {
+	async savePhoto(file: File) {
 		const formData = new FormData()
 		formData.append('image', file)
-		return axiosConfig.put<CommonResponseType<SavePhotoResponseDataType>>('profile/photo', formData, {
+		const res = await axiosInstance.put<CommonResponseType<SavePhotoResponseDataType>>('profile/photo', formData, {
 			headers: {
 				'Content-Type': 'multipart/form-data'
 			}
 		})
+		return res.data
 	},
-	saveProfile(profile: UserProfileResponseType) {
-		return axiosConfig.put<CommonResponseType>('profile', profile)
+	async saveProfile(profile: UserProfileResponseType) {
+		const res = await axiosInstance.put<CommonResponseType>('profile', profile)
+		return res.data
 	}
-}
-
-// profile
-export type UserProfileResponseType = {
-	userId: number
-	lookingForAJob: boolean
-	lookingForAJobDescription: string
-	fullName: string
-	contacts: ContactsType
-	photos: PhotosType
-	aboutMe: string
-}
-
-export type ContactsType = {
-	github: string
-	vk: string
-	facebook: string
-	instagram: string
-	twitter: string
-	website: string
-	youtube: string
-	mainLink: string
-}
-
-export type SavePhotoResponseDataType = {
-	photos: PhotosType
 }

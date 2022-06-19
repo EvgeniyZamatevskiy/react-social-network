@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { MessagesType } from '../../redux/reducers/dialogs-reducer/dialogs-reducer'
+import { MessagesType } from 'store/reducers/dialogsReducer'
 
 type MessageItemPropsType = {
 	message: MessagesType

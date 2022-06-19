@@ -1,36 +1,36 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, ReactElement, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { useActions } from '../../redux/hooks'
-import { selectIsLoading } from '../../redux/reducers/app-reducer/selectors'
-import { selectIsAuth } from '../../redux/reducers/auth-reducer/selectors'
-import { usersActionCreators } from '../../redux/reducers/users-reducer'
-import { selectCount, selectFilter, selectPage, selectTotalUsersCount, selectUsers } from '../../redux/reducers/users-reducer/selectors'
+import { useActions } from '../../store/hooks'
 import { Paginator } from '../../components/common/Paginator/Paginator'
 import { UsersSearchForm } from '../../components/UsersSearchForm/UsersSearchForm'
 import { UserItem } from 'components/UserItem'
+import { getCount, getFilter, getIsLoading, getPage, getTotalUsersCount, getUsers } from 'store/selectors'
+import { getIsAuth } from 'store/selectors/auth'
+import { usersActionCreators } from 'store/action-creators'
+import { ReturnComponentType } from 'types'
 
 type UsersListPropsType = {
 
 }
 
-export const UsersList: FC<UsersListPropsType> = ({ }) => {
+export const UsersList: FC<UsersListPropsType> = ({ }): ReturnComponentType => {
 
 	const { getUsersTC } = useActions(usersActionCreators)
-	const users = useSelector(selectUsers)
-	const count = useSelector(selectCount)
-	const page = useSelector(selectPage)
-	const isLoading = useSelector(selectIsLoading)
-	const totalUsersCount = useSelector(selectTotalUsersCount)
-	const filter = useSelector(selectFilter)
+	const users = useSelector(getUsers)
+	const count = useSelector(getCount)
+	const page = useSelector(getPage)
+	const isLoading = useSelector(getIsLoading)
+	const totalUsersCount = useSelector(getTotalUsersCount)
+	const filter = useSelector(getFilter)
 
-	const isAuth = useSelector(selectIsAuth)
+	const isAuth = useSelector(getIsAuth)
 
 	const setCurrentPage = (currentPage: number) => {
 		getUsersTC(count, currentPage, filter)
 	}
 
-	const onFilterChanged = (filter: any) => {
+	const onFilterChanged = (filter: any): void => {
 		getUsersTC(count, 1, filter)
 	}
 

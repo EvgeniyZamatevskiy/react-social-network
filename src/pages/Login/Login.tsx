@@ -1,10 +1,10 @@
 import React from 'react'
 import { useFormik } from 'formik'
-import { authActionCreators } from '../../redux/reducers/auth-reducer'
-import { useActions } from '../../redux/hooks'
+import { useActions } from '../../store/hooks'
 import { useSelector } from 'react-redux'
-import { selectCaptchaUrl, selectIsAuth } from '../../redux/reducers/auth-reducer/selectors'
 import { Redirect } from 'react-router-dom'
+import { getIsAuth, getCaptchaUrl } from 'store/selectors/auth'
+import { authActionCreators } from 'store/action-creators'
 
 type FormikErrorType = {
 	email?: string
@@ -15,8 +15,8 @@ type FormikErrorType = {
 export const Login = ({ }) => {
 
 	const { loginTC } = useActions(authActionCreators)
-	const isAuth = useSelector(selectIsAuth)
-	const captchaUrl = useSelector(selectCaptchaUrl)
+	const isAuth = useSelector(getIsAuth)
+	const captchaUrl = useSelector(getCaptchaUrl)
 
 	const formik = useFormik({
 		initialValues: {

@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 import s from './DialogsList.module.css'
 import { useSelector } from 'react-redux'
-import { selectDialogs, selectMessages } from '../../redux/reducers/dialogs-reducer/selectors'
 import { DialogItem } from 'components/DialogItem'
 import { MessageItem } from 'components/MessageItem'
+import { getDialogs, getMessages } from 'store/selectors/dialogs'
 
 type DialogsListPropsType = {
 
@@ -11,8 +11,8 @@ type DialogsListPropsType = {
 
 export const DialogsList: FC<DialogsListPropsType> = ({ }) => {
 
-	const dialogs = useSelector(selectDialogs)
-	const messages = useSelector(selectMessages)
+	const dialogs = useSelector(getDialogs)
+	const messages = useSelector(getMessages)
 
 	return (
 		<div className={s.dialogs}>

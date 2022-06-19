@@ -1,26 +1,20 @@
-import React, { ChangeEvent, DetailedHTMLProps, FC, InputHTMLAttributes, KeyboardEvent } from 'react'
-import s from './UniversalInput.module.css'
-
-type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
-
-type UniversalInputPropsType = Omit<DefaultInputPropsType, 'type'> & {
-	onChangeValue?: (value: string) => void
-	onClickEnter?: () => void
-	secondDivClassName?: string
-	error?: string
-}
+import React, { ChangeEvent, FC, KeyboardEvent } from 'react'
+import { KeyCode } from 'enums/KeyCode'
+import { ReturnComponentType } from 'types'
+import { UniversalInputPropsType } from './types'
+import s from './style/UniversalInput.module.css'
 
 export const UniversalInput: FC<UniversalInputPropsType> =
-	({ onChange, onKeyPress, onChangeValue, onClickEnter, className, secondDivClassName, error, ...props }) => {
+	({ onChange, onKeyPress, onInputChange, onEnterKeyPress, className, secondDivClassName, error, ...props }): ReturnComponentType => {
 
 		const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 			onChange && onChange(e)
-			onChangeValue && onChangeValue(e.currentTarget.value)
+			onInputChange && onInputChange(e.currentTarget.value)
 		}
 
 		const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
 			onKeyPress && onKeyPress(e)
-			onClickEnter && e.key === 'Enter' && onClickEnter()
+			onEnterKeyPress && e.key === KeyCode.Enter && onEnterKeyPress()
 		}
 
 		return (
@@ -36,4 +30,3 @@ export const UniversalInput: FC<UniversalInputPropsType> =
 			</>
 		)
 	}
-

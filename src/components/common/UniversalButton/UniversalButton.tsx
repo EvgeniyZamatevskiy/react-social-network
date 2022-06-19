@@ -1,14 +1,13 @@
-import React, { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react'
-import s from './UniversalButton.module.css'
+import React, { FC } from 'react'
+import { ReturnComponentType } from 'types'
+import { UniversalButtonPropsType } from './types'
+import style from './style/UniversalButton.module.css'
 
-type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+export const UniversalButton: FC<UniversalButtonPropsType> = ({ className, ...props }): ReturnComponentType => {
 
-type UniversalButtonPropsType = Omit<DefaultButtonPropsType, 'type'> & {
+	const buttonClassName = `${style.button} ${className && className}`
 
-}
-
-export const UniversalButton: FC<UniversalButtonPropsType> = ({ className, ...props }) => {
 	return (
-		<button className={`${s.button} ${className ? className : ''}`} {...props} />
+		<button className={buttonClassName} {...props} />
 	)
 }

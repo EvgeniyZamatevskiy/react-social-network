@@ -1,4 +1,4 @@
-export { authAPI } from './apiAuth/authAPI'
+export { authAPI } from './authAPI'
 export { followAPI } from './followAPI'
 export { profileAPI } from './profileAPI'
 export { securityAPI } from './securityAPI'

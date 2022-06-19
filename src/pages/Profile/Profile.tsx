@@ -1,19 +1,19 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, ReactElement, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Redirect, withRouter } from 'react-router-dom'
-import { useActions } from '../../redux/hooks'
-import { selectId, selectIsAuth } from '../../redux/reducers/auth-reducer/selectors'
-import { profileActionCreators } from '../../redux/reducers/profile-reducer'
+import { useActions } from '../../store/hooks'
 import { PostsList, ProfileInfo } from 'components'
+import { getIsAuth, getId } from 'store/selectors/auth'
+import { profileActionCreators } from 'store/action-creators'
 
 type ProfilePropsType = {
 
 }
 
-export const Profile = withRouter((props) => {
+export const Profile = withRouter((props): ReactElement => {
 
-	const isAuth = useSelector(selectIsAuth)
-	const authorizedUserId = useSelector(selectId)
+	const isAuth = useSelector(getIsAuth)
+	const authorizedUserId = useSelector(getId)
 	const { getUserProfileTC, getStatusTC } = useActions(profileActionCreators)
 
 	useEffect(() => {

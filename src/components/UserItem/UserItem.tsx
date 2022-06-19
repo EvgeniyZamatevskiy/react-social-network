@@ -1,16 +1,16 @@
-import React, { FC } from 'react'
+import React, { FC, ReactElement } from 'react'
 import { NavLink } from 'react-router-dom'
 import s from './UserItem.module.css'
-import { UsersSupplementedType } from 'redux/reducers/users-reducer/users-reducer'
-import { usersActionCreators } from 'redux/reducers/users-reducer'
-import { useActions } from 'redux/hooks'
+import { useActions } from 'store/hooks'
 import { UniversalButton } from 'components/common/UniversalButton/UniversalButton'
+import { UsersSupplementedType } from 'store/reducers/usersReducer'
+import { usersActionCreators } from 'store/action-creators'
 
 type UserItemPropsType = {
 	user: UsersSupplementedType
 }
 
-export const UserItem: FC<UserItemPropsType> = ({ user }) => {
+export const UserItem: FC<UserItemPropsType> = ({ user }): ReactElement => {
 
 	const { followTC, unFollowTC } = useActions(usersActionCreators)
 

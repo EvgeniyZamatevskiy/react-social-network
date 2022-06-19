@@ -1,4 +1,4 @@
-import { UserProfileResponseType } from 'api/profileAPI'
+import { UserProfileResponseType } from 'api/types/profile'
 import React, { FC } from 'react'
 
 type ProfileDataPropsType = {

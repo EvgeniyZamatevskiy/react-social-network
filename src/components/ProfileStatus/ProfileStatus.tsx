@@ -21,7 +21,7 @@ export const ProfileStatus: FC<ProfileStatusPropsType> = ({ currentValue, change
 		changeValue(newValue)
 	}
 
-	const onClickEnterHandler = () => {
+	const handleEnterKeyPress = () => {
 		setEditMode(false)
 		changeValue(newValue)
 	}
@@ -29,7 +29,7 @@ export const ProfileStatus: FC<ProfileStatusPropsType> = ({ currentValue, change
 	return (
 		<>
 			{editMode
-				? <UniversalInput autoFocus value={newValue} onChangeValue={setNewValue} onBlur={onBlurHandler} onClickEnter={onClickEnterHandler} />
+				? <UniversalInput autoFocus value={newValue} onInputChange={setNewValue} onBlur={onBlurHandler} onEnterKeyPress={handleEnterKeyPress} />
 				: <span onDoubleClick={onDoubleClickHandler}><b>status: </b>{currentValue ? currentValue : 'Set status'}</span>}
 		</>
 	)

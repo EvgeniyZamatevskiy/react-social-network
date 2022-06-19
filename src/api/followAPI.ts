@@ -1,11 +1,13 @@
-import { CommonResponseType } from './apiAuth/types'
-import { axiosConfig } from './apiConfig'
+import { axiosInstance } from './config'
+import { CommonResponseType } from './types/common'
 
 export const followAPI = {
-	follow(userId: number) {
-		return axiosConfig.post<CommonResponseType>(`follow/${userId}`)
+	async follow(userId: number) {
+		const res = await axiosInstance.post<CommonResponseType>(`follow/${userId}`)
+		return res.data
 	},
-	unFollow(userId: number) {
-		return axiosConfig.delete<CommonResponseType>(`follow/${userId}`)
+	async unFollow(userId: number) {
+		const res = await axiosInstance.delete<CommonResponseType>(`follow/${userId}`)
+		return res.data
 	}
 }

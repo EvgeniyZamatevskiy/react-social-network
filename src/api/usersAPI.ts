@@ -1,28 +1,11 @@
 import { EMPTY_STRING } from '../constants'
-import { axiosConfig } from './apiConfig'
+import { axiosInstance } from './config'
+import { GetUsersResponseType } from './types'
 
 export const usersAPI = {
-	getUsers(count: number, page: number, term: string, friend: null | boolean = null) {
-		return axiosConfig.get<GetUsersResponseType>(`users?count=${count}&page=${page}&term=${term}` + (friend === null ? EMPTY_STRING : `&friend=${friend}`))
+	async getUsers(count: number, page: number, term: string, friend: null | boolean = null) {
+		const res = await axiosInstance.get<GetUsersResponseType>(`users?count=${count}&page=${page}&term=${term}`
+			+ (friend === null ? EMPTY_STRING : `&friend=${friend}`))
+		return res.data
 	}
-}
-
-// types
-export type GetUsersResponseType = {
-	items: UsersType[]
-	totalCount: number
-	error: null | string
-}
-
-export type UsersType = {
-	name: string
-	id: number
-	photos: PhotosType
-	status: string
-	followed: boolean
-}
-
-export type PhotosType = {
-	small: string | null
-	large: string | null
 }

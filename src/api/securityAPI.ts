@@ -1,11 +1,9 @@
-import { axiosConfig } from './apiConfig'
+import { axiosInstance } from './config'
+import { SecurityResponseType } from './types'
 
 export const securityAPI = {
-	getCaptchaUrl() {
-		return axiosConfig.get<SecurityResponseType>('security/get-captcha-url')
+	async getCaptchaUrl() {
+		const res = await axiosInstance.get<SecurityResponseType>('security/get-captcha-url')
+		return res.data
 	}
-}
-
-export type SecurityResponseType = {
-	url: string
 }

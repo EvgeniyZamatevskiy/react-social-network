@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
-import { useActions } from '../../redux/hooks'
-import { authActionCreators } from '../../redux/reducers/auth-reducer'
-import { selectIsAuth, selectLogin } from '../../redux/reducers/auth-reducer/selectors'
+import { authActionCreators } from 'store/action-creators'
+import { getLogin, getIsAuth } from 'store/selectors/auth'
+import { useActions } from '../../store/hooks'
 import { UniversalButton } from '../common/UniversalButton/UniversalButton'
 import s from './Header.module.css'
 
@@ -12,8 +12,8 @@ type HeaderPropsType = {
 
 export const Header: FC<HeaderPropsType> = ({ }) => {
 
-	const login = useSelector(selectLogin)
-	const isAuth = useSelector(selectIsAuth)
+	const login = useSelector(getLogin)
+	const isAuth = useSelector(getIsAuth)
 	const { logoutTC } = useActions(authActionCreators)
 
 	const logoutHandler = () => {
