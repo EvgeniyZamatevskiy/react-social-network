@@ -7,12 +7,11 @@ import { useSelector } from 'react-redux'
 import { getUserProfile, getUserStatus } from 'store/selectors'
 import { ReturnComponentType } from 'types'
 import { ProfileInfoPropsType } from './types'
-import { useActions } from 'store/hooks/useActions/useActions'
-import { profileActionCreators } from 'store/actions'
-
+import { useTypedDispatch } from 'store/hooks'
+import { savePhotoTC, updateUserStatusTC } from 'store/middlewares/profile'
 export const ProfileInfo: FC<ProfileInfoPropsType> = ({ isOwner }): ReturnComponentType => {
 
-	const { updateUserStatusTC, savePhotoTC } = useActions(profileActionCreators)
+	const dispatch = useTypedDispatch()
 
 	const userProfile = useSelector(getUserProfile)
 	const userStatus = useSelector(getUserStatus)
@@ -20,12 +19,12 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = ({ isOwner }): ReturnCompon
 	const [editMode, setEditMode] = useState<boolean>(false)
 
 	const handleUserStatusChange = (newStatus: string): void => {
-		updateUserStatusTC(newStatus)
+		dispatch(updateUserStatusTC(newStatus))
 	}
 
 	const onSavePhotoChange = (e: ChangeEvent<HTMLInputElement>): void => {
 		if (e.currentTarget.files?.length) {
-			savePhotoTC(e.currentTarget.files[FIRST_ELEMENT_IN_ARRAY])
+			dispatch(savePhotoTC(e.currentTarget.files[FIRST_ELEMENT_IN_ARRAY]))
 		}
 	}
 

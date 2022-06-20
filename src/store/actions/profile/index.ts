@@ -1,0 +1,1 @@
+export { addPostAC, savePhotoAC, setUserProfileAC, setUserStatusAC } from './profile'

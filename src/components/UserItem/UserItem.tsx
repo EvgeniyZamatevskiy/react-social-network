@@ -4,20 +4,20 @@ import { UniversalButton } from 'components/common/UniversalButton/UniversalButt
 import { UserItemPropsType } from './types'
 import { ReturnComponentType } from 'types'
 import { Path } from 'enums'
-import { useActions } from 'store/hooks/useActions/useActions'
 import style from './style/UserItem.module.css'
-import { usersActionCreators } from 'store/actions'
+import { useTypedDispatch } from 'store/hooks'
+import { followTC, unFollowTC } from 'store/middlewares/users'
 
 export const UserItem: FC<UserItemPropsType> = ({ user }): ReturnComponentType => {
 
-	const { followTC, unFollowTC } = useActions(usersActionCreators)
+	const dispatch = useTypedDispatch()
 
 	const handleFollowClick = (): void => {
-		followTC(user.id)
+		dispatch(followTC(user.id))
 	}
 
 	const handleUnFollowClick = (): void => {
-		unFollowTC(user.id)
+		dispatch(unFollowTC(user.id))
 	}
 
 	return (

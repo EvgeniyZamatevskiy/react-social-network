@@ -5,12 +5,13 @@ import { Redirect } from 'react-router-dom'
 import { getIsAuth, getCaptchaUrl } from 'store/selectors/auth'
 import { FormikErrorType } from './types'
 import { ReturnComponentType } from 'types'
-import { useActions } from 'store/hooks/useActions/useActions'
-import { authActionCreators } from 'store/actions'
+import { useTypedDispatch } from 'store/hooks'
+import { loginTC } from 'store/middlewares'
 
 export const Login = ({ }): ReturnComponentType => {
 
-	const { loginTC } = useActions(authActionCreators)
+	const dispatch = useTypedDispatch()
+
 	const isAuth = useSelector(getIsAuth)
 	const captchaUrl = useSelector(getCaptchaUrl)
 
@@ -38,7 +39,7 @@ export const Login = ({ }): ReturnComponentType => {
 			return errors
 		},
 		onSubmit: values => {
-			loginTC(values)
+			dispatch(loginTC(values))
 			// formik.resetForm()
 		},
 	})

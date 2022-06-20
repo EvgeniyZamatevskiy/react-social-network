@@ -8,12 +8,12 @@ import { ReturnComponentType } from 'types'
 import { Pagination } from 'components/common/Pagination'
 import { Path } from 'enums'
 import { UsersSearchForm } from 'components'
-import { useActions } from 'store/hooks/useActions/useActions'
-import { usersActionCreators } from 'store/actions'
+import { useTypedDispatch } from 'store/hooks'
+import { getUsersTC } from 'store/middlewares/users'
 
 export const UsersList: FC = ({ }): ReturnComponentType => {
 
-	const { getUsersTC } = useActions(usersActionCreators)
+	const dispatch = useTypedDispatch()
 
 	const users = useSelector(getUsers)
 	const count = useSelector(getCount)
@@ -27,16 +27,16 @@ export const UsersList: FC = ({ }): ReturnComponentType => {
 
 	useEffect(() => {
 		if (isAuth) {
-			getUsersTC(count, page, filter)
+			dispatch(getUsersTC(count, page, filter))
 		}
 	}, [])
 
 	const handleSetCurrentPageClick = (currentPage: number): void => {
-		getUsersTC(count, currentPage, filter)
+		dispatch(getUsersTC(count, currentPage, filter))
 	}
 
 	const onFilterChanged = (filter: any): void => {
-		getUsersTC(count, 1, filter)
+		dispatch(getUsersTC(count, 1, filter))
 	}
 
 	if (!isAuth) {

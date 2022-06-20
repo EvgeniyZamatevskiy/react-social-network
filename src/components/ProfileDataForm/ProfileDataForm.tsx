@@ -1,13 +1,13 @@
 import React, { FC } from 'react'
 import { useForm } from 'react-hook-form'
-import { profileActionCreators } from 'store/actions'
-import { useActions } from 'store/hooks/useActions/useActions'
+import { useTypedDispatch } from 'store/hooks'
+import { saveProfileTC } from 'store/middlewares/profile'
 import { ReturnComponentType } from 'types'
 import { ProfileDataFormPropsType } from './types'
 
 export const ProfileDataForm: FC<ProfileDataFormPropsType> = ({ userProfile, setEditMode }): ReturnComponentType => {
 
-	const { saveProfileTC } = useActions(profileActionCreators)
+	const dispatch = useTypedDispatch()
 
 	const { register, handleSubmit, reset, formState: { errors }, } = useForm<any>({
 		mode: 'onBlur',
@@ -15,7 +15,7 @@ export const ProfileDataForm: FC<ProfileDataFormPropsType> = ({ userProfile, set
 	})
 
 	const onSubmit: any = (data: any): void => {
-		saveProfileTC(data)
+		dispatch(saveProfileTC(data))
 		setEditMode(false)
 		// reset()
 	}

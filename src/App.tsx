@@ -5,18 +5,18 @@ import { Header, Navbar } from 'components'
 import { Login, Profile, UsersList } from 'pages'
 import { getIsInitialized } from 'store/selectors'
 import { ReturnComponentType } from 'types'
-import { useActions } from 'store/hooks/useActions/useActions'
-import { appActionCreators } from 'store/actions'
 import './App.css'
+import { useTypedDispatch } from 'store/hooks'
+import { initializeAppTC } from 'store/middlewares/app'
 
 export const App = (): ReturnComponentType => {
 
-  const { initializeAppTC } = useActions(appActionCreators)
+  const dispatch = useTypedDispatch()
 
   const isInitialized = useSelector(getIsInitialized)
 
   useEffect(() => {
-    initializeAppTC()
+    dispatch(initializeAppTC())
   }, [])
 
   if (!isInitialized) {

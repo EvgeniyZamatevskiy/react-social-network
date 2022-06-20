@@ -3,19 +3,19 @@ import { UniversalButton } from 'components/common'
 import { useSelector } from 'react-redux'
 import { getLogin, getIsAuth } from 'store/selectors'
 import { ReturnComponentType } from 'types'
-import { useActions } from 'store/hooks/useActions/useActions'
-import { authActionCreators } from 'store/actions'
 import style from './style/Header.module.css'
+import { useTypedDispatch } from 'store/hooks'
+import { logoutTC } from 'store/middlewares'
 
 export const Header: FC = ({ }): ReturnComponentType => {
 
-	const { logoutTC } = useActions(authActionCreators)
+	const dispatch = useTypedDispatch()
 
 	const login = useSelector(getLogin)
 	const isAuth = useSelector(getIsAuth)
 
 	const handleLogOutClick = (): void => {
-		logoutTC()
+		dispatch(logoutTC())
 	}
 
 	return (

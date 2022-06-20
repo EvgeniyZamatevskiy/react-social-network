@@ -4,13 +4,13 @@ import { Redirect, withRouter } from 'react-router-dom'
 import { PostsList, ProfileInfo } from 'components'
 import { getIsAuth, getId } from 'store/selectors/auth'
 import { ReturnComponentType } from 'types'
-import { useActions } from 'store/hooks/useActions/useActions'
-import { profileActionCreators } from 'store/actions'
 import { Path } from 'enums'
+import { useTypedDispatch } from 'store/hooks'
+import { getStatusTC, getUserProfileTC } from 'store/middlewares/profile'
 
 export const Profile = withRouter((props): ReturnComponentType => {
 
-	const { getUserProfileTC, getStatusTC } = useActions(profileActionCreators)
+	const dispatch = useTypedDispatch()
 
 	const isAuth = useSelector(getIsAuth)
 	const authorizedUserId = useSelector(getId)
@@ -25,8 +25,8 @@ export const Profile = withRouter((props): ReturnComponentType => {
 		}
 
 		if (isAuth) {
-			getStatusTC(userId)
-			getUserProfileTC(userId)
+			dispatch(getStatusTC(userId))
+			dispatch(getUserProfileTC(userId))
 		}
 	}, [props.match.params.userId])
 
