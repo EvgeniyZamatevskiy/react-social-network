@@ -32,12 +32,12 @@ export const Pagination: FC<PaginationPropsType> = ({ setCurrentPage, totalItems
 				.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
 				.map(p => {
 
-					const setCurrentPageHandler = () => {
+					const onSetCurrentPageClick = () => {
 						setCurrentPage(p)
 					}
 
 					return (
-						<UniversalButton key={p} className={page === p ? style.selectedPage : ''} onClick={setCurrentPageHandler}>{p}</UniversalButton>)
+						<UniversalButton key={p} className={page === p ? style.selectedPage : ''} onClick={onSetCurrentPageClick}>{p}</UniversalButton>)
 				})}
 			{portionCount > portionNumber && <button onClick={() => { setPortionNumber(portionNumber + 1) }}>NEXT</button>}
 		</div>

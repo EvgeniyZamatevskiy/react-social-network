@@ -1,10 +1,7 @@
 import { applyMiddleware, combineReducers, legacy_createStore as createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk, { ThunkAction } from 'redux-thunk'
-import { authReducer } from './reducers'
-import { appReducer } from './reducers/appReducer'
-import { profileReducer } from './reducers/profileReducer'
-import { usersReducer } from './reducers/usersReducer'
+import { appReducer, authReducer, profileReducer, usersReducer } from './reducers'
 
 const rootReducer = combineReducers({
 	profile: profileReducer,

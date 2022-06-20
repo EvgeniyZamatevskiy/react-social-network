@@ -1,4 +1,4 @@
-export { getIsInitialized, getIsLoading } from './app'
-export { getCaptchaUrl, getEmail, getId, getIsAuth, getLogin } from './auth'
-export { getPosts, getUserProfile, getUserStatus } from './profile'
-export { getCount, getFilter, getPage, getTotalUsersCount, getUsers } from './users'
+export { selectIsInitialized, selectIsLoading } from './app'
+export { selectCaptchaUrl, selectEmail, selectId, selectIsAuth, selectLogin } from './auth'
+export { selectPosts, selectUserProfile, selectUserStatus } from './profile'
+export { selectCount, selectFilter, selectPage, selectTotalUsersCount, selectUsers } from './users'

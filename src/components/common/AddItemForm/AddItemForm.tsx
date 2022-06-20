@@ -1,11 +1,11 @@
 import React, { ChangeEvent, FC, useState } from 'react'
-import { EMPTY_STRING } from '../../../constants'
+import { EMPTY_STRING } from '../../../constants/base'
 import { Nullable, ReturnComponentType } from 'types'
 import { UniversalButton } from '../UniversalButton'
 import { UniversalInput } from '../UniversalInput'
 import { AddItemFormPropsType } from './types'
 
-export const AddItemForm: FC<AddItemFormPropsType> = ({ onAddItemClick, buttonTitle }): ReturnComponentType => {
+export const AddItemForm: FC<AddItemFormPropsType> = ({ addItem, buttonTitle }): ReturnComponentType => {
 
 	const [value, setValue] = useState<string>(EMPTY_STRING)
 	const [error, setError] = useState<Nullable<string>>(null)
@@ -22,7 +22,7 @@ export const AddItemForm: FC<AddItemFormPropsType> = ({ onAddItemClick, buttonTi
 		const trimmedValue = value.trim()
 
 		if (trimmedValue !== EMPTY_STRING) {
-			onAddItemClick(trimmedValue)
+			addItem(trimmedValue)
 			setValue(EMPTY_STRING)
 
 			return

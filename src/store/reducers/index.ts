@@ -1,4 +1,4 @@
-export { authReducer } from './authReducer'
-export { appReducer } from './appReducer'
-export { profileReducer } from './profileReducer'
-export { usersReducer } from './usersReducer'
+export { authReducer } from './auth'
+export { appReducer } from './app'
+export { profileReducer } from './profile'
+export { usersReducer } from './users'

@@ -1,3 +1,3 @@
-export { useActions } from './useActions/useActions'
-export { useTypedDispatch } from './useTypedDispatch/useTypedDispatch'
-export { useTypedSelector } from './useTypedSelector/useTypedSelector'
+export { useActions } from './useActions'
+export { useTypedDispatch } from './useTypedDispatch'
+export { useTypedSelector } from './useTypedSelector'

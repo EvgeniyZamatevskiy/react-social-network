@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { EMPTY_STRING } from '../../../constants'
+import { EMPTY_STRING } from '../../../constants/base'
 import { ReturnComponentType } from 'types'
 import { EditableStatusPropsType } from './types'
 import { UniversalInput } from '../UniversalInput'
