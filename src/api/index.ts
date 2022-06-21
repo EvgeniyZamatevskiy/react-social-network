@@ -1,5 +1,0 @@
-export { AUTH } from './auth'
-export { FOLLOW } from './follow'
-export { PROFILE } from './profile'
-export { SECURITY } from './security'
-export { USERS } from './users'

@@ -1,0 +1,110 @@
+.loginBlock {
+	height: 100vh;
+	background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(183, 75, 210, 1) 100%, rgba(252, 70, 107, 1) 100%);
+}
+
+.bgImg {
+	width: 700px;
+	margin-top: 50px;
+	margin-left: 90px;
+}
+
+.user {
+	width: 100px;
+	height: 100px;
+}
+
+.formBox {
+	width: 300px;
+	padding: 50px;
+	padding-top: 90px;
+	padding-bottom: 90px;
+	position: absolute;
+	box-shadow: -15px 53px 68px -9px rgba(0, 0, 0, 0.75);
+	border-top-left-radius: 25%;
+	border-bottom-right-radius: 25%;
+	top: 50%;
+	left: 60%;
+	transform: translateY(-50%);
+	background: #fff;
+	text-align: center;
+}
+
+.title {
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 28px;
+}
+
+.formBox input[type='text'],
+.formBox input[type='password'] {
+	border: 0;
+	background: none;
+	display: block;
+	margin: 20px auto;
+	font-size: 16px;
+	border: none;
+	border-bottom: 2px solid #6856EB;
+	padding: 14px 15px;
+	width: 200px;
+	outline: none;
+	transition: 0.25s;
+}
+
+.formBox input[type='text']:focus,
+.formBox input[type='password']:focus {
+	width: 250px;
+	border-color: #B44BD3;
+}
+
+.formBox button[type='submit'] {
+	border: 0;
+	background: none;
+	display: block;
+	margin: 20px auto;
+	text-align: center;
+	border: 2px solid #B44BD3;
+	width: 230px;
+	height: 30px;
+	outline: none;
+	border-radius: 24px;
+	transition: 0.25s;
+	cursor: pointer;
+}
+
+.formBox button[type='submit']:hover {
+	background: #9A50DC;
+}
+
+.formBox input[type='checkbox'] {
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.rememberMe {
+	margin-right: 100px;
+}
+
+@media only screen and (max-width: 1350px) {
+	.bgImg {
+		margin-left: 50px;
+		margin-top: 80px;
+		width: 550px;
+	}
+}
+
+@media only screen and (max-width: 1025px) {
+	.bgImg {
+		display: none;
+	}
+
+	body {
+		background: #455DF9;
+	}
+
+	.formBox {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}

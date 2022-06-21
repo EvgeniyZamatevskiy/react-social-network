@@ -1,77 +1,31 @@
-import React from 'react'
-import { useFormik } from 'formik'
-import { useSelector } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import { selectIsAuth, selectCaptchaUrl } from 'store/selectors/auth'
-import { FormikErrorType } from './types'
-import { ReturnComponentType } from 'types'
-import { useTypedDispatch } from 'store/hooks'
-import { loginTC } from 'store/middlewares/auth'
+import React, { FC } from 'react'
+import { ReturnComponentType } from 'types/ReturnComponentType'
+import style from './Login.module.scss'
+import bgImg from 'assets/images/bgImg.jpg'
+import user from 'assets/images/user.png'
 
-export const Login = ({ }): ReturnComponentType => {
+type LoginPropsType = {
 
-	const dispatch = useTypedDispatch()
+}
 
-	const isAuth = useSelector(selectIsAuth)
-	const captchaUrl = useSelector(selectCaptchaUrl)
-
-	const formik = useFormik({
-		initialValues: {
-			email: '',
-			password: '',
-			rememberMe: false,
-			captcha: ''
-		},
-		validate: (values) => {
-			const errors: FormikErrorType = {}
-			if (!values.email) {
-				errors.email = 'Email is required'
-			} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-				errors.email = 'Invalid email address'
-			}
-
-			if (!values.password) {
-				errors.password = 'Password is required'
-			} else if (values.password.length < 3) {
-				errors.password = 'Password must be more than 3 characters!'
-			}
-
-			return errors
-		},
-		onSubmit: values => {
-			dispatch(loginTC(values))
-			// formik.resetForm()
-		},
-	})
-
-	if (isAuth) {
-		return <Redirect to={'/profile'} />
-	}
+export const Login: FC<LoginPropsType> = ({ }): ReturnComponentType => {
 
 	return (
-		<div>
-			<h1>LOGIN</h1>
-			<form onSubmit={formik.handleSubmit}>
-				<div>
-					<input type={'text'} placeholder={'Email'}
-						{...formik.getFieldProps('email')} />
-					{formik.touched.email && formik.errors.email && <div style={{ color: 'red' }}>{formik.errors.email}</div>}
-				</div>
-				<div>
-					<input type='password' placeholder={'Password'}
-						{...formik.getFieldProps('password')} />
-					{formik.touched.password && formik.errors.password && <div style={{ color: 'red' }}>{formik.errors.password}</div>}
-				</div>
-				{captchaUrl && <img src={captchaUrl} />}
-				{captchaUrl && <input placeholder={'captcha'} {...formik.getFieldProps('captcha')} />}
-				<div>
-					<input type={'checkbox'}
-						{...formik.getFieldProps('rememberMe')} />remember me
-				</div>
-				<div>
-					<button type={'submit'}>Login</button>
-				</div>
-			</form>
+		<div className={style.loginBlock}>
+			<div className={style.formContainer}>
+				<img src={bgImg} className={style.bgImg} />
+				<form className={style.formBox}>
+					<img src={user} className={style.user} />
+					<h1 className={style.title}>Welcome</h1>
+					<input type={'text'} placeholder={'Email'} />
+					{/* <div style={{ color: 'red' }}>Title is required!</div> */}
+					<input type={'password'} placeholder={'Password'} />
+					{/* <div style={{ color: 'red', marginBottom: "20px" }}>Title is required!</div> */}
+					<input type={'checkbox'} />
+					<span className={style.rememberMe}>Remember me</span>
+					<button type={'submit'} >Login</button>
+				</form>
+			</div>
 		</div>
 	)
 }

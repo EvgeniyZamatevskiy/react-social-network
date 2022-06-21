@@ -1,14 +1,11 @@
 import React, { FC } from 'react'
 import { ReturnComponentType } from 'types/ReturnComponentType'
+import style from './NotFound.module.css'
 
-type ProfilePropsType = {
-
-}
-
-export const Profile: FC<ProfilePropsType> = ({ }): ReturnComponentType => {
+export const NotFound: FC = (): ReturnComponentType => {
 	return (
 		<div>
-			Profile
+			NotFound
 		</div>
 	)
 }

@@ -1,0 +1,54 @@
+.link {
+	text-decoration: none;
+	text-transform: capitalize;
+	color: #285473;
+}
+
+.avatar {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+.name {
+	width: 100%;
+	margin: 0 0 10px 0;
+}
+
+/*button*/
+.sendBtn {
+	width: 100%;
+	margin-bottom: 20px;
+	padding: 8px;
+
+	display: block;
+	box-sizing: border-box;
+	cursor: pointer;
+	text-decoration: none;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	background-color: #4a76a8;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.followBtn {
+	margin-bottom: 10px;
+	background-color: #618fd1;
+
+	width: 100%;
+	margin-bottom: 20px;
+	padding: 8px;
+
+	display: block;
+	box-sizing: border-box;
+	cursor: pointer;
+	text-decoration: none;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	background-color: #4a76a8;
+	font-size: 16px;
+	line-height: 24px;
+}
