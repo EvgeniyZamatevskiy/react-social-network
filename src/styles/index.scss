@@ -1,5 +1,18 @@
-* {
-	margin: 0;
-	padding: 0;
+@import './sass/variables.scss';
+@import './sass/templates.scss';
+@import './reset.scss';
+
+body {
+	color: $textColor;
+	background-color: $primaryBackgroundColor;
 	font-family: sans-serif;
+}
+
+.container {
+	@extend %container;
+}
+
+.main {
+	display: flex;
+	margin-top: 20px;
 }

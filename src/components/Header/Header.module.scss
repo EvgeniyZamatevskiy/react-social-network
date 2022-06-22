@@ -1,0 +1,30 @@
+@import '../../styles//sass/variables.scss';
+
+.header {
+	background-color: $secondaryBackgroundColor;
+	height: 75px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0px 235px 0px 235px;
+
+	.title {
+		text-transform: uppercase;
+		font-size: 25px;
+	}
+
+	.info {
+		width: 140px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		.name {
+			font-size: 20px;
+		}
+
+		.logOut {
+			color: inherit;
+		}
+	}
+}

@@ -1,7 +1,5 @@
 import React, { FC } from 'react'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import { User } from './User/User'
-import style from './Users.module.css'
 
 type UsersPropsType = {
 

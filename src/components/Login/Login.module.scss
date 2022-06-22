@@ -1,13 +1,4 @@
-.loginBlock {
-	height: 100vh;
-	background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(183, 75, 210, 1) 100%, rgba(252, 70, 107, 1) 100%);
-}
-
-.bgImg {
-	width: 700px;
-	margin-top: 50px;
-	margin-left: 90px;
-}
+@import '../../styles//sass/variables.scss';
 
 .user {
 	width: 100px;
@@ -15,7 +6,7 @@
 }
 
 .formBox {
-	width: 300px;
+	width: 550px;
 	padding: 50px;
 	padding-top: 90px;
 	padding-bottom: 90px;
@@ -24,9 +15,9 @@
 	border-top-left-radius: 25%;
 	border-bottom-right-radius: 25%;
 	top: 50%;
-	left: 60%;
+	left: 50%;
 	transform: translateY(-50%);
-	background: #fff;
+	background: $secondaryBackgroundColor;
 	text-align: center;
 }
 
@@ -49,12 +40,18 @@
 	width: 200px;
 	outline: none;
 	transition: 0.25s;
+	color: white;
 }
 
 .formBox input[type='text']:focus,
 .formBox input[type='password']:focus {
 	width: 250px;
 	border-color: #B44BD3;
+}
+
+.formBox input[type='text']::placeholder,
+.formBox input[type='password']::placeholder {
+	color: white
 }
 
 .formBox button[type='submit'] {
@@ -70,6 +67,7 @@
 	border-radius: 24px;
 	transition: 0.25s;
 	cursor: pointer;
+	color: white;
 }
 
 .formBox button[type='submit']:hover {

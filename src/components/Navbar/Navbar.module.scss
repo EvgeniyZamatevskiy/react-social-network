@@ -1,0 +1,26 @@
+@import '../../styles//sass/variables.scss';
+
+.navBar {
+	background-color: $secondaryBackgroundColor;
+	width: 300px;
+	min-height: 91.7vh;
+	padding-top: 80px;
+	margin-right: 20px;
+}
+
+.list {
+	font-size: 30px;
+}
+
+.list li {
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.list a {
+	transition: color 0.2s ease-in 0s;
+}
+
+.list a:hover {
+	color: rgb(136, 136, 136);
+}
