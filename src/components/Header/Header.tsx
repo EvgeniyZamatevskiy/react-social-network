@@ -10,7 +10,7 @@ export const Header: FC<HeaderPropsType> = (): ReturnComponentType => {
   return (
     <header className={style.header}>
       <h1 className={style.title}>Social network</h1>
-      <div className={style.info}>
+      <div className={style.body}>
         <div className={style.name}>ZaM</div>
         <button className={style.logOut}>Log Out</button>
       </div>

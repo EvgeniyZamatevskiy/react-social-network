@@ -2,14 +2,14 @@
 
 .navBar {
 	background-color: $secondaryBackgroundColor;
-	width: 300px;
-	min-height: 91.7vh;
-	padding-top: 80px;
+	min-width: 300px;
+	min-height: 89vh;
 	margin-right: 20px;
+	padding: 80px;
 }
 
 .list {
-	font-size: 30px;
+	font-size: 40px;
 }
 
 .list li {
