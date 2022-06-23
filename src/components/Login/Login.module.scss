@@ -41,6 +41,8 @@
 	outline: none;
 	transition: 0.25s;
 	color: white;
+	box-shadow: inset 0 0 0 50px $secondaryBackgroundColor;
+	-webkit-text-fill-color: white
 }
 
 .formBox input[type='text']:focus,
@@ -51,7 +53,7 @@
 
 .formBox input[type='text']::placeholder,
 .formBox input[type='password']::placeholder {
-	color: white
+	color: white;
 }
 
 .formBox button[type='submit'] {

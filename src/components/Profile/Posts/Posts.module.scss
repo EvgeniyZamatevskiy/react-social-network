@@ -1,0 +1,18 @@
+	@import '../../../styles/sass/variables.scss';
+
+
+	.myPosts {
+		width: 100%;
+		margin-top: 20px;
+
+		.body {
+			padding: 50px;
+			background-color: $secondaryBackgroundColor;
+
+			h2 {
+				font-size: 50px;
+				margin-bottom: 20px;
+				text-align: center;
+			}
+		}
+	}
