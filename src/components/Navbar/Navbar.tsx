@@ -10,7 +10,6 @@ export const Navbar: FC = (): ReturnComponentType => {
 			<ul className={style.list}>
 				<li><NavLink to={Path.profile}>Profile</NavLink></li>
 				<li><NavLink to={Path.users}>Users</NavLink></li>
-				<li><NavLink to={Path.login}>Login</NavLink></li>
 			</ul>
 		</div>
 	)

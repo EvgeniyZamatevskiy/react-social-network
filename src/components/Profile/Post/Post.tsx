@@ -4,7 +4,7 @@ import user from 'assets/images/user.png'
 import { PostPropsType } from './types'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { useTypedDispatch } from 'store/hooks/useTypedDispatch'
-import { removePostAC } from 'store/profileReducer/actions'
+import { removePostAC } from 'store/profileReducer'
 
 export const Post: FC<PostPropsType> = ({ post }): ReturnComponentType => {
 

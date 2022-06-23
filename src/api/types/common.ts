@@ -4,5 +4,5 @@ export type CommonResponseType<T = {}> = {
 	data: T,
 	fieldsErrors: string[],
 	messages: string[],
-	resultCode: ResponseCode
+	resultCode: number
 }

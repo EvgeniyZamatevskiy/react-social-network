@@ -1,4 +1,3 @@
-import { InitialStateType, ProfileReducerActionsType } from "./types/profile"
 
 const initialState: InitialStateType = {
 	posts: [
@@ -22,3 +21,24 @@ export const profileReducer = (state: InitialStateType = initialState, action: P
 			return state
 	}
 }
+
+// actionsCreators
+export const addPostAC = (message: string) => ({ type: 'profile/ADD-POST', message } as const)
+
+export const removePostAC = (postId: number) => ({ type: 'profile/REMOVE-POST', postId } as const)
+
+
+// types
+export type InitialStateType = {
+	posts: PostsType[]
+}
+
+export type PostsType = {
+	id: number
+	likes: number
+	message: string
+}
+
+export type ProfileReducerActionsType =
+	ReturnType<typeof addPostAC> |
+	ReturnType<typeof removePostAC>

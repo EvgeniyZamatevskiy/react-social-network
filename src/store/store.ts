@@ -1,10 +1,12 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk, { ThunkAction } from 'redux-thunk'
-import { profileReducer } from './profileReducer/profile'
+import { authReducer } from './authReducer'
+import { profileReducer } from './profileReducer'
 
 const rootReducer = combineReducers({
 	profile: profileReducer,
+	auth: authReducer
 })
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))

@@ -6,9 +6,9 @@ export const AUTH = {
 	login(loginParams: LoginParamsType) {
 		return instance.post<CommonResponseType<{ userId: number }>>('auth/login', loginParams)
 	},
-	// logout() {
-	// 	return instance.delete('auth/login')
-	// },
+	logout() {
+		return instance.delete<CommonResponseType>('auth/login')
+	},
 	me() {
 		return instance.get<CommonResponseType<MeResponseType>>('auth/me')
 	}

@@ -2,12 +2,23 @@ import React, { FC } from 'react'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import style from './Users.module.scss'
 import user from 'assets/images/user.png'
+import { useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
+import { selectIsAuth } from 'store/selectors/auth'
+import { Path } from 'enums'
 
 type UsersPropsType = {
 
 }
 
 export const Users: FC<UsersPropsType> = ({ }): ReturnComponentType => {
+
+	const isAuth = useSelector(selectIsAuth)
+
+	if (!isAuth) {
+		return <Navigate to={Path.login} />
+	}
+
 	return (
 		<div>
 			<div className={style.content}>

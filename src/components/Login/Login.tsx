@@ -7,11 +7,14 @@ import { useTypedDispatch } from 'store/hooks'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import { Path } from 'enums'
+import { loginTC } from 'store/authReducer'
+import { selectCaptchaUrl, selectIsAuth } from 'store/selectors/auth'
 
 export type DataType = {
 	email: string,
 	password: string,
 	rememberMe: boolean
+	captcha: string
 }
 
 type LoginPropsType = {
@@ -22,13 +25,21 @@ export const Login: FC<LoginPropsType> = ({ }): ReturnComponentType => {
 
 	const dispatch = useTypedDispatch()
 
+	const isAuth = useSelector(selectIsAuth)
+	const captchaUrl = useSelector(selectCaptchaUrl)
+
 	const { register, handleSubmit, reset, formState: { errors }, } = useForm<any>({
 		mode: 'onBlur',
 	})
 
 	const onSubmit: any = (data: DataType): void => {
+		dispatch(loginTC(data))
 		console.log(data)
 		// reset()
+	}
+
+	if (isAuth) {
+		return <Navigate to={Path.profile} />
 	}
 
 	return (
@@ -48,6 +59,13 @@ export const Login: FC<LoginPropsType> = ({ }): ReturnComponentType => {
 			{errors?.password && <p style={{ color: 'red', marginBottom: "20px" }}>{errors?.password.message}</p>}
 			<input type={'checkbox'}
 				{...register('rememberMe')} />
+			{captchaUrl &&
+				<>
+					<img src={captchaUrl} />
+					<input type="text"
+						{...register('captcha')} />
+				</>
+			}
 			<span className={style.rememberMe}>Remember me</span>
 			<button type={'submit'} >Login</button>
 		</form>
