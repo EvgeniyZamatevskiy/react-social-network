@@ -1,33 +1,41 @@
+import React, { FC, useCallback, useEffect } from 'react'
 import { Pagination } from 'components/common/Pagination/Pagination'
 import { Path } from 'enums'
-import React, { FC, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import { useTypedDispatch } from 'store/hooks'
 import { selectIsAuth } from 'store/selectors/auth'
-import { selectUsers } from 'store/selectors/users'
-import { getUsersTC } from 'store/usersReducer'
+import { selectCount, selectFilter, selectPage, selectTotalCount, selectUsers } from 'store/selectors/users'
+import { FilterType, getUsersTC } from 'store/usersReducer'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import { SearchUsers } from './SearchUsers/SearchUsers'
+import { UsersSearch } from './UsersSearch/UsersSearch'
 import { User } from './User/User'
 import style from './Users.module.scss'
 
-type UsersPropsType = {
-
-}
-
-export const Users: FC<UsersPropsType> = (): ReturnComponentType => {
+export const Users: FC = (): ReturnComponentType => {
 
 	const dispatch = useTypedDispatch()
 
 	const users = useSelector(selectUsers)
 	const isAuth = useSelector(selectIsAuth)
+	const totalCount = useSelector(selectTotalCount)
+	const count = useSelector(selectCount)
+	const page = useSelector(selectPage)
+	const filter = useSelector(selectFilter)
 
 	const renderUsers = users.map(user => <User key={user.id} user={user} />)
 
+	const handleSetCurrentPageClick = useCallback((currentPage: number): void => {
+		dispatch(getUsersTC(count, currentPage, filter))
+	}, [])
+
+	const handleFilterChangedSubmit = (filter: FilterType): void => {
+		dispatch(getUsersTC(count, 1, filter))
+	}
+
 	useEffect(() => {
 		if (isAuth) {
-			dispatch(getUsersTC())
+			dispatch(getUsersTC(count, page, filter))
 		}
 	}, [])
 
@@ -40,9 +48,14 @@ export const Users: FC<UsersPropsType> = (): ReturnComponentType => {
 			<div className={style.top}>
 				<div>
 					<h2>Developers</h2>
-					<SearchUsers />
+					<UsersSearch onFilterChangedSubmit={handleFilterChangedSubmit} />
 				</div>
-				<Pagination />
+				<Pagination
+					count={count}
+					currentPage={page}
+					totalItemsCount={totalCount}
+					setCurrentPage={handleSetCurrentPageClick}
+				/>
 			</div>
 			<div className={style.bottom}>
 				{renderUsers}

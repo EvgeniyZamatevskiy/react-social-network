@@ -27,7 +27,6 @@ export const addPostAC = (message: string) => ({ type: 'profile/ADD-POST', messa
 
 export const removePostAC = (postId: number) => ({ type: 'profile/REMOVE-POST', postId } as const)
 
-
 // types
 export type InitialStateType = {
 	posts: PostsType[]

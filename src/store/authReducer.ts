@@ -92,21 +92,11 @@ export const logoutTC = (): ThunkType => async (dispatch) => {
 	}
 }
 
-export const initializeAppTC = (): ThunkType => async (dispatch) => {
-	try {
-		const response = await AUTH.me()
-		const { messages, resultCode } = response.data
+export const initializeAppTC = (): ThunkType => (dispatch) => {
+	const promise = dispatch(getUserDataTC())
 
-		if (resultCode === 0) {
-			dispatch(getUserDataTC())
-		} else {
-			alert(messages[0])
-		}
-	} catch (error: any) {
-		alert(error.message)
-	} finally {
-		dispatch(setIsInitializeAppAC(true))
-	}
+	Promise.all([promise])
+		.then(() => dispatch(setIsInitializeAppAC(true)))
 }
 
 export const getCaptchaUrlTC = (): ThunkType => async (dispatch) => {

@@ -1,11 +1,12 @@
 import React, { FC } from 'react'
+import { ReturnComponentType } from 'types/ReturnComponentType'
 import style from './ProfileData.module.scss'
 
 type ProfileDataPropsType = {
 
 }
 
-export const ProfileData: FC<ProfileDataPropsType> = ({ }) => {
+export const ProfileData: FC<ProfileDataPropsType> = ({ }): ReturnComponentType => {
 	return (
 		<div className={style.about}>
 			<h1>About</h1>

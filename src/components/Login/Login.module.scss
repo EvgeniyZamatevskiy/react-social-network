@@ -35,7 +35,7 @@
 		margin: 20px auto;
 		font-size: 16px;
 		border: none;
-		border-bottom: 2px solid #6856EB;
+		border-bottom: 2px solid $decorColor;
 		padding: 14px 15px;
 		width: 200px;
 		outline: none;
@@ -46,7 +46,7 @@
 
 		&:focus {
 			width: 250px;
-			border-color: #B44BD3;
+			border-color: #ffc4b1;
 		}
 	}
 
@@ -80,7 +80,7 @@
 		display: block;
 		margin: 20px auto;
 		text-align: center;
-		border: 2px solid #B44BD3;
+		border: 2px solid $decorColor;
 		width: 230px;
 		height: 30px;
 		outline: none;
@@ -90,7 +90,7 @@
 		color: white;
 
 		&:hover {
-			background: #9A50DC;
+			background: $decorColor;
 		}
 	}
 }

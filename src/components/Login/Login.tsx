@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import user from 'assets/images/user.png'
+import avatar from 'assets/images/avatar.png'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTypedDispatch } from 'store/hooks'
 import { useSelector } from 'react-redux'
@@ -8,14 +8,8 @@ import { Navigate } from 'react-router-dom'
 import { Path } from 'enums'
 import { loginTC } from 'store/authReducer'
 import { selectCaptchaUrl, selectIsAuth } from 'store/selectors/auth'
+import { LoginParamsType } from 'api/types'
 import style from './Login.module.scss'
-
-export type DataType = {
-	email: string,
-	password: string,
-	rememberMe: boolean
-	captcha: string
-}
 
 export const Login: FC = (): ReturnComponentType => {
 
@@ -24,7 +18,7 @@ export const Login: FC = (): ReturnComponentType => {
 	const isAuth = useSelector(selectIsAuth)
 	const captchaUrl = useSelector(selectCaptchaUrl)
 
-	const { register, handleSubmit, formState: { errors } } = useForm<DataType>(
+	const { register, handleSubmit, formState: { errors } } = useForm<LoginParamsType>(
 		{ mode: 'onBlur' }
 	)
 
@@ -40,7 +34,7 @@ export const Login: FC = (): ReturnComponentType => {
 		required: 'Field is required!',
 	}
 
-	const onSubmit: SubmitHandler<DataType> = (data): void => {
+	const onSubmit: SubmitHandler<LoginParamsType> = (data): void => {
 		dispatch(loginTC(data))
 	}
 
@@ -50,7 +44,7 @@ export const Login: FC = (): ReturnComponentType => {
 
 	return (
 		<form className={style.formBox} onSubmit={handleSubmit(onSubmit)}>
-			<img className={style.userImage} src={user} />
+			<img className={style.userImage} src={avatar} />
 			<h1>Welcome</h1>
 			<input
 				className={style.email}

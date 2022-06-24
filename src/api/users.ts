@@ -1,28 +1,10 @@
-import { Nullable } from 'types'
+import { FilterType } from 'store/usersReducer'
 import { instance } from './config'
+import { UsersType } from './types/users'
 
 export const USERS = {
-	getUsers() {
-		return instance.get<UsersType>(`users?count=${9}&page=${2}`)
+	getUsers(count: number, page: number, filter: FilterType) {
+		return instance.get<UsersType>(`users?count=${count}&page=${page}&term=${filter.term}&friend=${filter.friend}`
+		)
 	}
-}
-
-export type UsersType = {
-	error: Nullable<string>
-	items: UserType[]
-	totalCount: number
-}
-
-export type UserType = {
-	followed: boolean
-	id: number
-	name: string
-	photos: PhotosType
-	status: string
-	uniqueUrlName: Nullable<string>
-}
-
-export type PhotosType = {
-	large: Nullable<string>
-	small: Nullable<string>
 }

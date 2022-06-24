@@ -4,14 +4,11 @@ import { useSelector } from 'react-redux'
 import { useTypedDispatch } from 'store/hooks/useTypedDispatch'
 import { addPostAC } from 'store/profileReducer'
 import { selectPosts } from 'store/selectors/profile'
+import { ReturnComponentType } from 'types/ReturnComponentType'
 import { Post } from '../Post/Post'
 import style from './Posts.module.scss'
 
-type PostsPropsType = {
-
-}
-
-export const Posts: FC<PostsPropsType> = ({ }) => {
+export const Posts: FC = (): ReturnComponentType => {
 
 	const dispatch = useTypedDispatch()
 
@@ -19,7 +16,7 @@ export const Posts: FC<PostsPropsType> = ({ }) => {
 
 	const renderPosts = posts.map(post => <Post key={post.id} post={post} />)
 
-	const handleAddPostButtonClick = useCallback((message: string) => {
+	const handleAddPostButtonClick = useCallback((message: string): void => {
 		dispatch(addPostAC(message))
 	}, [])
 

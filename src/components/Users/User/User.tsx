@@ -1,13 +1,10 @@
 import React, { FC } from 'react'
-import avatar from 'assets/images/user.png'
-import { UserType } from 'api/users'
+import avatar from 'assets/images/avatar.png'
 import style from './User.module.scss'
+import { UserPropsType } from './types'
+import { ReturnComponentType } from 'types/ReturnComponentType'
 
-type UserPropsType = {
-	user: UserType
-}
-
-export const User: FC<UserPropsType> = ({ user }) => {
+export const User: FC<UserPropsType> = ({ user }): ReturnComponentType => {
 	return (
 		<div className={style.user}>
 			<img src={user.photos.small ? user.photos.small : avatar} />

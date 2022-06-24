@@ -6,18 +6,14 @@ import { selectIsAuth, selectLogin } from 'store/selectors/auth'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import style from './Header.module.scss'
 
-type HeaderPropsType = {
-
-}
-
-export const Header: FC<HeaderPropsType> = (): ReturnComponentType => {
+export const Header: FC = (): ReturnComponentType => {
 
   const dispatch = useTypedDispatch()
 
   const login = useSelector(selectLogin)
   const isAuth = useSelector(selectIsAuth)
 
-  const onLogoutButtonClick = () => {
+  const onLogoutButtonClick = (): void => {
     dispatch(logoutTC())
   }
 
