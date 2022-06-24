@@ -1,59 +1,18 @@
 import React, { FC } from 'react'
-import user from 'assets/images/user.png'
+import avatar from 'assets/images/user.png'
+import { UserType } from 'api/users'
 import style from './User.module.scss'
 
 type UserPropsType = {
-
+	user: UserType
 }
 
-export const User: FC<UserPropsType> = ({ }) => {
+export const User: FC<UserPropsType> = ({ user }) => {
 	return (
 		<div className={style.user}>
-			<div className={style.item}>
-				<img src={user} />
-				<span className={style.name}>ZaM</span>
-				<button>Follow</button>
-			</div>
-			<div className={style.item}>
-				<img src={user} />
-				<span className={style.name}>ZaM</span>
-				<button>Follow</button>
-			</div>
-			<div className={style.item}>
-				<img src={user} />
-				<span className={style.name}>ZaM</span>
-				<button>Follow</button>
-			</div>
-			<div className={style.item}>
-				<img src={user} />
-				<span className={style.name}>ZaM</span>
-				<button>Follow</button>
-			</div>
-			<div className={style.item}>
-				<img src={user} />
-				<span className={style.name}>ZaM</span>
-				<button>Follow</button>
-			</div>
-			<div className={style.item}>
-				<img src={user} />
-				<span className={style.name}>ZaM</span>
-				<button>Follow</button>
-			</div>
-			<div className={style.item}>
-				<img src={user} />
-				<span className={style.name}>ZaM</span>
-				<button>Follow</button>
-			</div>
-			<div className={style.item}>
-				<img src={user} />
-				<span className={style.name}>ZaM</span>
-				<button>Follow</button>
-			</div>
-			<div className={style.item}>
-				<img src={user} />
-				<span className={style.name}>ZaM</span>
-				<button>Follow</button>
-			</div>
+			<img src={user.photos.small ? user.photos.small : avatar} />
+			<span className={style.name}>{user.name}</span>
+			<button>Follow</button>
 		</div>
 	)
 }

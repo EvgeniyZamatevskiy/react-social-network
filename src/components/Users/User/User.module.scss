@@ -1,37 +1,44 @@
 	@import '../../../styles/sass/variables.scss';
 
 	.user {
+		background-color: $secondaryBackgroundColor;
 		display: flex;
-		min-width: 1148px;
-		flex-wrap: wrap;
+		flex-direction: column;
+		align-items: center;
+		width: 362px;
+		margin-top: 20px;
+		padding: 20px;
+		margin-right: 20px;
 
-		.item {
-			background-color: $secondaryBackgroundColor;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			width: 362px;
-			margin-top: 20px;
-			padding: 20px;
-			margin-right: 20px;
+		img {
+			width: 200px;
+			height: 200px;
+			margin-bottom: 20px;
+			border-radius: 50%;
+		}
 
-			img {
-				width: 200px;
-				height: 200px;
-				margin-bottom: 20px;
-			}
+		span {
+			font-size: 30px;
+			margin-bottom: 20px;
+			word-wrap: break-word;
+			width: 345px;
+			text-align: center;
+		}
 
-			span {
-				font-size: 30px;
-				margin-bottom: 20px;
-				word-wrap: break-word;
-				width: 345px;
-				text-align: center;
-			}
+		button {
+			color: rgb(172, 172, 172);
+			font-size: 20px;
+		}
 
-			button {
-				color: rgb(172, 172, 172);
-				font-size: 20px;
-			}
+		&:nth-child(3) {
+			margin-right: 0
+		}
+
+		&:nth-child(6) {
+			margin-right: 0
+		}
+
+		&:nth-child(9) {
+			margin-right: 0
 		}
 	}
