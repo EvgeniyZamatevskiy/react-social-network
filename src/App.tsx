@@ -4,7 +4,7 @@ import { Header, Login, Navbar, Profile, Users } from 'components'
 import { Route, Routes } from 'react-router-dom'
 import { Path } from 'enums'
 import { useTypedDispatch } from 'store/hooks'
-import { getCaptchaTC, initializeAppTC } from 'store/authReducer'
+import { initializeAppTC } from 'store/authReducer'
 import { useSelector } from 'react-redux'
 import { selectIsInitialize } from 'store/selectors/auth'
 

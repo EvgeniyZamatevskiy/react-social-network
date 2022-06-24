@@ -1,70 +1,20 @@
-@import '../../styles//sass/variables.scss';
+@import '../../styles/sass/variables.scss';
 
-.developers {
-	font-size: 40px;
-}
+.users {
 
-.content {
-	background-color: $secondaryBackgroundColor;
-	padding: 30px;
-	min-width: 1130px;
-}
-
-.form {
-	margin-top: 20px;
-
-	input {
-		margin-right: 5px;
-	}
-
-	.btn {
-		margin-left: 5px;
-		color: inherit
-	}
-}
-
-.pagination {
-	margin-top: 20px;
-
-	.paginationBtn {
-		color: inherit;
-	}
-
-	span {
-		padding: 10px;
-	}
-}
-
-.items {
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	max-width: 1130px;
-
-	.item {
-		margin-top: 20px;
+	.content {
 		background-color: $secondaryBackgroundColor;
 		padding: 30px;
-		max-width: 260px;
+		display: flex;
+		width: 1128px;
+		align-items: flex-end;
+		justify-content: space-between;
 
-		.image {
-
-			img {
-				width: 200px;
-				height: 200px;
-			}
-
-			.name {
-				text-align: center;
-				margin-top: 20px;
-				font-size: 30px;
-			}
-
-			button {
-				color: inherit;
-				margin-left: 77px;
-				margin-top: 20px;
-			}
+		h2 {
+			font-size: 40px;
+			margin-bottom: 20px;
 		}
 	}
+
+
 }

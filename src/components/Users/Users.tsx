@@ -1,17 +1,19 @@
+import { Pagination } from 'components/common/Pagination/Pagination'
+import { Path } from 'enums'
 import React, { FC } from 'react'
-import { ReturnComponentType } from 'types/ReturnComponentType'
-import style from './Users.module.scss'
-import user from 'assets/images/user.png'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import { selectIsAuth } from 'store/selectors/auth'
-import { Path } from 'enums'
+import { ReturnComponentType } from 'types/ReturnComponentType'
+import { SearchUsers } from './SearchUsers/SearchUsers'
+import { User } from './User/User'
+import style from './Users.module.scss'
 
 type UsersPropsType = {
 
 }
 
-export const Users: FC<UsersPropsType> = ({ }): ReturnComponentType => {
+export const Users: FC<UsersPropsType> = (): ReturnComponentType => {
 
 	const isAuth = useSelector(selectIsAuth)
 
@@ -20,84 +22,15 @@ export const Users: FC<UsersPropsType> = ({ }): ReturnComponentType => {
 	}
 
 	return (
-		<div>
+		<div className={style.users}>
 			<div className={style.content}>
-				<h1 className={style.developers}>Developers</h1>
-				<form className={style.form}>
-					<input type='text' name='term' />
-					<select name='friend' >
-						<option value='null'>All</option>
-						<option value='true'>Only followed</option>
-						<option value='false'>Only unfollowed</option>
-					</select>
-					<button className={style.btn} type='submit'>
-						Find
-					</button>
-				</form>
-				<div className={style.pagination}>
-					<button className={style.paginationBtn}>PREV</button>
-					<span>1, 2, 3, 4</span>
-					<button className={style.paginationBtn}>NEXT</button>
+				<div>
+					<h2>Developers</h2>
+					<SearchUsers />
 				</div>
+				<Pagination />
 			</div>
-			<div className={style.items}>
-				<div className={style.item}>
-					<div className={style.image}>
-						<img src={user} />
-						<div className={style.name}>Name</div>
-						<button>Follow</button>
-					</div>
-				</div>
-				<div className={style.item}>
-					<div className={style.image}>
-						<img src={user} />
-						<div className={style.name}>Name</div>
-						<button>Follow</button>
-					</div>
-				</div>
-				<div className={style.item}>
-					<div className={style.image}>
-						<img src={user} />
-						<div className={style.name}>Name</div>
-						<button>Follow</button>
-					</div>
-				</div>
-				<div className={style.item}>
-					<div className={style.image}>
-						<img src={user} />
-						<div className={style.name}>Name</div>
-						<button>Follow</button>
-					</div>
-				</div>
-				<div className={style.item}>
-					<div className={style.image}>
-						<img src={user} />
-						<div className={style.name}>Name</div>
-						<button>Follow</button>
-					</div>
-				</div>
-				<div className={style.item}>
-					<div className={style.image}>
-						<img src={user} />
-						<div className={style.name}>Name</div>
-						<button>Follow</button>
-					</div>
-				</div>
-				<div className={style.item}>
-					<div className={style.image}>
-						<img src={user} />
-						<div className={style.name}>Name</div>
-						<button>Follow</button>
-					</div>
-				</div>
-				<div className={style.item}>
-					<div className={style.image}>
-						<img src={user} />
-						<div className={style.name}>Name</div>
-						<button>Follow</button>
-					</div>
-				</div>
-			</div>
+			<User />
 		</div>
 	)
 }

@@ -21,8 +21,8 @@ export const authReducer = (state: InitialStateType = initialState, action: Auth
 			return { ...state, ...action.userData }
 		case 'auth/SET-IS-INITIALIZE-APP':
 			return { ...state, isInitialize: action.isInitialize }
-		case 'auth/GET-CAPTCHA-URL':
-			return { ...state, captchaUrl: action.url }
+		case 'auth/SET-CAPTCHA-URL':
+			return { ...state, captchaUrl: action.captchaUrl }
 
 		default:
 			return state
@@ -36,7 +36,7 @@ export const setIsAuthAC = (isAuth: boolean) => ({ type: 'auth/SET-IS-AUTH', isA
 
 export const setIsInitializeAppAC = (isInitialize: boolean) => ({ type: 'auth/SET-IS-INITIALIZE-APP', isInitialize } as const)
 
-export const getCaptchaUrlAC = (url: string) => ({ type: 'auth/GET-CAPTCHA-URL', url } as const)
+export const setCaptchaUrlAC = (captchaUrl: string) => ({ type: 'auth/SET-CAPTCHA-URL', captchaUrl } as const)
 
 // ThunksCreators
 export const getUserDataTC = (): ThunkType => async (dispatch) => {
@@ -62,12 +62,13 @@ export const loginTC = (loginParams: LoginParamsType): ThunkType => async (dispa
 
 		if (resultCode === 0) {
 			dispatch(getUserDataTC())
-		} else {
-			if (resultCode === 10) {
-				dispatch(getCaptchaTC())
-			}
-			alert(messages[0])
+			return
 		}
+		if (resultCode === 10) {
+			dispatch(getCaptchaUrlTC())
+			return
+		}
+		alert(messages[0])
 
 	} catch (error: any) {
 		alert(error.message)
@@ -108,12 +109,12 @@ export const initializeAppTC = (): ThunkType => async (dispatch) => {
 	}
 }
 
-export const getCaptchaTC = (): ThunkType => async (dispatch) => {
+export const getCaptchaUrlTC = (): ThunkType => async (dispatch) => {
 	try {
 		const response = await SECURITY.getCaptcha()
 		const { url } = response.data
 
-		dispatch(getCaptchaUrlAC(url))
+		dispatch(setCaptchaUrlAC(url))
 	} catch (error: any) {
 		alert(error.message)
 	}
@@ -139,4 +140,4 @@ export type AuthReducerActionsType =
 	ReturnType<typeof setIsAuthAC> |
 	ReturnType<typeof setUserDataAC> |
 	ReturnType<typeof setIsInitializeAppAC> |
-	ReturnType<typeof getCaptchaUrlAC>
+	ReturnType<typeof setCaptchaUrlAC>

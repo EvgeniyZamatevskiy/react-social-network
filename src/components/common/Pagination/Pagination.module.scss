@@ -1,0 +1,22 @@
+.pagination {
+	//	display: inline-block;
+
+	button {
+		font-size: 20px;
+		color: inherit;
+		color: white;
+		float: left;
+		padding: 8px 16px;
+		text-decoration: none;
+		transition: background-color .3s;
+
+		&:hover:not(.active) {
+			background-color: rgb(120, 120, 120);
+		}
+	}
+
+	.active {
+		background-color: #4CAF50;
+		color: white;
+	}
+}
