@@ -36,7 +36,7 @@ export const setIsAuthAC = (isAuth: boolean) => ({ type: 'auth/SET-IS-AUTH', isA
 
 export const setIsInitializeAppAC = (isInitialize: boolean) => ({ type: 'auth/SET-IS-INITIALIZE-APP', isInitialize } as const)
 
-export const setCaptchaUrlAC = (captchaUrl: string) => ({ type: 'auth/SET-CAPTCHA-URL', captchaUrl } as const)
+export const setCaptchaUrlAC = (captchaUrl: Nullable<string>) => ({ type: 'auth/SET-CAPTCHA-URL', captchaUrl } as const)
 
 // ThunksCreators
 export const getUserDataTC = (): ThunkType => async (dispatch) => {
@@ -61,14 +61,16 @@ export const loginTC = (loginParams: LoginParamsType): ThunkType => async (dispa
 		const { messages, resultCode } = response.data
 
 		if (resultCode === 0) {
+			const resetCaptchaUrl = null
+
 			dispatch(getUserDataTC())
-			return
+			dispatch(setCaptchaUrlAC(resetCaptchaUrl))
+		} else {
+			if (resultCode === 10) {
+				dispatch(getCaptchaUrlTC())
+			}
+			alert(messages[0])
 		}
-		if (resultCode === 10) {
-			dispatch(getCaptchaUrlTC())
-			return
-		}
-		alert(messages[0])
 
 	} catch (error: any) {
 		alert(error.message)

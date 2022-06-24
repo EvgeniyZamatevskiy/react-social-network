@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import style from './Post.module.scss'
 import avatar from 'assets/images/avatar.png'
 import { PostPropsType } from './types'
@@ -6,7 +6,7 @@ import { ReturnComponentType } from 'types/ReturnComponentType'
 import { useTypedDispatch } from 'store/hooks/useTypedDispatch'
 import { removePostAC } from 'store/profileReducer'
 
-export const Post: FC<PostPropsType> = ({ post }): ReturnComponentType => {
+export const Post: FC<PostPropsType> = memo(({ post }): ReturnComponentType => {
 
 	const dispatch = useTypedDispatch()
 
@@ -24,4 +24,4 @@ export const Post: FC<PostPropsType> = ({ post }): ReturnComponentType => {
 			<button onClick={onRemovePostButtonClick}>&#10006;</button>
 		</div>
 	)
-}
+})

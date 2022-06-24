@@ -1,3 +1,4 @@
+import { FOLLOW } from 'api/follow'
 import { UserType } from 'api/types'
 import { USERS } from 'api/users'
 import { Nullable } from 'types'
@@ -21,6 +22,10 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
 			return { ...state, page: action.currentPage }
 		case 'users/SET-FILTER':
 			return { ...state, filter: action.payload }
+		case 'users/SET-FOLLOW':
+			return { ...state, users: state.users.map(user => user.id === action.userId ? { ...user, followed: true } : user) }
+		case 'users/SET-UNFOLLOW':
+			return { ...state, users: state.users.map(user => user.id === action.userId ? { ...user, followed: false } : user) }
 
 		default:
 			return state
@@ -36,6 +41,11 @@ export const setCurrentPageAC = (currentPage: number) => ({ type: 'users/SET-CUR
 
 export const setFilterAC = (filter: FilterType) => ({ type: 'users/SET-FILTER', payload: filter } as const)
 
+export const setFollowAC = (userId: number) => ({ type: 'users/SET-FOLLOW', userId } as const)
+
+export const setUnfollowAC = (userId: number) => ({ type: 'users/SET-UNFOLLOW', userId } as const)
+
+// thunkCreators
 export const getUsersTC = (count: number, page: number, filter: FilterType): ThunkType => async (dispatch) => {
 	try {
 		const response = await USERS.getUsers(count, page, filter)
@@ -45,6 +55,36 @@ export const getUsersTC = (count: number, page: number, filter: FilterType): Thu
 		dispatch(setTotalCountAC(totalCount))
 		dispatch(setCurrentPageAC(page))
 		dispatch(setFilterAC(filter))
+	} catch (error: any) {
+		alert(error.message)
+	}
+}
+
+export const followTC = (userId: number): ThunkType => async (dispatch) => {
+	try {
+		const response = await FOLLOW.follow(userId)
+		const { resultCode, messages } = response.data
+
+		if (resultCode === 0) {
+			dispatch(setFollowAC(userId))
+		} else {
+			messages[0]
+		}
+	} catch (error: any) {
+		alert(error.message)
+	}
+}
+
+export const unfollowTC = (userId: number): ThunkType => async (dispatch) => {
+	try {
+		const response = await FOLLOW.unFollow(userId)
+		const { resultCode, messages } = response.data
+
+		if (resultCode === 0) {
+			dispatch(setUnfollowAC(userId))
+		} else {
+			messages[0]
+		}
 	} catch (error: any) {
 		alert(error.message)
 	}
@@ -68,4 +108,6 @@ export type UsersReducerActionsType =
 	ReturnType<typeof setUsersAC> |
 	ReturnType<typeof setTotalCountAC> |
 	ReturnType<typeof setCurrentPageAC> |
-	ReturnType<typeof setFilterAC> 
+	ReturnType<typeof setFilterAC> |
+	ReturnType<typeof setFollowAC> |
+	ReturnType<typeof setUnfollowAC> 

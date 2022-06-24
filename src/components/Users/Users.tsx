@@ -29,9 +29,9 @@ export const Users: FC = (): ReturnComponentType => {
 		dispatch(getUsersTC(count, currentPage, filter))
 	}, [])
 
-	const handleFilterChangedSubmit = (filter: FilterType): void => {
+	const handleFilterChangedSubmit = useCallback((filter: FilterType): void => {
 		dispatch(getUsersTC(count, 1, filter))
-	}
+	}, [])
 
 	useEffect(() => {
 		if (isAuth) {

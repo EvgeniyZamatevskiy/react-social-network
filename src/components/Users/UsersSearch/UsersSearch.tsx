@@ -1,11 +1,11 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { FilterType } from 'store/usersReducer'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import style from './UsersSearch.module.scss'
 import { UsersSearchPropsType, FormType } from './types'
 
-export const UsersSearch: FC<UsersSearchPropsType> = ({ onFilterChangedSubmit }): ReturnComponentType => {
+export const UsersSearch: FC<UsersSearchPropsType> = memo(({ onFilterChangedSubmit }): ReturnComponentType => {
 
 	const { register, handleSubmit, formState: { errors } } = useForm<FormType>({
 		mode: 'onBlur',
@@ -34,4 +34,4 @@ export const UsersSearch: FC<UsersSearchPropsType> = ({ onFilterChangedSubmit })
 			<button type={'submit'}>Find</button>
 		</form>
 	)
-}
+})
