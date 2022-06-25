@@ -1,20 +1,26 @@
+import { PhotosType } from 'api/types'
 import { AddItemForm } from 'components/common'
 import React, { FC, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { useTypedDispatch } from 'store/hooks/useTypedDispatch'
 import { addPostAC } from 'store/profileReducer'
 import { selectPosts } from 'store/selectors/profile'
+import { Nullable } from 'types'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { Post } from '../Post/Post'
 import style from './Posts.module.scss'
 
-export const Posts: FC = (): ReturnComponentType => {
+export type PostsPropsType = {
+	image: string | undefined
+}
+
+export const Posts: FC<PostsPropsType> = ({ image }): ReturnComponentType => {
 
 	const dispatch = useTypedDispatch()
 
 	const posts = useSelector(selectPosts)
 
-	const renderPosts = posts.map(post => <Post key={post.id} post={post} />)
+	const renderPosts = posts.map(post => <Post key={post.id} post={post} image={image} />)
 
 	const handleAddPostButtonClick = useCallback((message: string): void => {
 		dispatch(addPostAC(message))

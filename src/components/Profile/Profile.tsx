@@ -9,6 +9,7 @@ import { useTypedDispatch } from 'store/hooks'
 import { getUserProfileTC, getUserStatusTC } from 'store/profileReducer'
 import { ProfileInfo } from './ProfileInfo'
 import { NoPosts } from './NoPosts/NoPosts'
+import { selectUserProfile } from 'store/selectors/profile'
 
 export const Profile: FC = () => {
 
@@ -18,6 +19,7 @@ export const Profile: FC = () => {
 
 	const isAuth = useSelector(selectIsAuth)
 	const authorizedUserId = useSelector(selectId)
+	const userProfile = useSelector(selectUserProfile)
 
 	const isOwner = !userId
 
@@ -36,9 +38,9 @@ export const Profile: FC = () => {
 
 	return (
 		<div className={style.profile}>
-			<ProfileInfo isOwner={isOwner} />
+			<ProfileInfo isOwner={isOwner} userProfile={userProfile} />
 			{isOwner
-				? <Posts />
+				? <Posts image={userProfile?.photos.small} />
 				: <NoPosts />}
 		</div>
 	)

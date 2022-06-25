@@ -8,6 +8,6 @@ export type CommonResponseType<T = {}> = {
 }
 
 export type PhotosType = {
-	large: Nullable<string>
-	small: Nullable<string>
+	large: string
+	small: string
 }

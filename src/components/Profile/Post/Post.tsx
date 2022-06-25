@@ -6,9 +6,11 @@ import { ReturnComponentType } from 'types/ReturnComponentType'
 import { useTypedDispatch } from 'store/hooks/useTypedDispatch'
 import { removePostAC } from 'store/profileReducer'
 
-export const Post: FC<PostPropsType> = memo(({ post }): ReturnComponentType => {
+export const Post: FC<PostPropsType> = memo(({ post, image }): ReturnComponentType => {
 
 	const dispatch = useTypedDispatch()
+
+	const userImage = image ? image : avatar
 
 	const onRemovePostButtonClick = (): void => {
 		dispatch(removePostAC(post.id))
@@ -17,7 +19,7 @@ export const Post: FC<PostPropsType> = memo(({ post }): ReturnComponentType => {
 	return (
 		<div className={style.myPost}>
 			<div className={style.postBody}>
-				<img src={avatar} />
+				<img src={userImage} />
 				<div className={style.postMessage}>{post.message}</div>
 				<div className={style.likes}>like: {post.likes}</div>
 			</div>

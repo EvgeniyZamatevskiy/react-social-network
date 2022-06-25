@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, memo, useCallback, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { selectUserProfile, selectUserStatus } from 'store/selectors/profile'
+import { selectUserStatus } from 'store/selectors/profile'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import avatar from 'assets/images/avatar.png'
 import style from './ProfileInfo.module.scss'
@@ -11,11 +11,10 @@ import { updateUserPhotoTC, updateUserStatusTC } from 'store/profileReducer'
 import { ProfileDataEdit } from '../ProfileDataEdit/ProfileDataEdit'
 import { ProfileData } from '../ProfileData'
 
-export const ProfileInfo: FC<ProfileInfoPropsType> = memo(({ isOwner }): ReturnComponentType => {
+export const ProfileInfo: FC<ProfileInfoPropsType> = memo(({ isOwner, userProfile }): ReturnComponentType => {
 
 	const dispatch = useTypedDispatch()
 
-	const userProfile = useSelector(selectUserProfile)
 	const userStatus = useSelector(selectUserStatus)
 
 	const [editProfile, setEditProfile] = useState<boolean>(false)

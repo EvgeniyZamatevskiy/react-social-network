@@ -1,5 +1,6 @@
 import { PostsType } from 'store/profileReducer'
 
 export type PostPropsType = {
-	post: PostsType
+	post: PostsType,
+	image: string | undefined
 }
