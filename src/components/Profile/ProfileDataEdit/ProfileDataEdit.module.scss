@@ -1,4 +1,5 @@
 @import '../../../styles/sass/variables.scss';
+@import '../../../styles/sass/templates.scss';
 
 .about {
 	background-color: $secondaryBackgroundColor;
@@ -9,13 +10,6 @@
 	h1 {
 		font-size: 50px;
 		margin-bottom: 30px;
-
-		span {
-			font-size: 35px;
-			margin-left: 20px;
-			cursor: pointer;
-			color: rgb(172, 172, 172);
-		}
 	}
 
 	.aboutList {
@@ -48,4 +42,24 @@
 			}
 		}
 	}
+
+	button {
+		margin-top: 20px;
+		@extend %btnLink;
+	}
+}
+
+.errorMessage {
+	margin-top: 10px;
+	color: red;
+}
+
+input {
+	padding: 5px;
+	border-radius: 10px;
+	margin-left: 5px;
+}
+
+.errorInput {
+	border: 3px solid red;
 }

@@ -1,0 +1,51 @@
+import React, { ChangeEvent, FC, KeyboardEvent, memo, useState } from 'react'
+import { ReturnComponentType } from 'types/ReturnComponentType'
+import { EditableSpanPropsType } from './types'
+import style from './EditableSpan.module.scss'
+import { EMPTY_STRING } from 'constants/base'
+
+export const EditableSpan: FC<EditableSpanPropsType> = memo(({ currentValue, changeValue, secondSpanClassName }): ReturnComponentType => {
+
+	const [editMode, setEditMode] = useState<boolean>(false)
+	const [newValue, setNewValue] = useState<string>(EMPTY_STRING)
+
+	const onInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
+		setNewValue(e.currentTarget.value)
+	}
+
+	const onEnterKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
+		if (e.key === 'Enter') {
+			setEditMode(false)
+			changeValue(newValue)
+		}
+	}
+
+	const onSetNewValueClick = (): void => {
+		setEditMode(true)
+		setNewValue(currentValue)
+	}
+
+	const onSetNewValueBlur = (): void => {
+		setEditMode(false)
+		changeValue(newValue)
+	}
+
+	return (
+		<>
+			{editMode
+				? <input
+					className={style.editableInput}
+					autoFocus
+					value={newValue}
+					onChange={onInputChange}
+					onBlur={onSetNewValueBlur}
+					onKeyDown={onEnterKeyDown}
+				/>
+				: <span
+					className={`${style.span} ${secondSpanClassName && secondSpanClassName}`}
+					onClick={onSetNewValueClick}>
+					{currentValue ? currentValue : 'Set status'}
+				</span>}
+		</>
+	)
+})

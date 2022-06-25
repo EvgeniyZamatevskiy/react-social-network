@@ -1,16 +1,34 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import style from './Profile.module.scss'
-import avatar from 'assets/images/avatar.png'
 import { Posts } from './Posts'
-import { ProfileData } from './ProfileData'
 import { useSelector } from 'react-redux'
-import { selectIsAuth } from 'store/selectors/auth'
-import { Navigate } from 'react-router-dom'
+import { selectId, selectIsAuth } from 'store/selectors/auth'
+import { Navigate, useParams } from 'react-router-dom'
 import { Path } from 'enums'
+import { useTypedDispatch } from 'store/hooks'
+import { getUserProfileTC, getUserStatusTC } from 'store/profileReducer'
+import { ProfileInfo } from './ProfileInfo'
+import { NoPosts } from './NoPosts/NoPosts'
 
 export const Profile: FC = () => {
 
+	const dispatch = useTypedDispatch()
+
+	const { userId } = useParams<{ userId: string }>()
+
 	const isAuth = useSelector(selectIsAuth)
+	const authorizedUserId = useSelector(selectId)
+
+	const isOwner = !userId
+
+	useEffect(() => {
+		const currentUserId = isOwner ? authorizedUserId : userId
+
+		if (isAuth) {
+			dispatch(getUserProfileTC(+currentUserId!))
+			dispatch(getUserStatusTC(+currentUserId!))
+		}
+	}, [userId])
 
 	if (!isAuth) {
 		return <Navigate to={Path.login} />
@@ -18,14 +36,10 @@ export const Profile: FC = () => {
 
 	return (
 		<div className={style.profile}>
-			<div className={style.person}>
-				<img src={avatar} />
-				<div className={style.name}>ZaM</div>
-				<span className={style.status}>Set status</span>
-				<input type={'file'} />
-			</div>
-			<ProfileData />
-			<Posts />
+			<ProfileInfo isOwner={isOwner} />
+			{isOwner
+				? <Posts />
+				: <NoPosts />}
 		</div>
 	)
 }

@@ -1,6 +1,8 @@
 export enum Path {
 	home = '/',
 	profile = '/profile',
+	userProfile = '/profile/:userId',
 	users = '/users',
-	login = '/login'
+	login = '/login',
+	notFound = '*'
 }

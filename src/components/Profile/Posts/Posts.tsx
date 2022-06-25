@@ -23,7 +23,7 @@ export const Posts: FC = (): ReturnComponentType => {
 	return (
 		<div className={style.myPosts}>
 			<div className={style.body}>
-				<h2>{posts.length ? 'My posts' : 'No posts'}</h2>
+				<h2>{posts.length ? 'My posts' : 'There are no posts on the wall yet'}</h2>
 				<AddItemForm addItem={handleAddPostButtonClick} />
 			</div>
 			{renderPosts}

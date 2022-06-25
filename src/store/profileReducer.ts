@@ -1,12 +1,19 @@
+import { PROFILE } from 'api/profile'
+import { PhotosType, UserProfileType } from 'api/types'
+import { ProfileEditType } from 'components/Profile/ProfileDataEdit/types'
+import { Nullable } from 'types'
+import { ThunkType } from './store'
 
 const initialState: InitialStateType = {
 	posts: [
 		{
 			id: 1,
 			likes: 48,
-			message: 'There are two ways of constructing a software design.One way is to make it so simple that there are obviously no deficiencies.And the other way is to make it so complicated that there are no obvious deficiencies..'
+			message: 'There are two ways of constructing a software design. One way is to make it so simple that there are obviously no deficiencies. And the other way is to make it so complicated that there are no obvious deficiencies.'
 		}
-	]
+	],
+	userProfile: null,
+	userStatus: ''
 }
 
 export const profileReducer = (state: InitialStateType = initialState, action: ProfileReducerActionsType): InitialStateType => {
@@ -16,6 +23,16 @@ export const profileReducer = (state: InitialStateType = initialState, action: P
 			return { ...state, posts: [newPost, ...state.posts] }
 		case 'profile/REMOVE-POST':
 			return { ...state, posts: state.posts.filter(post => post.id !== action.postId) }
+		case 'profile/SET-USER-PROFILE':
+			return { ...state, userProfile: action.userProfile }
+		case 'profile/SET-USER-STATUS':
+			return { ...state, userStatus: action.userStatus }
+		case 'profile/UPDATE-USER-STATUS':
+			return { ...state, userStatus: action.newStatus }
+		case 'profile/UPDATE-USER-PHOTO':
+			return { ...state, userProfile: { ...state.userProfile, photos: action.photos } as UserProfileType }
+		case 'profile/UPDATE-USER-PROFILE':
+			return { ...state, userProfile: action.updatedUserProfile }
 
 		default:
 			return state
@@ -27,9 +44,92 @@ export const addPostAC = (message: string) => ({ type: 'profile/ADD-POST', messa
 
 export const removePostAC = (postId: number) => ({ type: 'profile/REMOVE-POST', postId } as const)
 
+export const setUserProfileAC = (userProfile: UserProfileType) => ({ type: 'profile/SET-USER-PROFILE', userProfile } as const)
+
+export const setUserStatusAC = (userStatus: string) => ({ type: 'profile/SET-USER-STATUS', userStatus } as const)
+
+export const updateUserStatusAC = (newStatus: string) => ({ type: 'profile/UPDATE-USER-STATUS', newStatus } as const)
+
+export const updateUserPhotoAC = (photos: PhotosType) => ({ type: 'profile/UPDATE-USER-PHOTO', photos } as const)
+
+export const updateUserProfileAC = (updatedUserProfile: UserProfileType) => ({ type: 'profile/UPDATE-USER-PROFILE', updatedUserProfile } as const)
+
+// thunkCreators
+export const getUserProfileTC = (userId: number): ThunkType => async (dispatch) => {
+	try {
+		const response = await PROFILE.getUsersProfile(userId)
+		const { data: userProfile } = response
+
+		dispatch(setUserProfileAC(userProfile))
+	} catch (error: any) {
+		alert(error.message)
+	}
+}
+
+export const getUserStatusTC = (userId: number): ThunkType => async (dispatch) => {
+	try {
+		const response = await PROFILE.getUserStatus(userId)
+		const userStatus = response.data
+
+		dispatch(setUserStatusAC(userStatus))
+	} catch (error: any) {
+		alert(error.message)
+	}
+}
+
+export const updateUserStatusTC = (newStatus: string): ThunkType => async (dispatch) => {
+	try {
+		const response = await PROFILE.changeUserStatus(newStatus)
+		const { resultCode, messages } = response.data
+
+		if (resultCode === 0) {
+			dispatch(updateUserStatusAC(newStatus))
+		} else {
+			messages[0]
+		}
+	} catch (error: any) {
+		alert(error.message)
+	}
+}
+
+export const updateUserPhotoTC = (image: File): ThunkType => async (dispatch) => {
+	try {
+		const response = await PROFILE.updateUserPhoto(image)
+		const { data, messages, resultCode } = response.data
+		const photos = data.photos
+
+		if (resultCode === 0) {
+			dispatch(updateUserPhotoAC(photos))
+		} else {
+			messages[0]
+		}
+
+	} catch (error: any) {
+		alert(error.message)
+	}
+}
+
+export const updateUserProfileTC = (updatedUserProfile: UserProfileType): ThunkType => async (dispatch) => {
+	try {
+		const response = await PROFILE.updateUserProfile(updatedUserProfile)
+		const { resultCode, messages } = response.data
+
+		if (resultCode === 0) {
+			dispatch(updateUserProfileAC(updatedUserProfile))
+		} else {
+			messages[0]
+		}
+
+	} catch (error: any) {
+		alert(error.message)
+	}
+}
+
 // types
 export type InitialStateType = {
 	posts: PostsType[]
+	userProfile: Nullable<UserProfileType>
+	userStatus: string
 }
 
 export type PostsType = {
@@ -40,4 +140,9 @@ export type PostsType = {
 
 export type ProfileReducerActionsType =
 	ReturnType<typeof addPostAC> |
-	ReturnType<typeof removePostAC>
+	ReturnType<typeof removePostAC> |
+	ReturnType<typeof setUserProfileAC> |
+	ReturnType<typeof setUserStatusAC> |
+	ReturnType<typeof updateUserStatusAC> |
+	ReturnType<typeof updateUserPhotoAC> |
+	ReturnType<typeof updateUserProfileAC> 
