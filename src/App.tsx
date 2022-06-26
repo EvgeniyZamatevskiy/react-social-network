@@ -7,6 +7,7 @@ import { initializeAppTC } from 'store/authReducer'
 import { useTypedDispatch } from 'store/hooks'
 import { selectIsInitialized } from 'store/selectors/auth'
 import { ReturnComponentType } from 'types/ReturnComponentType'
+import { TailSpin } from 'react-loader-spinner'
 
 export const App: FC = (): ReturnComponentType => {
 
@@ -19,7 +20,7 @@ export const App: FC = (): ReturnComponentType => {
   }, [])
 
   if (!isInitialized) {
-    return <h1 className='initialized'>Loading...</h1>
+    return <TailSpin color='#ff8b65' height={200} width={200} wrapperClass={'initialized'} />
   }
 
   return (

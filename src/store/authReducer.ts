@@ -5,7 +5,7 @@ import { ERROR_MESSAGE } from 'constants/base'
 import { ResponseCode } from 'enums/ResponseCode'
 import { ThunkType } from 'store/store'
 import { Nullable } from 'types'
-import { setErrorAC } from './appReducer'
+import { setErrorAC, setIsLoadingAC } from './appReducer'
 
 const initialState: InitialStateType = {
 	isAuth: false,
@@ -44,17 +44,22 @@ export const setCaptchaUrlAC = (captchaUrl: Nullable<string>) => ({ type: 'auth/
 // ThunksCreators
 export const getUserDataTC = (): ThunkType => async (dispatch) => {
 	try {
+		dispatch(setIsLoadingAC(true))
+
 		const response = await AUTH.me()
 		const { data: userData, resultCode, messages } = response.data
 
 		if (resultCode === ResponseCode.Success) {
 			dispatch(setUserDataAC(userData))
 			dispatch(setIsAuthAC(true))
+			dispatch(setIsLoadingAC(false))
 		} else {
 			dispatch(setErrorAC(messages[ERROR_MESSAGE]))
+			dispatch(setIsLoadingAC(false))
 		}
 	} catch (error: any) {
 		dispatch(setErrorAC(error.message))
+		dispatch(setIsLoadingAC(false))
 	}
 }
 

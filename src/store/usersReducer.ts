@@ -4,7 +4,7 @@ import { USERS } from 'api/users'
 import { EMPTY_STRING, ERROR_MESSAGE } from 'constants/base'
 import { ResponseCode } from 'enums/ResponseCode'
 import { Nullable } from 'types'
-import { setErrorAC } from './appReducer'
+import { setErrorAC, setIsLoadingAC } from './appReducer'
 import { ThunkType } from './store'
 
 const initialState: InitialStateType = {
@@ -55,6 +55,8 @@ export const setDisabledStatusAC = (userId: number, isDisabled: boolean) => ({ t
 // thunkCreators
 export const getUsersTC = (count: number, page: number, filter: FilterType): ThunkType => async (dispatch) => {
 	try {
+		dispatch(setIsLoadingAC(true))
+
 		const response = await USERS.getUsers(count, page, filter)
 		const { items: users, totalCount } = response.data
 
@@ -62,13 +64,16 @@ export const getUsersTC = (count: number, page: number, filter: FilterType): Thu
 		dispatch(setTotalCountAC(totalCount))
 		dispatch(setPageAC(page))
 		dispatch(setFilterAC(filter))
+		dispatch(setIsLoadingAC(false))
 	} catch (error: any) {
 		dispatch(setErrorAC(error.message))
+		dispatch(setIsLoadingAC(false))
 	}
 }
 
 export const followTC = (userId: number): ThunkType => async (dispatch) => {
 	try {
+		dispatch(setIsLoadingAC(true))
 		dispatch(setDisabledStatusAC(userId, true))
 
 		const response = await FOLLOW.follow(userId)
@@ -76,19 +81,23 @@ export const followTC = (userId: number): ThunkType => async (dispatch) => {
 
 		if (resultCode === ResponseCode.Success) {
 			dispatch(followAC(userId))
+			dispatch(setIsLoadingAC(false))
 			dispatch(setDisabledStatusAC(userId, false))
 		} else {
 			dispatch(setErrorAC(messages[ERROR_MESSAGE]))
+			dispatch(setIsLoadingAC(false))
 			dispatch(setDisabledStatusAC(userId, false))
 		}
 	} catch (error: any) {
 		dispatch(setErrorAC(error.message))
+		dispatch(setIsLoadingAC(false))
 		dispatch(setDisabledStatusAC(userId, false))
 	}
 }
 
 export const unfollowTC = (userId: number): ThunkType => async (dispatch) => {
 	try {
+		dispatch(setIsLoadingAC(true))
 		dispatch(setDisabledStatusAC(userId, true))
 
 		const response = await FOLLOW.unfollow(userId)
@@ -96,13 +105,16 @@ export const unfollowTC = (userId: number): ThunkType => async (dispatch) => {
 
 		if (resultCode === ResponseCode.Success) {
 			dispatch(unfollowAC(userId))
+			dispatch(setIsLoadingAC(false))
 			dispatch(setDisabledStatusAC(userId, false))
 		} else {
 			dispatch(setErrorAC(messages[ERROR_MESSAGE]))
+			dispatch(setIsLoadingAC(false))
 			dispatch(setDisabledStatusAC(userId, false))
 		}
 	} catch (error: any) {
 		dispatch(setErrorAC(error.message))
+		dispatch(setIsLoadingAC(false))
 		dispatch(setDisabledStatusAC(userId, false))
 	}
 }

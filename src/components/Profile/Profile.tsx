@@ -10,6 +10,7 @@ import { NoPosts } from './NoPosts'
 import { Posts } from './Posts'
 import style from './Profile.module.scss'
 import { ProfileInfo } from './ProfileInfo'
+import { selectIsLoading } from 'store/selectors/app'
 
 export const Profile: FC = () => {
 
