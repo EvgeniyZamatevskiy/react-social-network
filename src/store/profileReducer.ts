@@ -1,5 +1,7 @@
 import { PROFILE } from 'api/profile'
 import { PhotosType, UserProfileType } from 'api/types'
+import { EMPTY_STRING, ERROR_MESSAGE } from 'constants/base'
+import { ResponseCode } from 'enums/ResponseCode'
 import { Nullable } from 'types'
 import { setErrorAC } from './appReducer'
 import { ThunkType } from './store'
@@ -8,18 +10,18 @@ const initialState: InitialStateType = {
 	posts: [
 		{
 			id: 1,
-			likes: 48,
+			like: 48,
 			message: 'There are two ways of constructing a software design. One way is to make it so simple that there are obviously no deficiencies. And the other way is to make it so complicated that there are no obvious deficiencies.'
 		}
 	],
 	userProfile: null,
-	userStatus: ''
+	userStatus: EMPTY_STRING
 }
 
 export const profileReducer = (state: InitialStateType = initialState, action: ProfileReducerActionsType): InitialStateType => {
 	switch (action.type) {
 		case 'profile/ADD-POST':
-			const newPost = { id: Date.now(), likes: 0, message: action.message }
+			const newPost = { id: Date.now(), like: 0, message: action.message }
 			return { ...state, posts: [newPost, ...state.posts] }
 		case 'profile/REMOVE-POST':
 			return { ...state, posts: state.posts.filter(post => post.id !== action.postId) }
@@ -78,10 +80,10 @@ export const updateUserStatusTC = (newStatus: string): ThunkType => async (dispa
 		const response = await PROFILE.changeUserStatus(newStatus)
 		const { resultCode, messages } = response.data
 
-		if (resultCode === 0) {
+		if (resultCode === ResponseCode.Success) {
 			dispatch(setUserStatusAC(newStatus))
 		} else {
-			dispatch(setErrorAC(messages[0]))
+			dispatch(setErrorAC(messages[ERROR_MESSAGE]))
 		}
 	} catch (error: any) {
 		dispatch(setErrorAC(error.message))
@@ -91,15 +93,14 @@ export const updateUserStatusTC = (newStatus: string): ThunkType => async (dispa
 export const updateUserPhotoTC = (image: File): ThunkType => async (dispatch) => {
 	try {
 		const response = await PROFILE.updateUserPhoto(image)
-		const { data, messages, resultCode } = response.data
+		const { data, resultCode, messages } = response.data
 		const photos = data.photos
 
-		if (resultCode === 0) {
+		if (resultCode === ResponseCode.Success) {
 			dispatch(updateUserPhotoAC(photos))
 		} else {
-			dispatch(setErrorAC(messages[0]))
+			dispatch(setErrorAC(messages[ERROR_MESSAGE]))
 		}
-
 	} catch (error: any) {
 		dispatch(setErrorAC(error.message))
 	}
@@ -110,12 +111,11 @@ export const updateUserProfileTC = (updatedUserProfile: UserProfileType): ThunkT
 		const response = await PROFILE.updateUserProfile(updatedUserProfile)
 		const { resultCode, messages } = response.data
 
-		if (resultCode === 0) {
+		if (resultCode === ResponseCode.Success) {
 			dispatch(updateUserProfileAC(updatedUserProfile))
 		} else {
-			dispatch(setErrorAC(messages[0]))
+			dispatch(setErrorAC(messages[ERROR_MESSAGE]))
 		}
-
 	} catch (error: any) {
 		dispatch(setErrorAC(error.message))
 	}
@@ -130,7 +130,7 @@ export type InitialStateType = {
 
 export type PostsType = {
 	id: number
-	likes: number
+	like: number
 	message: string
 }
 

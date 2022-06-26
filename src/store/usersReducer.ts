@@ -1,6 +1,8 @@
 import { FOLLOW } from 'api/follow'
 import { UserType } from 'api/types'
 import { USERS } from 'api/users'
+import { EMPTY_STRING, ERROR_MESSAGE } from 'constants/base'
+import { ResponseCode } from 'enums/ResponseCode'
 import { Nullable } from 'types'
 import { setErrorAC } from './appReducer'
 import { ThunkType } from './store'
@@ -10,7 +12,7 @@ const initialState: InitialStateType = {
 	count: 9,
 	page: 1,
 	totalCount: 0,
-	filter: { term: '', friend: null }
+	filter: { term: EMPTY_STRING, friend: null }
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: UsersReducerActionsType): InitialStateType => {
@@ -19,8 +21,8 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
 			return { ...state, users: action.users.map(user => ({ ...user, disabledStatus: false })) }
 		case 'users/SET-TOTAL-COUNT':
 			return { ...state, totalCount: action.totalCount }
-		case 'users/SET-CURRENT-PAGE':
-			return { ...state, page: action.currentPage }
+		case 'users/SET-PAGE':
+			return { ...state, page: action.page }
 		case 'users/SET-FILTER':
 			return { ...state, filter: action.payload }
 		case 'users/FOLLOW':
@@ -40,7 +42,7 @@ export const setUsersAC = (users: UserType[]) => ({ type: 'users/SET-USERS', use
 
 export const setTotalCountAC = (totalCount: number) => ({ type: 'users/SET-TOTAL-COUNT', totalCount } as const)
 
-export const setCurrentPageAC = (currentPage: number) => ({ type: 'users/SET-CURRENT-PAGE', currentPage } as const)
+export const setPageAC = (page: number) => ({ type: 'users/SET-PAGE', page } as const)
 
 export const setFilterAC = (filter: FilterType) => ({ type: 'users/SET-FILTER', payload: filter } as const)
 
@@ -58,7 +60,7 @@ export const getUsersTC = (count: number, page: number, filter: FilterType): Thu
 
 		dispatch(setUsersAC(users))
 		dispatch(setTotalCountAC(totalCount))
-		dispatch(setCurrentPageAC(page))
+		dispatch(setPageAC(page))
 		dispatch(setFilterAC(filter))
 	} catch (error: any) {
 		dispatch(setErrorAC(error.message))
@@ -72,11 +74,11 @@ export const followTC = (userId: number): ThunkType => async (dispatch) => {
 		const response = await FOLLOW.follow(userId)
 		const { resultCode, messages } = response.data
 
-		if (resultCode === 0) {
+		if (resultCode === ResponseCode.Success) {
 			dispatch(followAC(userId))
 			dispatch(setDisabledStatusAC(userId, false))
 		} else {
-			dispatch(setErrorAC(messages[0]))
+			dispatch(setErrorAC(messages[ERROR_MESSAGE]))
 			dispatch(setDisabledStatusAC(userId, false))
 		}
 	} catch (error: any) {
@@ -86,16 +88,17 @@ export const followTC = (userId: number): ThunkType => async (dispatch) => {
 }
 
 export const unfollowTC = (userId: number): ThunkType => async (dispatch) => {
-	dispatch(setDisabledStatusAC(userId, true))
 	try {
+		dispatch(setDisabledStatusAC(userId, true))
+
 		const response = await FOLLOW.unfollow(userId)
 		const { resultCode, messages } = response.data
 
-		if (resultCode === 0) {
+		if (resultCode === ResponseCode.Success) {
 			dispatch(unfollowAC(userId))
 			dispatch(setDisabledStatusAC(userId, false))
 		} else {
-			dispatch(setErrorAC(messages[0]))
+			dispatch(setErrorAC(messages[ERROR_MESSAGE]))
 			dispatch(setDisabledStatusAC(userId, false))
 		}
 	} catch (error: any) {
@@ -125,7 +128,7 @@ export type FilterType = {
 export type UsersReducerActionsType =
 	ReturnType<typeof setUsersAC> |
 	ReturnType<typeof setTotalCountAC> |
-	ReturnType<typeof setCurrentPageAC> |
+	ReturnType<typeof setPageAC> |
 	ReturnType<typeof setFilterAC> |
 	ReturnType<typeof followAC> |
 	ReturnType<typeof unfollowAC> |

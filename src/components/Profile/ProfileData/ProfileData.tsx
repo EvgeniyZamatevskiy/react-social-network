@@ -1,7 +1,7 @@
 import React, { FC, memo } from 'react'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import style from './ProfileData.module.scss'
 import { ProfileDataPropsType } from './types'
+import style from './ProfileData.module.scss'
 
 export const ProfileData: FC<ProfileDataPropsType> = memo(({ userProfile, setEditProfile, isOwner }): ReturnComponentType => {
 
@@ -23,14 +23,14 @@ export const ProfileData: FC<ProfileDataPropsType> = memo(({ userProfile, setEdi
 			</ul>
 			<h2>Contacts</h2>
 			<ul className={style.contactsList}>
-				<li>Facebook: <span>{userProfile?.contacts.facebook}</span></li>
-				<li>Website: <span>{userProfile?.contacts.website}</span></li>
-				<li>Vk: <span>{userProfile?.contacts.vk}</span></li>
-				<li>Twitter: <span>{userProfile?.contacts.twitter}</span></li>
-				<li>Instagram: <span>{userProfile?.contacts.instagram}</span></li>
-				<li>Youtube: <span>{userProfile?.contacts.youtube}</span></li>
-				<li>Github: <span>{userProfile?.contacts.github}</span></li>
-				<li>MainLink: <span>{userProfile?.contacts.mainLink}</span></li>
+				<li>Facebook: <a href={userProfile?.contacts.facebook}>{userProfile?.contacts.facebook}</a></li>
+				<li>Website: <a href={userProfile?.contacts.website}>{userProfile?.contacts.website}</a></li>
+				<li>Vk: <a href={userProfile?.contacts.vk}>{userProfile?.contacts.vk}</a></li>
+				<li>Twitter: <a href={userProfile?.contacts.twitter}>{userProfile?.contacts.twitter}</a></li>
+				<li>Instagram: <a href={userProfile?.contacts.instagram}>{userProfile?.contacts.instagram}</a></li>
+				<li>Youtube: <a href={userProfile?.contacts.youtube}>{userProfile?.contacts.youtube}</a></li>
+				<li>Github: <a href={userProfile?.contacts.github}>{userProfile?.contacts.github}</a></li>
+				<li>MainLink: <a href={userProfile?.contacts.mainLink}>{userProfile?.contacts.mainLink}</a></li>
 			</ul>
 		</div>
 	)

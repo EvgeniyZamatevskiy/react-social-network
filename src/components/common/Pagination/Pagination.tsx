@@ -1,6 +1,7 @@
 import React, { FC, memo, useEffect, useState } from 'react'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { PaginationPropsType } from './types'
+import { EMPTY_STRING } from 'constants/base'
 import style from './Pagination.module.scss'
 
 export const Pagination: FC<PaginationPropsType> =
@@ -45,7 +46,12 @@ export const Pagination: FC<PaginationPropsType> =
 						}
 
 						return (
-							<button className={currentPage === page ? style.active : ''} key={page} onClick={onSetCurrentPageClick}>{page}</button>
+							<button
+								key={page}
+								className={currentPage === page ? style.active : EMPTY_STRING}
+								onClick={onSetCurrentPageClick}>
+								{page}
+							</button>
 						)
 					})}
 

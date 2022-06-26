@@ -50,7 +50,7 @@ export const ProfileDataEdit: FC<ProfileDataEditPropsType> = memo(({ userProfile
 						{errors?.fullName && <p>{errors?.fullName?.message}</p>}</li>
 					<li>Looking for a job:
 						<input
-							type={'checkbox'}
+							type='checkbox'
 							{...register('lookingForAJob')} />
 					</li>
 					<li>My professional skills:

@@ -11,7 +11,7 @@
 	left: 0;
 	width: 100%;
 
-	.title {
+	h1 {
 		text-transform: uppercase;
 		font-size: 25px;
 	}
@@ -19,13 +19,19 @@
 	.body {
 		display: flex;
 
-		.name {
+		.authorizedUserLogin {
 			font-size: 20px;
 		}
 
-		.logOut {
+		button {
 			color: inherit;
-			margin-left: 20px;
+			margin-left: 40px;
+			font-size: 20px;
+			transition: color 0.2s ease-in 0s;
+
+			&:hover {
+				color: rgb(172, 172, 172);
+			}
 		}
 	}
 }

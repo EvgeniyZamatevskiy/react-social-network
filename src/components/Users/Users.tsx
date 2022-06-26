@@ -8,8 +8,8 @@ import { selectIsAuth } from 'store/selectors/auth'
 import { selectCount, selectFilter, selectPage, selectTotalCount, selectUsers } from 'store/selectors/users'
 import { FilterType, getUsersTC } from 'store/usersReducer'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import { UsersSearch } from './UsersSearch/UsersSearch'
-import { User } from './User/User'
+import { User } from './User'
+import { UsersSearch } from './UsersSearch'
 import style from './Users.module.scss'
 
 export const Users: FC = (): ReturnComponentType => {

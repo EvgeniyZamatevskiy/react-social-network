@@ -1,6 +1,8 @@
 import { AUTH } from 'api'
 import { SECURITY } from 'api/security'
 import { LoginParamsType } from 'api/types'
+import { ERROR_MESSAGE } from 'constants/base'
+import { ResponseCode } from 'enums/ResponseCode'
 import { ThunkType } from 'store/store'
 import { Nullable } from 'types'
 import { setErrorAC } from './appReducer'
@@ -45,11 +47,11 @@ export const getUserDataTC = (): ThunkType => async (dispatch) => {
 		const response = await AUTH.me()
 		const { data: userData, resultCode, messages } = response.data
 
-		if (resultCode === 0) {
+		if (resultCode === ResponseCode.Success) {
 			dispatch(setUserDataAC(userData))
 			dispatch(setIsAuthAC(true))
 		} else {
-			dispatch(setErrorAC(messages[0]))
+			dispatch(setErrorAC(messages[ERROR_MESSAGE]))
 		}
 	} catch (error: any) {
 		dispatch(setErrorAC(error.message))
@@ -59,36 +61,36 @@ export const getUserDataTC = (): ThunkType => async (dispatch) => {
 export const loginTC = (loginParams: LoginParamsType): ThunkType => async (dispatch) => {
 	try {
 		const response = await AUTH.login(loginParams)
-		const { messages, resultCode } = response.data
+		const { resultCode, messages } = response.data
 
-		if (resultCode === 0) {
+		if (resultCode === ResponseCode.Success) {
 			const resetCaptchaUrl = null
 
 			dispatch(getUserDataTC())
 			dispatch(setCaptchaUrlAC(resetCaptchaUrl))
 		} else {
-			if (resultCode === 10) {
+			if (resultCode === ResponseCode.CaptchaIsRequired) {
 				dispatch(getCaptchaUrlTC())
 			}
-			dispatch(setErrorAC(messages[0]))
+			dispatch(setErrorAC(messages[ERROR_MESSAGE]))
 		}
-
 	} catch (error: any) {
 		dispatch(setErrorAC(error.message))
 	}
 }
 
-export const logoutTC = (): ThunkType => async (dispatch) => {
+export const logOutTC = (): ThunkType => async (dispatch) => {
 	try {
-		const response = await AUTH.logout()
-		const { messages, resultCode } = response.data
+		const response = await AUTH.logOut()
+		const { resultCode, messages } = response.data
 
-		if (resultCode === 0) {
+		if (resultCode === ResponseCode.Success) {
 			const resetUserData = { email: null, id: null, login: null }
+
 			dispatch(setUserDataAC(resetUserData))
 			dispatch(setIsAuthAC(false))
 		} else {
-			dispatch(setErrorAC(messages[0]))
+			dispatch(setErrorAC(messages[ERROR_MESSAGE]))
 		}
 	} catch (error: any) {
 		dispatch(setErrorAC(error.message))

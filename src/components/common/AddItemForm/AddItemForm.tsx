@@ -4,6 +4,8 @@ import { ReturnComponentType } from 'types/ReturnComponentType'
 import { AddItemFormPropsType } from './types'
 import style from './AddItemForm.module.scss'
 
+const ERROR_MESSAGE = 'Title is required!'
+
 export const AddItemForm: FC<AddItemFormPropsType> = memo(({ addItem }): ReturnComponentType => {
 
 	const [title, setTitle] = useState<string>(EMPTY_STRING)
@@ -24,7 +26,7 @@ export const AddItemForm: FC<AddItemFormPropsType> = memo(({ addItem }): ReturnC
 			addItem(trimmedTitle)
 			setTitle(EMPTY_STRING)
 		} else {
-			setError('Title is required!')
+			setError(ERROR_MESSAGE)
 		}
 	}
 
@@ -32,7 +34,7 @@ export const AddItemForm: FC<AddItemFormPropsType> = memo(({ addItem }): ReturnC
 		<div className={style.addItemForm}>
 			{error && <div className={style.errorMessage}>{error}</div>}
 			<textarea
-				className={`${style.textarea} ${error && style.textareaError}`}
+				className={`${error && style.textareaError}`}
 				value={title}
 				onChange={onTextareaChange}
 				placeholder='Enter text...'

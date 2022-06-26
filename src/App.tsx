@@ -1,14 +1,12 @@
 import React, { FC, useEffect } from 'react'
-import { ReturnComponentType } from 'types/ReturnComponentType'
-import { Header, Login, NavBar, Profile, Users } from 'components'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Header, NavBar, Profile, Users, Login, NotFound, ErrorAlert } from 'components'
 import { Path } from 'enums'
-import { useTypedDispatch } from 'store/hooks'
-import { initializeAppTC } from 'store/authReducer'
 import { useSelector } from 'react-redux'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { initializeAppTC } from 'store/authReducer'
+import { useTypedDispatch } from 'store/hooks'
 import { selectIsInitialized } from 'store/selectors/auth'
-import { NotFound } from 'components/NotFound'
-import { ErrorAlert } from 'components/common/ErrorAlert/ErrorAlert'
+import { ReturnComponentType } from 'types/ReturnComponentType'
 
 export const App: FC = (): ReturnComponentType => {
 

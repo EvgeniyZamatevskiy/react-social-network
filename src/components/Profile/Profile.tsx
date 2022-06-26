@@ -1,15 +1,15 @@
 import React, { FC, useEffect } from 'react'
-import style from './Profile.module.scss'
-import { Posts } from './Posts'
-import { useSelector } from 'react-redux'
-import { selectId, selectIsAuth } from 'store/selectors/auth'
-import { Navigate, useParams } from 'react-router-dom'
 import { Path } from 'enums'
+import { useSelector } from 'react-redux'
+import { useParams, Navigate } from 'react-router-dom'
 import { useTypedDispatch } from 'store/hooks'
 import { getUserProfileTC, getUserStatusTC } from 'store/profileReducer'
-import { ProfileInfo } from './ProfileInfo'
-import { NoPosts } from './NoPosts/NoPosts'
+import { selectIsAuth, selectId } from 'store/selectors/auth'
 import { selectUserProfile } from 'store/selectors/profile'
+import { NoPosts } from './NoPosts'
+import { Posts } from './Posts'
+import style from './Profile.module.scss'
+import { ProfileInfo } from './ProfileInfo'
 
 export const Profile: FC = () => {
 

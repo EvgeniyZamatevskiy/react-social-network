@@ -1,7 +1,7 @@
 @import '../../../styles/sass/variables.scss';
 @import '../../../styles/sass/mixins.scss';
 
-.myPost {
+.post {
 	margin-top: 20px;
 	padding: 50px;
 	background-color: $secondaryBackgroundColor;
@@ -16,15 +16,15 @@
 			border-radius: 50%;
 		}
 
-		.likes {
+		.like {
 			margin-top: 20px;
 			color: rgb(172, 172, 172);
 		}
-	}
 
-	.postMessage {
-		font-size: 20px;
-		line-height: 1.5;
+		.message {
+			font-size: 20px;
+			line-height: 1.5;
+		}
 	}
 
 	button {
