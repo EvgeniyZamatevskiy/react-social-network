@@ -29,7 +29,7 @@ export const Users: FC = (): ReturnComponentType => {
 		dispatch(getUsersTC(count, page, filter))
 	}, [])
 
-	const handleFilterChangedSubmit = useCallback((filter: FilterType): void => {
+	const handleFilterChangedClick = useCallback((filter: FilterType): void => {
 		dispatch(getUsersTC(count, 1, filter))
 	}, [])
 
@@ -48,7 +48,7 @@ export const Users: FC = (): ReturnComponentType => {
 			<div className={style.top}>
 				<div>
 					<h2>Developers</h2>
-					<UsersSearch onFilterChangedSubmit={handleFilterChangedSubmit} />
+					<UsersSearch handleFilterChangedClick={handleFilterChangedClick} />
 				</div>
 				<Pagination
 					count={count}

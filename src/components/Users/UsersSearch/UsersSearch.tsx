@@ -1,37 +1,43 @@
-import React, { FC, memo } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import React, { ChangeEvent, FC, memo, MouseEvent, useState } from 'react'
+import { EMPTY_STRING } from 'constants/base'
 import { FilterType } from 'store/usersReducer'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import { UsersSearchPropsType, FormType } from './types'
+import { UsersSearchPropsType } from './types'
 import style from './UsersSearch.module.scss'
 
-export const UsersSearch: FC<UsersSearchPropsType> = memo(({ onFilterChangedSubmit }): ReturnComponentType => {
+export const UsersSearch: FC<UsersSearchPropsType> = memo(({ handleFilterChangedClick }): ReturnComponentType => {
 
-	const { register, handleSubmit } = useForm<FormType>({
-		mode: 'onBlur',
-	})
+	const [term, setTerm] = useState<string>(EMPTY_STRING)
+	const [friend, setFriend] = useState<string>('null')
 
-	const onSubmit: SubmitHandler<FormType> = (data): void => {
+	const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+		setTerm(e.currentTarget.value)
+	}
+
+	const onSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+		setFriend(e.currentTarget.value)
+	}
+
+	const onFilterChangedClick = (e: MouseEvent<HTMLButtonElement>): void => {
+		e.preventDefault()
+
 		const filter: FilterType = {
-			term: data.term,
-			friend: data.friend === 'null' ? null : data.friend === 'true' ? true : false
+			term: term,
+			friend: friend === 'null' ? null : friend === 'true' ? true : false
 		}
-		onFilterChangedSubmit(filter)
+
+		handleFilterChangedClick(filter)
 	}
 
 	return (
-		<form className={style.form} onSubmit={handleSubmit(onSubmit)}>
-			<input
-				className={style.term}
-				type='text'
-				{...register('term')}
-			/>
-			<select {...register('friend')} >
+		<form className={style.form}>
+			<input className={style.term} type='text' onChange={onInputChange} />
+			<select onChange={onSelectChange}>
 				<option value='null'>All</option>
 				<option value='true'>Only followed</option>
 				<option value='false'>Only unFollowed</option>
 			</select>
-			<button type='submit'>Find</button>
+			<button onClick={onFilterChangedClick}>Find</button>
 		</form>
 	)
 })
