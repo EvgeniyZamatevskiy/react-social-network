@@ -13,7 +13,7 @@ export const Header: FC = (): ReturnComponentType => {
   const login = useSelector(selectLogin)
   const isAuth = useSelector(selectIsAuth)
 
-  const onLogoutButtonClick = (): void => {
+  const onLogoutClick = (): void => {
     dispatch(logoutTC())
   }
 
@@ -24,7 +24,7 @@ export const Header: FC = (): ReturnComponentType => {
         {isAuth &&
           <>
             <div className={style.name}>{login}</div>
-            <button className={style.logOut} onClick={onLogoutButtonClick}>Log out</button>
+            <button className={style.logOut} onClick={onLogoutClick}>Log out</button>
           </>
         }
       </div>

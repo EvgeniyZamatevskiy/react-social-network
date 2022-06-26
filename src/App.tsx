@@ -6,20 +6,20 @@ import { Path } from 'enums'
 import { useTypedDispatch } from 'store/hooks'
 import { initializeAppTC } from 'store/authReducer'
 import { useSelector } from 'react-redux'
-import { selectIsInitialize } from 'store/selectors/auth'
+import { selectIsInitialized } from 'store/selectors/auth'
 import { NotFound } from 'components/NotFound'
 
 export const App: FC = (): ReturnComponentType => {
 
   const dispatch = useTypedDispatch()
 
-  const isInitialize = useSelector(selectIsInitialize)
+  const isInitialized = useSelector(selectIsInitialized)
 
   useEffect(() => {
     dispatch(initializeAppTC())
   }, [])
 
-  if (!isInitialize) {
+  if (!isInitialized) {
     return <h1 style={{ position: 'fixed', top: '30%', textAlign: 'center', width: '100%' }}>Loading...</h1>
   }
 

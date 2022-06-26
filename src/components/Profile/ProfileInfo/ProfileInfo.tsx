@@ -30,6 +30,10 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = memo(({ isOwner, userProfil
 		dispatch(updateUserPhotoTC(image))
 	}
 
+	if (!userProfile) {
+		return <div>Loading...</div>
+	}
+
 	return (
 		<>
 			<div className={style.profileInfo}>

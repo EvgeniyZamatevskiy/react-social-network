@@ -5,7 +5,7 @@ export const FOLLOW = {
 	follow(userId: number) {
 		return instance.post<CommonResponseType>(`follow/${userId}`)
 	},
-	unFollow(userId: number) {
+	unfollow(userId: number) {
 		return instance.delete<CommonResponseType>(`follow/${userId}`)
 	}
 }

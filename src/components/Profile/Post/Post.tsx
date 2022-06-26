@@ -12,7 +12,7 @@ export const Post: FC<PostPropsType> = memo(({ post, image }): ReturnComponentTy
 
 	const userImage = image ? image : avatar
 
-	const onRemovePostButtonClick = (): void => {
+	const onRemovePostClick = (): void => {
 		dispatch(removePostAC(post.id))
 	}
 
@@ -23,7 +23,7 @@ export const Post: FC<PostPropsType> = memo(({ post, image }): ReturnComponentTy
 				<div className={style.postMessage}>{post.message}</div>
 				<div className={style.likes}>like: {post.likes}</div>
 			</div>
-			<button onClick={onRemovePostButtonClick}>&#10006;</button>
+			<button onClick={onRemovePostClick}>&#10006;</button>
 		</div>
 	)
 })

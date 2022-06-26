@@ -27,8 +27,6 @@ export const profileReducer = (state: InitialStateType = initialState, action: P
 			return { ...state, userProfile: action.userProfile }
 		case 'profile/SET-USER-STATUS':
 			return { ...state, userStatus: action.userStatus }
-		case 'profile/UPDATE-USER-STATUS':
-			return { ...state, userStatus: action.newStatus }
 		case 'profile/UPDATE-USER-PHOTO':
 			return { ...state, userProfile: { ...state.userProfile, photos: action.photos } as UserProfileType }
 		case 'profile/UPDATE-USER-PROFILE':
@@ -47,8 +45,6 @@ export const removePostAC = (postId: number) => ({ type: 'profile/REMOVE-POST', 
 export const setUserProfileAC = (userProfile: UserProfileType) => ({ type: 'profile/SET-USER-PROFILE', userProfile } as const)
 
 export const setUserStatusAC = (userStatus: string) => ({ type: 'profile/SET-USER-STATUS', userStatus } as const)
-
-export const updateUserStatusAC = (newStatus: string) => ({ type: 'profile/UPDATE-USER-STATUS', newStatus } as const)
 
 export const updateUserPhotoAC = (photos: PhotosType) => ({ type: 'profile/UPDATE-USER-PHOTO', photos } as const)
 
@@ -83,7 +79,7 @@ export const updateUserStatusTC = (newStatus: string): ThunkType => async (dispa
 		const { resultCode, messages } = response.data
 
 		if (resultCode === 0) {
-			dispatch(updateUserStatusAC(newStatus))
+			dispatch(setUserStatusAC(newStatus))
 		} else {
 			messages[0]
 		}
@@ -143,6 +139,5 @@ export type ProfileReducerActionsType =
 	ReturnType<typeof removePostAC> |
 	ReturnType<typeof setUserProfileAC> |
 	ReturnType<typeof setUserStatusAC> |
-	ReturnType<typeof updateUserStatusAC> |
 	ReturnType<typeof updateUserPhotoAC> |
-	ReturnType<typeof updateUserProfileAC> 
+	ReturnType<typeof updateUserProfileAC>

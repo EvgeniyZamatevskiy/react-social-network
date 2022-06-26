@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import style from './ProfileData.module.scss'
 import { ProfileDataPropsType } from './types'
 
-export const ProfileData: FC<ProfileDataPropsType> = ({ userProfile, setEditProfile, isOwner }): ReturnComponentType => {
+export const ProfileData: FC<ProfileDataPropsType> = memo(({ userProfile, setEditProfile, isOwner }): ReturnComponentType => {
 
 	const onActivateEditProfile = (): void => {
 		setEditProfile(true)
@@ -17,7 +17,8 @@ export const ProfileData: FC<ProfileDataPropsType> = ({ userProfile, setEditProf
 			<ul className={style.aboutList}>
 				<li>Full name: <span>{userProfile?.fullName}</span></li>
 				<li>Looking for a job: <span>{userProfile?.lookingForAJob ? 'Yes' : 'No'}</span></li>
-				<li>My professional skills: <span>{userProfile?.lookingForAJobDescription}</span></li>
+				{userProfile?.lookingForAJob &&
+					<li>My professional skills: <span>{userProfile?.lookingForAJobDescription}</span></li>}
 				<li>About me: <span>{userProfile?.aboutMe}</span></li>
 			</ul>
 			<h2>Contacts</h2>
@@ -33,4 +34,4 @@ export const ProfileData: FC<ProfileDataPropsType> = ({ userProfile, setEditProf
 			</ul>
 		</div>
 	)
-}
+})

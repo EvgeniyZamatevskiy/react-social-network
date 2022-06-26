@@ -28,6 +28,10 @@
 		button {
 			color: rgb(172, 172, 172);
 			font-size: 20px;
+
+			&:disabled {
+				color: rgb(75, 75, 75)
+			}
 		}
 
 		&:nth-child(3) {

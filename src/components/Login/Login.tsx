@@ -18,7 +18,7 @@ export const Login: FC = (): ReturnComponentType => {
 	const isAuth = useSelector(selectIsAuth)
 	const captchaUrl = useSelector(selectCaptchaUrl)
 
-	const { register, handleSubmit, resetField, formState: { errors } } = useForm<LoginParamsType>(
+	const { register, handleSubmit, formState: { errors } } = useForm<LoginParamsType>(
 		{ mode: 'onBlur' },
 
 	)

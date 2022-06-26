@@ -25,8 +25,8 @@ export const Users: FC = (): ReturnComponentType => {
 
 	const renderUsers = users.map(user => <User key={user.id} user={user} />)
 
-	const handleSetCurrentPageClick = useCallback((currentPage: number): void => {
-		dispatch(getUsersTC(count, currentPage, filter))
+	const handleSetCurrentPageClick = useCallback((page: number): void => {
+		dispatch(getUsersTC(count, page, filter))
 	}, [])
 
 	const handleFilterChangedSubmit = useCallback((filter: FilterType): void => {

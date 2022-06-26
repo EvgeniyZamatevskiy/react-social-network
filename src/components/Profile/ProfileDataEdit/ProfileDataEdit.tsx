@@ -1,12 +1,12 @@
 import { UserProfileType } from 'api/types'
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTypedDispatch } from 'store/hooks'
 import { updateUserProfileTC } from 'store/profileReducer'
 import style from './ProfileDataEdit.module.scss'
 import { ProfileDataEditPropsType } from './types'
 
-export const ProfileDataEdit: FC<ProfileDataEditPropsType> = ({ userProfile, setEditProfile, editProfile }) => {
+export const ProfileDataEdit: FC<ProfileDataEditPropsType> = memo(({ userProfile, setEditProfile, editProfile }) => {
 
 	const dispatch = useTypedDispatch()
 
@@ -122,4 +122,4 @@ export const ProfileDataEdit: FC<ProfileDataEditPropsType> = ({ userProfile, set
 			</form>
 		</div>
 	)
-}
+})

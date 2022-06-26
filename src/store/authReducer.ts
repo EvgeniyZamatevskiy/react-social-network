@@ -6,7 +6,7 @@ import { Nullable } from 'types'
 
 const initialState: InitialStateType = {
 	isAuth: false,
-	isInitialize: false,
+	isInitialized: false,
 	email: null,
 	id: null,
 	login: null,
@@ -19,8 +19,8 @@ export const authReducer = (state: InitialStateType = initialState, action: Auth
 			return { ...state, isAuth: action.isAuth }
 		case 'auth/SET-USER-DATA':
 			return { ...state, ...action.userData }
-		case 'auth/SET-IS-INITIALIZE-APP':
-			return { ...state, isInitialize: action.isInitialize }
+		case 'auth/SET-IS-INITIALIZED-APP':
+			return { ...state, isInitialized: action.isInitialized }
 		case 'auth/SET-CAPTCHA-URL':
 			return { ...state, captchaUrl: action.captchaUrl }
 
@@ -34,7 +34,7 @@ export const setUserDataAC = (userData: UserDataType) => ({ type: 'auth/SET-USER
 
 export const setIsAuthAC = (isAuth: boolean) => ({ type: 'auth/SET-IS-AUTH', isAuth } as const)
 
-export const setIsInitializeAppAC = (isInitialize: boolean) => ({ type: 'auth/SET-IS-INITIALIZE-APP', isInitialize } as const)
+export const setIsInitializedAppAC = (isInitialized: boolean) => ({ type: 'auth/SET-IS-INITIALIZED-APP', isInitialized } as const)
 
 export const setCaptchaUrlAC = (captchaUrl: Nullable<string>) => ({ type: 'auth/SET-CAPTCHA-URL', captchaUrl } as const)
 
@@ -98,7 +98,7 @@ export const initializeAppTC = (): ThunkType => (dispatch) => {
 	const promise = dispatch(getUserDataTC())
 
 	Promise.all([promise])
-		.then(() => dispatch(setIsInitializeAppAC(true)))
+		.then(() => dispatch(setIsInitializedAppAC(true)))
 }
 
 export const getCaptchaUrlTC = (): ThunkType => async (dispatch) => {
@@ -121,7 +121,7 @@ type UserDataType = {
 
 export type InitialStateType = {
 	isAuth: boolean
-	isInitialize: boolean
+	isInitialized: boolean
 	email: Nullable<string>
 	id: Nullable<number>
 	login: Nullable<string>
@@ -131,5 +131,5 @@ export type InitialStateType = {
 export type AuthReducerActionsType =
 	ReturnType<typeof setIsAuthAC> |
 	ReturnType<typeof setUserDataAC> |
-	ReturnType<typeof setIsInitializeAppAC> |
+	ReturnType<typeof setIsInitializedAppAC> |
 	ReturnType<typeof setCaptchaUrlAC>

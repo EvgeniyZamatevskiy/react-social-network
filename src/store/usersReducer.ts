@@ -15,17 +15,19 @@ const initialState: InitialStateType = {
 export const usersReducer = (state: InitialStateType = initialState, action: UsersReducerActionsType): InitialStateType => {
 	switch (action.type) {
 		case 'users/SET-USERS':
-			return { ...state, users: action.users }
+			return { ...state, users: action.users.map(user => ({ ...user, disabledStatus: false })) }
 		case 'users/SET-TOTAL-COUNT':
 			return { ...state, totalCount: action.totalCount }
 		case 'users/SET-CURRENT-PAGE':
 			return { ...state, page: action.currentPage }
 		case 'users/SET-FILTER':
 			return { ...state, filter: action.payload }
-		case 'users/SET-FOLLOW':
+		case 'users/FOLLOW':
 			return { ...state, users: state.users.map(user => user.id === action.userId ? { ...user, followed: true } : user) }
-		case 'users/SET-UNFOLLOW':
+		case 'users/UNFOLLOW':
 			return { ...state, users: state.users.map(user => user.id === action.userId ? { ...user, followed: false } : user) }
+		case 'users/SET-DISABLED-STATUS':
+			return { ...state, users: state.users.map(user => user.id === action.userId ? { ...user, disabledStatus: action.isDisabled } : user) }
 
 		default:
 			return state
@@ -41,9 +43,11 @@ export const setCurrentPageAC = (currentPage: number) => ({ type: 'users/SET-CUR
 
 export const setFilterAC = (filter: FilterType) => ({ type: 'users/SET-FILTER', payload: filter } as const)
 
-export const setFollowAC = (userId: number) => ({ type: 'users/SET-FOLLOW', userId } as const)
+export const followAC = (userId: number) => ({ type: 'users/FOLLOW', userId } as const)
 
-export const setUnfollowAC = (userId: number) => ({ type: 'users/SET-UNFOLLOW', userId } as const)
+export const unfollowAC = (userId: number) => ({ type: 'users/UNFOLLOW', userId } as const)
+
+export const setDisabledStatusAC = (userId: number, isDisabled: boolean) => ({ type: 'users/SET-DISABLED-STATUS', userId, isDisabled } as const)
 
 // thunkCreators
 export const getUsersTC = (count: number, page: number, filter: FilterType): ThunkType => async (dispatch) => {
@@ -62,41 +66,54 @@ export const getUsersTC = (count: number, page: number, filter: FilterType): Thu
 
 export const followTC = (userId: number): ThunkType => async (dispatch) => {
 	try {
+		dispatch(setDisabledStatusAC(userId, true))
+
 		const response = await FOLLOW.follow(userId)
 		const { resultCode, messages } = response.data
 
 		if (resultCode === 0) {
-			dispatch(setFollowAC(userId))
+			dispatch(followAC(userId))
+			dispatch(setDisabledStatusAC(userId, false))
 		} else {
 			messages[0]
+			dispatch(setDisabledStatusAC(userId, false))
 		}
 	} catch (error: any) {
 		alert(error.message)
+		dispatch(setDisabledStatusAC(userId, false))
 	}
 }
 
 export const unfollowTC = (userId: number): ThunkType => async (dispatch) => {
+	dispatch(setDisabledStatusAC(userId, true))
 	try {
-		const response = await FOLLOW.unFollow(userId)
+		const response = await FOLLOW.unfollow(userId)
 		const { resultCode, messages } = response.data
 
 		if (resultCode === 0) {
-			dispatch(setUnfollowAC(userId))
+			dispatch(unfollowAC(userId))
+			dispatch(setDisabledStatusAC(userId, false))
 		} else {
 			messages[0]
+			dispatch(setDisabledStatusAC(userId, false))
 		}
 	} catch (error: any) {
 		alert(error.message)
+		dispatch(setDisabledStatusAC(userId, false))
 	}
 }
 
 // types
 export type InitialStateType = {
-	users: UserType[]
+	users: UsersSupplementedType[]
 	count: number
 	page: number
 	totalCount: number
 	filter: FilterType
+}
+
+export type UsersSupplementedType = UserType & {
+	disabledStatus: boolean
 }
 
 export type FilterType = {
@@ -109,5 +126,6 @@ export type UsersReducerActionsType =
 	ReturnType<typeof setTotalCountAC> |
 	ReturnType<typeof setCurrentPageAC> |
 	ReturnType<typeof setFilterAC> |
-	ReturnType<typeof setFollowAC> |
-	ReturnType<typeof setUnfollowAC> 
+	ReturnType<typeof followAC> |
+	ReturnType<typeof unfollowAC> |
+	ReturnType<typeof setDisabledStatusAC> 
