@@ -1,14 +1,13 @@
 @import '../../styles/sass/variables.scss';
+@import '../../styles/sass/mixins.scss';
 
 .users {
 
 	.top {
 		background-color: $secondaryBackgroundColor;
 		padding: 30px;
-		display: flex;
+		@include flex (row, space-between, flex-end);
 		width: 1128px;
-		align-items: flex-end;
-		justify-content: space-between;
 
 		h2 {
 			font-size: 40px;
@@ -17,7 +16,6 @@
 	}
 
 	.bottom {
-		display: flex;
-		flex-wrap: wrap;
+		@include flex (row, stretch, stretch, wrap);
 	}
 }

@@ -1,6 +1,6 @@
-@import '../../styles//sass/variables.scss';
+@import '../../styles/sass/variables.scss';
 
-.formBox {
+.form {
 	width: 550px;
 	padding: 50px;
 	padding-top: 90px;
@@ -86,7 +86,6 @@
 		outline: none;
 		border-radius: 24px;
 		transition: 0.25s;
-		cursor: pointer;
 		color: white;
 
 		&:hover {

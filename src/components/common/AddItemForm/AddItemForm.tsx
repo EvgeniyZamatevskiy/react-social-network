@@ -17,16 +17,15 @@ export const AddItemForm: FC<AddItemFormPropsType> = memo(({ addItem }): ReturnC
 		}
 	}
 
-	const onAddPostButtonClick = (): void => {
+	const onAddPostClick = (): void => {
 		const trimmedTitle = title.trim()
 
 		if (trimmedTitle !== EMPTY_STRING) {
 			addItem(trimmedTitle)
 			setTitle(EMPTY_STRING)
-
-			return
+		} else {
+			setError('Title is required!')
 		}
-		setError('Title is required!')
 	}
 
 	return (
@@ -36,9 +35,9 @@ export const AddItemForm: FC<AddItemFormPropsType> = memo(({ addItem }): ReturnC
 				className={`${style.textarea} ${error && style.textareaError}`}
 				value={title}
 				onChange={onTextareaChange}
-				placeholder={'Enter text...'}
+				placeholder='Enter text...'
 			/>
-			<button onClick={onAddPostButtonClick}>Add new post</button>
+			<button onClick={onAddPostClick}>Add new post</button>
 		</div>
 	)
 })

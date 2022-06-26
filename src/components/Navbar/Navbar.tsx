@@ -1,10 +1,10 @@
-import { Path } from 'enums'
 import React, { FC } from 'react'
+import { Path } from 'enums'
 import { NavLink } from 'react-router-dom'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import style from './Navbar.module.scss'
+import style from './NavBar.module.scss'
 
-export const Navbar: FC = (): ReturnComponentType => {
+export const NavBar: FC = (): ReturnComponentType => {
 	return (
 		<div className={style.navBar}>
 			<ul className={style.list}>

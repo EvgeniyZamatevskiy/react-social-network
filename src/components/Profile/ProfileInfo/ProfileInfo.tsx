@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux'
 import { selectUserStatus } from 'store/selectors/profile'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import avatar from 'assets/images/avatar.png'
-import style from './ProfileInfo.module.scss'
 import { ProfileInfoPropsType } from './types'
 import { EditableSpan } from 'components/common'
 import { useTypedDispatch } from 'store/hooks'
 import { updateUserPhotoTC, updateUserStatusTC } from 'store/profileReducer'
 import { ProfileDataEdit } from '../ProfileDataEdit/ProfileDataEdit'
 import { ProfileData } from '../ProfileData'
+import style from './ProfileInfo.module.scss'
 
 export const ProfileInfo: FC<ProfileInfoPropsType> = memo(({ isOwner, userProfile }): ReturnComponentType => {
 
@@ -42,7 +42,7 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = memo(({ isOwner, userProfil
 				{isOwner
 					? <EditableSpan currentValue={userStatus} changeValue={handleChangeUserStatusClick} />
 					: <span className={style.status}>{userStatus}</span>}
-				{isOwner && <input type={'file'} onChange={onUpdateUserPhotoChange} />}
+				{isOwner && <input type='file' onChange={onUpdateUserPhotoChange} />}
 			</div>
 			{editProfile
 				? <ProfileDataEdit userProfile={userProfile} setEditProfile={setEditProfile} editProfile={editProfile} />

@@ -3,6 +3,7 @@ import { SECURITY } from 'api/security'
 import { LoginParamsType } from 'api/types'
 import { ThunkType } from 'store/store'
 import { Nullable } from 'types'
+import { setErrorAC } from './appReducer'
 
 const initialState: InitialStateType = {
 	isAuth: false,
@@ -48,10 +49,10 @@ export const getUserDataTC = (): ThunkType => async (dispatch) => {
 			dispatch(setUserDataAC(userData))
 			dispatch(setIsAuthAC(true))
 		} else {
-			alert(messages[0])
+			dispatch(setErrorAC(messages[0]))
 		}
 	} catch (error: any) {
-		alert(error.message)
+		dispatch(setErrorAC(error.message))
 	}
 }
 
@@ -69,11 +70,11 @@ export const loginTC = (loginParams: LoginParamsType): ThunkType => async (dispa
 			if (resultCode === 10) {
 				dispatch(getCaptchaUrlTC())
 			}
-			alert(messages[0])
+			dispatch(setErrorAC(messages[0]))
 		}
 
 	} catch (error: any) {
-		alert(error.message)
+		dispatch(setErrorAC(error.message))
 	}
 }
 
@@ -87,10 +88,10 @@ export const logoutTC = (): ThunkType => async (dispatch) => {
 			dispatch(setUserDataAC(resetUserData))
 			dispatch(setIsAuthAC(false))
 		} else {
-			alert(messages[0])
+			dispatch(setErrorAC(messages[0]))
 		}
 	} catch (error: any) {
-		alert(error.message)
+		dispatch(setErrorAC(error.message))
 	}
 }
 
@@ -108,7 +109,7 @@ export const getCaptchaUrlTC = (): ThunkType => async (dispatch) => {
 
 		dispatch(setCaptchaUrlAC(url))
 	} catch (error: any) {
-		alert(error.message)
+		dispatch(setErrorAC(error.message))
 	}
 }
 

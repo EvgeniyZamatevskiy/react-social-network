@@ -1,7 +1,7 @@
 import { PROFILE } from 'api/profile'
 import { PhotosType, UserProfileType } from 'api/types'
-import { ProfileEditType } from 'components/Profile/ProfileDataEdit/types'
 import { Nullable } from 'types'
+import { setErrorAC } from './appReducer'
 import { ThunkType } from './store'
 
 const initialState: InitialStateType = {
@@ -58,7 +58,7 @@ export const getUserProfileTC = (userId: number): ThunkType => async (dispatch) 
 
 		dispatch(setUserProfileAC(userProfile))
 	} catch (error: any) {
-		alert(error.message)
+		dispatch(setErrorAC(error.message))
 	}
 }
 
@@ -69,7 +69,7 @@ export const getUserStatusTC = (userId: number): ThunkType => async (dispatch) =
 
 		dispatch(setUserStatusAC(userStatus))
 	} catch (error: any) {
-		alert(error.message)
+		dispatch(setErrorAC(error.message))
 	}
 }
 
@@ -81,10 +81,10 @@ export const updateUserStatusTC = (newStatus: string): ThunkType => async (dispa
 		if (resultCode === 0) {
 			dispatch(setUserStatusAC(newStatus))
 		} else {
-			messages[0]
+			dispatch(setErrorAC(messages[0]))
 		}
 	} catch (error: any) {
-		alert(error.message)
+		dispatch(setErrorAC(error.message))
 	}
 }
 
@@ -97,11 +97,11 @@ export const updateUserPhotoTC = (image: File): ThunkType => async (dispatch) =>
 		if (resultCode === 0) {
 			dispatch(updateUserPhotoAC(photos))
 		} else {
-			messages[0]
+			dispatch(setErrorAC(messages[0]))
 		}
 
 	} catch (error: any) {
-		alert(error.message)
+		dispatch(setErrorAC(error.message))
 	}
 }
 
@@ -113,11 +113,11 @@ export const updateUserProfileTC = (updatedUserProfile: UserProfileType): ThunkT
 		if (resultCode === 0) {
 			dispatch(updateUserProfileAC(updatedUserProfile))
 		} else {
-			messages[0]
+			dispatch(setErrorAC(messages[0]))
 		}
 
 	} catch (error: any) {
-		alert(error.message)
+		dispatch(setErrorAC(error.message))
 	}
 }
 

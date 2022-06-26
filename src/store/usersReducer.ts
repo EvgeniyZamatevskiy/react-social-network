@@ -2,6 +2,7 @@ import { FOLLOW } from 'api/follow'
 import { UserType } from 'api/types'
 import { USERS } from 'api/users'
 import { Nullable } from 'types'
+import { setErrorAC } from './appReducer'
 import { ThunkType } from './store'
 
 const initialState: InitialStateType = {
@@ -60,7 +61,7 @@ export const getUsersTC = (count: number, page: number, filter: FilterType): Thu
 		dispatch(setCurrentPageAC(page))
 		dispatch(setFilterAC(filter))
 	} catch (error: any) {
-		alert(error.message)
+		dispatch(setErrorAC(error.message))
 	}
 }
 
@@ -75,11 +76,11 @@ export const followTC = (userId: number): ThunkType => async (dispatch) => {
 			dispatch(followAC(userId))
 			dispatch(setDisabledStatusAC(userId, false))
 		} else {
-			messages[0]
+			dispatch(setErrorAC(messages[0]))
 			dispatch(setDisabledStatusAC(userId, false))
 		}
 	} catch (error: any) {
-		alert(error.message)
+		dispatch(setErrorAC(error.message))
 		dispatch(setDisabledStatusAC(userId, false))
 	}
 }
@@ -94,11 +95,11 @@ export const unfollowTC = (userId: number): ThunkType => async (dispatch) => {
 			dispatch(unfollowAC(userId))
 			dispatch(setDisabledStatusAC(userId, false))
 		} else {
-			messages[0]
+			dispatch(setErrorAC(messages[0]))
 			dispatch(setDisabledStatusAC(userId, false))
 		}
 	} catch (error: any) {
-		alert(error.message)
+		dispatch(setErrorAC(error.message))
 		dispatch(setDisabledStatusAC(userId, false))
 	}
 }

@@ -1,10 +1,9 @@
 	@import '../../../styles/sass/variables.scss';
+	@import '../../../styles/sass/mixins.scss';
 
 	.user {
 		background-color: $secondaryBackgroundColor;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+		@include flex (column, stretch, center);
 		width: 362px;
 		margin-top: 20px;
 		padding: 20px;

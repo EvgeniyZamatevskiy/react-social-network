@@ -1,5 +1,5 @@
 export { Header } from './Header'
-export { Navbar } from './Navbar'
+export { NavBar } from './NavBar'
 export { Login } from './Login'
 export { Profile } from './Profile'
 export { Users } from './Users'

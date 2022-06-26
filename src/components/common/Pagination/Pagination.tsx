@@ -1,7 +1,7 @@
 import React, { FC, memo, useEffect, useState } from 'react'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import style from './Pagination.module.scss'
 import { PaginationPropsType } from './types'
+import style from './Pagination.module.scss'
 
 export const Pagination: FC<PaginationPropsType> =
 	memo(({ totalItemsCount, count, currentPage, setCurrentPage, portionSize = 9 }): ReturnComponentType => {

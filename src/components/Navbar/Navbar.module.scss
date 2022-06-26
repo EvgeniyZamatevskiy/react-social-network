@@ -6,25 +6,21 @@
 	min-height: 89vh;
 	margin-right: 20px;
 	padding: 80px;
-}
 
-.list {
-	font-size: 40px;
-}
+	.list {
+		font-size: 35px;
 
-.list li {
-	margin-bottom: 30px;
-	text-align: center;
-}
+		li {
+			margin-bottom: 30px;
+			text-align: center;
 
-.list a {
-	transition: color 0.2s ease-in 0s;
-}
+			a {
+				transition: color 0.2s ease-in 0s;
 
-.list a:hover {
-	color: rgb(196, 196, 196);
-}
-
-.active {
-	color: red;
+				&:hover {
+					color: rgb(196, 196, 196);
+				}
+			}
+		}
+	}
 }

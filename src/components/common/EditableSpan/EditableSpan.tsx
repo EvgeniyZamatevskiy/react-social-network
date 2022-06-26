@@ -1,8 +1,8 @@
 import React, { ChangeEvent, FC, KeyboardEvent, memo, useState } from 'react'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { EditableSpanPropsType } from './types'
-import style from './EditableSpan.module.scss'
 import { EMPTY_STRING } from 'constants/base'
+import style from './EditableSpan.module.scss'
 
 export const EditableSpan: FC<EditableSpanPropsType> = memo(({ currentValue, changeValue, secondSpanClassName }): ReturnComponentType => {
 
@@ -13,7 +13,7 @@ export const EditableSpan: FC<EditableSpanPropsType> = memo(({ currentValue, cha
 		setNewValue(e.currentTarget.value)
 	}
 
-	const onEnterKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
+	const onSetNewValueKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
 		if (e.key === 'Enter') {
 			setEditMode(false)
 			changeValue(newValue)
@@ -39,7 +39,7 @@ export const EditableSpan: FC<EditableSpanPropsType> = memo(({ currentValue, cha
 					value={newValue}
 					onChange={onInputChange}
 					onBlur={onSetNewValueBlur}
-					onKeyDown={onEnterKeyDown}
+					onKeyDown={onSetNewValueKeyDown}
 				/>
 				: <span
 					className={`${style.span} ${secondSpanClassName && secondSpanClassName}`}

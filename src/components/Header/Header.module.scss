@@ -1,11 +1,10 @@
-@import '../../styles//sass/variables.scss';
+@import '../../styles/sass/variables.scss';
+@import '../../styles/sass/mixins.scss';
 
 .header {
 	background-color: $secondaryBackgroundColor;
 	height: 75px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	@include flex (row, space-between, center);
 	padding: 0px 235px 0px 235px;
 	position: fixed;
 	top: 0;

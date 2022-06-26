@@ -1,12 +1,11 @@
 @import '../../../styles/sass/variables.scss';
+@import '../../../styles/sass/mixins.scss';
 
 .myPost {
 	margin-top: 20px;
 	padding: 50px;
 	background-color: $secondaryBackgroundColor;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	@include flex (row, space-between, center);
 
 	.postBody {
 

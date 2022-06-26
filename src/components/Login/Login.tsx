@@ -20,7 +20,6 @@ export const Login: FC = (): ReturnComponentType => {
 
 	const { register, handleSubmit, formState: { errors } } = useForm<LoginParamsType>(
 		{ mode: 'onBlur' },
-
 	)
 
 	const validationForEmail = {
@@ -44,36 +43,36 @@ export const Login: FC = (): ReturnComponentType => {
 	}
 
 	return (
-		<form className={style.formBox} onSubmit={handleSubmit(onSubmit)}>
+		<form className={style.form} onSubmit={handleSubmit(onSubmit)}>
 			<img className={style.userImage} src={avatar} />
 			<h1>Welcome</h1>
 			<input
 				className={style.email}
-				type={'text'}
-				placeholder={'Email'}
+				type='text'
+				placeholder='Email'
 				{...register('email', validationForEmail)} />
 			{errors?.email && <p className={style.emailError}>{errors?.email.message}</p>}
 			<input
 				className={style.password}
-				type={'password'}
-				placeholder={'Password'}
+				type='password'
+				placeholder='Password'
 				{...register('password', validationForPassword)} />
 			{errors?.password && <p className={style.passwordError}>{errors?.password.message}</p>}
 			<input
 				className={`${style.rememberMe} ${captchaUrl && style.secondaryRememberMe}`}
-				type={'checkbox'}
+				type='checkbox'
 				{...register('rememberMe')} />
 			{captchaUrl &&
 				<div>
 					<img src={captchaUrl} />
 					<input
 						className={style.captcha}
-						type={'text'}
+						type='text'
 						{...register('captcha')} />
 				</div>
 			}
 			<span>Remember me</span>
-			<button type={'submit'} >Login</button>
+			<button type='submit'>Login</button>
 		</form>
 	)
 }
