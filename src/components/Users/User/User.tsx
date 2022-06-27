@@ -1,11 +1,11 @@
 import React, { FC, memo } from 'react'
-import avatar from 'assets/images/avatar.png'
-import { UserPropsType } from './types'
-import { ReturnComponentType } from 'types/ReturnComponentType'
-import { useTypedDispatch } from 'store/hooks'
-import { followTC, unfollowTC } from 'store/usersReducer'
-import { NavLink } from 'react-router-dom'
 import { Path } from 'enums'
+import { NavLink } from 'react-router-dom'
+import { useTypedDispatch } from 'store/hooks'
+import { followTC, unfollowTC } from 'store/middlewares'
+import { ReturnComponentType } from 'types/ReturnComponentType'
+import { UserPropsType } from './types'
+import avatar from 'assets/images/avatar.png'
 import style from './User.module.scss'
 
 export const User: FC<UserPropsType> = memo(({ user }): ReturnComponentType => {

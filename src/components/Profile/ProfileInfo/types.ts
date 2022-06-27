@@ -1,4 +1,4 @@
-import { UserProfileType } from 'api/types'
+import { UserProfileType } from 'api/profile/types'
 import { Nullable } from 'types'
 
 export type ProfileInfoPropsType = {

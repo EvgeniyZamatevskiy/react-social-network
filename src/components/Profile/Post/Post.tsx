@@ -1,9 +1,9 @@
 import React, { FC, memo } from 'react'
-import avatar from 'assets/images/avatar.png'
-import { PostPropsType } from './types'
+import { removePostAC } from 'store/actions'
+import { useTypedDispatch } from 'store/hooks'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import { useTypedDispatch } from 'store/hooks/useTypedDispatch'
-import { removePostAC } from 'store/profileReducer'
+import { PostPropsType } from './types'
+import avatar from 'assets/images/avatar.png'
 import style from './Post.module.scss'
 
 export const Post: FC<PostPropsType> = memo(({ post, image }): ReturnComponentType => {

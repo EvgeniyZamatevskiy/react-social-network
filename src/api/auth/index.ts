@@ -1,6 +1,6 @@
-import { instance } from './config'
-import { LoginParamsType, MeResponseType } from './types/auth'
-import { CommonResponseType } from './types/common'
+import { instance } from 'api/config'
+import { CommonResponseType } from 'api/types'
+import { LoginParamsType, MeResponseType } from './types'
 
 export const AUTH = {
 	login(loginParams: LoginParamsType) {

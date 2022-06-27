@@ -1,4 +1,4 @@
-import { ContactsType, UserProfileType } from 'api/types'
+import { ContactsType, UserProfileType } from 'api/profile/types'
 import { Nullable } from 'types'
 
 export type ProfileEditType = {

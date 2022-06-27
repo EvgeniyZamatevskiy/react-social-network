@@ -1,6 +1,6 @@
+import { instance } from 'api/config'
 import { EMPTY_STRING } from 'constants/base'
-import { FilterType } from 'store/usersReducer'
-import { instance } from './config'
+import { FilterType } from 'store/reducers/users/types'
 import { UsersType } from './types'
 
 export const USERS = {

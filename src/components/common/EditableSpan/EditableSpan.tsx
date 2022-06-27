@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC, KeyboardEvent, memo, useState } from 'react'
+import { EMPTY_STRING } from 'constants/base'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { EditableSpanPropsType } from './types'
-import { EMPTY_STRING } from 'constants/base'
 import style from './EditableSpan.module.scss'
 
 export const EditableSpan: FC<EditableSpanPropsType> = memo(({ currentValue, changeValue, secondSpanClassName }): ReturnComponentType => {

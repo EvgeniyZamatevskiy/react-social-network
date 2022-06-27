@@ -1,10 +1,10 @@
 import React, { FC, memo } from 'react'
-import { UserProfileType } from 'api/types'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { UserProfileType } from 'api/profile/types'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import { useTypedDispatch } from 'store/hooks'
-import { updateUserProfileTC } from 'store/profileReducer'
-import { ProfileDataEditPropsType } from './types'
+import { updateUserProfileTC } from 'store/middlewares'
 import { ReturnComponentType } from 'types/ReturnComponentType'
+import { ProfileDataEditPropsType } from './types'
 import style from './ProfileDataEdit.module.scss'
 
 export const ProfileDataEdit: FC<ProfileDataEditPropsType> = memo(({ userProfile, setEditProfile, editProfile }): ReturnComponentType => {

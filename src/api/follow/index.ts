@@ -1,5 +1,5 @@
-import { instance } from './config'
-import { CommonResponseType } from './types'
+import { instance } from 'api/config'
+import { CommonResponseType } from 'api/types'
 
 export const FOLLOW = {
 	follow(userId: number) {

@@ -1,5 +1,5 @@
+import { UsersSupplementedType, FilterType } from 'store/reducers/users/types'
 import { RootReducerType } from 'store/store'
-import { FilterType, UsersSupplementedType } from 'store/usersReducer'
 
 export const selectUsers = (state: RootReducerType): UsersSupplementedType[] => state.users.users
 export const selectCount = (state: RootReducerType): number => state.users.count

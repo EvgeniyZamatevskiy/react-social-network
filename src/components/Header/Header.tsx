@@ -1,10 +1,9 @@
 import React, { FC } from 'react'
 import { TailSpin } from 'react-loader-spinner'
 import { useSelector } from 'react-redux'
-import { logOutTC } from 'store/authReducer'
 import { useTypedDispatch } from 'store/hooks'
-import { selectIsLoading } from 'store/selectors/app'
-import { selectLogin, selectIsAuth } from 'store/selectors/auth'
+import { logOutTC } from 'store/middlewares'
+import { selectLogin, selectIsAuth, selectIsLoading } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import style from './Header.module.scss'
 

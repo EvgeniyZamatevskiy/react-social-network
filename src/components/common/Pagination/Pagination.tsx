@@ -1,7 +1,7 @@
 import React, { FC, memo, useEffect, useState } from 'react'
+import { EMPTY_STRING } from 'constants/base'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { PaginationPropsType } from './types'
-import { EMPTY_STRING } from 'constants/base'
 import style from './Pagination.module.scss'
 
 export const Pagination: FC<PaginationPropsType> =

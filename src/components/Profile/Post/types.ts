@@ -1,4 +1,4 @@
-import { PostsType } from 'store/profileReducer'
+import { PostsType } from "store/reducers/profile/types"
 
 export type PostPropsType = {
 	post: PostsType,

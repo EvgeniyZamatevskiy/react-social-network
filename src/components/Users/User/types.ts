@@ -1,5 +1,4 @@
-import { UserType } from 'api/types'
-import { UsersSupplementedType } from 'store/usersReducer'
+import { UsersSupplementedType } from 'store/reducers/users/types'
 
 export type UserPropsType = {
 	user: UsersSupplementedType

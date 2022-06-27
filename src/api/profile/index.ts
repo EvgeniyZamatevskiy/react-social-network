@@ -1,6 +1,6 @@
-import { instance } from './config'
-import { CommonResponseType } from './types'
-import { SavePhotoResponseDataType, UserProfileType } from './types/profile'
+import { instance } from 'api/config'
+import { CommonResponseType } from 'api/types'
+import { UserProfileType, SavePhotoResponseDataType } from './types'
 
 export const PROFILE = {
 	getUsersProfile(userId: number) {

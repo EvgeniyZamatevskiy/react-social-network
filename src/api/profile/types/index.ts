@@ -1,4 +1,4 @@
-import { PhotosType } from './common'
+import { PhotosType } from '../../types'
 
 export type UserProfileType = {
 	aboutMe: string

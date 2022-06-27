@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, memo, MouseEvent, useState } from 'react'
 import { EMPTY_STRING } from 'constants/base'
-import { FilterType } from 'store/usersReducer'
+import { FilterType } from 'store/reducers/users/types'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { UsersSearchPropsType } from './types'
 import style from './UsersSearch.module.scss'

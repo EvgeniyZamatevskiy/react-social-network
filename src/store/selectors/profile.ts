@@ -1,5 +1,5 @@
-import { UserProfileType } from 'api/types'
-import { PostsType } from 'store/profileReducer'
+import { UserProfileType } from 'api/profile/types'
+import { PostsType } from 'store/reducers/profile/types'
 import { RootReducerType } from 'store/store'
 import { Nullable } from 'types'
 

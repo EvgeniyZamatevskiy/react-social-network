@@ -1,10 +1,7 @@
 import { applyMiddleware, combineReducers, legacy_createStore as createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk, { ThunkAction } from 'redux-thunk'
-import { appReducer } from './appReducer'
-import { authReducer } from './authReducer'
-import { profileReducer } from './profileReducer'
-import { usersReducer } from './usersReducer'
+import { profileReducer, authReducer, usersReducer, appReducer } from './reducers'
 
 const rootReducer = combineReducers({
 	profile: profileReducer,
@@ -15,6 +12,7 @@ const rootReducer = combineReducers({
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
+// types
 export type RootReducerType = ReturnType<typeof rootReducer>
 export type AppActionsType = Parameters<typeof rootReducer>[1]
 export type ThunkType<ReturnType = void> = ThunkAction<ReturnType, RootReducerType, unknown, AppActionsType>

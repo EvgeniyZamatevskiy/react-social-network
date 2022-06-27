@@ -1,13 +1,13 @@
 import React, { FC, useEffect } from 'react'
 import { Header, NavBar, Profile, Users, Login, NotFound, ErrorAlert } from 'components'
 import { Path } from 'enums'
+import { TailSpin } from 'react-loader-spinner'
 import { useSelector } from 'react-redux'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { initializeAppTC } from 'store/authReducer'
 import { useTypedDispatch } from 'store/hooks'
-import { selectIsInitialized } from 'store/selectors/auth'
+import { initializeAppTC } from 'store/middlewares'
+import { selectIsInitialized } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import { TailSpin } from 'react-loader-spinner'
 
 export const App: FC = (): ReturnComponentType => {
 

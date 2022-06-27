@@ -1,47 +1,10 @@
-import { AUTH } from 'api'
-import { SECURITY } from 'api/security'
-import { LoginParamsType } from 'api/types'
+import { AUTH, SECURITY } from 'api'
+import { LoginParamsType } from 'api/auth/types'
 import { ERROR_MESSAGE } from 'constants/base'
-import { ResponseCode } from 'enums/ResponseCode'
+import { ResponseCode } from 'enums'
+import { setIsLoadingAC, setUserDataAC, setIsAuthAC, setErrorAC, setCaptchaUrlAC, setIsInitializedAppAC } from 'store/actions'
 import { ThunkType } from 'store/store'
-import { Nullable } from 'types'
-import { setErrorAC, setIsLoadingAC } from './appReducer'
 
-const initialState: InitialStateType = {
-	isAuth: false,
-	isInitialized: false,
-	email: null,
-	id: null,
-	login: null,
-	captchaUrl: null
-}
-
-export const authReducer = (state: InitialStateType = initialState, action: AuthReducerActionsType): InitialStateType => {
-	switch (action.type) {
-		case 'auth/SET-IS-AUTH':
-			return { ...state, isAuth: action.isAuth }
-		case 'auth/SET-USER-DATA':
-			return { ...state, ...action.userData }
-		case 'auth/SET-IS-INITIALIZED-APP':
-			return { ...state, isInitialized: action.isInitialized }
-		case 'auth/SET-CAPTCHA-URL':
-			return { ...state, captchaUrl: action.captchaUrl }
-
-		default:
-			return state
-	}
-}
-
-// ActionCreators
-export const setUserDataAC = (userData: UserDataType) => ({ type: 'auth/SET-USER-DATA', userData } as const)
-
-export const setIsAuthAC = (isAuth: boolean) => ({ type: 'auth/SET-IS-AUTH', isAuth } as const)
-
-export const setIsInitializedAppAC = (isInitialized: boolean) => ({ type: 'auth/SET-IS-INITIALIZED-APP', isInitialized } as const)
-
-export const setCaptchaUrlAC = (captchaUrl: Nullable<string>) => ({ type: 'auth/SET-CAPTCHA-URL', captchaUrl } as const)
-
-// ThunksCreators
 export const getUserDataTC = (): ThunkType => async (dispatch) => {
 	try {
 		dispatch(setIsLoadingAC(true))
@@ -119,25 +82,3 @@ export const getCaptchaUrlTC = (): ThunkType => async (dispatch) => {
 		dispatch(setErrorAC(error.message))
 	}
 }
-
-//types
-type UserDataType = {
-	id: Nullable<number>
-	email: Nullable<string>
-	login: Nullable<string>
-}
-
-export type InitialStateType = {
-	isAuth: boolean
-	isInitialized: boolean
-	email: Nullable<string>
-	id: Nullable<number>
-	login: Nullable<string>
-	captchaUrl: Nullable<string>
-}
-
-export type AuthReducerActionsType =
-	ReturnType<typeof setIsAuthAC> |
-	ReturnType<typeof setUserDataAC> |
-	ReturnType<typeof setIsInitializedAppAC> |
-	ReturnType<typeof setCaptchaUrlAC>
