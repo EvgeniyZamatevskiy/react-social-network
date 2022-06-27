@@ -4,9 +4,10 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTypedDispatch } from 'store/hooks'
 import { updateUserProfileTC } from 'store/profileReducer'
 import { ProfileDataEditPropsType } from './types'
+import { ReturnComponentType } from 'types/ReturnComponentType'
 import style from './ProfileDataEdit.module.scss'
 
-export const ProfileDataEdit: FC<ProfileDataEditPropsType> = memo(({ userProfile, setEditProfile, editProfile }) => {
+export const ProfileDataEdit: FC<ProfileDataEditPropsType> = memo(({ userProfile, setEditProfile, editProfile }): ReturnComponentType => {
 
 	const dispatch = useTypedDispatch()
 

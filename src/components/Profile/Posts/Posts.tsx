@@ -6,11 +6,8 @@ import { addPostAC } from 'store/profileReducer'
 import { selectPosts } from 'store/selectors/profile'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { Post } from '../Post'
+import { PostsPropsType } from './types'
 import style from './Posts.module.scss'
-
-export type PostsPropsType = {
-	image: string | undefined
-}
 
 export const Posts: FC<PostsPropsType> = memo(({ image }): ReturnComponentType => {
 

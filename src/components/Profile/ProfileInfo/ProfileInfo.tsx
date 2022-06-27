@@ -21,7 +21,7 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = memo(({ isOwner, userProfil
 
 	const userImage = userProfile?.photos.small ? userProfile.photos.small : avatar
 
-	const handleChangeUserStatusClick = useCallback((newStatus: string) => {
+	const handleChangeUserStatusClick = useCallback((newStatus: string): void => {
 		dispatch(updateUserStatusTC(newStatus))
 	}, [])
 

@@ -18,12 +18,9 @@ export const ErrorAlert: FC = (): ReturnComponentType => {
 
 	useEffect(() => {
 		if (error) {
-			const timerId = setTimeout(() => {
+			setTimeout(() => {
 				dispatch(setErrorAC(null))
 			}, 3000)
-			return () => {
-				clearTimeout(timerId)
-			}
 		}
 	}, [error])
 

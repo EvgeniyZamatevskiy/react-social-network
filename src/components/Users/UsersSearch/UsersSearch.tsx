@@ -10,11 +10,11 @@ export const UsersSearch: FC<UsersSearchPropsType> = memo(({ handleFilterChanged
 	const [term, setTerm] = useState<string>(EMPTY_STRING)
 	const [friend, setFriend] = useState<string>('null')
 
-	const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+	const onInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
 		setTerm(e.currentTarget.value)
 	}
 
-	const onSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+	const onSelectChange = (e: ChangeEvent<HTMLSelectElement>): void => {
 		setFriend(e.currentTarget.value)
 	}
 
@@ -30,7 +30,7 @@ export const UsersSearch: FC<UsersSearchPropsType> = memo(({ handleFilterChanged
 	}
 
 	return (
-		<form className={style.form}>
+		<div className={style.usersSearch}>
 			<input className={style.term} type='text' onChange={onInputChange} />
 			<select onChange={onSelectChange}>
 				<option value='null'>All</option>
@@ -38,6 +38,6 @@ export const UsersSearch: FC<UsersSearchPropsType> = memo(({ handleFilterChanged
 				<option value='false'>Only unFollowed</option>
 			</select>
 			<button onClick={onFilterChangedClick}>Find</button>
-		</form>
+		</div>
 	)
 })
