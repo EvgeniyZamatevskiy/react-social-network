@@ -23,6 +23,8 @@ export const Profile: FC = (): ReturnComponentType => {
 
 	const isOwner = !userId
 
+	const scrollPageUp = () => window.scrollTo(0, 0)
+
 	useEffect(() => {
 		const currentUserId = isOwner ? authorizedUserId : userId
 
@@ -30,6 +32,8 @@ export const Profile: FC = (): ReturnComponentType => {
 			dispatch(getUserProfileTC(+currentUserId!))
 			dispatch(getUserStatusTC(+currentUserId!))
 		}
+
+		scrollPageUp()
 	}, [userId])
 
 	if (!isAuth) {
