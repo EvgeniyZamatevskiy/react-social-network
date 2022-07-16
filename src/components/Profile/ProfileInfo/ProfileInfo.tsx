@@ -11,6 +11,8 @@ import { ProfileInfoPropsType } from './types'
 import avatar from 'assets/images/avatar.png'
 import style from './ProfileInfo.module.scss'
 
+const FIRST_FILES_INDEX = 0
+
 export const ProfileInfo: FC<ProfileInfoPropsType> = memo(({ isOwner, userProfile }): ReturnComponentType => {
 
 	const dispatch = useTypedDispatch()
@@ -26,7 +28,7 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = memo(({ isOwner, userProfil
 	}, [])
 
 	const onUpdateUserPhotoChange = (e: ChangeEvent<HTMLInputElement>): void => {
-		const image = e.currentTarget.files![0]
+		const image = e.currentTarget.files![FIRST_FILES_INDEX]
 		dispatch(updateUserPhotoTC(image))
 	}
 
