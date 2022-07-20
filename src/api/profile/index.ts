@@ -3,13 +3,13 @@ import { CommonResponseType } from 'api/types'
 import { UserProfileType, SavePhotoResponseDataType } from './types'
 
 export const PROFILE = {
-	getUsersProfile(userId: number) {
+	getUserProfile(userId: number) {
 		return instance.get<UserProfileType>(`profile/${userId}`)
 	},
 	getUserStatus(userId: number) {
 		return instance.get<string>(`profile/status/${userId}`)
 	},
-	changeUserStatus(status: string) {
+	updateUserStatus(status: string) {
 		return instance.put<CommonResponseType>('profile/status', { status })
 	},
 	updateUserPhoto(image: File) {
@@ -21,7 +21,7 @@ export const PROFILE = {
 			}
 		})
 	},
-	updateUserProfile(updatedUserProfile: UserProfileType) {
-		return instance.put<CommonResponseType>('profile', updatedUserProfile)
+	updateUserProfile(userProfile: UserProfileType) {
+		return instance.put<CommonResponseType>('profile', userProfile)
 	},
 }

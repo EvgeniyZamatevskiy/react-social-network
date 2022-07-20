@@ -9,7 +9,7 @@ export const getUserProfileTC = (userId: number): ThunkType => async (dispatch) 
 	try {
 		dispatch(setIsLoadingAC(true))
 
-		const response = await PROFILE.getUsersProfile(userId)
+		const response = await PROFILE.getUserProfile(userId)
 		const { data: userProfile } = response
 
 		dispatch(setUserProfileAC(userProfile))
@@ -39,7 +39,7 @@ export const updateUserStatusTC = (newStatus: string): ThunkType => async (dispa
 	try {
 		dispatch(setIsLoadingAC(true))
 
-		const response = await PROFILE.changeUserStatus(newStatus)
+		const response = await PROFILE.updateUserStatus(newStatus)
 		const { resultCode, messages } = response.data
 
 		if (resultCode === ResponseCode.Success) {

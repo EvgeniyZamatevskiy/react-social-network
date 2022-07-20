@@ -1,5 +1,5 @@
 import { Nullable } from 'types'
-import { PhotosType } from '../../types'
+import { PhotosType } from '../types'
 
 export type UsersType = {
 	error: Nullable<string>

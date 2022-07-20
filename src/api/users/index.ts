@@ -5,7 +5,10 @@ import { UsersType } from './types'
 
 export const USERS = {
 	getUsers(count: number, page: number, filter: FilterType) {
-		return instance.get<UsersType>
-			(`users?count=${count}&page=${page}&term=${filter.term}${filter.friend === null ? EMPTY_STRING : `&friend=${filter.friend}`}`)
+
+		const friend = filter.friend === null ? EMPTY_STRING : `&friend=${filter.friend}`
+		const term = !filter.term.length ? EMPTY_STRING : `&term=${filter.term}`
+
+		return instance.get<UsersType>(`users?count=${count}&page=${page}${term}${friend}`)
 	}
 }
