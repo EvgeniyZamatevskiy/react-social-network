@@ -1,8 +1,7 @@
 import React, { ChangeEvent, FC, memo, useCallback, useState } from 'react'
 import { EditableSpan } from 'components/common'
 import { useSelector } from 'react-redux'
-import { useTypedDispatch } from 'store/hooks'
-import { updateUserStatusTC, updateUserPhotoTC } from 'store/middlewares'
+import { useAppDispatch } from 'store/hooks'
 import { selectUserStatus } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { ProfileData } from '../ProfileData'
@@ -10,12 +9,13 @@ import { ProfileDataEdit } from '../ProfileDataEdit/ProfileDataEdit'
 import { ProfileInfoPropsType } from './types'
 import avatar from 'assets/images/avatar.png'
 import style from './ProfileInfo.module.scss'
+import { updateUserPhoto, updateUserStatus } from 'store/asyncActions'
 
 const FIRST_FILES_INDEX = 0
 
 export const ProfileInfo: FC<ProfileInfoPropsType> = memo(({ isOwner, userProfile }): ReturnComponentType => {
 
-	const dispatch = useTypedDispatch()
+	const dispatch = useAppDispatch()
 
 	const userStatus = useSelector(selectUserStatus)
 
@@ -24,12 +24,12 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = memo(({ isOwner, userProfil
 	const userImage = userProfile?.photos.small ? userProfile.photos.small : avatar
 
 	const handleChangeUserStatusClick = useCallback((newStatus: string): void => {
-		dispatch(updateUserStatusTC(newStatus))
+		dispatch(updateUserStatus(newStatus))
 	}, [])
 
 	const onUpdateUserPhotoChange = (e: ChangeEvent<HTMLInputElement>): void => {
 		const image = e.currentTarget.files![FIRST_FILES_INDEX]
-		dispatch(updateUserPhotoTC(image))
+		dispatch(updateUserPhoto(image))
 	}
 
 	return (

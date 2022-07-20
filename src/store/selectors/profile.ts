@@ -1,8 +1,8 @@
 import { UserProfileType } from 'api/profile/types'
-import { PostsType } from 'store/reducers/profile/types'
-import { RootReducerType } from 'store/store'
+import { RootStateType } from 'store'
+import { PostsType } from 'store/slices/profile/types'
 import { Nullable } from 'types'
 
-export const selectPosts = (state: RootReducerType): PostsType[] => state.profile.posts
-export const selectUserProfile = (state: RootReducerType): Nullable<UserProfileType> => state.profile.userProfile
-export const selectUserStatus = (state: RootReducerType): string => state.profile.userStatus
+export const selectPosts = (state: RootStateType): PostsType[] => state.profile.posts
+export const selectUserProfile = (state: RootStateType): Nullable<UserProfileType> => state.profile.userProfile
+export const selectUserStatus = (state: RootStateType): string => state.profile.userStatus

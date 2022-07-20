@@ -2,23 +2,23 @@ import React, { FC, useEffect } from 'react'
 import { Path } from 'enums'
 import { useSelector } from 'react-redux'
 import { useParams, Navigate } from 'react-router-dom'
-import { useTypedDispatch } from 'store/hooks'
-import { getUserProfileTC, getUserStatusTC } from 'store/middlewares'
-import { selectIsAuth, selectId, selectUserProfile } from 'store/selectors'
+import { useAppDispatch } from 'store/hooks'
+import { selectIsAuth, selectUserProfile, selectUserData } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { NoPosts } from './NoPosts'
 import { Posts } from './Posts'
 import { ProfileInfo } from './ProfileInfo'
 import style from './Profile.module.scss'
+import { getUserProfile, getUserStatus } from 'store/asyncActions'
 
 export const Profile: FC = (): ReturnComponentType => {
 
-	const dispatch = useTypedDispatch()
+	const dispatch = useAppDispatch()
 
 	const { userId } = useParams<{ userId: string }>()
 
 	const isAuth = useSelector(selectIsAuth)
-	const authorizedUserId = useSelector(selectId)
+	const authorizedUserId = useSelector(selectUserData)?.id
 	const userProfile = useSelector(selectUserProfile)
 
 	const isOwner = !userId
@@ -29,8 +29,8 @@ export const Profile: FC = (): ReturnComponentType => {
 		const currentUserId = isOwner ? authorizedUserId : userId
 
 		if (isAuth) {
-			dispatch(getUserProfileTC(+currentUserId!))
-			dispatch(getUserStatusTC(+currentUserId!))
+			dispatch(getUserProfile(+currentUserId!))
+			dispatch(getUserStatus(+currentUserId!))
 		}
 
 		scrollPageUp()

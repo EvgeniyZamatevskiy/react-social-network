@@ -1,32 +1,33 @@
+import { EMPTY_STRING } from 'constants/base'
 import React, { FC, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { setErrorAC } from 'store/actions'
-import { useTypedDispatch } from 'store/hooks'
-import { selectError } from 'store/selectors'
+import { useAppDispatch } from 'store/hooks'
+import { selectErrorMessage } from 'store/selectors'
+import { setErrorMessage } from 'store/slices/app'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import style from './ErrorAlert.module.scss'
 
 export const ErrorAlert: FC = (): ReturnComponentType => {
 
-	const dispatch = useTypedDispatch()
+	const dispatch = useAppDispatch()
 
-	const error = useSelector(selectError)
+	const errorMessage = useSelector(selectErrorMessage)
 
 	const onCloseErrorAlertClick = (): void => {
-		dispatch(setErrorAC(null))
+		dispatch(setErrorMessage(EMPTY_STRING))
 	}
 
 	useEffect(() => {
-		if (error) {
+		if (errorMessage) {
 			setTimeout(() => {
-				dispatch(setErrorAC(null))
+				dispatch(setErrorMessage(EMPTY_STRING))
 			}, 3000)
 		}
-	}, [error])
+	}, [errorMessage])
 
 	return (
-		<div className={`${style.errorAlert} ${!error && style.closeErrorAlert}`}>
-			<div className={style.alert}>{error}</div>
+		<div className={`${style.errorAlert} ${!errorMessage && style.closeErrorAlert}`}>
+			<div className={style.alert}>{errorMessage}</div>
 			<button onClick={onCloseErrorAlertClick}>&#10006;</button>
 		</div>
 	)

@@ -1,15 +1,15 @@
 import React, { FC, memo } from 'react'
 import { UserProfileType } from 'api/profile/types'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useTypedDispatch } from 'store/hooks'
-import { updateUserProfileTC } from 'store/middlewares'
+import { useAppDispatch } from 'store/hooks'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { ProfileDataEditPropsType } from './types'
 import style from './ProfileDataEdit.module.scss'
+import { updateUserProfile } from 'store/asyncActions'
 
 export const ProfileDataEdit: FC<ProfileDataEditPropsType> = memo(({ userProfile, setEditProfile, editProfile }): ReturnComponentType => {
 
-	const dispatch = useTypedDispatch()
+	const dispatch = useAppDispatch()
 
 	const { register, handleSubmit, formState: { errors }, } = useForm<UserProfileType>({
 		mode: 'onBlur',
@@ -30,7 +30,7 @@ export const ProfileDataEdit: FC<ProfileDataEditPropsType> = memo(({ userProfile
 	}
 
 	const onSubmit: SubmitHandler<UserProfileType> = (data): void => {
-		dispatch(updateUserProfileTC(data))
+		dispatch(updateUserProfile(data))
 		onDeactivateEditProfileClick()
 	}
 

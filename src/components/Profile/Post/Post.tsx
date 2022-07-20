@@ -1,19 +1,19 @@
 import React, { FC, memo } from 'react'
-import { removePostAC } from 'store/actions'
-import { useTypedDispatch } from 'store/hooks'
+import { useAppDispatch } from 'store/hooks'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { PostPropsType } from './types'
 import avatar from 'assets/images/avatar.png'
 import style from './Post.module.scss'
+import { removePost } from 'store/slices/profile'
 
 export const Post: FC<PostPropsType> = memo(({ post, image }): ReturnComponentType => {
 
-	const dispatch = useTypedDispatch()
+	const dispatch = useAppDispatch()
 
 	const userImage = image ? image : avatar
 
 	const onRemovePostClick = (): void => {
-		dispatch(removePostAC(post.id))
+		dispatch(removePost(post.id))
 	}
 
 	return (

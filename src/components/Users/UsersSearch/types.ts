@@ -1,4 +1,4 @@
-import { FilterType } from 'store/reducers/users/types'
+import { FilterType } from 'store/slices/users/types'
 
 export type UsersSearchPropsType = {
 	handleFilterChangedClick: (filter: FilterType) => void

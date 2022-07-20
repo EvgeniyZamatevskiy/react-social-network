@@ -1,22 +1,22 @@
 import React, { FC } from 'react'
 import { TailSpin } from 'react-loader-spinner'
 import { useSelector } from 'react-redux'
-import { useTypedDispatch } from 'store/hooks'
-import { logOutTC } from 'store/middlewares'
-import { selectLogin, selectIsAuth, selectIsLoading } from 'store/selectors'
+import { logOut } from 'store/asyncActions'
+import { useAppDispatch } from 'store/hooks'
+import { selectIsAuth, selectIsLoading, selectUserData } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import style from './Header.module.scss'
 
 export const Header: FC = (): ReturnComponentType => {
 
-  const dispatch = useTypedDispatch()
+  const dispatch = useAppDispatch()
 
-  const login = useSelector(selectLogin)
+  const userData = useSelector(selectUserData)
   const isAuth = useSelector(selectIsAuth)
   const isLoading = useSelector(selectIsLoading)
 
   const onLogOutClick = (): void => {
-    dispatch(logOutTC())
+    dispatch(logOut())
   }
 
   return (
@@ -26,7 +26,7 @@ export const Header: FC = (): ReturnComponentType => {
       <div className={style.body}>
         {isAuth &&
           <>
-            <div className={style.authorizedUserLogin}>{login}</div>
+            <div className={style.authorizedUserLogin}>{userData?.login}</div>
             <button onClick={onLogOutClick}>Log out</button>
           </>
         }

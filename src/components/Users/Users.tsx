@@ -3,18 +3,18 @@ import { Path } from 'enums'
 import { Pagination } from 'components/common'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
-import { useTypedDispatch } from 'store/hooks'
-import { getUsersTC } from 'store/middlewares'
-import { FilterType } from 'store/reducers/users/types'
+import { useAppDispatch } from 'store/hooks'
+import { FilterType } from 'store/slices/users/types'
 import { selectUsers, selectIsAuth, selectTotalCount, selectCount, selectPage, selectFilter } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { User } from './User/User'
 import { UsersSearch } from './UsersSearch'
 import style from './Users.module.scss'
+import { getUsers } from 'store/asyncActions/users'
 
 export const Users: FC = (): ReturnComponentType => {
 
-	const dispatch = useTypedDispatch()
+	const dispatch = useAppDispatch()
 
 	const users = useSelector(selectUsers)
 	const isAuth = useSelector(selectIsAuth)
@@ -26,16 +26,16 @@ export const Users: FC = (): ReturnComponentType => {
 	const renderUsers = users.map(user => <User key={user.id} user={user} />)
 
 	const handleSetCurrentPageClick = useCallback((page: number): void => {
-		dispatch(getUsersTC(count, page, filter))
+		dispatch(getUsers({ count, page, filter }))
 	}, [])
 
 	const handleFilterChangedClick = useCallback((filter: FilterType): void => {
-		dispatch(getUsersTC(count, 1, filter))
+		dispatch(getUsers({ count, page: 1, filter }))
 	}, [])
 
 	useEffect(() => {
 		if (isAuth) {
-			dispatch(getUsersTC(count, page, filter))
+			dispatch(getUsers({ count, page, filter }))
 		}
 	}, [])
 

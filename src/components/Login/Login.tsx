@@ -4,16 +4,16 @@ import { LoginParamsType } from 'api/auth/types'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
-import { useTypedDispatch } from 'store/hooks'
-import { loginTC } from 'store/middlewares'
+import { useAppDispatch } from 'store/hooks'
 import { selectIsAuth, selectCaptchaUrl } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import avatar from 'assets/images/avatar.png'
 import style from './Login.module.scss'
+import { login } from 'store/asyncActions'
 
 export const Login: FC = (): ReturnComponentType => {
 
-	const dispatch = useTypedDispatch()
+	const dispatch = useAppDispatch()
 
 	const isAuth = useSelector(selectIsAuth)
 	const captchaUrl = useSelector(selectCaptchaUrl)
@@ -35,7 +35,7 @@ export const Login: FC = (): ReturnComponentType => {
 	}
 
 	const onSubmit: SubmitHandler<LoginParamsType> = (data): void => {
-		dispatch(loginTC(data))
+		dispatch(login(data))
 	}
 
 	if (isAuth) {

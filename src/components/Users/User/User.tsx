@@ -1,25 +1,25 @@
 import React, { FC, memo } from 'react'
 import { Path } from 'enums'
 import { NavLink } from 'react-router-dom'
-import { useTypedDispatch } from 'store/hooks'
-import { followTC, unfollowTC } from 'store/middlewares'
+import { useAppDispatch } from 'store/hooks'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { UserPropsType } from './types'
 import avatar from 'assets/images/avatar.png'
 import style from './User.module.scss'
+import { follow, unfollow } from 'store/asyncActions/users'
 
 export const User: FC<UserPropsType> = memo(({ user }): ReturnComponentType => {
 
-	const dispatch = useTypedDispatch()
+	const dispatch = useAppDispatch()
 
 	const userImage = user.photos.small ? user.photos.small : avatar
 
 	const onFollowClick = (): void => {
-		dispatch(followTC(user.id))
+		dispatch(follow(user.id))
 	}
 
 	const onUnfollowClick = (): void => {
-		dispatch(unfollowTC(user.id))
+		dispatch(unfollow(user.id))
 	}
 
 	return (

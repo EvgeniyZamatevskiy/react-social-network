@@ -4,22 +4,22 @@ import { Path } from 'enums'
 import { TailSpin } from 'react-loader-spinner'
 import { useSelector } from 'react-redux'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { useTypedDispatch } from 'store/hooks'
-import { initializeAppTC } from 'store/middlewares'
-import { selectIsInitialized } from 'store/selectors'
+import { useAppDispatch } from 'store/hooks'
+import { selectIsInitializedApp } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
+import { getUserData } from 'store/asyncActions'
 
 export const App: FC = (): ReturnComponentType => {
 
-  const dispatch = useTypedDispatch()
+  const dispatch = useAppDispatch()
 
-  const isInitialized = useSelector(selectIsInitialized)
+  const isInitializedApp = useSelector(selectIsInitializedApp)
 
   useEffect(() => {
-    dispatch(initializeAppTC())
+    dispatch(getUserData())
   }, [])
 
-  if (!isInitialized) {
+  if (!isInitializedApp) {
     return <TailSpin color='#ff8b65' height={200} width={200} wrapperClass={'initialized'} />
   }
 

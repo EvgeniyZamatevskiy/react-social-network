@@ -1,24 +1,24 @@
 import React, { FC, memo, useCallback } from 'react'
 import { AddItemForm } from 'components/common'
 import { useSelector } from 'react-redux'
-import { addPostAC } from 'store/actions'
-import { useTypedDispatch } from 'store/hooks'
+import { useAppDispatch } from 'store/hooks'
 import { selectPosts } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { Post } from '../Post/Post'
 import { PostsPropsType } from './types'
 import style from './Posts.module.scss'
+import { addPost } from 'store/slices/profile'
 
 export const Posts: FC<PostsPropsType> = memo(({ image }): ReturnComponentType => {
 
-	const dispatch = useTypedDispatch()
+	const dispatch = useAppDispatch()
 
 	const posts = useSelector(selectPosts)
 
 	const renderPosts = posts.map(post => <Post key={post.id} post={post} image={image} />)
 
 	const handleAddPostClick = useCallback((message: string): void => {
-		dispatch(addPostAC(message))
+		dispatch(addPost(message))
 	}, [])
 
 	return (

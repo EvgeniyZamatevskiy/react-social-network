@@ -1,1 +1,2 @@
-export { useTypedDispatch } from './useTypedDispatch'
+export { useAppDispatch } from './useAppDispatch'
+export { useAppSelector } from './useAppSelector'
