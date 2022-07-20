@@ -47,8 +47,8 @@ const usersSlice = createSlice({
 			.addCase(logOut.fulfilled, (state) => {
 				state.users = []
 				state.totalCount = 0
-				state.page = 0
-				state.count = 0
+				state.page = 1
+				state.count = 9
 				state.filter.friend = null
 				state.filter.term = EMPTY_STRING
 			})

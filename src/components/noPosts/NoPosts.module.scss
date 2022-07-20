@@ -1,0 +1,13 @@
+	@import 'styles/sass/variables.scss';
+
+	.noPosts {
+		background-color: $secondaryBackgroundColor;
+		margin-top: 20px;
+		width: 100%;
+		padding: 50px;
+
+		h1 {
+			font-size: 50px;
+			text-align: center;
+		}
+	}

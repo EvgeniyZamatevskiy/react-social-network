@@ -9,10 +9,10 @@ export const NavBar: FC = (): ReturnComponentType => {
 		<div className={style.navBar}>
 			<ul className={style.list}>
 				<li>
-					<NavLink to={Path.profile}>Profile</NavLink>
+					<NavLink to={Path.PROFILE}>Profile</NavLink>
 				</li>
 				<li>
-					<NavLink to={Path.users}>Users</NavLink>
+					<NavLink to={Path.USERS}>Users</NavLink>
 				</li>
 			</ul>
 		</div>

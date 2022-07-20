@@ -1,4 +1,4 @@
-	@import '../../../styles/sass/templates.scss';
+	@import 'styles/sass/templates.scss';
 
 	.addItemForm {
 		@include flex (column, stretch, center);
@@ -10,7 +10,7 @@
 		}
 
 		textarea {
-			padding: 20px 20px 20px 20px;
+			padding: 20px;
 			border-radius: 10px;
 			width: 60%;
 			resize: none;

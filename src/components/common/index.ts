@@ -1,4 +1,4 @@
-export { AddItemForm } from './AddItemForm'
-export { Pagination } from './Pagination'
-export { EditableSpan } from './EditableSpan'
-export { ErrorAlert } from './ErrorAlert'
+export { AddItemForm } from './addItemForm'
+export { Pagination } from './pagination'
+export { EditableItem } from './editableItem'
+export { ErrorAlert } from './errorAlert'

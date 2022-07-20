@@ -15,7 +15,6 @@ export const getUsers = createAsyncThunk
 			const { items: users, totalCount } = response.data
 
 			return { users, totalCount, page: params.page, filter: params.filter }
-
 		} catch (error: any) {
 			return rejectWithValue({ errors: [error.message] })
 		}
@@ -31,14 +30,13 @@ export const follow = createAsyncThunk
 			const response = await FOLLOW.follow(userId)
 			const { resultCode, messages } = response.data
 
-			if (resultCode === ResponseCode.Success) {
+			if (resultCode === ResponseCode.SUCCESS) {
 				dispatch(setIsDisabled({ id: userId, isDisabled: false }))
 				return userId
 			} else {
 				dispatch(setIsDisabled({ id: userId, isDisabled: false }))
 				return rejectWithValue({ errors: messages })
 			}
-
 		} catch (error: any) {
 			dispatch(setIsDisabled({ id: userId, isDisabled: false }))
 			return rejectWithValue({ errors: [error.message] })
@@ -55,14 +53,13 @@ export const unfollow = createAsyncThunk
 			const response = await FOLLOW.unfollow(userId)
 			const { resultCode, messages } = response.data
 
-			if (resultCode === ResponseCode.Success) {
+			if (resultCode === ResponseCode.SUCCESS) {
 				dispatch(setIsDisabled({ id: userId, isDisabled: false }))
 				return userId
 			} else {
 				dispatch(setIsDisabled({ id: userId, isDisabled: false }))
 				return rejectWithValue({ errors: messages })
 			}
-
 		} catch (error: any) {
 			dispatch(setIsDisabled({ id: userId, isDisabled: false }))
 			return rejectWithValue({ errors: [error.message] })

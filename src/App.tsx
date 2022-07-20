@@ -1,13 +1,13 @@
-import React, { FC, useEffect } from 'react'
-import { Header, NavBar, Profile, Users, Login, NotFound, ErrorAlert } from 'components'
-import { Path } from 'enums'
+import React, { FC, Suspense, useEffect } from 'react'
+import { Header, NavBar, ErrorAlert } from 'components'
 import { TailSpin } from 'react-loader-spinner'
 import { useSelector } from 'react-redux'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { useAppDispatch } from 'store/hooks'
 import { selectIsInitializedApp } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { getUserData } from 'store/asyncActions'
+import { ROUTES } from 'router'
 
 export const App: FC = (): ReturnComponentType => {
 
@@ -29,14 +29,11 @@ export const App: FC = (): ReturnComponentType => {
       <div className='container'>
         <div className='main'>
           <NavBar />
-          <Routes>
-            <Route path={Path.home} element={<Navigate to={Path.profile} />} />
-            <Route path={Path.profile} element={<Profile />} />
-            <Route path={Path.userProfile} element={<Profile />} />
-            <Route path={Path.users} element={<Users />} />
-            <Route path={Path.login} element={<Login />} />
-            <Route path={Path.notFound} element={<NotFound />} />
-          </Routes>
+          <Suspense fallback={<TailSpin color='#ff8b65' height={200} width={200} wrapperClass={'initialized'} />}>
+            <Routes>
+              {ROUTES.map(({ path, element }) => <Route key={path} path={path} element={element} />)}
+            </Routes>
+          </Suspense>
         </div>
       </div>
       <ErrorAlert />

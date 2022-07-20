@@ -7,6 +7,8 @@ import { setErrorMessage } from 'store/slices/app'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import style from './ErrorAlert.module.scss'
 
+const DELAY = 3000
+
 export const ErrorAlert: FC = (): ReturnComponentType => {
 
 	const dispatch = useAppDispatch()
@@ -17,11 +19,15 @@ export const ErrorAlert: FC = (): ReturnComponentType => {
 		dispatch(setErrorMessage(EMPTY_STRING))
 	}
 
+	const resetErrorMessage = (): void => {
+		dispatch(setErrorMessage(EMPTY_STRING))
+	}
+
 	useEffect(() => {
 		if (errorMessage) {
 			setTimeout(() => {
-				dispatch(setErrorMessage(EMPTY_STRING))
-			}, 3000)
+				resetErrorMessage()
+			}, DELAY)
 		}
 	}, [errorMessage])
 

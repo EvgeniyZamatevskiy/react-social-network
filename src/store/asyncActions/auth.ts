@@ -11,7 +11,7 @@ export const getUserData = createAsyncThunk
 			const response = await AUTH.me()
 			const { data: userData, resultCode, messages } = response.data
 
-			if (resultCode === ResponseCode.Success) {
+			if (resultCode === ResponseCode.SUCCESS) {
 				return userData
 			} else {
 				return rejectWithValue({ errors: messages })
@@ -26,7 +26,7 @@ export const getCaptchaUrl = createAsyncThunk
 	('auth/getCaptchaUrl', async (_, { rejectWithValue }) => {
 		try {
 			const response = await SECURITY.getCaptcha()
-			const { url } = response.data
+			const url = response.data.url
 
 			return url
 		} catch (error: any) {
@@ -41,11 +41,11 @@ export const login = createAsyncThunk
 			const response = await AUTH.login(loginParams)
 			const { resultCode, messages } = response.data
 
-			if (resultCode === ResponseCode.Success) {
+			if (resultCode === ResponseCode.SUCCESS) {
 				dispatch(getUserData())
 				return
 			}
-			if (resultCode === ResponseCode.CaptchaIsRequired) {
+			if (resultCode === ResponseCode.CAPTCHA_IS_REQUIRED) {
 				dispatch(getCaptchaUrl())
 				return
 			}
@@ -63,7 +63,7 @@ export const logOut = createAsyncThunk
 			const response = await AUTH.logOut()
 			const { resultCode, messages } = response.data
 
-			if (resultCode !== ResponseCode.Success) {
+			if (resultCode !== ResponseCode.SUCCESS) {
 				return rejectWithValue({ errors: messages })
 			}
 		} catch (error: any) {

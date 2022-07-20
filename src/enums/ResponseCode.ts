@@ -1,5 +1,5 @@
 export enum ResponseCode {
-	Success = 0,
-	Error = 1,
-	CaptchaIsRequired = 10,
+	SUCCESS = 0,
+	ERROR = 1,
+	CAPTCHA_IS_REQUIRED = 10
 }

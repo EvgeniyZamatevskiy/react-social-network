@@ -1,0 +1,47 @@
+	@import 'styles/sass/variables.scss';
+	@import 'styles/sass/mixins.scss';
+
+	.user {
+		background-color: $secondaryBackgroundColor;
+		@include flex (column, stretch, center);
+		width: 362px;
+		margin-top: 20px;
+		padding: 20px;
+		margin-right: 20px;
+
+		img {
+			width: 200px;
+			height: 200px;
+			margin-bottom: 20px;
+			border-radius: 50%;
+		}
+
+		span {
+			font-size: 30px;
+			margin-bottom: 20px;
+			word-wrap: break-word;
+			width: 345px;
+			text-align: center;
+		}
+
+		button {
+			color: rgb(172, 172, 172);
+			font-size: 20px;
+
+			&:disabled {
+				color: rgb(75, 75, 75)
+			}
+		}
+
+		&:nth-child(3) {
+			margin-right: 0
+		}
+
+		&:nth-child(6) {
+			margin-right: 0
+		}
+
+		&:nth-child(9) {
+			margin-right: 0
+		}
+	}

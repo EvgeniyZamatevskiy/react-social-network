@@ -37,12 +37,11 @@ export const updateUserStatus = createAsyncThunk
 			const response = await PROFILE.updateUserStatus(newStatus)
 			const { resultCode, messages } = response.data
 
-			if (resultCode === ResponseCode.Success) {
+			if (resultCode === ResponseCode.SUCCESS) {
 				return newStatus
 			} else {
 				return rejectWithValue({ errors: messages })
 			}
-
 		} catch (error: any) {
 			return rejectWithValue({ errors: [error.message] })
 		}
@@ -56,12 +55,11 @@ export const updateUserPhoto = createAsyncThunk
 			const { data, resultCode, messages } = response.data
 			const photos = data.photos
 
-			if (resultCode === ResponseCode.Success) {
+			if (resultCode === ResponseCode.SUCCESS) {
 				return photos
 			} else {
 				return rejectWithValue({ errors: messages })
 			}
-
 		} catch (error: any) {
 			return rejectWithValue({ errors: [error.message] })
 		}
@@ -74,12 +72,11 @@ export const updateUserProfile = createAsyncThunk
 			const response = await PROFILE.updateUserProfile(updatedUserProfile)
 			const { resultCode, messages } = response.data
 
-			if (resultCode === ResponseCode.Success) {
+			if (resultCode === ResponseCode.SUCCESS) {
 				return updatedUserProfile
 			} else {
 				return rejectWithValue({ errors: messages })
 			}
-
 		} catch (error: any) {
 			return rejectWithValue({ errors: [error.message] })
 		}
