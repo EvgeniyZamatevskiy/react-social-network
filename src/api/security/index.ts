@@ -1,7 +1,7 @@
 import { instance } from 'api/config'
 
 export const SECURITY = {
-	getCaptcha() {
+	getCaptchaUrl() {
 		return instance.get<{ url: string }>('security/get-captcha-url')
 	}
 }

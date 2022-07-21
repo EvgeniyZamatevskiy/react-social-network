@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import style from './ProfileData.module.scss'
 import { UserProfileType } from 'api/profile/types'
 import { Nullable } from 'types'
+import style from './ProfileData.module.scss'
 
 type ProfileDataPropsType = {
 	userProfile: Nullable<UserProfileType>

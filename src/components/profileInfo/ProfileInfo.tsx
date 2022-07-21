@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, memo, useCallback, useState } from 'react'
+import React, { ChangeEvent, FC, useCallback, useState } from 'react'
 import { EditableItem } from 'components/common'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'store/hooks'
@@ -7,10 +7,10 @@ import { ReturnComponentType } from 'types/ReturnComponentType'
 import { ProfileData } from '../profileData'
 import { ProfileDataEdit } from '../profileDataEdit/ProfileDataEdit'
 import avatar from 'assets/images/avatar.png'
-import style from './ProfileInfo.module.scss'
 import { updateUserPhoto, updateUserStatus } from 'store/asyncActions'
 import { Nullable } from 'types'
 import { UserProfileType } from 'api/profile/types'
+import style from './ProfileInfo.module.scss'
 
 export type ProfileInfoPropsType = {
 	userProfile: Nullable<UserProfileType>

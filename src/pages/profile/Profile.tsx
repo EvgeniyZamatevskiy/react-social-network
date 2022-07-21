@@ -3,7 +3,7 @@ import { Path } from 'enums'
 import { useSelector } from 'react-redux'
 import { useParams, Navigate } from 'react-router-dom'
 import { useAppDispatch } from 'store/hooks'
-import { selectIsAuth, selectUserProfile, selectUserData } from 'store/selectors'
+import { selectId, selectIsAuth, selectUserProfile } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { NoPosts } from '../../components/noPosts'
 import { ProfileInfo } from '../../components/profileInfo'
@@ -18,7 +18,7 @@ export const Profile: FC = (): ReturnComponentType => {
 	const { userId } = useParams<{ userId: string }>()
 
 	const isAuth = useSelector(selectIsAuth)
-	const authorizedUserId = useSelector(selectUserData)?.id
+	const authorizedUserId = useSelector(selectId)
 	const userProfile = useSelector(selectUserProfile)
 
 	const isOwner = !userId
@@ -46,7 +46,7 @@ export const Profile: FC = (): ReturnComponentType => {
 		<div className={style.profile}>
 			<ProfileInfo isOwner={isOwner} userProfile={userProfile} />
 			{isOwner
-				? <Posts image={userProfile?.photos.small} />
+				? <Posts image={userProfile!?.photos.small} />
 				: <NoPosts />}
 		</div>
 	)

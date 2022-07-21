@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'store/hooks'
 import { selectPosts } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import style from './Posts.module.scss'
 import { addPost } from 'store/slices/profile'
 import { Post } from './post/Post'
+import style from './Posts.module.scss'
 
 type PostsPropsType = {
-	image: string | undefined
+	image: string
 }
 
 export const Posts: FC<PostsPropsType> = memo(({ image }): ReturnComponentType => {

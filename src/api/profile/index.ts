@@ -2,6 +2,12 @@ import { instance } from 'api/config'
 import { CommonResponseType } from 'api/types'
 import { UserProfileType, SavePhotoResponseDataType } from './types'
 
+const settings = {
+	headers: {
+		'Content-Type': 'multipart/form-data'
+	}
+}
+
 export const PROFILE = {
 	getUserProfile(userId: number) {
 		return instance.get<UserProfileType>(`profile/${userId}`)
@@ -15,11 +21,8 @@ export const PROFILE = {
 	updateUserPhoto(image: File) {
 		const formData = new FormData()
 		formData.append('image', image)
-		return instance.put<CommonResponseType<SavePhotoResponseDataType>>('profile/photo', formData, {
-			headers: {
-				'Content-Type': 'multipart/form-data'
-			}
-		})
+
+		return instance.put<CommonResponseType<SavePhotoResponseDataType>>('profile/photo', formData, settings)
 	},
 	updateUserProfile(userProfile: UserProfileType) {
 		return instance.put<CommonResponseType>('profile', userProfile)

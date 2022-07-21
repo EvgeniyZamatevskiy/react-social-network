@@ -1,19 +1,11 @@
 import React, { FC } from 'react'
-import { ContactsType, UserProfileType } from 'api/profile/types'
+import { UserProfileType } from 'api/profile/types'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useAppDispatch } from 'store/hooks'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import style from './ProfileDataEdit.module.scss'
 import { updateUserProfile } from 'store/asyncActions'
 import { Nullable } from 'types'
-
-type ProfileEditType = {
-	aboutMe: string
-	contacts: ContactsType
-	fullName: string
-	lookingForAJob: boolean
-	lookingForAJobDescription: string
-}
+import style from './ProfileDataEdit.module.scss'
 
 type ProfileDataEditPropsType = {
 	userProfile: Nullable<UserProfileType>

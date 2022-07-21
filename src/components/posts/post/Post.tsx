@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react'
+import React, { FC } from 'react'
 import { useAppDispatch } from 'store/hooks'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import avatar from 'assets/images/avatar.png'
@@ -8,7 +8,7 @@ import { PostsType } from 'store/slices/profile/types'
 
 type PostPropsType = {
 	post: PostsType,
-	image: string | undefined
+	image: string
 }
 
 export const Post: FC<PostPropsType> = ({ post, image }): ReturnComponentType => {

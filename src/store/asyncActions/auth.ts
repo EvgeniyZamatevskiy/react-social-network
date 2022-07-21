@@ -25,7 +25,7 @@ export const getCaptchaUrl = createAsyncThunk
 	<string, undefined, { rejectValue: { errors: string[] } }>
 	('auth/getCaptchaUrl', async (_, { rejectWithValue }) => {
 		try {
-			const response = await SECURITY.getCaptcha()
+			const response = await SECURITY.getCaptchaUrl()
 			const url = response.data.url
 
 			return url

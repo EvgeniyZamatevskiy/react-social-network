@@ -8,7 +8,7 @@ export type AuthSliceInitialStateType = {
 }
 
 export type UserDataType = {
-	id: Nullable<number>
-	email: Nullable<string>
-	login: Nullable<string>
+	id: number
+	email: string
+	login: string
 }

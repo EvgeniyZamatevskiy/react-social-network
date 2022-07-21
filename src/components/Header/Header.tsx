@@ -3,7 +3,7 @@ import { TailSpin } from 'react-loader-spinner'
 import { useSelector } from 'react-redux'
 import { logOut } from 'store/asyncActions'
 import { useAppDispatch } from 'store/hooks'
-import { selectIsAuth, selectIsLoading, selectUserData } from 'store/selectors'
+import { selectIsAuth, selectIsLoading, selectLogin } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import style from './Header.module.scss'
 
@@ -11,7 +11,7 @@ export const Header: FC = (): ReturnComponentType => {
 
   const dispatch = useAppDispatch()
 
-  const userData = useSelector(selectUserData)
+  const login = useSelector(selectLogin)
   const isAuth = useSelector(selectIsAuth)
   const isLoading = useSelector(selectIsLoading)
 
@@ -26,7 +26,7 @@ export const Header: FC = (): ReturnComponentType => {
       <div className={style.body}>
         {isAuth &&
           <>
-            <div className={style.authorizedUserLogin}>{userData?.login}</div>
+            <div className={style.authorizedUserLogin}>{login}</div>
             <button onClick={onLogOutClick}>Log out</button>
           </>
         }
