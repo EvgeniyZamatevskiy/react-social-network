@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { EMPTY_STRING } from 'constants/base'
 import { isErrorRejected, isLoadingFulfilled, isLoadingPending, isLoadingRejected } from 'store/helpers'
-import { InitialStateType } from './types'
+import { AppSliceInitialStateType } from './types'
 
 const FIRST_ELEMENT_ARRAY = 0
 
-const initialState: InitialStateType = {
+const initialState: AppSliceInitialStateType = {
 	errorMessage: EMPTY_STRING,
 	isLoading: false
 }

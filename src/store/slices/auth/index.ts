@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { getCaptchaUrl, getUserData, login, logOut } from 'store/asyncActions/auth'
-import { InitialStateType, UserDataType } from './types'
+import { AuthSliceInitialStateType, UserDataType } from './types'
 
-const initialState: InitialStateType = {
+const initialState: AuthSliceInitialStateType = {
 	isAuth: false,
 	isInitializedApp: false,
 	userData: null,
@@ -12,11 +12,7 @@ const initialState: InitialStateType = {
 const authSlice = createSlice({
 	name: 'auth',
 	initialState,
-	reducers: {
-		setIsAuth(state, action: PayloadAction<boolean>) {
-			state.isAuth = action.payload
-		},
-	},
+	reducers: {},
 	extraReducers(builder) {
 		builder
 			.addCase(getUserData.fulfilled, (state, action: PayloadAction<UserDataType>) => {
@@ -39,7 +35,5 @@ const authSlice = createSlice({
 			})
 	},
 })
-
-export const { setIsAuth } = authSlice.actions
 
 export default authSlice.reducer

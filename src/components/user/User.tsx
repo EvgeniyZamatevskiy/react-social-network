@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react'
+import React, { FC } from 'react'
 import { Path } from 'enums'
 import { NavLink } from 'react-router-dom'
 import { useAppDispatch } from 'store/hooks'
@@ -33,8 +33,8 @@ export const User: FC<UserPropsType> = ({ user }): ReturnComponentType => {
 			</NavLink>
 			<span className={style.name}>{user.name}</span>
 			{user.followed
-				? <button disabled={user.disabledStatus} onClick={onUnfollowClick}>Unfollow</button>
-				: <button disabled={user.disabledStatus} onClick={onFollowClick}>Follow</button>}
+				? <button disabled={user.isDisabled} onClick={onUnfollowClick}>Unfollow</button>
+				: <button disabled={user.isDisabled} onClick={onFollowClick}>Follow</button>}
 		</div>
 	)
 }

@@ -7,6 +7,7 @@ import { ResponseCode } from 'enums'
 export const getUserProfile = createAsyncThunk
 	<UserProfileType, number, { rejectValue: { errors: string[] } }>
 	('profile/getUserProfile', async (userId, { rejectWithValue }) => {
+
 		try {
 			const response = await PROFILE.getUserProfile(userId)
 			const userProfile = response.data

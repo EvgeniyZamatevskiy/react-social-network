@@ -1,4 +1,4 @@
-export type InitialStateType = {
+export type AppSliceInitialStateType = {
 	errorMessage: string
 	isLoading: boolean
 }

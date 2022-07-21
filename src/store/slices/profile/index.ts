@@ -4,9 +4,9 @@ import { PhotosType } from 'api/types'
 import { EMPTY_STRING } from 'constants/base'
 import { getUserProfile, getUserStatus, logOut, updateUserPhoto, updateUserProfile, updateUserStatus } from 'store/asyncActions'
 import { Nullable } from 'types'
-import { InitialStateType } from './types'
+import { ProfileSliceInitialStateType } from './types'
 
-const initialState: InitialStateType = {
+const initialState: ProfileSliceInitialStateType = {
 	posts: [
 		{
 			id: 1,

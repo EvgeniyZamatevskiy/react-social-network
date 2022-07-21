@@ -1,7 +1,7 @@
 import { UserType } from 'api/users/types'
 import { Nullable } from 'types'
 
-export type InitialStateType = {
+export type UsersSliceInitialStateType = {
 	users: UsersSupplementedType[]
 	count: number
 	page: number
@@ -10,7 +10,7 @@ export type InitialStateType = {
 }
 
 export type UsersSupplementedType = UserType & {
-	disabledStatus: boolean
+	isDisabled: boolean
 }
 
 export type FilterType = {

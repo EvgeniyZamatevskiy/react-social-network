@@ -1,6 +1,6 @@
 import { Nullable } from 'types'
 
-export type InitialStateType = {
+export type AuthSliceInitialStateType = {
 	isAuth: boolean
 	isInitializedApp: boolean
 	userData: Nullable<UserDataType>
