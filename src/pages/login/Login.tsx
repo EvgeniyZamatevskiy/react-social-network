@@ -18,8 +18,10 @@ export const Login: FC = (): ReturnComponentType => {
 	const isAuth = useSelector(selectIsAuth)
 	const captchaUrl = useSelector(selectCaptchaUrl)
 
-	const { register, handleSubmit, formState: { errors } } = useForm<LoginParamsType>(
-		{ mode: 'onBlur' },
+	const { register, handleSubmit, formState: { errors } } = useForm<LoginParamsType>({
+		mode: 'onBlur',
+		defaultValues: { email: 'free@samuraijs.com', password: 'free' }
+	},
 	)
 
 	const emailValidation = {
