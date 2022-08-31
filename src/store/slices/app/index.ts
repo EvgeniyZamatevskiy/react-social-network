@@ -3,8 +3,6 @@ import { EMPTY_STRING } from 'constants/base'
 import { isErrorRejected, isLoadingFulfilled, isLoadingPending, isLoadingRejected } from 'store/helpers'
 import { AppSliceInitialStateType } from './types'
 
-const FIRST_ELEMENT_ARRAY = 0
-
 const initialState: AppSliceInitialStateType = {
 	errorMessage: EMPTY_STRING,
 	isLoading: false
@@ -20,8 +18,8 @@ const appSlice = createSlice({
 	},
 	extraReducers(builder) {
 		builder
-			.addMatcher(isErrorRejected, (state, action: PayloadAction<{ errors: string[] }>) => {
-				state.errorMessage = action.payload.errors[FIRST_ELEMENT_ARRAY]
+			.addMatcher(isErrorRejected, (state, action: PayloadAction<{ error: string }>) => {
+				state.errorMessage = action.payload.error
 			})
 			.addMatcher(isLoadingPending, (state) => {
 				state.isLoading = true

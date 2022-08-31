@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { getCaptchaUrl, getUserData, login, logOut } from 'store/asyncActions/auth'
-import { AuthSliceInitialStateType, UserDataType } from './types'
+import { getCaptchaUrl, getAuthorizedUserData, login, logOut } from 'store/asyncActions/auth'
+import { AuthorizedUserDataType, AuthSliceInitialStateType } from './types'
 
 const initialState: AuthSliceInitialStateType = {
 	isAuth: false,
 	isInitializedApp: false,
-	userData: null,
+	authorizedUserData: null,
 	captchaUrl: null
 }
 
@@ -15,19 +15,19 @@ const authSlice = createSlice({
 	reducers: {},
 	extraReducers(builder) {
 		builder
-			.addCase(getUserData.fulfilled, (state, action: PayloadAction<UserDataType>) => {
-				state.userData = action.payload
+			.addCase(getAuthorizedUserData.fulfilled, (state, action: PayloadAction<AuthorizedUserDataType>) => {
+				state.authorizedUserData = action.payload
 				state.isAuth = true
 				state.isInitializedApp = true
 			})
-			.addCase(getUserData.rejected, (state) => {
+			.addCase(getAuthorizedUserData.rejected, (state) => {
 				state.isInitializedApp = true
 			})
 			.addCase(getCaptchaUrl.fulfilled, (state, action) => {
 				state.captchaUrl = action.payload
 			})
 			.addCase(logOut.fulfilled, (state) => {
-				state.userData = null
+				state.authorizedUserData = null
 				state.isAuth = false
 			})
 			.addCase(login.fulfilled, (state) => {

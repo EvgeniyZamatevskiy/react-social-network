@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC, useCallback, useState } from 'react'
 import { EditableItem } from 'components/common'
 import { useSelector } from 'react-redux'
-import { useAppDispatch } from 'store/hooks'
+import { useAppDispatch } from 'hooks'
 import { selectUserStatus } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { ProfileData } from '../profileData'

@@ -2,12 +2,12 @@ import { UserProfileType } from 'api/profile/types'
 import { Nullable } from 'types'
 
 export type ProfileSliceInitialStateType = {
-	posts: PostsType[]
+	posts: PostType[]
 	userProfile: Nullable<UserProfileType>
 	userStatus: string
 }
 
-export type PostsType = {
+export type PostType = {
 	id: number
 	like: number
 	message: string

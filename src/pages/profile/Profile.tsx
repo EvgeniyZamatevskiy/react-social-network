@@ -2,8 +2,8 @@ import React, { FC, useEffect } from 'react'
 import { Path } from 'enums'
 import { useSelector } from 'react-redux'
 import { useParams, Navigate } from 'react-router-dom'
-import { useAppDispatch } from 'store/hooks'
-import { selectId, selectIsAuth, selectUserProfile } from 'store/selectors'
+import { useAppDispatch } from 'hooks'
+import { selectAuthorizedUserId, selectIsAuth, selectUserProfile } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { NoPosts } from '../../components/noPosts'
 import { ProfileInfo } from '../../components/profileInfo'
@@ -18,7 +18,7 @@ export const Profile: FC = (): ReturnComponentType => {
 	const { userId } = useParams<{ userId: string }>()
 
 	const isAuth = useSelector(selectIsAuth)
-	const authorizedUserId = useSelector(selectId)
+	const authorizedUserId = useSelector(selectAuthorizedUserId)
 	const userProfile = useSelector(selectUserProfile)
 
 	const isOwner = !userId

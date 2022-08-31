@@ -1,13 +1,13 @@
 import React, { FC } from 'react'
-import { useAppDispatch } from 'store/hooks'
+import { useAppDispatch } from 'hooks'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import avatar from 'assets/images/avatar.png'
 import style from './Post.module.scss'
 import { removePost } from 'store/slices/profile'
-import { PostsType } from 'store/slices/profile/types'
+import { PostType } from 'store/slices/profile/types'
 
 type PostPropsType = {
-	post: PostsType,
+	post: PostType,
 	image: string
 }
 

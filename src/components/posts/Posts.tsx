@@ -1,7 +1,7 @@
 import React, { FC, memo, useCallback } from 'react'
 import { AddItemForm } from 'components/common'
 import { useSelector } from 'react-redux'
-import { useAppDispatch } from 'store/hooks'
+import { useAppDispatch } from 'hooks'
 import { selectPosts } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { addPost } from 'store/slices/profile'

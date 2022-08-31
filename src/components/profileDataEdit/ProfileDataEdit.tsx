@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { UserProfileType } from 'api/profile/types'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useAppDispatch } from 'store/hooks'
+import { useAppDispatch } from 'hooks'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { updateUserProfile } from 'store/asyncActions'
 import { Nullable } from 'types'

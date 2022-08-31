@@ -3,10 +3,10 @@ import { Header, NavBar, ErrorAlert } from 'components'
 import { TailSpin } from 'react-loader-spinner'
 import { useSelector } from 'react-redux'
 import { Routes, Route } from 'react-router-dom'
-import { useAppDispatch } from 'store/hooks'
+import { useAppDispatch } from 'hooks'
 import { selectIsInitializedApp } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import { getUserData } from 'store/asyncActions'
+import { getAuthorizedUserData } from 'store/asyncActions'
 import { ROUTES } from 'router'
 
 export const App: FC = (): ReturnComponentType => {
@@ -16,7 +16,7 @@ export const App: FC = (): ReturnComponentType => {
   const isInitializedApp = useSelector(selectIsInitializedApp)
 
   useEffect(() => {
-    dispatch(getUserData())
+    dispatch(getAuthorizedUserData())
   }, [])
 
   if (!isInitializedApp) {

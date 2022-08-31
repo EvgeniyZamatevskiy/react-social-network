@@ -1,2 +1,2 @@
 export const EMPTY_STRING = ''
-// export const ERROR_MESSAGE = 0
+export const FIRST_ELEMENT_ARRAY = 0

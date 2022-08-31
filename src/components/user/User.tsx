@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Path } from 'enums'
 import { NavLink } from 'react-router-dom'
-import { useAppDispatch } from 'store/hooks'
+import { useAppDispatch } from 'hooks'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import avatar from 'assets/images/avatar.png'
 import { follow, unfollow } from 'store/asyncActions/users'

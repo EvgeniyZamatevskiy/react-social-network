@@ -18,5 +18,6 @@ export const ROUTES = [
 	{ path: Path.USER_PROFILE, element: <Profile /> },
 	{ path: Path.USERS, element: <Users /> },
 	{ path: Path.LOGIN, element: <Login /> },
-	{ path: Path.NOT_FOUND, element: <NotFound /> },
+	{ path: Path.NOT_FOUND, element: <Navigate to={Path.NOT_FOUND_404} /> },
+	{ path: Path.NOT_FOUND_404, element: <NotFound /> },
 ]

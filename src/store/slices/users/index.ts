@@ -19,6 +19,7 @@ const usersSlice = createSlice({
 	reducers: {
 		setIsDisabled(state, action: PayloadAction<{ id: number, isDisabled: boolean }>) {
 			const user = state.users.find(user => user.id === action.payload.id)
+
 			if (user) {
 				user.isDisabled = action.payload.isDisabled
 			}
@@ -35,12 +36,14 @@ const usersSlice = createSlice({
 				})
 			.addCase(follow.fulfilled, (state, action: PayloadAction<number>) => {
 				const user = state.users.find(user => user.id === action.payload)
+
 				if (user) {
 					user.followed = true
 				}
 			})
 			.addCase(unfollow.fulfilled, (state, action: PayloadAction<number>) => {
 				const user = state.users.find(user => user.id === action.payload)
+
 				if (user) {
 					user.followed = false
 				}
