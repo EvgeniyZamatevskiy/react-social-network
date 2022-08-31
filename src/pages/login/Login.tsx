@@ -7,8 +7,8 @@ import { Navigate } from 'react-router-dom'
 import { useAppDispatch } from 'hooks'
 import { selectIsAuth, selectCaptchaUrl } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import avatar from 'assets/images/avatar.png'
 import { login } from 'store/asyncActions'
+import avatar from 'assets/images/avatar.png'
 import style from './Login.module.scss'
 
 export const Login: FC = (): ReturnComponentType => {
@@ -24,7 +24,7 @@ export const Login: FC = (): ReturnComponentType => {
 	},
 	)
 
-	const emailValidation = {
+	const emailSettings = {
 		required: 'Field is required!',
 		pattern: {
 			value: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
@@ -32,7 +32,7 @@ export const Login: FC = (): ReturnComponentType => {
 		}
 	}
 
-	const passwordValidation = {
+	const passwordSettings = {
 		required: 'Field is required!',
 	}
 
@@ -52,13 +52,13 @@ export const Login: FC = (): ReturnComponentType => {
 				className={style.email}
 				type='text'
 				placeholder='Email'
-				{...register('email', emailValidation)} />
+				{...register('email', emailSettings)} />
 			{errors?.email && <p className={style.emailError}>{errors?.email.message}</p>}
 			<input
 				className={style.password}
 				type='password'
 				placeholder='Password'
-				{...register('password', passwordValidation)} />
+				{...register('password', passwordSettings)} />
 			{errors?.password && <p className={style.passwordError}>{errors?.password.message}</p>}
 			<input
 				className={`${style.rememberMe} ${captchaUrl && style.secondaryRememberMe}`}

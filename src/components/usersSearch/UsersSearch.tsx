@@ -3,15 +3,12 @@ import { EMPTY_STRING } from 'constants/base'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import style from './UsersSearch.module.scss'
 import { FilterType } from 'store/slices/users/types'
-
-type UsersSearchPropsType = {
-	handleFilterChangedClick: (filter: FilterType) => void
-}
+import { UsersSearchPropsType } from './types'
 
 export const UsersSearch: FC<UsersSearchPropsType> = memo(({ handleFilterChangedClick }): ReturnComponentType => {
 
-	const [term, setTerm] = useState<string>(EMPTY_STRING)
-	const [friend, setFriend] = useState<string>('null')
+	const [term, setTerm] = useState(EMPTY_STRING)
+	const [friend, setFriend] = useState('null')
 
 	const onInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
 		setTerm(event.currentTarget.value)

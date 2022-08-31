@@ -7,10 +7,7 @@ import { ReturnComponentType } from 'types/ReturnComponentType'
 import { addPost } from 'store/slices/profile'
 import { Post } from './post/Post'
 import style from './Posts.module.scss'
-
-type PostsPropsType = {
-	image: string
-}
+import { PostsPropsType } from './types'
 
 export const Posts: FC<PostsPropsType> = memo(({ image }): ReturnComponentType => {
 

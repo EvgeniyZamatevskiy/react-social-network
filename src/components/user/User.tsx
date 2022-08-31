@@ -6,11 +6,7 @@ import { ReturnComponentType } from 'types/ReturnComponentType'
 import avatar from 'assets/images/avatar.png'
 import { follow, unfollow } from 'store/asyncActions/users'
 import style from './User.module.scss'
-import { UsersSupplementedType } from 'store/slices/users/types'
-
-type UserPropsType = {
-	user: UsersSupplementedType
-}
+import { UserPropsType } from './types'
 
 export const User: FC<UserPropsType> = ({ user }): ReturnComponentType => {
 

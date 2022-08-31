@@ -11,8 +11,8 @@ const ERROR_MESSAGE = 'Title is required!'
 
 export const AddItemForm: FC<AddItemFormPropsType> = memo(({ addItem }): ReturnComponentType => {
 
-	const [title, setTitle] = useState<string>(EMPTY_STRING)
-	const [errorMessage, setErrorMessage] = useState<string>(EMPTY_STRING)
+	const [title, setTitle] = useState(EMPTY_STRING)
+	const [errorMessage, setErrorMessage] = useState(EMPTY_STRING)
 
 	const resetErrorMessage = (): void => setErrorMessage(EMPTY_STRING)
 

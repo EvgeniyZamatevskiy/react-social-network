@@ -25,18 +25,18 @@ export const Users: FC = (): ReturnComponentType => {
 
 	const renderUsers = users.map(user => <User key={user.id} user={user} />)
 
+	useEffect(() => {
+		if (isAuth) {
+			dispatch(getUsers({ count, page, filter }))
+		}
+	}, [])
+
 	const handleSetCurrentPageClick = useCallback((page: number): void => {
 		dispatch(getUsers({ count, page, filter }))
 	}, [])
 
 	const handleFilterChangedClick = useCallback((filter: FilterType): void => {
 		dispatch(getUsers({ count, page: 1, filter }))
-	}, [])
-
-	useEffect(() => {
-		if (isAuth) {
-			dispatch(getUsers({ count, page, filter }))
-		}
 	}, [])
 
 	if (!isAuth) {

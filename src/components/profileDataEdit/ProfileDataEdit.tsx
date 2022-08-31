@@ -4,14 +4,8 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { useAppDispatch } from 'hooks'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { updateUserProfile } from 'store/asyncActions'
-import { Nullable } from 'types'
 import style from './ProfileDataEdit.module.scss'
-
-type ProfileDataEditPropsType = {
-	userProfile: Nullable<UserProfileType>
-	setEditProfile: (editProfile: boolean) => void
-	editProfile: boolean
-}
+import { ProfileDataEditPropsType } from './types'
 
 export const ProfileDataEdit: FC<ProfileDataEditPropsType> = ({ userProfile, setEditProfile, editProfile }): ReturnComponentType => {
 

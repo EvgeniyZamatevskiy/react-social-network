@@ -2,19 +2,12 @@ import React, { FC, memo, useEffect, useState } from 'react'
 import { EMPTY_STRING } from 'constants/base'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import style from './Pagination.module.scss'
-
-type PaginationPropsType = {
-	totalItemsCount: number,
-	count: number
-	currentPage: number
-	handleSetCurrentPageClick: (currentPage: number) => void
-	portionSize?: number
-}
+import { PaginationPropsType } from './types'
 
 export const Pagination: FC<PaginationPropsType> =
 	memo(({ totalItemsCount, count, currentPage, handleSetCurrentPageClick, portionSize = 9 }): ReturnComponentType => {
 
-		const [portionNumber, setPortionNumber] = useState<number>(1)
+		const [portionNumber, setPortionNumber] = useState(1)
 
 		const pagesCount = Math.ceil(totalItemsCount / count)
 		const pages = []

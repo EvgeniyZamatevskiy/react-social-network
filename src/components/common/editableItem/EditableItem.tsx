@@ -12,8 +12,8 @@ type EditableItemPropsType = {
 
 export const EditableItem: FC<EditableItemPropsType> = memo(({ currentValue, changeValue, secondSpanClassName }): ReturnComponentType => {
 
-	const [editMode, setEditMode] = useState<boolean>(false)
-	const [newValue, setNewValue] = useState<string>(EMPTY_STRING)
+	const [editMode, setEditMode] = useState(false)
+	const [newValue, setNewValue] = useState(EMPTY_STRING)
 
 	const onInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
 		setNewValue(event.currentTarget.value)

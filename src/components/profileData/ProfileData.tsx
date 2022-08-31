@@ -1,20 +1,11 @@
 import React, { FC } from 'react'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import { UserProfileType } from 'api/profile/types'
-import { Nullable } from 'types'
+import { ProfileDataPropsType } from './types'
 import style from './ProfileData.module.scss'
-
-type ProfileDataPropsType = {
-	userProfile: Nullable<UserProfileType>
-	setEditProfile: (editProfile: boolean) => void
-	isOwner: boolean
-}
 
 export const ProfileData: FC<ProfileDataPropsType> = ({ userProfile, setEditProfile, isOwner }): ReturnComponentType => {
 
-	const onActivateEditProfile = (): void => {
-		setEditProfile(true)
-	}
+	const onActivateEditProfile = (): void => setEditProfile(true)
 
 	return (
 		<div className={style.about}>

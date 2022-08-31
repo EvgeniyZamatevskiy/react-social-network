@@ -4,12 +4,7 @@ import { ReturnComponentType } from 'types/ReturnComponentType'
 import avatar from 'assets/images/avatar.png'
 import style from './Post.module.scss'
 import { removePost } from 'store/slices/profile'
-import { PostType } from 'store/slices/profile/types'
-
-type PostPropsType = {
-	post: PostType,
-	image: string
-}
+import { PostPropsType } from './types'
 
 export const Post: FC<PostPropsType> = ({ post, image }): ReturnComponentType => {
 

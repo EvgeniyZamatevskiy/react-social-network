@@ -7,16 +7,10 @@ import { ReturnComponentType } from 'types/ReturnComponentType'
 import { ProfileData } from '../profileData'
 import { ProfileDataEdit } from '../profileDataEdit/ProfileDataEdit'
 import { updateUserStatus } from 'store/asyncActions'
-import { Nullable } from 'types'
-import { UserProfileType } from 'api/profile/types'
 import { File } from 'components/file'
 import avatar from 'assets/images/avatar.png'
 import style from './ProfileInfo.module.scss'
-
-export type ProfileInfoPropsType = {
-	userProfile: Nullable<UserProfileType>
-	isOwner: boolean
-}
+import { ProfileInfoPropsType } from './types'
 
 export const ProfileInfo: FC<ProfileInfoPropsType> = ({ isOwner, userProfile }): ReturnComponentType => {
 
@@ -24,7 +18,7 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = ({ isOwner, userProfile }):
 
 	const userStatus = useSelector(selectUserStatus)
 
-	const [editProfile, setEditProfile] = useState<boolean>(false)
+	const [editProfile, setEditProfile] = useState(false)
 
 	const userImage = userProfile?.photos.small ? userProfile.photos.small : avatar
 
