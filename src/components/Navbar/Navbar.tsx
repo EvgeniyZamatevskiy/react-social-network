@@ -14,6 +14,9 @@ export const NavBar: FC = (): ReturnComponentType => {
 				<li>
 					<NavLink to={Path.USERS}>Users</NavLink>
 				</li>
+				<li>
+					<NavLink to={Path.CHAT}>Chat</NavLink>
+				</li>
 			</ul>
 		</div>
 	)
