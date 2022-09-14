@@ -4,7 +4,7 @@ import { UserType } from 'api/users/types'
 import { AxiosError } from 'axios'
 import { FIRST_ELEMENT_ARRAY } from 'constants/base'
 import { ResponseCode } from 'enums'
-import { setIsDisabled } from 'store/slices/users'
+import { setDisabledUserId } from 'store/slices/users'
 import { FilterType } from 'store/slices/users/types'
 import { handleServerNetworkError } from 'utils'
 
@@ -33,21 +33,21 @@ export const follow = createAsyncThunk
 	>
 	('users/follow', async (userId, { rejectWithValue, dispatch }) => {
 
-		dispatch(setIsDisabled({ id: userId, isDisabled: true }))
+		dispatch(setDisabledUserId({ id: userId, isDisabled: true }))
 
 		try {
 			const response = await FOLLOW.follow(userId)
 			const { resultCode, messages } = response.data
 
 			if (resultCode === ResponseCode.SUCCESS) {
-				dispatch(setIsDisabled({ id: userId, isDisabled: false }))
+				dispatch(setDisabledUserId({ id: userId, isDisabled: false }))
 				return userId
 			} else {
-				dispatch(setIsDisabled({ id: userId, isDisabled: false }))
+				dispatch(setDisabledUserId({ id: userId, isDisabled: false }))
 				return rejectWithValue({ error: messages[FIRST_ELEMENT_ARRAY] })
 			}
 		} catch (error) {
-			dispatch(setIsDisabled({ id: userId, isDisabled: false }))
+			dispatch(setDisabledUserId({ id: userId, isDisabled: false }))
 			return handleServerNetworkError(error as AxiosError | Error, rejectWithValue)
 		}
 	})
@@ -60,21 +60,21 @@ export const unfollow = createAsyncThunk
 	>
 	('users/unfollow', async (userId, { rejectWithValue, dispatch }) => {
 
-		dispatch(setIsDisabled({ id: userId, isDisabled: true }))
+		dispatch(setDisabledUserId({ id: userId, isDisabled: true }))
 
 		try {
 			const response = await FOLLOW.unfollow(userId)
 			const { resultCode, messages } = response.data
 
 			if (resultCode === ResponseCode.SUCCESS) {
-				dispatch(setIsDisabled({ id: userId, isDisabled: false }))
+				dispatch(setDisabledUserId({ id: userId, isDisabled: false }))
 				return userId
 			} else {
-				dispatch(setIsDisabled({ id: userId, isDisabled: false }))
+				dispatch(setDisabledUserId({ id: userId, isDisabled: false }))
 				return rejectWithValue({ error: messages[FIRST_ELEMENT_ARRAY] })
 			}
 		} catch (error) {
-			dispatch(setIsDisabled({ id: userId, isDisabled: false }))
+			dispatch(setDisabledUserId({ id: userId, isDisabled: false }))
 			return handleServerNetworkError(error as AxiosError | Error, rejectWithValue)
 		}
 	})

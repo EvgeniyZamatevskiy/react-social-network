@@ -1,5 +1,5 @@
-import { UsersSupplementedType } from 'store/slices/users/types'
+import { UserType } from 'api/users/types'
 
 export type UserPropsType = {
-	user: UsersSupplementedType
+	user: UserType
 }

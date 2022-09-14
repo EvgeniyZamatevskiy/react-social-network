@@ -10,26 +10,25 @@ const initialState: UsersSliceInitialStateType = {
 	count: 9,
 	page: 1,
 	totalCount: 0,
-	filter: { term: EMPTY_STRING, friend: null }
+	filter: { term: EMPTY_STRING, friend: null },
+	disabledUserId: [],
 }
 
 const usersSlice = createSlice({
 	name: 'users',
 	initialState,
 	reducers: {
-		setIsDisabled(state, action: PayloadAction<{ id: number, isDisabled: boolean }>) {
-			const user = state.users.find(user => user.id === action.payload.id)
-
-			if (user) {
-				user.isDisabled = action.payload.isDisabled
-			}
+		setDisabledUserId(state, action: PayloadAction<{ id: number, isDisabled: boolean }>) {
+			action.payload.isDisabled
+				? state.disabledUserId.push(action.payload.id)
+				: state.disabledUserId = state.disabledUserId.filter(id => id !== action.payload.id)
 		},
 	},
 	extraReducers(builder) {
 		builder
 			.addCase(getUsers.fulfilled,
 				(state, action: PayloadAction<{ users: UserType[], totalCount: number, page: number, filter: FilterType }>) => {
-					state.users = action.payload.users.map(user => ({ ...user, isDisabled: false }))
+					state.users = action.payload.users
 					state.totalCount = action.payload.totalCount
 					state.page = action.payload.page
 					state.filter = action.payload.filter
@@ -59,6 +58,6 @@ const usersSlice = createSlice({
 	},
 })
 
-export const { setIsDisabled } = usersSlice.actions
+export const { setDisabledUserId } = usersSlice.actions
 
 export default usersSlice.reducer
