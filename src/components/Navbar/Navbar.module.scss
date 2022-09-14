@@ -13,14 +13,6 @@
 		li {
 			margin-bottom: 30px;
 			text-align: center;
-
-			a {
-				transition: color 0.2s ease-in 0s;
-
-				&:hover {
-					color: rgb(196, 196, 196);
-				}
-			}
 		}
 	}
 }

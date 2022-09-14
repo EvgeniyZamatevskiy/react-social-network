@@ -1,21 +1,21 @@
 import React, { FC } from 'react'
 import { Path } from 'enums'
-import { NavLink } from 'react-router-dom'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import style from './NavBar.module.scss'
+import { CustomLink } from 'components/common/customLink/CustomLink'
 
 export const NavBar: FC = (): ReturnComponentType => {
 	return (
 		<div className={style.navBar}>
 			<ul className={style.list}>
 				<li>
-					<NavLink to={Path.PROFILE}>Profile</NavLink>
+					<CustomLink to={Path.PROFILE} colorActiveLink='rgb(196, 196, 196)'>Profile</CustomLink>
 				</li>
 				<li>
-					<NavLink to={Path.USERS}>Users</NavLink>
+					<CustomLink to={Path.USERS} colorActiveLink='rgb(196, 196, 196)'>Users</CustomLink>
 				</li>
 				<li>
-					<NavLink to={Path.CHAT}>Chat</NavLink>
+					<CustomLink to={Path.CHAT} colorActiveLink='rgb(196, 196, 196)'>Chat</CustomLink>
 				</li>
 			</ul>
 		</div>

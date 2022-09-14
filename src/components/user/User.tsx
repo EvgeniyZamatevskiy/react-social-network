@@ -1,12 +1,12 @@
 import React, { FC } from 'react'
 import { Path } from 'enums'
-import { NavLink } from 'react-router-dom'
 import { useAppDispatch } from 'hooks'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import avatar from 'assets/images/avatar.png'
 import { follow, unfollow } from 'store/asyncActions/users'
 import style from './User.module.scss'
 import { UserPropsType } from './types'
+import { CustomLink } from 'components/common/customLink/CustomLink'
 
 export const User: FC<UserPropsType> = ({ user }): ReturnComponentType => {
 
@@ -24,9 +24,9 @@ export const User: FC<UserPropsType> = ({ user }): ReturnComponentType => {
 
 	return (
 		<div className={style.user}>
-			<NavLink to={`${Path.PROFILE}/${user.id}`}>
+			<CustomLink to={`${Path.PROFILE}/${user.id}`}>
 				<img src={userImage} />
-			</NavLink>
+			</CustomLink>
 			<span className={style.name}>{user.name}</span>
 			{user.followed
 				? <button disabled={user.isDisabled} onClick={onUnfollowClick}>Unfollow</button>
