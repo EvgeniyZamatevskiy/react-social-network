@@ -1,0 +1,1 @@
+export { WithRequireAuth } from './WithRequireAuth'

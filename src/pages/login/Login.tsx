@@ -1,22 +1,26 @@
 import React, { FC } from 'react'
-import { Path } from 'enums'
 import { LoginParamsType } from 'api/auth/types'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useSelector } from 'react-redux'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 import { useAppDispatch } from 'hooks'
 import { selectIsAuth, selectCaptchaUrl } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { login } from 'store/asyncActions'
 import avatar from 'assets/images/avatar.png'
 import style from './Login.module.scss'
+import { LocationStateType } from './types'
 
 export const Login: FC = (): ReturnComponentType => {
 
 	const dispatch = useAppDispatch()
 
+	const location = useLocation()
+
 	const isAuth = useSelector(selectIsAuth)
 	const captchaUrl = useSelector(selectCaptchaUrl)
+
+	const fromPage = (location.state as LocationStateType)?.from?.pathname || '/'
 
 	const { register, handleSubmit, formState: { errors } } = useForm<LoginParamsType>({
 		mode: 'onBlur',
@@ -41,7 +45,7 @@ export const Login: FC = (): ReturnComponentType => {
 	}
 
 	if (isAuth) {
-		return <Navigate to={Path.PROFILE} />
+		return <Navigate to={fromPage} />
 	}
 
 	return (

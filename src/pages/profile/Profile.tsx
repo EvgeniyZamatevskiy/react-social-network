@@ -1,7 +1,6 @@
 import React, { FC, useEffect } from 'react'
-import { Path } from 'enums'
 import { useSelector } from 'react-redux'
-import { useParams, Navigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useAppDispatch } from 'hooks'
 import { selectAuthorizedUserId, selectIsAuth, selectUserProfile } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
@@ -35,10 +34,6 @@ export const Profile: FC = (): ReturnComponentType => {
 	useEffect(() => {
 		window.scrollTo(0, 0)
 	}, [])
-
-	if (!isAuth) {
-		return <Navigate to={Path.LOGIN} />
-	}
 
 	return (
 		<div className={style.profile}>

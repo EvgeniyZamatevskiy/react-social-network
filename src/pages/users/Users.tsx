@@ -1,8 +1,6 @@
 import React, { FC, useCallback, useEffect } from 'react'
-import { Path } from 'enums'
 import { Pagination } from 'components/common'
 import { useSelector } from 'react-redux'
-import { Navigate } from 'react-router-dom'
 import { useAppDispatch } from 'hooks'
 import { FilterType } from 'store/slices/users/types'
 import { selectUsers, selectIsAuth, selectTotalCount, selectCount, selectPage, selectFilter } from 'store/selectors'
@@ -38,10 +36,6 @@ export const Users: FC = (): ReturnComponentType => {
 	const handleFilterChangedClick = useCallback((filter: FilterType): void => {
 		dispatch(getUsers({ count, page: 1, filter }))
 	}, [])
-
-	if (!isAuth) {
-		return <Navigate to={Path.LOGIN} />
-	}
 
 	return (
 		<div className={style.users}>
