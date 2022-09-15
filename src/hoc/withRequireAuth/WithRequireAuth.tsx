@@ -21,10 +21,11 @@ export const WithRequireAuth: FC<RequireAuthPropsType> = ({ children }): ReturnC
 
 // export const WithRequireAuth = (Component: () => ReturnComponentType) => {
 
-// 	return (props: any) => {
+// 	const NavigateComponent = () => {
+
 // 		const location = useLocation()
 
-// 		const isAuth = useSelector(selectIsAuth)
+// 		const isAuth = false
 
 // 		if (!isAuth) {
 // 			return <Navigate to={Path.LOGIN} state={{ from: location }} />
@@ -32,4 +33,6 @@ export const WithRequireAuth: FC<RequireAuthPropsType> = ({ children }): ReturnC
 
 // 		return <Component />
 // 	}
+
+// 	return NavigateComponent
 // }

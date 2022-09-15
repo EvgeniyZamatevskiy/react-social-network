@@ -20,7 +20,7 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = ({ isOwner, userProfile }):
 
 	const [editProfile, setEditProfile] = useState(false)
 
-	const userImage = userProfile?.photos.small ? userProfile.photos.small : avatar
+	const userImage = userProfile?.photos.small || avatar
 
 	const handleChangeUserStatusClick = useCallback((newStatus: string): void => {
 		dispatch(updateUserStatus(newStatus))
