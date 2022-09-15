@@ -1,6 +1,5 @@
 import { Path } from 'enums'
 import { WithRequireAuth } from 'hoc'
-import { Profile } from 'pages/profile'
 import { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
 
@@ -15,6 +14,9 @@ const NotFound = lazy(() => import(/* webpackChunkName: 'NotFound' */'pages/notF
 
 const Chat = lazy(() => import(/* webpackChunkName: 'Chat' */'pages/chat')
 	.then(module => ({ default: module.Chat })))
+
+const Profile = lazy(() => import(/* webpackChunkName: 'Profile' */'pages/profile')
+	.then(module => ({ default: module.Profile })))
 
 export const ROUTES = [
 	{ path: Path.HOME, element: <Navigate to={Path.PROFILE} /> },
