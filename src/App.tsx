@@ -1,5 +1,5 @@
 import React, { FC, Suspense, useEffect } from 'react'
-import { Header, NavBar, ErrorAlert } from 'components'
+import { NavBar, ErrorAlert, Header } from 'components'
 import { TailSpin } from 'react-loader-spinner'
 import { useSelector } from 'react-redux'
 import { Routes, Route } from 'react-router-dom'

@@ -4,8 +4,9 @@ import style from './Chat.module.scss'
 import { EMPTY_STRING } from 'constants/base'
 import { Message } from 'components/message'
 import { MessageType } from 'api/chat'
+import {WithAuthNavigate} from "../../hoc";
 
-export const Chat: FC = (): ReturnComponentType => {
+export const Chat: FC = WithAuthNavigate((): ReturnComponentType => {
 
 	const [message, setMessage] = useState(EMPTY_STRING)
 	const [webSocket, setWebSocket] = useState<Nullable<WebSocket>>(null)
@@ -82,4 +83,4 @@ export const Chat: FC = (): ReturnComponentType => {
 			<button disabled={webSocket === null || readyStatus !== 'ready'} onClick={onSendMessageClick} style={{ color: 'white' }}>Send</button>
 		</div>
 	)
-}
+})

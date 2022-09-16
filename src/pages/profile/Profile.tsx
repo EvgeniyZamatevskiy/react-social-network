@@ -8,9 +8,10 @@ import { NoPosts } from '../../components/noPosts'
 import { ProfileInfo } from '../../components/profileInfo'
 import { getUserProfile, getUserStatus } from 'store/asyncActions'
 import { Posts } from 'components'
+import { WithAuthNavigate } from 'hoc'
 import style from './Profile.module.scss'
 
-export const Profile: FC = (): ReturnComponentType => {
+export const Profile: FC = WithAuthNavigate((): ReturnComponentType => {
 
 	const dispatch = useAppDispatch()
 
@@ -43,4 +44,4 @@ export const Profile: FC = (): ReturnComponentType => {
 				: <NoPosts />}
 		</div>
 	)
-}
+})

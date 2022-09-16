@@ -9,8 +9,9 @@ import { User } from '../../components/user/User'
 import { UsersSearch } from '../../components/usersSearch'
 import style from './Users.module.scss'
 import { getUsers } from 'store/asyncActions/users'
+import { WithAuthNavigate } from 'hoc'
 
-export const Users: FC = (): ReturnComponentType => {
+export const Users: FC = WithAuthNavigate((): ReturnComponentType => {
 
 	const dispatch = useAppDispatch()
 
@@ -56,4 +57,4 @@ export const Users: FC = (): ReturnComponentType => {
 			</div>
 		</div>
 	)
-}
+})
