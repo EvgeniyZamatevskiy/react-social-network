@@ -1,7 +1,6 @@
 export enum Path {
 	HOME = '/',
 	PROFILE = '/profile',
-	CHAT = '/chat',
 	USER_PROFILE = '/profile/:userId',
 	USERS = '/users',
 	LOGIN = '/login',

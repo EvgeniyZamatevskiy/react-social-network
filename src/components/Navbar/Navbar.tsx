@@ -14,9 +14,6 @@ export const NavBar: FC = (): ReturnComponentType => {
 				<li>
 					<CustomLink to={Path.USERS} colorActiveLink='rgb(196, 196, 196)'>Users</CustomLink>
 				</li>
-				<li>
-					<CustomLink to={Path.CHAT} colorActiveLink='rgb(196, 196, 196)'>Chat</CustomLink>
-				</li>
 			</ul>
 		</div>
 	)
