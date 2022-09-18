@@ -1,13 +1,4 @@
  @import './variables.scss';
  @import './mixins.scss';
 
- %primaryButton {
- 	color: #FFF;
- 	height: 36px;
- 	width: 347px;
- 	background-color: #366EFF;
- 	box-shadow: 0px 4px 18px rgba(54, 110, 255, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
- 	border-radius: 30px;
- 	@include flex(row, center, center);
- 	text-align: center;
- }
+ %primaryButton {}

@@ -4,18 +4,22 @@
 
 body {
 	color: $textColor;
-	background: $backgroundColor;
 	font-family: $fontFamily;
 	font-size: $fontSize;
 	font-weight: $fontWeight;
-	min-height: 93.8vh;
-}
-
-.container {
-	max-width: 960px;
-	margin: 0 auto;
 }
 
 .app {
-	margin-top: 60px;
+	background: $bgPrimaryLight;
+	height: 100vh;
+
+	&.dark {
+		background: $bgPrimaryDark;
+		color: $colorDark;
+	}
+
+	.container {
+		max-width: 960px;
+		margin: 0 auto;
+	}
 }

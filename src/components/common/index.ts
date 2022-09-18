@@ -1,1 +1,1 @@
-export { UniversalSelector } from './universalSelector'
+export { Select } from './select'

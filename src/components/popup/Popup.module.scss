@@ -1,8 +1,9 @@
 @import 'styles/sass/mixins.scss';
+@import 'styles/sass/variables.scss';
 
 .popup {
 	width: 300px;
-	background-color: #fff;
+	background-color: $bgSecondaryLight;
 	position: absolute;
 	top: 50px;
 	right: 0;
@@ -10,6 +11,7 @@
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 	padding: 12px 0px;
+	border: 1px solid $borderLight;
 
 	.watercolorContainer,
 	.logOutBtn {
@@ -26,34 +28,9 @@
 		}
 	}
 
-	.primarySelect {
-		padding: 0px 5px;
-		border: none;
-		appearance: none;
-		color: #2A5885;
-
-		&:focus {
-			border: none;
-		}
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-
-	.primaryOption {
-		color: #2A5885;
-		background-color: #F2F3F5;
-
-		&:checked {
-			background-color: #F2F3F5;
-		}
-	}
-
-	.logOutBtn {
-
-		&:hover {
-			background-color: #F5F6F8;
-		}
+	&.dark {
+		color: $colorDark;
+		background-color: #292929;
+		border: 1px solid $borderDark;
 	}
 }

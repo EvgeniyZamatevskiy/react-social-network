@@ -1,13 +1,13 @@
 @import 'styles/sass/mixins.scss';
+@import 'styles/sass/variables.scss';
 
 .header {
-	height: 48px;
-	position: fixed;
-	top: 0;
-	left: 0;
+	height: 49px;
 	width: 100%;
-	background-color: #FFF;
+	background-color: $bgSecondaryLight;
 	@include flex(row, center, stretch);
+	margin-bottom: 13px;
+	border-bottom: 1px solid $borderLight;
 
 	.container {
 		width: 960px;
@@ -40,11 +40,12 @@
 					width: 8px;
 					height: 8px;
 				}
-
-				&:hover {
-					background-color: #F5F6F8;
-				}
 			}
 		}
+	}
+
+	&.dark {
+		background-color: $bgSecondaryDark;
+		border-bottom: 1px solid $borderDark;
 	}
 }

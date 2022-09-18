@@ -1,0 +1,33 @@
+	@import 'styles/sass/variables.scss';
+
+	.select {
+		padding: 0px 5px;
+		border: none;
+		appearance: none;
+		color: $colorSecondary;
+		background-color: transparent;
+
+		&:focus {
+			border: none;
+		}
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	.option {
+		color: $colorSecondary;
+
+		&:checked {
+			background-color: #FFFFFF;
+		}
+
+		&.dark {
+			background-color: $bgSecondaryDark;
+
+			&:checked {
+				background-color: #3D3D3D;
+			}
+		}
+	}
