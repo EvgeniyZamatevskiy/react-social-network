@@ -8,8 +8,8 @@ import { selectTheme } from 'store/selectors'
 import { useAppDispatch } from 'hooks'
 import { setTheme } from 'store/slices/app'
 import { getBackgroundColor } from 'utils'
-import watercolor from 'assets/icons/watercolor.png'
-import logOut from 'assets/icons/logOut.png'
+import { Icon20DoorArrowRightOutline } from '@vkontakte/icons'
+import { Icon28PaletteOutline } from '@vkontakte/icons'
 import style from './Popup.module.scss'
 
 const themes: ThemeType[] = ['light', 'dark']
@@ -33,7 +33,7 @@ export const Popup: FC<PopupPropsType> = forwardRef((props, ref): ReturnComponen
 	return (
 		<div className={`${style.popup} ${theme === 'dark' && style.dark}`} ref={ref}>
 			<div className={style.watercolorContainer}>
-				<img className={style.watercolorIcon} src={watercolor} alt='watercolor' />
+				<Icon28PaletteOutline className={style.watercolorIcon} width={17} height={17} fill={'#71AAEB'} />
 				Theme: <Select
 					options={themes}
 					value={theme}
@@ -46,7 +46,7 @@ export const Popup: FC<PopupPropsType> = forwardRef((props, ref): ReturnComponen
 				onMouseEnter={onLogOutMouseEnter}
 				onMouseLeave={onLogOutMouseLeave}
 			>
-				<img className={style.logOutIcon} src={logOut} alt='log out' />
+				<Icon20DoorArrowRightOutline className={style.logOutIcon} width={17} height={17} fill={'#71AAEB'} />
 				Log out
 			</button>
 		</div>

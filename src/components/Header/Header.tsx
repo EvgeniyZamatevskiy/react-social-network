@@ -4,7 +4,7 @@ import { Popup } from 'components/popup'
 import { useSelector } from 'react-redux'
 import { selectTheme } from 'store/selectors'
 import { getBackgroundColor } from 'utils'
-import arrowDown from 'assets/icons/arrowDown.png'
+import { Icon12Dropdown } from '@vkontakte/icons'
 import defaultAvatar from 'assets/images/defaultAvatar.png'
 import style from './Header.module.scss'
 
@@ -59,7 +59,7 @@ export const Header: FC = (): ReturnComponentType => {
 						onClick={onToggleIsActivePopupClick}
 					>
 						<img className={style.avatar} src={defaultAvatar} alt='avatar' />
-						<img className={style.arrowDownIcon} src={arrowDown} alt='arrow down' />
+						<Icon12Dropdown className={style.arrowDownIcon} width={12} height={8} fill={'#656565'} />
 					</div>
 					{isActivePopup && <Popup ref={popupRef} />}
 				</div>

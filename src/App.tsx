@@ -3,6 +3,7 @@ import { Header } from 'components'
 import { useSelector } from 'react-redux'
 import { selectTheme } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
+import { Icon20DoorArrowRightOutline } from '@vkontakte/icons'
 
 export const App: FC = (): ReturnComponentType => {
 
