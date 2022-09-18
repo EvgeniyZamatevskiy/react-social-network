@@ -1,42 +1,16 @@
-import React, { FC, Suspense, useEffect } from 'react'
-import { NavBar, ErrorAlert, Header } from 'components'
-import { TailSpin } from 'react-loader-spinner'
-import { useSelector } from 'react-redux'
-import { Routes, Route } from 'react-router-dom'
-import { useAppDispatch } from 'hooks'
-import { selectIsInitializedApp } from 'store/selectors'
+import { Header } from 'components'
+import React, { FC } from 'react'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import { getAuthorizedUserData } from 'store/asyncActions'
-import { ROUTES } from 'router'
 
 export const App: FC = (): ReturnComponentType => {
-
-  const dispatch = useAppDispatch()
-
-  const isInitializedApp = useSelector(selectIsInitializedApp)
-
-  useEffect(() => {
-    dispatch(getAuthorizedUserData())
-  }, [])
-
-  if (!isInitializedApp) {
-    return <TailSpin color='#ff8b65' height={200} width={200} wrapperClass={'initialized'} />
-  }
-
   return (
     <>
       <Header />
       <div className='container'>
-        <div className='main'>
-          <NavBar />
-          <Suspense fallback={<TailSpin color='#ff8b65' height={200} width={200} wrapperClass={'initialized'} />}>
-            <Routes>
-              {ROUTES.map(({ path, element }) => <Route key={path} path={path} element={element} />)}
-            </Routes>
-          </Suspense>
+        <div className='app'>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, ipsum. Maiores debitis temporibus nam quis fuga odit quod sapiente suscipit ipsa, est, a, laborum nesciunt numquam labore cum perferendis facere? Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem possimus, aperiam repellat doloribus inventore impedit blanditiis est. Labore, est! Maiores odit ipsum aspernatur voluptates delectus. Excepturi consectetur repudiandae nesciunt eveniet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt iure quibusdam tempore laudantium, consectetur possimus quisquam debitis libero amet quasi iusto aperiam similique ea placeat quidem rerum reiciendis molestias numquam.
         </div>
       </div>
-      <ErrorAlert />
     </>
   )
 }

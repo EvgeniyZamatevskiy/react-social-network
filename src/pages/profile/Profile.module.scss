@@ -1,6 +1,0 @@
-@import '../../styles/sass/mixins.scss';
-
-.profile {
-	@include flex (column, stretch, center);
-	width: 100%;
-}

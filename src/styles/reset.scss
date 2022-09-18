@@ -1,104 +1,78 @@
- * {
- 	padding: 0px;
- 	margin: 0px;
- 	border: none;
- }
+input,
+textarea,
+button,
+select {
+	font-family: inherit;
+	font-size: inherit;
+}
 
- *,
- *::before,
- *::after {
- 	box-sizing: border-box;
- }
+// ---
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
 
- a,
- a:visited {
- 	color: inherit;
- 	text-decoration: none;
- 	display: inline-block;
- }
+button {
+	background-color: transparent;
+}
 
- a:hover {
- 	color: inherit;
- 	text-decoration: none;
- }
+button {
+	border: none;
+}
 
+textarea {
+	resize: none;
+}
 
- a:focus,
- a:active {
- 	outline: none;
- }
+textarea,
+input,
+select {
+	outline: none;
+}
 
+input[type='text'],
+input[type='email'] {
+	box-shadow: inset 0 0 0 50px #FFF;
+}
 
- aside,
- nav,
- footer,
- header,
- section,
- main {
- 	display: block;
- }
+input[type='checkbox'],
+input[type='range'],
+input[type='radio'],
+label,
+select,
+button {
+	cursor: pointer;
+}
 
- h1,
- h2,
- h3,
- h4,
- h5,
- h6,
- p {
- 	font-size: inherit;
- 	font-weight: inherit;
- }
+li {
+	list-style: none;
+}
 
- ul {
- 	list-style: none;
- }
+a {
+	text-decoration: none;
+	color: inherit;
+}
 
+input[type='range'],
+input[type='email'],
+input[type='password'],
+input[type='checkbox'],
+button,
+select {
 
+	&:disabled {
+		opacity: 0.5;
+		cursor: no-drop;
+	}
+}
 
- svg {
- 	display: block;
- 	max-width: 100%;
- 	height: auto;
- }
-
-
- input,
- textarea,
- button,
- select {
- 	font-family: inherit;
- 	font-size: inherit;
- }
-
- input::-ms-clear {
- 	display: none;
- }
-
- button,
- input[type="submit"] {
- 	display: inline-block;
- 	box-shadow: none;
- 	background-color: transparent;
- 	background: none;
- 	cursor: pointer;
- }
-
- input:focus,
- input:active,
- button:focus,
- button:active {
- 	outline: none;
- }
-
- button::-moz-focus-inner {
- 	padding: 0;
- 	border: 0;
- }
-
- label {
- 	cursor: pointer;
- }
-
- legend {
- 	display: block;
- }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: inherit;
+	font-weight: 400;
+}

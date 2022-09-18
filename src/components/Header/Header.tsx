@@ -1,36 +1,57 @@
-import React, { FC } from 'react'
-import { TailSpin } from 'react-loader-spinner'
-import { useSelector } from 'react-redux'
-import { logOut } from 'store/asyncActions'
-import { useAppDispatch } from 'hooks'
-import { selectIsAuth, selectIsLoading, selectAuthorizedUserLogin } from 'store/selectors'
-import { ReturnComponentType } from 'types/ReturnComponentType'
+import React, { FC, useEffect, useRef, useState } from 'react'
+import { ReturnComponentType } from 'types'
+import arrowDown from 'assets/icons/arrowDown.png'
+import defaultAvatar from 'assets/images/defaultAvatar.png'
+import { Popup } from 'components/popup'
 import style from './Header.module.scss'
 
 export const Header: FC = (): ReturnComponentType => {
 
-  const dispatch = useAppDispatch()
+	const [isActivePopup, setIsActivePopup] = useState(false)
 
-  const authorizedUserLogin = useSelector(selectAuthorizedUserLogin)
-  const isAuth = useSelector(selectIsAuth)
-  const isLoading = useSelector(selectIsLoading)
+	const authorizedUserContainerRef = useRef<HTMLDivElement>(null)
+	const popupRef = useRef<HTMLDivElement>(null)
 
-  const onLogOutClick = (): void => {
-    dispatch(logOut())
-  }
+	useEffect(() => {
+		const onOutsideClick = (e: MouseEvent) => {
+			const event = e as MouseEvent & { path: Node[] }
+			if (popupRef.current &&
+				authorizedUserContainerRef.current &&
+				!event.path.includes(popupRef.current) &&
+				!event.path.includes(authorizedUserContainerRef.current)) {
+				setIsActivePopup(false)
+			}
+		}
 
-  return (
-    <header className={style.header}>
-      {isLoading && <TailSpin wrapperClass={style.tailSpin} color='#ff8b65' height={60} width={60} />}
-      <h1>Social network</h1>
-      <div className={style.body}>
-        {isAuth &&
-          <>
-            <div className={style.authorizedUserLogin}>{authorizedUserLogin}</div>
-            <button onClick={onLogOutClick}>Log out</button>
-          </>
-        }
-      </div>
-    </header>
-  )
+		document.body.addEventListener('click', onOutsideClick)
+
+		return () => {
+			document.body.removeEventListener('click', onOutsideClick)
+		}
+	}, [])
+
+	const onToggleIsActivePopupClick = (): void => {
+		setIsActivePopup(!isActivePopup)
+	}
+
+	return (
+		<header className={style.header}>
+			<div className={style.container}>
+				<h1 className={style.title}>social network</h1>
+
+				<div
+					className={style.authorizedUserContainer}
+					style={isActivePopup ? { backgroundColor: '#F5F6F8' } : {}}
+					ref={authorizedUserContainerRef}
+				>
+					<div className={style.body} onClick={onToggleIsActivePopupClick}>
+						<img className={style.avatar} src={defaultAvatar} alt='avatar' />
+						<img className={style.arrowDownIcon} src={arrowDown} alt='arrow down' />
+					</div>
+
+					{isActivePopup && <Popup ref={popupRef} />}
+				</div>
+			</div>
+		</header>
+	)
 }
