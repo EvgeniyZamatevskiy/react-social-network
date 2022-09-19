@@ -2,11 +2,13 @@
 @import 'styles/sass/variables.scss';
 
 .header {
+	position: fixed;
+	top: 0;
+	left: 0;
 	height: 49px;
 	width: 100%;
 	background-color: $bgSecondaryLight;
 	@include flex(row, center, stretch);
-	margin-bottom: 13px;
 	border-bottom: 1px solid $borderLight;
 
 	.container {
@@ -17,6 +19,7 @@
 			font-weight: 900;
 			font-size: 16px;
 			text-transform: uppercase;
+			letter-spacing: 1px;
 		}
 
 		.authorizedUserContainer {

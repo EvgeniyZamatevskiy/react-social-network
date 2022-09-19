@@ -1,0 +1,15 @@
+.primaryInput {
+	border-bottom: 1px solid #b5b5b5;
+	padding: 4.50px 0px 4.50px 0px;
+	line-height: 24px;
+
+	&:focus {
+		border-bottom: 1px solid #000;
+	}
+}
+
+.error {
+	color: red;
+	margin-top: 10px;
+	font-size: 14px;
+}

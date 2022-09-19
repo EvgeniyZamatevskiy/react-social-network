@@ -1,0 +1,23 @@
+@import 'styles/sass/mixins.scss';
+
+.primaryLabel {
+	@include flex(row, stretch, center);
+	width: 120px;
+
+	.primaryCheckbox {
+		appearance: none;
+		width: 15px;
+		height: 15px;
+		background-color: #fff;
+		border: 1px solid #000;
+		border-radius: 3px;
+		margin-right: 10px;
+
+		&:checked {
+			appearance: none;
+			background-image: url('checked.svg');
+			background-size: cover;
+			background-position: center;
+		}
+	}
+}

@@ -1,0 +1,152 @@
+@import 'styles/sass/mixins.scss';
+@import 'styles/sass/variables.scss';
+
+.login {
+	@include flex(row, center, center);
+	height: 100%;
+
+	.container {
+		width: 322px;
+		height: 385px;
+		border-radius: 10px;
+		background-color: $bgSecondaryDark;
+		border: 1px solid $borderDark;
+		@include flex(column, center, center);
+		padding: 32px 24px;
+
+		.title {
+			font-weight: 900;
+			font-size: 16px;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			margin-bottom: 40px;
+		}
+
+		.form {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+
+			.loginInputContainer {
+				position: relative;
+
+				.loginInput {
+					width: 100%;
+					background-color: #333333;
+					border: 1px solid #545454;
+					border-radius: 8px;
+					padding: 9.5px 38px 9.5px 12px;
+					color: inherit;
+
+					&:focus {
+						border: 1px solid #71AAEB;
+					}
+
+					&.errorBorder {
+						background-color: #522E2E;
+						border: 1px solid #FF5C5B;
+
+						&::placeholder {
+							color: rgb(170, 174, 179);
+						}
+					}
+				}
+
+				.ellipse {
+					@include flex(row, center, center);
+					width: 18.86px;
+					height: 18.86px;
+					border-radius: 50%;
+					color: #EE6565;
+					position: absolute;
+					top: 8.5px;
+					right: 10.5px;
+					border: 1.5px solid #FF5C5B;
+				}
+			}
+
+			.passwordInputContainer {
+				position: relative;
+
+				.passwordInput {
+					width: 100%;
+					background-color: #333333;
+					border: 1px solid #545454;
+					border-radius: 8px;
+					padding: 9.5px 38px 9.5px 12px;
+					color: inherit;
+
+					&:focus {
+						border: 1px solid #71AAEB;
+					}
+
+					&.errorPasswordInput {
+						background-color: #522E2E;
+						border: 1px solid #FF5C5B;
+
+						&::placeholder {
+							color: rgb(170, 174, 179);
+						}
+					}
+				}
+
+				.openEye {
+					position: absolute;
+					top: 6px;
+					right: 9px;
+					cursor: pointer;
+				}
+
+				.ellipse {
+					@include flex(row, center, center);
+					width: 18.86px;
+					height: 18.86px;
+					border-radius: 50%;
+					color: #EE6565;
+					position: absolute;
+					top: 8.5px;
+					right: 10.5px;
+					border: 1.5px solid #FF5C5B;
+				}
+			}
+
+			.label {
+				@include flex(row, stretch, center);
+
+				.rememberMeCheckbox {
+					appearance: none;
+					width: 16px;
+					height: 16px;
+					border: 1.5px solid #656565;
+					border-radius: 4px;
+					margin-right: 9px;
+
+					&:checked {
+						appearance: none;
+						background-color: #fff;
+						border: none;
+						background-image: url('checked.png');
+						background-size: cover;
+						background-position: center;
+					}
+				}
+
+				.rememberMe {
+					color: #828282;
+				}
+			}
+
+			.captchaInput {}
+
+			.loginBtn {
+				background-color: #FFF;
+				color: #000;
+				border-radius: 8px;
+				padding: 10.5px 12px;
+				transition: opacity 0.1s ease-in-out 0s;
+			}
+		}
+	}
+}
