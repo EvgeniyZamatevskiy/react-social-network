@@ -16,15 +16,20 @@ export const Header: FC = (): ReturnComponentType => {
 	const [isHover, setIsHover] = useState(false)
 
 	const authorizedUserContainerRef = useRef<HTMLDivElement>(null)
-	const popupRef = useRef<HTMLDivElement>(null)
+
+	const authorizedUserContainerStyle = {
+		backgroundColor: getBackgroundColor(isActivePopup, theme, '#F2F3F5', '#3D3D3D')
+	}
+
+	const bodyStyle = {
+		backgroundColor: getBackgroundColor(isHover, theme, '#F5F6F8', '#333333')
+	}
 
 	useEffect(() => {
 		const onOutsideClick = (e: MouseEvent) => {
 			const event = e as MouseEvent & { path: Node[] }
-			if (popupRef.current &&
-				authorizedUserContainerRef.current &&
-				!event.path.includes(popupRef.current) &&
-				!event.path.includes(authorizedUserContainerRef.current)) {
+
+			if (authorizedUserContainerRef.current && !event.path.includes(authorizedUserContainerRef.current)) {
 				setIsActivePopup(false)
 			}
 		}
@@ -38,7 +43,12 @@ export const Header: FC = (): ReturnComponentType => {
 
 	const onToggleIsActivePopupClick = (): void => {
 		setIsActivePopup(!isActivePopup)
-		setIsHover(false)
+
+		if (!isActivePopup) {
+			setIsHover(false)
+		} else {
+			setIsHover(true)
+		}
 	}
 
 	const onAuthorizedUserContainerMouseEnter = (): void => {
@@ -49,35 +59,6 @@ export const Header: FC = (): ReturnComponentType => {
 
 	const onAuthorizedUserContainerMouseLeave = (): void => {
 		setIsHover(false)
-
-	}
-
-	const getBackgroundColorTest = (condition: boolean): string => {
-		let backgroundColor = ''
-
-		if (condition && theme === 'dark') {
-			return backgroundColor = '#3D3D3D'
-		}
-
-		if (condition && theme === 'light') {
-			return backgroundColor = '#F2F3F5'
-		}
-
-		return backgroundColor
-	}
-
-	const getBackgroundColorTest2 = (condition: boolean): string => {
-		let backgroundColor = ''
-
-		if (condition && theme === 'dark') {
-			return backgroundColor = '#333333'
-		}
-
-		if (condition && theme === 'light') {
-			return backgroundColor = '#F5F6F8'
-		}
-
-		return backgroundColor
 	}
 
 	return (
@@ -86,20 +67,20 @@ export const Header: FC = (): ReturnComponentType => {
 				<h1 className={style.title}>social network</h1>
 				<div
 					className={style.authorizedUserContainer}
-					style={{ backgroundColor: getBackgroundColorTest(isActivePopup) }}
+					style={authorizedUserContainerStyle}
 					onMouseEnter={onAuthorizedUserContainerMouseEnter}
 					onMouseLeave={onAuthorizedUserContainerMouseLeave}
 					ref={authorizedUserContainerRef}
 				>
 					<div
 						className={style.body}
-						style={{ backgroundColor: getBackgroundColorTest2(isHover) }}
+						style={bodyStyle}
 						onClick={onToggleIsActivePopupClick}
 					>
 						<img className={style.avatar} src={defaultAvatar} alt='avatar' />
 						<Icon12Dropdown className={style.arrowDownIcon} width={12} height={8} fill={'#656565'} />
 					</div>
-					{isActivePopup && <Popup ref={popupRef} />}
+					{isActivePopup && <Popup />}
 				</div>
 			</div>
 		</header>

@@ -1,7 +1,6 @@
-import React, { FC, forwardRef, useState } from 'react'
+import React, { FC, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { ReturnComponentType } from 'types'
-import { PopupPropsType } from './types'
 import { Select } from 'components/common'
 import { ThemeType } from 'store/slices/app/types'
 import { selectTheme } from 'store/selectors'
@@ -14,7 +13,7 @@ import style from './Popup.module.scss'
 
 const themes: ThemeType[] = ['light', 'dark']
 
-export const Popup: FC<PopupPropsType> = forwardRef((props, ref): ReturnComponentType => {
+export const Popup: FC = (): ReturnComponentType => {
 
 	const dispatch = useAppDispatch()
 
@@ -31,7 +30,7 @@ export const Popup: FC<PopupPropsType> = forwardRef((props, ref): ReturnComponen
 	const onLogOutMouseLeave = (): void => setIsHover(false)
 
 	return (
-		<div className={`${style.popup} ${theme === 'dark' && style.dark}`} ref={ref}>
+		<div className={`${style.popup} ${theme === 'dark' && style.dark}`} >
 			<div className={style.watercolorContainer}>
 				<Icon28PaletteOutline className={style.watercolorIcon} width={17} height={17} fill={'#71AAEB'} />
 				Theme: <Select
@@ -42,7 +41,7 @@ export const Popup: FC<PopupPropsType> = forwardRef((props, ref): ReturnComponen
 			</div>
 			<button
 				className={style.logOutBtn}
-				style={{ backgroundColor: getBackgroundColor(isHover, theme) }}
+				style={{ backgroundColor: getBackgroundColor(isHover, theme, ' #F5F6F8', '#333333') }}
 				onMouseEnter={onLogOutMouseEnter}
 				onMouseLeave={onLogOutMouseLeave}
 			>
@@ -51,4 +50,4 @@ export const Popup: FC<PopupPropsType> = forwardRef((props, ref): ReturnComponen
 			</button>
 		</div>
 	)
-})
+}
