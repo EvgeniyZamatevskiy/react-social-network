@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { ReturnComponentType } from 'types'
-import { Select } from 'components/common'
+import { Button, Select } from 'components/common'
 import { ThemeType } from 'store/slices/app/types'
 import { selectTheme } from 'store/selectors'
 import { useAppDispatch } from 'hooks'
@@ -39,7 +39,7 @@ export const Popup: FC = (): ReturnComponentType => {
 					setValue={onThemeChange}
 				/>
 			</div>
-			<button
+			<Button
 				className={style.logOutBtn}
 				style={{ backgroundColor: getBackgroundColor(isHover, theme, ' #F5F6F8', '#333333') }}
 				onMouseEnter={onLogOutMouseEnter}
@@ -47,7 +47,7 @@ export const Popup: FC = (): ReturnComponentType => {
 			>
 				<Icon20DoorArrowRightOutline className={style.logOutIcon} width={17} height={17} fill={'#71AAEB'} />
 				Log out
-			</button>
+			</Button>
 		</div>
 	)
 }
