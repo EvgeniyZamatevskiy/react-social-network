@@ -36,11 +36,49 @@ export const Header: FC = (): ReturnComponentType => {
 		}
 	}, [])
 
-	const onToggleIsActivePopupClick = (): void => setIsActivePopup(!isActivePopup)
+	const onToggleIsActivePopupClick = (): void => {
+		setIsActivePopup(!isActivePopup)
+		setIsHover(false)
+	}
 
-	const onAuthorizedUserContainerMouseEnter = (): void => setIsHover(true)
+	const onAuthorizedUserContainerMouseEnter = (): void => {
+		if (isActivePopup === false) {
+			setIsHover(true)
+		}
+	}
 
-	const onAuthorizedUserContainerMouseLeave = (): void => setIsHover(false)
+	const onAuthorizedUserContainerMouseLeave = (): void => {
+		setIsHover(false)
+
+	}
+
+	const getBackgroundColorTest = (condition: boolean): string => {
+		let backgroundColor = ''
+
+		if (condition && theme === 'dark') {
+			return backgroundColor = '#3D3D3D'
+		}
+
+		if (condition && theme === 'light') {
+			return backgroundColor = '#F2F3F5'
+		}
+
+		return backgroundColor
+	}
+
+	const getBackgroundColorTest2 = (condition: boolean): string => {
+		let backgroundColor = ''
+
+		if (condition && theme === 'dark') {
+			return backgroundColor = '#333333'
+		}
+
+		if (condition && theme === 'light') {
+			return backgroundColor = '#F5F6F8'
+		}
+
+		return backgroundColor
+	}
 
 	return (
 		<header className={`${style.header} ${theme === 'dark' && style.dark}`}>
@@ -48,14 +86,14 @@ export const Header: FC = (): ReturnComponentType => {
 				<h1 className={style.title}>social network</h1>
 				<div
 					className={style.authorizedUserContainer}
-					style={{ backgroundColor: getBackgroundColor(isActivePopup, theme) }}
+					style={{ backgroundColor: getBackgroundColorTest(isActivePopup) }}
 					onMouseEnter={onAuthorizedUserContainerMouseEnter}
 					onMouseLeave={onAuthorizedUserContainerMouseLeave}
 					ref={authorizedUserContainerRef}
 				>
 					<div
 						className={style.body}
-						style={{ backgroundColor: getBackgroundColor(isHover, theme) }}
+						style={{ backgroundColor: getBackgroundColorTest2(isHover) }}
 						onClick={onToggleIsActivePopupClick}
 					>
 						<img className={style.avatar} src={defaultAvatar} alt='avatar' />
