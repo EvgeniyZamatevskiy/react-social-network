@@ -1,0 +1,11 @@
+.eye {
+	position: absolute;
+	top: 6px;
+	right: 9px;
+	color: #76787A;
+	cursor: pointer;
+
+	&.secondaryEye {
+		right: 45px;
+	}
+}

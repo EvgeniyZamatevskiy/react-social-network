@@ -93,6 +93,7 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
 	border: 1px solid #71AAEB;
 	-webkit-text-fill-color: #FFF;
-	-webkit-box-shadow: 0 0 0px 1000px #333333 inset;
+	-webkit-box-shadow: 0 0 0px 1000px #303847 inset;
 	transition: background-color 5000s ease-in-out 0s;
+	caret-color: #FFF;
 }
