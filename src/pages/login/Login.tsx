@@ -16,7 +16,7 @@ export const Login: FC = (): ReturnComponentType => {
 
 	const { register, handleSubmit, formState: { errors, isValid } } = useForm<LoginDataType>({
 		mode: 'onChange',
-		//defaultValues: { email: 'free@samuraijs.com', password: 'free' }
+		defaultValues: { email: 'free@samuraijs.com', password: 'free' }
 	},
 	)
 
@@ -86,7 +86,7 @@ export const Login: FC = (): ReturnComponentType => {
 
 					<label className={style.label}>
 						<input
-							className={style.rememberMeCheckbox}
+							className={`${style.rememberMeCheckbox} ${theme === 'light' && style.rememberMeCheckboxLight}`}
 							type='checkbox'
 							{...register('rememberMe')}
 						/>
@@ -97,7 +97,7 @@ export const Login: FC = (): ReturnComponentType => {
 						<div className={style.captcha}>
 							<img className={style.captchaImage} src={'https://social-network.samuraijs.com/HelpApp/HelpApp/Captcha?w=200&h=100&c=lEHhgzAzs2FjfOovTxSsBw%3D%3D'} />
 							<input
-								className={style.captchaInput}
+								className={`${style.captchaInput} ${theme === 'light' && style.captchaInputLight}`}
 								type='text'
 								placeholder='Code from the picture'
 								{...register('captcha')} />
