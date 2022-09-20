@@ -5,7 +5,7 @@ import { LoginDataType } from './types'
 import { useSelector } from 'react-redux'
 import { selectTheme } from 'store/selectors'
 import { InputType } from 'components/common/eye/types'
-import { Ellipse, Eye } from 'components'
+import { ErrorCircle, Eye } from 'components'
 import style from './Login.module.scss'
 
 export const Login: FC = (): ReturnComponentType => {
@@ -54,7 +54,7 @@ export const Login: FC = (): ReturnComponentType => {
 							{...register('email', emailSettings)} />
 						{errors?.email &&
 							<>
-								<Ellipse />
+								<ErrorCircle />
 								<p className={style.errorEmailMessage}>{errorEmailMessage}</p>
 							</>
 						}
@@ -70,7 +70,7 @@ export const Login: FC = (): ReturnComponentType => {
 
 						{errors?.password &&
 							<>
-								<Ellipse />
+								<ErrorCircle />
 								<p className={style.errorPasswordMessage}>{errorPasswordMessage}</p>
 							</>
 						}

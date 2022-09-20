@@ -1,6 +1,6 @@
 @import 'styles/sass/mixins.scss';
 
-.ellipse {
+.errorCircle {
 	@include flex(row, center, center);
 	width: 18.86px;
 	height: 18.86px;
