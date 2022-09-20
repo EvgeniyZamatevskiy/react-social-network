@@ -20,6 +20,7 @@ export const Login: FC = (): ReturnComponentType => {
 	},
 	)
 
+	const isDarkTheme = theme === 'dark'
 	const errorEmailMessage = errors?.email?.message
 	const errorPasswordMessage = errors?.password?.message
 	const emailSettings = {
@@ -41,18 +42,13 @@ export const Login: FC = (): ReturnComponentType => {
 
 	return (
 		<div className={style.login}>
-			<div className={`${style.container} ${theme === 'light' && style.containerLight}`}>
+			<div className={`${style.container} ${isDarkTheme && style.containerDark}`}>
 				<h2 className={style.title}>welcome</h2>
-				<form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+				<form noValidate className={style.form} onSubmit={handleSubmit(onSubmit)}>
 
 					<div className={style.emailInputContainer}>
 						<input
-							className={
-								`
-								${style.emailInput} ${errorEmailMessage && style.errorEmailInput}
-								${theme === 'light' && style.emailInputLight} ${theme === 'light' && errorEmailMessage && style.errorEmailInputLight}
-								`
-							}
+							className={`${style.emailInput} ${isDarkTheme && style.emailInputDark} ${errorEmailMessage && style.errorEmailInput}`}
 							placeholder='Enter email'
 							type='email'
 							{...register('email', emailSettings)} />
@@ -65,11 +61,7 @@ export const Login: FC = (): ReturnComponentType => {
 					</div>
 					<div className={style.passwordInputContainer}>
 						<input
-							className={
-								`${style.passwordInput} ${errorPasswordMessage && style.errorPasswordInput}
-								${theme === 'light' && style.passwordInputLight} ${theme === 'light' && errorPasswordMessage && style.errorPasswordInputLight}
-								`
-							}
+							className={`${style.passwordInput} ${isDarkTheme && style.passwordInputDark} ${errorPasswordMessage && style.errorPasswordInput} `}
 							type={inputType}
 							placeholder='Enter password'
 							{...register('password', passwordSettings)}
@@ -86,7 +78,7 @@ export const Login: FC = (): ReturnComponentType => {
 
 					<label className={style.label}>
 						<input
-							className={`${style.rememberMeCheckbox} ${theme === 'light' && style.rememberMeCheckboxLight}`}
+							className={`${style.rememberMeCheckbox} ${isDarkTheme && style.rememberMeCheckboxDark}`}
 							type='checkbox'
 							{...register('rememberMe')}
 						/>
@@ -97,14 +89,20 @@ export const Login: FC = (): ReturnComponentType => {
 						<div className={style.captcha}>
 							<img className={style.captchaImage} src={'https://social-network.samuraijs.com/HelpApp/HelpApp/Captcha?w=200&h=100&c=lEHhgzAzs2FjfOovTxSsBw%3D%3D'} />
 							<input
-								className={`${style.captchaInput} ${theme === 'light' && style.captchaInputLight}`}
+								className={`${style.captchaInput} ${isDarkTheme && style.captchaInputDark}`}
 								type='text'
 								placeholder='Code from the picture'
 								{...register('captcha')} />
 						</div>
 					}
 
-					<button disabled={!isValid} className={`${style.loginBtn} ${theme === 'light' && style.loginBtnLight}`} type='submit'>Login</button>
+					<button
+						className={`${style.loginBtn} ${isDarkTheme && style.loginBtnDark}`}
+						disabled={!isValid}
+						type='submit'
+					>
+						Login
+					</button>
 				</form>
 			</div>
 		</div>

@@ -9,8 +9,8 @@
 		width: 400px;
 		min-height: 450px;
 		border-radius: 10px;
-		background-color: $bgSecondaryDark;
-		border: 1px solid $borderDark;
+		background-color: $bgSecondaryLight;
+		border: 1px solid $borderLight;
 		@include flex(column, space-between, center);
 		padding: 52px 24px;
 
@@ -18,7 +18,7 @@
 			font-weight: 900;
 			font-size: 25px;
 			text-transform: uppercase;
-			letter-spacing: 2px;
+			letter-spacing: 5px;
 			margin-top: 20px;
 		}
 
@@ -36,15 +36,15 @@
 					border-radius: 8px;
 					padding: 9.5px 38px 9.5px 12px;
 					color: inherit;
-					background-color: #292929;
-					border: 1px solid #545454;
+					background-color: #F0F2F5;
+					border: 1px solid #D3D5D7;
 
 					&:focus {
 						border: 1px solid #71AAEB;
 					}
 
 					&.errorEmailInput {
-						background-color: #522E2E;
+						background-color: #FAEBEB;
 						border: 1px solid #FF5C5B;
 
 						&::placeholder {
@@ -53,23 +53,24 @@
 					}
 
 					&:-webkit-autofill {
-						-webkit-text-fill-color: #FFF;
-						-webkit-box-shadow: 0 0 0px 1000px #303847 inset;
+						-webkit-text-fill-color: #000;
+						-webkit-box-shadow: 0 0 0px 1000px #E8F0FE inset;
 						transition: background-color 5000s ease-in-out 0s;
-						caret-color: #FFF;
+						caret-color: #000;
 					}
 
-					&.emailInputLight {
-						background-color: #F0F2F5;
-						border: 1px solid #D3D5D7;
+					&.emailInputDark {
+						background-color: #292929;
+						border: 1px solid #545454;
 
 						&:focus {
 							border: 1px solid #447BBA;
 						}
 
 						&.errorEmailInput {
-							background-color: #FAEBEB;
+							background-color: #522E2E;
 							border: 1px solid #FF5C5B;
+
 
 							&::placeholder {
 								color: rgb(170, 174, 179);
@@ -77,10 +78,10 @@
 						}
 
 						&:-webkit-autofill {
-							-webkit-text-fill-color: #000;
-							-webkit-box-shadow: 0 0 0px 1000px #E8F0FE inset;
+							-webkit-text-fill-color: #FFF;
+							-webkit-box-shadow: 0 0 0px 1000px #303847 inset;
 							transition: background-color 5000s ease-in-out 0s;
-							caret-color: #000;
+							caret-color: #FFF;
 						}
 					}
 				}
@@ -92,18 +93,18 @@
 
 				.passwordInput {
 					width: 100%;
-					background-color: #292929;
-					border: 1px solid #545454;
 					border-radius: 8px;
 					padding: 9.5px 38px 9.5px 12px;
 					color: inherit;
+					background-color: #F0F2F5;
+					border: 1px solid #D3D5D7;
 
 					&:focus {
 						border: 1px solid #71AAEB;
 					}
 
 					&.errorPasswordInput {
-						background-color: #522E2E;
+						background-color: #FAEBEB;
 						border: 1px solid #FF5C5B;
 						padding-right: 75px;
 
@@ -112,16 +113,16 @@
 						}
 					}
 
-					&.passwordInputLight {
-						background-color: #F0F2F5;
-						border: 1px solid #D3D5D7;
+					&.passwordInputDark {
+						background-color: #292929;
+						border: 1px solid #545454;
 
 						&:focus {
 							border: 1px solid #447BBA;
 						}
 
 						&.errorPasswordInput {
-							background-color: #FAEBEB;
+							background-color: #522E2E;
 							border: 1px solid #FF5C5B;
 
 							&::placeholder {
@@ -140,27 +141,28 @@
 					appearance: none;
 					width: 16px;
 					height: 16px;
-					border: 1.5px solid #656565;
+					border: 1.5px solid #AEB7C1;
+
 					border-radius: 4px;
 					margin-right: 9px;
 
 					&:checked {
 						appearance: none;
-						background-color: #fff;
+						background-color: #2196F3;
 						border: none;
-						background-image: url('checkedDark.png');
+						background-image: url('checkedLight.png');
 						background-size: cover;
 						background-position: center;
 					}
 
-					&.rememberMeCheckboxLight {
-						border: 1.5px solid #AEB7C1;
+					&.rememberMeCheckboxDark {
+						border: 1.5px solid #656565;
 
 						&:checked {
 							appearance: none;
-							background-color: #2196F3;
+							background-color: #fff;
 							border: none;
-							background-image: url('checkedLight.png');
+							background-image: url('checkedDark.png');
 							background-size: cover;
 							background-position: center;
 						}
@@ -187,19 +189,19 @@
 					border-radius: 8px;
 					padding: 9.5px 38px 9.5px 12px;
 					color: inherit;
-					background-color: #292929;
-					border: 1px solid #545454;
+					background-color: #F0F2F5;
+					border: 1px solid #D3D5D7;
 
 					&:focus {
-						border: 1px solid #71AAEB;
+						border: 1px solid #447BBA;
 					}
 
-					&.captchaInputLight {
-						background-color: #F0F2F5;
-						border: 1px solid #D3D5D7;
+					&.captchaInputDark {
+						background-color: #292929;
+						border: 1px solid #545454;
 
 						&:focus {
-							border: 1px solid #447BBA;
+							border: 1px solid #71AAEB;
 						}
 					}
 				}
@@ -207,22 +209,22 @@
 
 			.loginBtn {
 				margin-top: 40px;
-				background-color: #FFF;
-				color: #000;
+				background-color: #0077FF;
+				color: #FFF;
 				border-radius: 8px;
 				padding: 10.5px 12px;
 				transition: opacity 0.1s ease-in-out 0s;
 
-				&.loginBtnLight {
-					background-color: #0077FF;
-					color: #FFF;
+				&.loginBtnDark {
+					background-color: #FFF;
+					color: #000;
 				}
 			}
 		}
 
-		&.containerLight {
-			background-color: $bgSecondaryLight;
-			border: 1px solid $borderLight;
+		&.containerDark {
+			background-color: $bgSecondaryDark;
+			border: 1px solid $borderDark;
 		}
 	}
 }
