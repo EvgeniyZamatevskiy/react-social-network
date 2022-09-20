@@ -41,13 +41,18 @@ export const Login: FC = (): ReturnComponentType => {
 
 	return (
 		<div className={style.login}>
-			<div className={style.container}>
+			<div className={`${style.container} ${theme === 'light' && style.containerLight}`}>
 				<h2 className={style.title}>welcome</h2>
 				<form className={style.form} onSubmit={handleSubmit(onSubmit)}>
 
 					<div className={style.emailInputContainer}>
 						<input
-							className={`${style.emailInput} ${errorEmailMessage && style.errorEmailInput}`}
+							className={
+								`
+								${style.emailInput} ${errorEmailMessage && style.errorEmailInput}
+								${theme === 'light' && style.emailInputLight} ${theme === 'light' && errorEmailMessage && style.errorEmailInputLight}
+								`
+							}
 							placeholder='Enter email'
 							type='email'
 							{...register('email', emailSettings)} />
@@ -60,7 +65,11 @@ export const Login: FC = (): ReturnComponentType => {
 					</div>
 					<div className={style.passwordInputContainer}>
 						<input
-							className={`${style.passwordInput} ${errorPasswordMessage && style.errorPasswordInput}`}
+							className={
+								`${style.passwordInput} ${errorPasswordMessage && style.errorPasswordInput}
+								${theme === 'light' && style.passwordInputLight} ${theme === 'light' && errorPasswordMessage && style.errorPasswordInputLight}
+								`
+							}
 							type={inputType}
 							placeholder='Enter password'
 							{...register('password', passwordSettings)}
@@ -95,7 +104,7 @@ export const Login: FC = (): ReturnComponentType => {
 						</div>
 					}
 
-					<button disabled={!isValid} className={style.loginBtn} type='submit'>Login</button>
+					<button disabled={!isValid} className={`${style.loginBtn} ${theme === 'light' && style.loginBtnLight}`} type='submit'>Login</button>
 				</form>
 			</div>
 		</div>

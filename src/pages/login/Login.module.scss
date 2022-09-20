@@ -56,6 +56,31 @@
 						transition: background-color 5000s ease-in-out 0s;
 						caret-color: #FFF;
 					}
+
+					&.emailInputLight {
+						background-color: #F0F2F5;
+						border: 1px solid #D3D5D7;
+
+						&:focus {
+							border: 1px solid #447BBA;
+						}
+
+						&.errorEmailInput {
+							background-color: #FAEBEB;
+							border: 1px solid #FF5C5B;
+
+							&::placeholder {
+								color: rgb(170, 174, 179);
+							}
+						}
+
+						&:-webkit-autofill {
+							-webkit-text-fill-color: #000;
+							-webkit-box-shadow: 0 0 0px 1000px #E8F0FE inset;
+							transition: background-color 5000s ease-in-out 0s;
+							caret-color: #000;
+						}
+					}
 				}
 			}
 
@@ -82,6 +107,24 @@
 
 						&::placeholder {
 							color: rgb(170, 174, 179);
+						}
+					}
+
+					&.passwordInputLight {
+						background-color: #F0F2F5;
+						border: 1px solid #D3D5D7;
+
+						&:focus {
+							border: 1px solid #447BBA;
+						}
+
+						&.errorPasswordInput {
+							background-color: #FAEBEB;
+							border: 1px solid #FF5C5B;
+
+							&::placeholder {
+								color: rgb(170, 174, 179);
+							}
 						}
 					}
 				}
@@ -144,7 +187,17 @@
 				border-radius: 8px;
 				padding: 10.5px 12px;
 				transition: opacity 0.1s ease-in-out 0s;
+
+				&.loginBtnLight {
+					background-color: #0077FF;
+					color: #FFF;
+				}
 			}
+		}
+
+		&.containerLight {
+			background-color: $bgSecondaryLight;
+			border: 1px solid $borderLight;
 		}
 	}
 }
