@@ -6,7 +6,7 @@ import { ThemeType } from 'store/slices/app/types'
 import { selectTheme } from 'store/selectors'
 import { useAppDispatch } from 'hooks'
 import { setTheme } from 'store/slices/app'
-import { getBackgroundColor } from 'utils'
+import { getBackgroundColor, isDarkTheme } from 'utils'
 import { Icon20DoorArrowRightOutline } from '@vkontakte/icons'
 import { Icon28PaletteOutline } from '@vkontakte/icons'
 import style from './Popup.module.scss'
@@ -30,7 +30,7 @@ export const Popup: FC = (): ReturnComponentType => {
 	const onLogOutMouseLeave = (): void => setIsHover(false)
 
 	return (
-		<div className={`${style.popup} ${theme === 'dark' && style.dark}`} >
+		<div className={`${style.popup} ${isDarkTheme(theme) && style.dark}`} >
 			<div className={style.watercolorContainer}>
 				<Icon28PaletteOutline className={style.watercolorIcon} width={17} height={17} fill={'#71AAEB'} />
 				Theme: <Select

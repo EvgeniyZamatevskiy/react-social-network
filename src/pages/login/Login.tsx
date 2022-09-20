@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { selectTheme } from 'store/selectors'
 import { InputType } from 'components/common/eye/types'
 import { ErrorCircle, Eye } from 'components'
+import { isDarkTheme } from 'utils'
 import style from './Login.module.scss'
 
 export const Login: FC = (): ReturnComponentType => {
@@ -20,7 +21,6 @@ export const Login: FC = (): ReturnComponentType => {
 	},
 	)
 
-	const isDarkTheme = theme === 'dark'
 	const errorEmailMessage = errors?.email?.message
 	const errorPasswordMessage = errors?.password?.message
 	const emailSettings = {
@@ -42,13 +42,14 @@ export const Login: FC = (): ReturnComponentType => {
 
 	return (
 		<div className={style.login}>
-			<div className={`${style.container} ${isDarkTheme && style.containerDark}`}>
-				<h2 className={style.title}>welcome</h2>
-				<form noValidate className={style.form} onSubmit={handleSubmit(onSubmit)}>
+			<div className={`${style.container} ${isDarkTheme(theme) && style.containerDark}`}>
 
+				<h2 className={style.title}>welcome</h2>
+
+				<form noValidate className={style.form} onSubmit={handleSubmit(onSubmit)}>
 					<div className={style.emailInputContainer}>
 						<input
-							className={`${style.emailInput} ${isDarkTheme && style.emailInputDark} ${errorEmailMessage && style.errorEmailInput}`}
+							className={`${style.emailInput} ${isDarkTheme(theme) && style.emailInputDark} ${errorEmailMessage && style.errorEmailInput}`}
 							placeholder='Enter email'
 							type='email'
 							{...register('email', emailSettings)} />
@@ -59,9 +60,10 @@ export const Login: FC = (): ReturnComponentType => {
 							</>
 						}
 					</div>
+
 					<div className={style.passwordInputContainer}>
 						<input
-							className={`${style.passwordInput} ${isDarkTheme && style.passwordInputDark} ${errorPasswordMessage && style.errorPasswordInput} `}
+							className={`${style.passwordInput} ${isDarkTheme(theme) && style.passwordInputDark} ${errorPasswordMessage && style.errorPasswordInput} `}
 							type={inputType}
 							placeholder='Enter password'
 							{...register('password', passwordSettings)}
@@ -78,7 +80,7 @@ export const Login: FC = (): ReturnComponentType => {
 
 					<label className={style.label}>
 						<input
-							className={`${style.rememberMeCheckbox} ${isDarkTheme && style.rememberMeCheckboxDark}`}
+							className={`${style.rememberMeCheckbox} ${isDarkTheme(theme) && style.rememberMeCheckboxDark}`}
 							type='checkbox'
 							{...register('rememberMe')}
 						/>
@@ -89,7 +91,7 @@ export const Login: FC = (): ReturnComponentType => {
 						<div className={style.captcha}>
 							<img className={style.captchaImage} src={'https://social-network.samuraijs.com/HelpApp/HelpApp/Captcha?w=200&h=100&c=lEHhgzAzs2FjfOovTxSsBw%3D%3D'} />
 							<input
-								className={`${style.captchaInput} ${isDarkTheme && style.captchaInputDark}`}
+								className={`${style.captchaInput} ${isDarkTheme(theme) && style.captchaInputDark}`}
 								type='text'
 								placeholder='Code from the picture'
 								{...register('captcha')} />
@@ -97,7 +99,7 @@ export const Login: FC = (): ReturnComponentType => {
 					}
 
 					<button
-						className={`${style.loginBtn} ${isDarkTheme && style.loginBtnDark}`}
+						className={`${style.loginBtn} ${isDarkTheme(theme) && style.loginBtnDark}`}
 						disabled={!isValid}
 						type='submit'
 					>

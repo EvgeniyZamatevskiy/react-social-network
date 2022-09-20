@@ -3,7 +3,7 @@ import { ReturnComponentType } from 'types'
 import { Popup } from 'components/popup'
 import { useSelector } from 'react-redux'
 import { selectTheme } from 'store/selectors'
-import { getBackgroundColor } from 'utils'
+import { getBackgroundColor, isDarkTheme } from 'utils'
 import { Icon12Dropdown } from '@vkontakte/icons'
 import defaultAvatar from 'assets/images/defaultAvatar.png'
 import style from './Header.module.scss'
@@ -20,7 +20,6 @@ export const Header: FC = (): ReturnComponentType => {
 	const authorizedUserContainerStyle = {
 		backgroundColor: getBackgroundColor(isActivePopup, theme, '#F2F3F5', '#3D3D3D')
 	}
-
 	const bodyStyle = {
 		backgroundColor: getBackgroundColor(isHover, theme, '#F5F6F8', '#333333')
 	}
@@ -62,7 +61,7 @@ export const Header: FC = (): ReturnComponentType => {
 	}
 
 	return (
-		<header className={`${style.header} ${theme === 'dark' && style.dark}`}>
+		<header className={`${style.header} ${isDarkTheme(theme) && style.darkHeader}`}>
 			<div className={style.container}>
 				<h1 className={style.title}>social network</h1>
 				<div
