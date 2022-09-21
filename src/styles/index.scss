@@ -11,16 +11,11 @@ body {
 
 .app {
 	background: $bgPrimaryLight;
+	min-height: 100vh;
 
 
 	&.darkApp {
 		background: $bgPrimaryDark;
 		color: $colorDark;
-	}
-
-	.container {
-		max-width: 960px;
-		height: 100vh;
-		margin: 0 auto;
 	}
 }

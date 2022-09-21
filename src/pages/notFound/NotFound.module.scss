@@ -1,42 +1,10 @@
  @import 'styles/sass/mixins.scss';
- @import 'styles/sass/templates.scss';
 
  .container {
  	height: 100vh;
  	@include flex(row, center, center);
 
- 	.content {
- 		@include flex(row, space-between, center);
- 		width: 730px;
-
- 		.body {
-
- 			.title {
- 				font-weight: 600;
- 				font-size: 50px;
- 				line-height: 61px;
- 			}
-
- 			.text {
- 				line-height: 36px;
- 				margin-top: 11px;
- 			}
-
- 			.backToHomePageBtnContainer {
- 				margin-top: 20px;
-
- 				.backToHomePageBtn {
- 					background-color: #0077FF;
- 					color: #FFF;
- 					border-radius: 8px;
- 					padding: 10.5px 12px;
- 				}
- 			}
- 		}
+ 	.notFoundImage {
+ 		width: 100%;
  	}
- }
-
- .notFoundImage {
- 	width: 100%;
- 	border: 1px solid red;
  }

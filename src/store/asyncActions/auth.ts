@@ -38,12 +38,14 @@ export const login = createAsyncThunk
 			const response = await AUTH.login(loginData)
 			const { messages, resultCode } = response.data
 
+			if (resultCode === ResponseCode.CAPTCHA_IS_REQUIRED) {
+				dispatch(getCaptchaUrl())
+				return rejectWithValue({ error: messages[FIRST_ELEMENT_ARRAY] })
+			}
+
 			if (resultCode === ResponseCode.SUCCESS) {
 				dispatch(getAuthorizedUserData())
 			} else {
-				if (resultCode === ResponseCode.CAPTCHA_IS_REQUIRED) {
-					dispatch(getCaptchaUrl())
-				}
 				return rejectWithValue({ error: messages[FIRST_ELEMENT_ARRAY] })
 			}
 		} catch (error) {

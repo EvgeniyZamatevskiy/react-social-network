@@ -15,7 +15,7 @@ export const Profile: FC = (): ReturnComponentType => {
 	}
 
 	return (
-		<div className={style.profile}>
+		<div className={style.container}>
 			Profile
 		</div>
 	)
