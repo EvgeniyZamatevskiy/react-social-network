@@ -1,17 +1,26 @@
 import React, { FC, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { ReturnComponentType } from 'types'
-import { LoginDataType } from './types'
 import { useSelector } from 'react-redux'
 import { selectTheme } from 'store/selectors'
 import { InputType } from 'components/common/eye/types'
 import { ErrorCircle, Eye } from 'components'
 import { isDarkTheme } from 'utils'
+import { LoginDataType } from 'api/auth/types'
+import { useAppDispatch } from 'hooks'
+import { login } from 'store/asyncActions'
+import { selectCaptchaUrl, selectIsAuth } from 'store/selectors/auth'
+import { Navigate } from 'react-router-dom'
+import { Path } from 'enums'
 import style from './Login.module.scss'
 
 export const Login: FC = (): ReturnComponentType => {
 
+	const dispatch = useAppDispatch()
+
 	const theme = useSelector(selectTheme)
+	const isAuth = useSelector(selectIsAuth)
+	const captchaUrl = useSelector(selectCaptchaUrl)
 
 	const [inputType, setInputType] = useState<InputType>('password')
 
@@ -35,9 +44,12 @@ export const Login: FC = (): ReturnComponentType => {
 		maxLength: { value: 64, message: 'Max 64 characters' },
 	}
 
-	const onSubmit: SubmitHandler<LoginDataType> = (data): void => {
-		//dispatch(login(data))
-		console.log(data)
+	const onSubmit: SubmitHandler<LoginDataType> = (loginData): void => {
+		dispatch(login(loginData))
+	}
+
+	if (isAuth) {
+		return <Navigate to={Path.PROFILE} />
 	}
 
 	return (
@@ -87,9 +99,9 @@ export const Login: FC = (): ReturnComponentType => {
 						<span className={style.rememberMe}>Remember me</span>
 					</label>
 
-					{!true &&
+					{captchaUrl &&
 						<div className={style.captcha}>
-							<img className={style.captchaImage} src={'https://social-network.samuraijs.com/HelpApp/HelpApp/Captcha?w=200&h=100&c=lEHhgzAzs2FjfOovTxSsBw%3D%3D'} />
+							<img className={style.captchaImage} src={captchaUrl} />
 							<input
 								className={`${style.captchaInput} ${isDarkTheme(theme) && style.captchaInputDark}`}
 								type='text'

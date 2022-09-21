@@ -5,12 +5,14 @@ import { useSelector } from 'react-redux'
 import { selectTheme } from 'store/selectors'
 import { getBackgroundColor, isDarkTheme } from 'utils'
 import { Icon12Dropdown } from '@vkontakte/icons'
+import { selectIsAuth } from 'store/selectors/auth'
 import defaultAvatar from 'assets/images/defaultAvatar.png'
 import style from './Header.module.scss'
 
 export const Header: FC = (): ReturnComponentType => {
 
 	const theme = useSelector(selectTheme)
+	const isAuth = useSelector(selectIsAuth)
 
 	const [isActivePopup, setIsActivePopup] = useState(false)
 	const [isHover, setIsHover] = useState(false)
@@ -20,7 +22,7 @@ export const Header: FC = (): ReturnComponentType => {
 	const authorizedUserContainerStyle = {
 		backgroundColor: getBackgroundColor(isActivePopup, theme, '#F2F3F5', '#3D3D3D')
 	}
-	const bodyStyle = {
+	const authorizedUserStyle = {
 		backgroundColor: getBackgroundColor(isHover, theme, '#F5F6F8', '#333333')
 	}
 
@@ -64,23 +66,24 @@ export const Header: FC = (): ReturnComponentType => {
 		<header className={`${style.header} ${isDarkTheme(theme) && style.darkHeader}`}>
 			<div className={style.container}>
 				<h1 className={style.title}>social network</h1>
-				<div
-					className={style.authorizedUserContainer}
-					style={authorizedUserContainerStyle}
-					onMouseEnter={onAuthorizedUserContainerMouseEnter}
-					onMouseLeave={onAuthorizedUserContainerMouseLeave}
-					ref={authorizedUserContainerRef}
-				>
-					<div
-						className={style.body}
-						style={bodyStyle}
-						onClick={onToggleIsActivePopupClick}
+				{isAuth
+					&& <div
+						className={style.authorizedUserContainer}
+						style={authorizedUserContainerStyle}
+						onMouseEnter={onAuthorizedUserContainerMouseEnter}
+						onMouseLeave={onAuthorizedUserContainerMouseLeave}
+						ref={authorizedUserContainerRef}
 					>
-						<img className={style.avatar} src={defaultAvatar} alt='avatar' />
-						<Icon12Dropdown className={style.arrowDownIcon} width={12} height={8} fill={'#656565'} />
-					</div>
-					{isActivePopup && <Popup />}
-				</div>
+						<div
+							className={style.authorizedUser}
+							style={authorizedUserStyle}
+							onClick={onToggleIsActivePopupClick}
+						>
+							<img className={style.avatar} src={defaultAvatar} alt='avatar' />
+							<Icon12Dropdown className={style.arrowDownIcon} width={12} height={8} fill={'#656565'} />
+						</div>
+						{isActivePopup && <Popup setIsActivePopup={setIsActivePopup} />}
+					</div>}
 			</div>
 		</header>
 	)

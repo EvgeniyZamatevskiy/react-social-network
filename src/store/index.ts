@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { LocalStorageKey } from 'enums'
 import { setDataToLocalStorage, getParseLocalStorageData } from 'services'
-import appSlice from './slices/app'
 import { ThemeType } from './slices/app/types'
+import appSlice from './slices/app'
+import authSlice from './slices/auth'
 
 export const store = configureStore({
 	reducer: {
-		app: appSlice
+		app: appSlice,
+		auth: authSlice,
 	},
 	preloadedState: getParseLocalStorageData(LocalStorageKey.THEME, {})
 })

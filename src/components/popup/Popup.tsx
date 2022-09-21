@@ -9,11 +9,13 @@ import { setTheme } from 'store/slices/app'
 import { getBackgroundColor, isDarkTheme } from 'utils'
 import { Icon20DoorArrowRightOutline } from '@vkontakte/icons'
 import { Icon28PaletteOutline } from '@vkontakte/icons'
+import { logOut } from 'store/asyncActions'
+import { PopupPropsType } from './types'
 import style from './Popup.module.scss'
 
 const themes: ThemeType[] = ['light', 'dark']
 
-export const Popup: FC = (): ReturnComponentType => {
+export const Popup: FC<PopupPropsType> = ({ setIsActivePopup }): ReturnComponentType => {
 
 	const dispatch = useAppDispatch()
 
@@ -29,6 +31,11 @@ export const Popup: FC = (): ReturnComponentType => {
 
 	const onLogOutMouseLeave = (): void => setIsHover(false)
 
+	const onLogOutClick = (): void => {
+		dispatch(logOut())
+		setIsActivePopup(false)
+	}
+
 	return (
 		<div className={`${style.popup} ${isDarkTheme(theme) && style.dark}`} >
 			<div className={style.watercolorContainer}>
@@ -41,7 +48,8 @@ export const Popup: FC = (): ReturnComponentType => {
 			</div>
 			<Button
 				className={style.logOutBtn}
-				style={{ backgroundColor: getBackgroundColor(isHover, theme, ' #F5F6F8', '#333333') }}
+				style={{ backgroundColor: getBackgroundColor(isHover, theme, '#F5F6F8', '#333333') }}
+				onClick={onLogOutClick}
 				onMouseEnter={onLogOutMouseEnter}
 				onMouseLeave={onLogOutMouseLeave}
 			>
