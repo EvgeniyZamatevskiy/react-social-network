@@ -7,15 +7,15 @@ import { AuthSliceInitialStateType } from './types'
 const initialState: AuthSliceInitialStateType = {
 	authorizedUserData: null,
 	isAuth: false,
-	captchaUrl: EMPTY_STRING
+	captchaUrl: EMPTY_STRING,
 }
 
 export const authSlice = createSlice({
 	initialState,
 	name: 'auth',
 	reducers: {
-		// setTheme(state, action: PayloadAction<ThemeType>) {
-		// 	state.theme = action.payload
+		// setIsLoadingLogin(state, action: PayloadAction<boolean>) {
+		// 	state.isLoadingLogin = action.payload
 		// },
 	},
 	extraReducers(builder) {
@@ -23,9 +23,11 @@ export const authSlice = createSlice({
 			.addCase(getAuthorizedUserData.fulfilled, (state, action: PayloadAction<AuthorizedUserDataType>) => {
 				state.authorizedUserData = action.payload
 				state.isAuth = true
-			})
-			.addCase(login.fulfilled, (state) => {
 				state.captchaUrl = EMPTY_STRING
+			})
+			.addCase(login.pending, (state) => {
+			})
+			.addCase(login.rejected, (state) => {
 			})
 			.addCase(logOut.fulfilled, (state) => {
 				state.authorizedUserData = null

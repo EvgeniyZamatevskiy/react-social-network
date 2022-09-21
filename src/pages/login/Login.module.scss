@@ -196,12 +196,14 @@
 			}
 
 			.loginBtn {
+				height: 36px;
 				margin-top: 40px;
 				background-color: #0077FF;
 				color: #FFF;
 				border-radius: 8px;
-				padding: 10.5px 12px;
 				transition: opacity 0.1s ease-in-out 0s;
+				@include flex(column, center, center);
+				text-align: center;
 
 				&.loginBtnDark {
 					background-color: #FFF;
