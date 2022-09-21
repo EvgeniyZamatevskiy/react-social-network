@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { ReturnComponentType } from 'types'
 import { useSelector } from 'react-redux'
-import { selectIsLoading, selectTheme } from 'store/selectors'
+import { selectIsDisabled, selectIsLoading, selectTheme } from 'store/selectors'
 import { InputType } from 'components/common/eye/types'
 import { AuthLoader, ErrorCircle, Eye } from 'components'
 import { isDarkTheme } from 'utils'
@@ -22,6 +22,7 @@ export const Login: FC = (): ReturnComponentType => {
 	const isAuth = useSelector(selectIsAuth)
 	const captchaUrl = useSelector(selectCaptchaUrl)
 	const isLoading = useSelector(selectIsLoading)
+	const isDisabled = useSelector(selectIsDisabled)
 
 	const [inputType, setInputType] = useState<InputType>('password')
 
@@ -113,7 +114,7 @@ export const Login: FC = (): ReturnComponentType => {
 
 					<button
 						className={`${style.loginBtn} ${isDarkTheme(theme) && style.loginBtnDark}`}
-						disabled={!isValid}
+						disabled={!isValid || isDisabled}
 						type='submit'
 					>
 						{isLoading ? <AuthLoader /> : 'Login'}

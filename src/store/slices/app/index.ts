@@ -9,6 +9,7 @@ const initialState: AppSliceInitialStateType = {
 	errorMessage: EMPTY_STRING,
 	isLoading: false,
 	isInitializedApp: false,
+	isDisabled: false
 }
 
 export const appSlice = createSlice({
@@ -25,17 +26,22 @@ export const appSlice = createSlice({
 	extraReducers(builder) {
 		builder
 			.addCase(login.pending, (state) => {
+				state.isDisabled = true
 				state.isLoading = true
 			})
 			.addCase(login.rejected, (state) => {
 				state.isLoading = false
+				state.isDisabled = false
 			})
 			.addCase(getAuthorizedUserData.fulfilled, (state) => {
 				state.isInitializedApp = true
+				state.isDisabled = false
 				state.isLoading = false
 			})
 			.addCase(getAuthorizedUserData.rejected, (state) => {
 				state.isInitializedApp = true
+				state.isLoading = false
+				state.isDisabled = false
 			})
 			.addMatcher(isErrorRejected, (state, action: PayloadAction<{ error: string }>) => {
 				state.errorMessage = action.payload.error
