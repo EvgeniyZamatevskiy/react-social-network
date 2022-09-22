@@ -1,9 +1,10 @@
 import { Path } from 'enums'
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
-import { Navigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { selectIsAuth } from 'store/selectors/auth'
 import { ReturnComponentType } from 'types'
+import defaultAvatar from 'assets/images/defaultAvatar.png'
 import style from './Profile.module.scss'
 
 export const Profile: FC = (): ReturnComponentType => {
@@ -16,7 +17,20 @@ export const Profile: FC = (): ReturnComponentType => {
 
 	return (
 		<div className={style.container}>
-			Profile
+			<div className={style.profile}>
+				<div className={style.leftBlock}>
+					<div className={style.avatarContainer}>
+						<img className={style.avatar} src={defaultAvatar} alt='avatar' />
+						<div className={style.editLink}>
+							<Link to={Path.EDIT}>Edit</Link>
+						</div>
+					</div>
+				</div>
+
+				<div className={style.rightBlock}>
+
+				</div>
+			</div>
 		</div>
 	)
 }

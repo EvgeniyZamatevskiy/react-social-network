@@ -1,5 +1,5 @@
 import React, { FC, Suspense, useEffect } from 'react'
-import { ErrorAlert, Header, Loader } from 'components'
+import { ErrorAlert, Header, Loader, NavBar } from 'components'
 import { useSelector } from 'react-redux'
 import { selectErrorMessage, selectIsInitializedApp, selectTheme } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
@@ -31,12 +31,15 @@ export const App: FC = (): ReturnComponentType => {
   return (
     <div className={`${'app'} ${isDarkTheme(theme) && 'darkApp'} `}>
       {pathname !== `/${Path.NOT_FOUND_404}` && <Header />}
-      {errorMessage && <ErrorAlert />}
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          {ROUTES.map(({ path, element }) => <Route key={path} path={path} element={element} />)}
-        </Routes>
-      </Suspense>
+      <div className='content'>
+        {pathname !== `/${Path.NOT_FOUND_404}` && pathname !== Path.LOGIN && <NavBar />}
+        {errorMessage && <ErrorAlert />}
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            {ROUTES.map(({ path, element }) => <Route key={path} path={path} element={element} />)}
+          </Routes>
+        </Suspense>
+      </div>
     </div>
   )
 }

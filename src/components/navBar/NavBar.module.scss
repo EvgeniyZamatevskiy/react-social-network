@@ -1,0 +1,33 @@
+.container {
+	margin-right: 6px;
+	padding-top: 63px;
+
+	.navBar {
+		width: 100px;
+		width: 163px;
+		display: flex;
+		flex-direction: column;
+
+		.link {
+			display: flex;
+			align-items: center;
+			height: 30px;
+			margin-top: 10px;
+			padding: 0px 0px 0px 6px;
+
+			.icon {
+				margin-right: 9.5px;
+				color: #71AAEB;
+			}
+
+			&:hover {
+				background-color: #262626;
+				border-radius: 5px;
+			}
+
+			&:first-child {
+				margin-top: 0px;
+			}
+		}
+	}
+}
