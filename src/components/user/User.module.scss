@@ -1,0 +1,60 @@
+@import 'styles/sass/mixins.scss';
+
+.user {
+	border-top: 1px solid #484848;
+	@include flex(row, space-between, stretch);
+	padding: 12px 0px;
+
+	.body {
+		display: flex;
+
+		.userAvatar {
+			width: 80px;
+			height: 80px;
+			border-radius: 50%;
+			cursor: pointer;
+		}
+
+		.content {
+			padding: 7px 0px;
+			margin-left: 16px;
+
+			.name {
+				font-weight: 700;
+				max-height: 16px;
+				overflow: hidden;
+
+				&:hover {
+					text-decoration: underline;
+					cursor: pointer;
+				}
+			}
+
+			.status {
+				margin-top: 10px;
+				color: #939393;
+				max-height: 16px;
+				overflow: hidden;
+			}
+		}
+	}
+
+	.follow {
+		margin-left: 20px;
+		align-self: center;
+		height: 26px;
+		padding: 0px 16px;
+		background-color: #E1E3E6;
+		color: #000;
+		border-radius: 5px;
+		@include flex(row, center, center);
+
+		&:hover {
+			background-color: #CACBCE;
+		}
+	}
+
+	&:first-child {
+		border-top: none;
+	}
+}

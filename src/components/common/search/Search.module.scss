@@ -1,0 +1,42 @@
+.container {
+	position: relative;
+
+	.searchIcon {
+		width: 45px;
+		height: 45px;
+		opacity: 0.5;
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		font-size: 14px;
+	}
+
+	.searchInput {
+		border: 1px solid #D9D9D9;
+		padding: 12px 20px 12px 42px;
+		min-width: 463px;
+		border-radius: 2px;
+		font-size: 16px;
+
+		&:focus {
+			border: 1px solid rgba(0, 0, 0, 0.2);
+		}
+	}
+
+	.resetSearchValueBtn {
+		position: relative;
+
+		.crossIcon {
+			width: 30px;
+			height: 30px;
+			opacity: 0.8;
+			position: absolute;
+			right: 5px;
+			top: -19px;
+		}
+
+		&:disabled {
+			opacity: 0.3;
+		}
+	}
+}
