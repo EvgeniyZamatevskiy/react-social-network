@@ -6,31 +6,31 @@
 	width: 100%;
 
 	.users {
-		background-color: #292929;
-		border-radius: 10px;
-		border-top: 1px solid $borderDark;
-		border-right: 1px solid $borderDark;
-		border-left: 1px solid $borderDark;
-		border-bottom: 1px solid #484848;
 		margin-bottom: 76px;
+		border-radius: 10px;
+		background-color: #FFFFFF;
+		border-top: 1px solid $borderLight;
+		border-right: 1px solid $borderLight;
+		border-left: 1px solid $borderLight;
+		border-bottom: 1px solid #DCE1E6;
 
 		.title {
-			border-bottom: 1px solid #484848;
+			border-bottom: 1px solid #DCE1E6;
+			background-color: #FAFBFC;
 			padding: 20px;
-			background-color: $bgSecondaryDark;
 			border-top-left-radius: 10px;
 			border-top-right-radius: 10px;
 
-			&.titleLight {
-				border-bottom: 1px solid #DCE1E6;
-				background-color: #FAFBFC;
+			&.titleDark {
+				background-color: $bgSecondaryDark;
+				border-bottom: 1px solid #484848;
 			}
 		}
 
 		.filterContainer {
 			@include flex(row, space-between, center);
 			padding-right: 20px;
-			border-bottom: 1px solid #484848;
+			border-bottom: 1px solid #DCE1E6;
 
 			.searchInputContainer {
 				position: relative;
@@ -57,9 +57,8 @@
 				}
 			}
 
-			&.filterContainerLight {
-				//background-color: #FAFBFC;
-				border-bottom: 1px solid #DCE1E6;
+			&.filterContainerDark {
+				border-bottom: 1px solid #484848;
 			}
 		}
 
@@ -67,12 +66,12 @@
 			padding: 0px 20px;
 		}
 
-		&.usersLight {
-			background-color: #FFFFFF;
-			border-top: 1px solid $borderLight;
-			border-right: 1px solid $borderLight;
-			border-left: 1px solid $borderLight;
-			border-bottom: 1px solid #DCE1E6;
+		&.usersDark {
+			background-color: #292929;
+			border-top: 1px solid $borderDark;
+			border-right: 1px solid $borderDark;
+			border-left: 1px solid $borderDark;
+			border-bottom: 1px solid #484848;
 		}
 	}
 }

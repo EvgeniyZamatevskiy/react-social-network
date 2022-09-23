@@ -11,6 +11,7 @@ import { selectIsAuth, selectIsLoadingUsers, selectTheme, selectUsers } from 'st
 import { Navigate } from 'react-router-dom'
 import { Path } from 'enums'
 import style from './Users.module.scss'
+import { isDarkTheme } from 'utils'
 
 export const Users: FC = (): ReturnComponentType => {
 
@@ -41,9 +42,9 @@ export const Users: FC = (): ReturnComponentType => {
 
 	return (
 		<div className={style.container}>
-			<div className={`${style.users} ${theme === 'light' && style.usersLight}`}>
-				<h2 className={`${style.title} ${theme === 'light' && style.titleLight}`}>Users</h2>
-				<div className={`${style.filterContainer} ${theme === 'light' && style.filterContainerLight}`}>
+			<div className={`${style.users} ${isDarkTheme(theme) && style.usersDark}`}>
+				<h2 className={`${style.title} ${isDarkTheme(theme) && style.titleDark}`}>Users</h2>
+				<div className={`${style.filterContainer} ${isDarkTheme(theme) && style.filterContainerDark}`}>
 					<div className={style.searchInputContainer}>
 						<Icon20Search className={style.searchIcon} />
 						<Input placeholder='Search' className={style.searchInput} value={searchValue} setValue={setSearchValue} />

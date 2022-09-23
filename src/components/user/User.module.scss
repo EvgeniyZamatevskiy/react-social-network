@@ -1,7 +1,7 @@
 @import 'styles/sass/mixins.scss';
 
 .user {
-	border-top: 1px solid #484848;
+	border-top: 1px solid #DCE1E6;
 	@include flex(row, space-between, stretch);
 	padding: 12px 0px;
 
@@ -40,22 +40,26 @@
 	}
 
 	.follow {
+		background-color: #447BBA;
+		color: #FFF;
 		width: 85px;
 		margin-left: 20px;
 		align-self: center;
 		height: 26px;
-		background-color: #E1E3E6;
-		color: #000;
 		border-radius: 5px;
 		@include flex(row, center, center);
 
 		&:hover {
-			background-color: #CACBCE;
+			background-color: #5B8BC3;
 		}
 
-		&.followLight {
-			background-color: #447BBA;
-			color: #FFF;
+		&.followDark {
+			background-color: #E1E3E6;
+			color: #000;
+
+			&:hover {
+				background-color: #CACBCE;
+			}
 		}
 	}
 
@@ -63,8 +67,8 @@
 		border-top: none;
 	}
 
-	&.userLight {
-		border-top: 1px solid #DCE1E6;
+	&.userDark {
+		border-top: 1px solid #484848;
 
 		&:first-child {
 			border-top: none;

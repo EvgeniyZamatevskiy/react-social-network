@@ -4,7 +4,7 @@ import { ReturnComponentType } from 'types'
 import { useSelector } from 'react-redux'
 import { selectCaptchaUrl, selectIsAuth, selectIsDisabled, selectIsLoading, selectTheme } from 'store/selectors'
 import { InputType } from 'components/common/eye/types'
-import { AuthLoader, ErrorCircle, Eye } from 'components'
+import { SmallLoader, ErrorCircle, Eye } from 'components'
 import { isDarkTheme } from 'utils'
 import { LoginDataType } from 'api/auth/types'
 import { useAppDispatch } from 'hooks'
@@ -116,7 +116,7 @@ export const Login: FC = (): ReturnComponentType => {
 						disabled={!isValid || isDisabled}
 						type='submit'
 					>
-						{isLoading ? <AuthLoader /> : 'Login'}
+						{isLoading ? <SmallLoader /> : 'Login'}
 					</button>
 				</form>
 			</div>

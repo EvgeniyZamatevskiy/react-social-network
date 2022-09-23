@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { ReturnComponentType } from 'types'
-import { Button, Select } from 'components/common'
 import { ThemeType } from 'store/slices/app/types'
 import { selectTheme } from 'store/selectors'
 import { useAppDispatch } from 'hooks'
@@ -11,6 +10,7 @@ import { Icon20DoorArrowRightOutline } from '@vkontakte/icons'
 import { Icon28PaletteOutline } from '@vkontakte/icons'
 import { logOut } from 'store/asyncActions'
 import { PopupPropsType } from './types'
+import { Button, Select } from 'components/common'
 import style from './Popup.module.scss'
 
 const themes: ThemeType[] = ['light', 'dark']

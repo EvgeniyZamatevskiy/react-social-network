@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux'
 import { selectTheme } from 'store/selectors'
 import { ReturnComponentType } from 'types'
 import { isDarkTheme } from 'utils'
-import style from './AuthLoader.module.scss'
+import style from './SmallLoader.module.scss'
 
-export const AuthLoader: FC = (): ReturnComponentType => {
+export const SmallLoader: FC = (): ReturnComponentType => {
 
 	const theme = useSelector(selectTheme)
 

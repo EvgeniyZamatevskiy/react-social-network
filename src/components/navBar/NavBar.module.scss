@@ -13,7 +13,7 @@
 			align-items: center;
 			height: 30px;
 			margin-top: 10px;
-			padding: 0px 0px 0px 6px;
+			padding-left: 6px;
 
 			.icon {
 				margin-right: 9.5px;
@@ -21,12 +21,19 @@
 			}
 
 			&:hover {
-				background-color: #262626;
+				background-color: #E5E7EB;
 				border-radius: 5px;
 			}
 
 			&:first-child {
 				margin-top: 0px;
+			}
+
+			&.linkDark {
+
+				&:hover {
+					background-color: #262626;
+				}
 			}
 		}
 	}

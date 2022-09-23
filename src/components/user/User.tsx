@@ -3,11 +3,12 @@ import { ReturnComponentType } from 'types'
 import { UserPropsType } from './types'
 import { useAppDispatch } from 'hooks'
 import { follow, unfollow } from 'store/asyncActions'
-import { AuthLoader } from 'components/common'
+import { SmallLoader } from 'components/common'
 import { useSelector } from 'react-redux'
 import { selectTheme } from 'store/selectors'
 import defaultAvatar from 'assets/images/defaultAvatar.png'
 import style from './User.module.scss'
+import { isDarkTheme } from 'utils'
 
 export const User: FC<UserPropsType> = ({ id, followed, name, photos, status, followedStatus }): ReturnComponentType => {
 
@@ -24,7 +25,7 @@ export const User: FC<UserPropsType> = ({ id, followed, name, photos, status, fo
 	}
 
 	return (
-		<div className={`${style.user} ${theme === 'light' && style.userLight}`}>
+		<div className={`${style.user} ${isDarkTheme(theme) && style.userDark}`}>
 			<div className={style.body}>
 				<img className={style.userAvatar} src={photos.small || defaultAvatar} alt='avatar' />
 				<div className={style.content}>
@@ -34,18 +35,18 @@ export const User: FC<UserPropsType> = ({ id, followed, name, photos, status, fo
 			</div>
 			{followed
 				? <button
-					className={`${style.follow} ${theme === 'light' && style.followLight}`}
+					className={`${style.follow} ${isDarkTheme(theme) && style.followDark}`}
 					disabled={followedStatus.isDisabled}
 					onClick={onUnfollowClick}
 				>
-					{followedStatus.isLoading ? <AuthLoader /> : 'Unfollow'}
+					{followedStatus.isLoading ? <SmallLoader /> : 'Unfollow'}
 				</button>
 				: <button
-					className={`${style.follow} ${theme === 'light' && style.followLight}`}
+					className={`${style.follow} ${isDarkTheme(theme) && style.followDark}`}
 					disabled={followedStatus.isDisabled}
 					onClick={onFollowClick}
 				>
-					{followedStatus.isLoading ? <AuthLoader /> : 'Follow'}
+					{followedStatus.isLoading ? <SmallLoader /> : 'Follow'}
 				</button>}
 		</div>
 	)
