@@ -6,7 +6,7 @@ import { ReturnComponentType } from 'types/ReturnComponentType'
 import { ROUTES } from 'router'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { useAppDispatch } from 'hooks'
-import { getAuthorizedUserData } from 'store/asyncActions'
+import { getAuthorizedUserData, getUsers } from 'store/asyncActions'
 import { isDarkTheme } from 'utils'
 import { Path } from 'enums'
 

@@ -1,14 +1,23 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Input, Select, User } from 'components'
 import { EMPTY_STRING } from 'constants/base'
 import { ReturnComponentType } from 'types'
 import { Icon20Search } from '@vkontakte/icons'
 import { Icon12Dropdown } from '@vkontakte/icons'
 import style from './Users.module.scss'
+import { useSelector } from 'react-redux'
+import { useAppDispatch } from 'hooks'
+import { getUsers } from 'store/asyncActions'
 
 export const Users: FC = (): ReturnComponentType => {
 
+	const dispatch = useAppDispatch()
+
 	const [searchValue, setSearchValue] = useState(EMPTY_STRING)
+
+	useEffect(() => {
+		dispatch(getUsers())
+	}, [])
 
 	return (
 		<div className={style.container}>
