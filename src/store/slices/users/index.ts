@@ -7,8 +7,6 @@ const initialState: UsersSliceInitialStateType = {
 	users: [],
 	totalUsersCount: 0,
 	isLoadingUsers: false,
-	isLoadingFollowStatus: false,
-	usersId: []
 }
 
 export const usersSlice = createSlice({
@@ -24,39 +22,59 @@ export const usersSlice = createSlice({
 				state.isLoadingUsers = false
 			})
 			.addCase(getUsers.fulfilled, (state, action: PayloadAction<{ users: UserType[], totalCount: number }>) => {
-				state.users = action.payload.users
+				state.users = action.payload.users.map(user => ({ ...user, followedStatus: { isDisabled: false, isLoading: false } }))
 				state.totalUsersCount = action.payload.totalCount
 				state.isLoadingUsers = false
 			})
-			.addCase(follow.pending, (state) => {
-				state.isLoadingFollowStatus = true
+			.addCase(follow.pending, (state, action) => {
+				const user = state.users.find(user => user.id === action.meta.arg)
+
+				if (user) {
+					user.followedStatus.isDisabled = true
+					user.followedStatus.isLoading = true
+				}
 			})
-			.addCase(follow.rejected, (state) => {
-				state.isLoadingFollowStatus = false
+			.addCase(follow.rejected, (state, action) => {
+				const user = state.users.find(user => user.id === action.meta.arg)
+
+				if (user) {
+					user.followedStatus.isDisabled = false
+					user.followedStatus.isLoading = false
+				}
 			})
 			.addCase(follow.fulfilled, (state, action: PayloadAction<number>) => {
 				const user = state.users.find(user => user.id === action.payload)
 
 				if (user) {
 					user.followed = true
+					user.followedStatus.isDisabled = false
+					user.followedStatus.isLoading = false
 				}
+			})
+			.addCase(unfollow.pending, (state, action) => {
+				const user = state.users.find(user => user.id === action.meta.arg)
 
-				state.isLoadingFollowStatus = false
+				if (user) {
+					user.followedStatus.isDisabled = true
+					user.followedStatus.isLoading = true
+				}
 			})
-			.addCase(unfollow.pending, (state) => {
-				state.isLoadingFollowStatus = true
-			})
-			.addCase(unfollow.rejected, (state) => {
-				state.isLoadingFollowStatus = false
+			.addCase(unfollow.rejected, (state, action) => {
+				const user = state.users.find(user => user.id === action.meta.arg)
+
+				if (user) {
+					user.followedStatus.isDisabled = false
+					user.followedStatus.isLoading = false
+				}
 			})
 			.addCase(unfollow.fulfilled, (state, action: PayloadAction<number>) => {
 				const user = state.users.find(user => user.id === action.payload)
 
 				if (user) {
 					user.followed = false
+					user.followedStatus.isDisabled = false
+					user.followedStatus.isLoading = false
 				}
-
-				state.isLoadingFollowStatus = false
 			})
 	},
 })

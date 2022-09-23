@@ -22,8 +22,8 @@ export const Users: FC = (): ReturnComponentType => {
 
 	const [searchValue, setSearchValue] = useState(EMPTY_STRING)
 
-	const usersRender = users.map(({ id, followed, name, photos, status }) => {
-		return <User key={id} id={id} followed={followed} name={name} photos={photos} status={status} />
+	const usersRender = users.map(({ id, followed, name, photos, status, followedStatus }) => {
+		return <User key={id} id={id} followed={followed} name={name} photos={photos} status={status} followedStatus={followedStatus} />
 	})
 
 	useEffect(() => {

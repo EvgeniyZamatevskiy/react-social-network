@@ -1,9 +1,16 @@
 import { UserType } from 'api/users/types'
 
 export type UsersSliceInitialStateType = {
-	users: UserType[]
+	users: UserSupplementedType[]
 	totalUsersCount: number
 	isLoadingUsers: boolean
-	isLoadingFollowStatus: boolean
-	usersId: number[]
+}
+
+export type UserSupplementedType = UserType & {
+	followedStatus: FollowedStatusType
+}
+
+export type FollowedStatusType = {
+	isDisabled: boolean
+	isLoading: boolean
 }

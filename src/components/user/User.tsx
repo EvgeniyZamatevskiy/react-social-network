@@ -1,19 +1,15 @@
 import React, { FC } from 'react'
 import { ReturnComponentType } from 'types'
 import { UserPropsType } from './types'
-import defaultAvatar from 'assets/images/defaultAvatar.png'
-import style from './User.module.scss'
 import { useAppDispatch } from 'hooks'
 import { follow, unfollow } from 'store/asyncActions'
-import { useSelector } from 'react-redux'
-import { selectIsLoadingFollowStatus } from 'store/selectors'
 import { AuthLoader } from 'components/common'
+import defaultAvatar from 'assets/images/defaultAvatar.png'
+import style from './User.module.scss'
 
-export const User: FC<UserPropsType> = ({ id, followed, name, photos, status }): ReturnComponentType => {
+export const User: FC<UserPropsType> = ({ id, followed, name, photos, status, followedStatus }): ReturnComponentType => {
 
 	const dispatch = useAppDispatch()
-
-	const isLoadingFollowStatus = useSelector(selectIsLoadingFollowStatus)
 
 	const onFollowClick = (): void => {
 		dispatch(follow(id))
@@ -33,8 +29,20 @@ export const User: FC<UserPropsType> = ({ id, followed, name, photos, status }):
 				</div>
 			</div>
 			{followed
-				? <button className={style.follow} onClick={onUnfollowClick}>Unfollow</button>
-				: <button className={style.follow} onClick={onFollowClick}>Follow</button>}
+				? <button
+					className={style.follow}
+					disabled={followedStatus.isDisabled}
+					onClick={onUnfollowClick}
+				>
+					{followedStatus.isLoading ? <AuthLoader /> : 'Unfollow'}
+				</button>
+				: <button
+					className={style.follow}
+					disabled={followedStatus.isDisabled}
+					onClick={onFollowClick}
+				>
+					{followedStatus.isLoading ? <AuthLoader /> : 'Follow'}
+				</button>}
 		</div>
 	)
 }

@@ -1,4 +1,5 @@
 import { PhotoType } from 'api/users/types'
+import { FollowedStatusType } from 'store/slices/users/types'
 
 export type UserPropsType = {
 	id: number
@@ -6,4 +7,5 @@ export type UserPropsType = {
 	name: string
 	photos: PhotoType
 	status: string
+	followedStatus: FollowedStatusType
 }
