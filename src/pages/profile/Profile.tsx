@@ -1,9 +1,9 @@
-import { Path } from 'enums'
 import React, { FC } from 'react'
+import { Path } from 'enums'
 import { useSelector } from 'react-redux'
 import { Link, Navigate } from 'react-router-dom'
-import { selectIsAuth } from 'store/selectors/auth'
 import { ReturnComponentType } from 'types'
+import { selectIsAuth } from 'store/selectors'
 import defaultAvatar from 'assets/images/defaultAvatar.png'
 import style from './Profile.module.scss'
 

@@ -1,3 +1,9 @@
+import { UserType } from 'api/users/types'
+
 export type UsersSliceInitialStateType = {
-	users: any[]
+	users: UserType[]
+	totalUsersCount: number
+	isLoadingUsers: boolean
+	isLoadingFollowStatus: boolean
+	usersId: number[]
 }

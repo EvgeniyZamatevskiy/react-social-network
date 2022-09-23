@@ -1,23 +1,42 @@
 import React, { FC, useEffect, useState } from 'react'
-import { Input, Select, User } from 'components'
+import { Input, Loader, Select, User } from 'components'
 import { EMPTY_STRING } from 'constants/base'
 import { ReturnComponentType } from 'types'
 import { Icon20Search } from '@vkontakte/icons'
 import { Icon12Dropdown } from '@vkontakte/icons'
-import style from './Users.module.scss'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'hooks'
 import { getUsers } from 'store/asyncActions'
+import { selectIsAuth, selectIsLoadingUsers, selectUsers } from 'store/selectors'
+import { Navigate } from 'react-router-dom'
+import { Path } from 'enums'
+import style from './Users.module.scss'
 
 export const Users: FC = (): ReturnComponentType => {
 
 	const dispatch = useAppDispatch()
 
+	const users = useSelector(selectUsers)
+	const isAuth = useSelector(selectIsAuth)
+	const isLoadingUsers = useSelector(selectIsLoadingUsers)
+
 	const [searchValue, setSearchValue] = useState(EMPTY_STRING)
+
+	const usersRender = users.map(({ id, followed, name, photos, status }) => {
+		return <User key={id} id={id} followed={followed} name={name} photos={photos} status={status} />
+	})
 
 	useEffect(() => {
 		dispatch(getUsers())
 	}, [])
+
+	if (!isAuth) {
+		return <Navigate to={Path.LOGIN} />
+	}
+
+	if (isLoadingUsers) {
+		return <Loader />
+	}
 
 	return (
 		<div className={style.container}>
@@ -32,7 +51,7 @@ export const Users: FC = (): ReturnComponentType => {
 					<Icon12Dropdown width={14} height={14} fill='#92A0B1' />
 				</div>
 				<div className={style.userContainer}>
-					<User />
+					{usersRender}
 				</div>
 			</div>
 		</div>

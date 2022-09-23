@@ -1,8 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { UserType } from 'api/users/types'
+import { follow, getUsers, unfollow } from 'store/asyncActions'
 import { UsersSliceInitialStateType } from './types'
 
 const initialState: UsersSliceInitialStateType = {
-	users: []
+	users: [],
+	totalUsersCount: 0,
+	isLoadingUsers: false,
+	isLoadingFollowStatus: false,
+	usersId: []
 }
 
 export const usersSlice = createSlice({
@@ -11,11 +17,47 @@ export const usersSlice = createSlice({
 	reducers: {},
 	extraReducers(builder) {
 		builder
-		// .addCase(getAuthorizedUserData.fulfilled, (state, action: PayloadAction<AuthorizedUserDataType>) => {
-		// 	state.authorizedUserData = action.payload
-		// 	state.isAuth = true
-		// 	state.captchaUrl = EMPTY_STRING
-		// })
+			.addCase(getUsers.pending, (state) => {
+				state.isLoadingUsers = true
+			})
+			.addCase(getUsers.rejected, (state) => {
+				state.isLoadingUsers = false
+			})
+			.addCase(getUsers.fulfilled, (state, action: PayloadAction<{ users: UserType[], totalCount: number }>) => {
+				state.users = action.payload.users
+				state.totalUsersCount = action.payload.totalCount
+				state.isLoadingUsers = false
+			})
+			.addCase(follow.pending, (state) => {
+				state.isLoadingFollowStatus = true
+			})
+			.addCase(follow.rejected, (state) => {
+				state.isLoadingFollowStatus = false
+			})
+			.addCase(follow.fulfilled, (state, action: PayloadAction<number>) => {
+				const user = state.users.find(user => user.id === action.payload)
+
+				if (user) {
+					user.followed = true
+				}
+
+				state.isLoadingFollowStatus = false
+			})
+			.addCase(unfollow.pending, (state) => {
+				state.isLoadingFollowStatus = true
+			})
+			.addCase(unfollow.rejected, (state) => {
+				state.isLoadingFollowStatus = false
+			})
+			.addCase(unfollow.fulfilled, (state, action: PayloadAction<number>) => {
+				const user = state.users.find(user => user.id === action.payload)
+
+				if (user) {
+					user.followed = false
+				}
+
+				state.isLoadingFollowStatus = false
+			})
 	},
 })
 
