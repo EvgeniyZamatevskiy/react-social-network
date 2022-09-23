@@ -4,6 +4,7 @@ import { selectTheme } from 'store/selectors'
 import { ReturnComponentType } from 'types'
 import { SelectPropsType } from './types'
 import style from './Select.module.scss'
+import { useTheme } from 'hooks'
 
 export const Select: FC<SelectPropsType> =
 	({
@@ -13,10 +14,10 @@ export const Select: FC<SelectPropsType> =
 		...restProps
 	}): ReturnComponentType => {
 
-		const theme = useSelector(selectTheme)
+		const isDarkTheme = useTheme('dark')
 
 		const optionsRender = options.map((option, index) => {
-			return <option key={index} className={`${style.option} ${theme === 'dark' && style.dark}`}>{option}</option>
+			return <option key={index} className={`${style.option} ${isDarkTheme && style.optionDark}`}>{option}</option>
 		})
 
 		const onSelectChange = (event: ChangeEvent<HTMLSelectElement>): void => {

@@ -5,13 +5,12 @@ import { ReturnComponentType } from 'types'
 import { Icon20Search } from '@vkontakte/icons'
 import { Icon12Dropdown } from '@vkontakte/icons'
 import { useSelector } from 'react-redux'
-import { useAppDispatch } from 'hooks'
+import { useAppDispatch, useTheme } from 'hooks'
 import { getUsers } from 'store/asyncActions'
-import { selectIsAuth, selectIsLoadingUsers, selectTheme, selectUsers } from 'store/selectors'
+import { selectIsAuth, selectIsLoadingUsers, selectUsers } from 'store/selectors'
 import { Navigate } from 'react-router-dom'
 import { Path } from 'enums'
 import style from './Users.module.scss'
-import { isDarkTheme } from 'utils'
 
 export const Users: FC = (): ReturnComponentType => {
 
@@ -20,9 +19,10 @@ export const Users: FC = (): ReturnComponentType => {
 	const users = useSelector(selectUsers)
 	const isAuth = useSelector(selectIsAuth)
 	const isLoadingUsers = useSelector(selectIsLoadingUsers)
-	const theme = useSelector(selectTheme)
 
 	const [searchValue, setSearchValue] = useState(EMPTY_STRING)
+
+	const isDarkTheme = useTheme('dark')
 
 	const usersRender = users.map(({ id, followed, name, photos, status, followedStatus }) => {
 		return <User key={id} id={id} followed={followed} name={name} photos={photos} status={status} followedStatus={followedStatus} />
@@ -42,9 +42,9 @@ export const Users: FC = (): ReturnComponentType => {
 
 	return (
 		<div className={style.container}>
-			<div className={`${style.users} ${isDarkTheme(theme) && style.usersDark}`}>
-				<h2 className={`${style.title} ${isDarkTheme(theme) && style.titleDark}`}>Users</h2>
-				<div className={`${style.filterContainer} ${isDarkTheme(theme) && style.filterContainerDark}`}>
+			<div className={`${style.users} ${isDarkTheme && style.usersDark}`}>
+				<h2 className={`${style.title} ${isDarkTheme && style.titleDark}`}>Users</h2>
+				<div className={`${style.filterContainer} ${isDarkTheme && style.filterContainerDark}`}>
 					<div className={style.searchInputContainer}>
 						<Icon20Search className={style.searchIcon} />
 						<Input placeholder='Search' className={style.searchInput} value={searchValue} setValue={setSearchValue} />

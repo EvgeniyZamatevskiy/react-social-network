@@ -1,13 +1,12 @@
 import React, { FC, Suspense, useEffect } from 'react'
 import { ErrorAlert, Header, Loader, NavBar } from 'components'
 import { useSelector } from 'react-redux'
-import { selectErrorMessage, selectIsInitializedApp, selectTheme } from 'store/selectors'
+import { selectErrorMessage, selectIsInitializedApp } from 'store/selectors'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { ROUTES } from 'router'
 import { Route, Routes, useLocation } from 'react-router-dom'
-import { useAppDispatch } from 'hooks'
+import { useAppDispatch, useTheme } from 'hooks'
 import { getAuthorizedUserData } from 'store/asyncActions'
-import { isDarkTheme } from 'utils'
 import { Path } from 'enums'
 
 export const App: FC = (): ReturnComponentType => {
@@ -16,7 +15,8 @@ export const App: FC = (): ReturnComponentType => {
 
   const { pathname } = useLocation()
 
-  const theme = useSelector(selectTheme)
+  const isDarkTheme = useTheme('dark')
+
   const errorMessage = useSelector(selectErrorMessage)
   const isInitializedApp = useSelector(selectIsInitializedApp)
 
@@ -29,7 +29,7 @@ export const App: FC = (): ReturnComponentType => {
   }
 
   return (
-    <div className={`${'app'} ${isDarkTheme(theme) && 'darkApp'} `}>
+    <div className={`${'app'} ${isDarkTheme && 'darkApp'} `}>
       {pathname !== `/${Path.NOT_FOUND_404}` && <Header />}
       <div className='content'>
         {pathname !== `/${Path.NOT_FOUND_404}` && pathname !== Path.LOGIN && <NavBar />}

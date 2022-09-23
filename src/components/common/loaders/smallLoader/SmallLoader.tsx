@@ -1,16 +1,14 @@
+import { useTheme } from 'hooks'
 import React, { FC } from 'react'
-import { useSelector } from 'react-redux'
-import { selectTheme } from 'store/selectors'
 import { ReturnComponentType } from 'types'
-import { isDarkTheme } from 'utils'
 import style from './SmallLoader.module.scss'
 
 export const SmallLoader: FC = (): ReturnComponentType => {
 
-	const theme = useSelector(selectTheme)
+	const isDarkTheme = useTheme('dark')
 
 	return (
-		<div style={isDarkTheme(theme) ? { color: '#000' } : { color: '#FFF' }}
+		<div style={isDarkTheme ? { color: '#000' } : { color: '#FFF' }}
 			className={`${style.laBallClipRotate} ${style.laSm}`}>
 			<div></div>
 		</div>

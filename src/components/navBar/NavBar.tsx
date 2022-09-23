@@ -5,16 +5,14 @@ import { ReturnComponentType } from 'types'
 import { Icon16MessageOutline } from '@vkontakte/icons'
 import { Icon16Users2Outline } from '@vkontakte/icons'
 import { Icon20UserCircleOutline } from '@vkontakte/icons'
-import { useSelector } from 'react-redux'
-import { selectTheme } from 'store/selectors'
-import { isDarkTheme } from 'utils'
+import { useTheme } from 'hooks'
 import style from './NavBar.module.scss'
 
 export const NavBar: FC = (): ReturnComponentType => {
 
-	const theme = useSelector(selectTheme)
+	const isDarkTheme = useTheme('dark')
 
-	const linkClassName = `${style.link} ${isDarkTheme(theme) && style.linkDark}`
+	const linkClassName = `${style.link} ${isDarkTheme && style.linkDark}`
 
 	return (
 		<div className={style.container}>

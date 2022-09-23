@@ -2,12 +2,11 @@ import React, { FC, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { ReturnComponentType } from 'types'
 import { useSelector } from 'react-redux'
-import { selectCaptchaUrl, selectIsAuth, selectIsDisabled, selectIsLoading, selectTheme } from 'store/selectors'
+import { selectCaptchaUrl, selectIsAuth, selectIsDisabled, selectIsLoading } from 'store/selectors'
 import { InputType } from 'components/common/eye/types'
 import { SmallLoader, ErrorCircle, Eye } from 'components'
-import { isDarkTheme } from 'utils'
 import { LoginDataType } from 'api/auth/types'
-import { useAppDispatch } from 'hooks'
+import { useAppDispatch, useTheme } from 'hooks'
 import { login } from 'store/asyncActions'
 import { Navigate } from 'react-router-dom'
 import { Path } from 'enums'
@@ -17,13 +16,14 @@ export const Login: FC = (): ReturnComponentType => {
 
 	const dispatch = useAppDispatch()
 
-	const theme = useSelector(selectTheme)
 	const isAuth = useSelector(selectIsAuth)
 	const captchaUrl = useSelector(selectCaptchaUrl)
 	const isLoading = useSelector(selectIsLoading)
 	const isDisabled = useSelector(selectIsDisabled)
 
 	const [inputType, setInputType] = useState<InputType>('password')
+
+	const isDarkTheme = useTheme('dark')
 
 	const { register, handleSubmit, formState: { errors, isValid } } = useForm<LoginDataType>({
 		mode: 'onChange',
@@ -55,14 +55,14 @@ export const Login: FC = (): ReturnComponentType => {
 
 	return (
 		<div className={style.login}>
-			<div className={`${style.container} ${isDarkTheme(theme) && style.containerDark}`}>
+			<div className={`${style.container} ${isDarkTheme && style.containerDark}`}>
 
 				<h2 className={style.title}>welcome</h2>
 
 				<form noValidate className={style.form} onSubmit={handleSubmit(onSubmit)}>
 					<div className={style.emailInputContainer}>
 						<input
-							className={`${style.emailInput} ${isDarkTheme(theme) && style.emailInputDark} ${errorEmailMessage && style.errorEmailInput}`}
+							className={`${style.emailInput} ${isDarkTheme && style.emailInputDark} ${errorEmailMessage && style.errorEmailInput}`}
 							placeholder='Enter email'
 							type='email'
 							{...register('email', emailSettings)} />
@@ -76,7 +76,7 @@ export const Login: FC = (): ReturnComponentType => {
 
 					<div className={style.passwordInputContainer}>
 						<input
-							className={`${style.passwordInput} ${isDarkTheme(theme) && style.passwordInputDark} ${errorPasswordMessage && style.errorPasswordInput} `}
+							className={`${style.passwordInput} ${isDarkTheme && style.passwordInputDark} ${errorPasswordMessage && style.errorPasswordInput} `}
 							type={inputType}
 							placeholder='Enter password'
 							{...register('password', passwordSettings)}
@@ -93,7 +93,7 @@ export const Login: FC = (): ReturnComponentType => {
 
 					<label className={style.label}>
 						<input
-							className={`${style.rememberMeCheckbox} ${isDarkTheme(theme) && style.rememberMeCheckboxDark}`}
+							className={`${style.rememberMeCheckbox} ${isDarkTheme && style.rememberMeCheckboxDark}`}
 							type='checkbox'
 							{...register('rememberMe')}
 						/>
@@ -104,7 +104,7 @@ export const Login: FC = (): ReturnComponentType => {
 						<div className={style.captcha}>
 							<img className={style.captchaImage} src={captchaUrl} />
 							<input
-								className={`${style.captchaInput} ${isDarkTheme(theme) && style.captchaInputDark}`}
+								className={`${style.captchaInput} ${isDarkTheme && style.captchaInputDark}`}
 								type='text'
 								placeholder='Code from the picture'
 								{...register('captcha')} />
@@ -112,7 +112,7 @@ export const Login: FC = (): ReturnComponentType => {
 					}
 
 					<button
-						className={`${style.loginBtn} ${isDarkTheme(theme) && style.loginBtnDark}`}
+						className={`${style.loginBtn} ${isDarkTheme && style.loginBtnDark}`}
 						disabled={!isValid || isDisabled}
 						type='submit'
 					>

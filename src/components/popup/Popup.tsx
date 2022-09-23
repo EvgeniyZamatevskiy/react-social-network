@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux'
 import { ReturnComponentType } from 'types'
 import { ThemeType } from 'store/slices/app/types'
 import { selectTheme } from 'store/selectors'
-import { useAppDispatch } from 'hooks'
+import { useAppDispatch, useTheme } from 'hooks'
 import { setTheme } from 'store/slices/app'
-import { getBackgroundColor, isDarkTheme } from 'utils'
+import { getBackgroundColor } from 'utils'
 import { Icon20DoorArrowRightOutline } from '@vkontakte/icons'
 import { Icon28PaletteOutline } from '@vkontakte/icons'
 import { logOut } from 'store/asyncActions'
@@ -23,6 +23,8 @@ export const Popup: FC<PopupPropsType> = ({ setIsActivePopup }): ReturnComponent
 
 	const [isHover, setIsHover] = useState(false)
 
+	const isDarkTheme = useTheme('dark')
+
 	const onThemeChange = (theme: string): void => {
 		dispatch(setTheme(theme as ThemeType))
 	}
@@ -37,7 +39,7 @@ export const Popup: FC<PopupPropsType> = ({ setIsActivePopup }): ReturnComponent
 	}
 
 	return (
-		<div className={`${style.popup} ${isDarkTheme(theme) && style.dark}`} >
+		<div className={`${style.popup} ${isDarkTheme && style.dark}`} >
 			<div className={style.watercolorContainer}>
 				<Icon28PaletteOutline className={style.watercolorIcon} width={17} height={17} fill={'#71AAEB'} />
 				Theme: <Select
