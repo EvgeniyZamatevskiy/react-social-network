@@ -17,10 +17,17 @@
 		.title {
 			border-bottom: 1px solid #484848;
 			padding: 20px;
+			background-color: $bgSecondaryDark;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+
+			&.titleLight {
+				border-bottom: 1px solid #DCE1E6;
+				background-color: #FAFBFC;
+			}
 		}
 
 		.filterContainer {
-			background-color: $bgSecondaryDark;
 			@include flex(row, space-between, center);
 			padding-right: 20px;
 			border-bottom: 1px solid #484848;
@@ -49,10 +56,23 @@
 					}
 				}
 			}
+
+			&.filterContainerLight {
+				//background-color: #FAFBFC;
+				border-bottom: 1px solid #DCE1E6;
+			}
 		}
 
 		.userContainer {
 			padding: 0px 20px;
+		}
+
+		&.usersLight {
+			background-color: #FFFFFF;
+			border-top: 1px solid $borderLight;
+			border-right: 1px solid $borderLight;
+			border-left: 1px solid $borderLight;
+			border-bottom: 1px solid #DCE1E6;
 		}
 	}
 }

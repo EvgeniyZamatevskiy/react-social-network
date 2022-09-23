@@ -7,7 +7,7 @@ import { Icon12Dropdown } from '@vkontakte/icons'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'hooks'
 import { getUsers } from 'store/asyncActions'
-import { selectIsAuth, selectIsLoadingUsers, selectUsers } from 'store/selectors'
+import { selectIsAuth, selectIsLoadingUsers, selectTheme, selectUsers } from 'store/selectors'
 import { Navigate } from 'react-router-dom'
 import { Path } from 'enums'
 import style from './Users.module.scss'
@@ -19,6 +19,7 @@ export const Users: FC = (): ReturnComponentType => {
 	const users = useSelector(selectUsers)
 	const isAuth = useSelector(selectIsAuth)
 	const isLoadingUsers = useSelector(selectIsLoadingUsers)
+	const theme = useSelector(selectTheme)
 
 	const [searchValue, setSearchValue] = useState(EMPTY_STRING)
 
@@ -40,9 +41,9 @@ export const Users: FC = (): ReturnComponentType => {
 
 	return (
 		<div className={style.container}>
-			<div className={style.users}>
-				<h2 className={style.title}>Users</h2>
-				<div className={style.filterContainer}>
+			<div className={`${style.users} ${theme === 'light' && style.usersLight}`}>
+				<h2 className={`${style.title} ${theme === 'light' && style.titleLight}`}>Users</h2>
+				<div className={`${style.filterContainer} ${theme === 'light' && style.filterContainerLight}`}>
 					<div className={style.searchInputContainer}>
 						<Icon20Search className={style.searchIcon} />
 						<Input placeholder='Search' className={style.searchInput} value={searchValue} setValue={setSearchValue} />
