@@ -13,7 +13,7 @@ export const App: FC = (): ReturnComponentType => {
 
   const dispatch = useAppDispatch()
 
-  const { pathname } = useLocation()
+  const {pathname} = useLocation()
 
   const isDarkTheme = useTheme('dark')
 
@@ -25,18 +25,18 @@ export const App: FC = (): ReturnComponentType => {
   }, [])
 
   if (!isInitializedApp) {
-    return <Loader />
+    return <Loader/>
   }
 
   return (
     <div className={`${'app'} ${isDarkTheme && 'darkApp'} `}>
-      {pathname !== `/${Path.NOT_FOUND_404}` && <Header />}
-      <div className='content'>
-        {pathname !== `/${Path.NOT_FOUND_404}` && pathname !== Path.LOGIN && <NavBar />}
-        {errorMessage && <ErrorAlert />}
-        <Suspense fallback={<Loader />}>
+      {pathname !== `/${Path.NOT_FOUND_404}` && <Header/>}
+      <div className="content">
+        {pathname !== `/${Path.NOT_FOUND_404}` && pathname !== Path.LOGIN && <NavBar/>}
+        {errorMessage && <ErrorAlert/>}
+        <Suspense fallback={<Loader/>}>
           <Routes>
-            {ROUTES.map(({ path, element }) => <Route key={path} path={path} element={element} />)}
+            {ROUTES.map(({path, element}) => <Route key={path} path={path} element={element}/>)}
           </Routes>
         </Suspense>
       </div>

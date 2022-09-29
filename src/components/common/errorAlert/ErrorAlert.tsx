@@ -13,36 +13,36 @@ const DELAY = 3000
 
 export const ErrorAlert: FC = (): ReturnComponentType => {
 
-	const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
 
-	const errorMessage = useSelector(selectErrorMessage)
+  const errorMessage = useSelector(selectErrorMessage)
 
-	useEffect(() => {
-		const timerId = setTimeout(() => {
-			onDeactivateErrorAlertClick()
-		}, DELAY)
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      onDeactivateErrorAlertClick()
+    }, DELAY)
 
-		return (() => {
-			clearTimeout(timerId)
-		})
-	}, [errorMessage])
+    return (() => {
+      clearTimeout(timerId)
+    })
+  }, [errorMessage])
 
-	const onDeactivateErrorAlertClick = (): void => {
-		dispatch(setErrorMessage(EMPTY_STRING))
-	}
+  const onDeactivateErrorAlertClick = (): void => {
+    dispatch(setErrorMessage(EMPTY_STRING))
+  }
 
-	return (
-		<div className={style.errorAlert}>
-			<div className={style.alertContainer}>
-				<ErrorCircle secondaryClassName={style.errorCircle} />
-				<div className={style.alert}>{errorMessage}</div>
-			</div>
-			<Button
-				className={style.deactivateErrorAlertBtn}
-				onClick={onDeactivateErrorAlertClick}
-			>
-				&#10006;
-			</Button>
-		</div>
-	)
+  return (
+    <div className={style.errorAlert}>
+      <div className={style.alertContainer}>
+        <ErrorCircle secondaryClassName={style.errorCircle}/>
+        <div className={style.alert}>{errorMessage}</div>
+      </div>
+      <Button
+        className={style.deactivateErrorAlertBtn}
+        onClick={onDeactivateErrorAlertClick}
+      >
+        &#10006;
+      </Button>
+    </div>
+  )
 }

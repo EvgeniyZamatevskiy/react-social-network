@@ -3,16 +3,16 @@ import { CommonResponseType } from 'api/types'
 import { AuthorizedUserDataType, LoginDataType } from './types'
 
 export const AUTH = {
-	me() {
-		return instance.get<CommonResponseType<AuthorizedUserDataType>>('auth/me')
-	},
-	login(loginData: LoginDataType) {
-		return instance.post<CommonResponseType<{ userId: string }>>('auth/login', loginData)
-	},
-	logOut() {
-		return instance.delete<CommonResponseType>('auth/login')
-	},
-	getCaptchaUrl() {
-		return instance.get<{ url: string }>('security/get-captcha-url')
-	},
+  me() {
+    return instance.get<CommonResponseType<AuthorizedUserDataType>>('auth/me')
+  },
+  login(loginData: LoginDataType) {
+    return instance.post<CommonResponseType<{ userId: string }>>('auth/login', loginData)
+  },
+  logOut() {
+    return instance.delete<CommonResponseType>('auth/login')
+  },
+  getCaptchaUrl() {
+    return instance.get<{ url: string }>('security/get-captcha-url')
+  },
 }

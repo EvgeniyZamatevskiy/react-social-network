@@ -2,44 +2,44 @@
 @import 'styles/sass/variables.scss';
 
 .container {
-	padding-top: 63px;
+  padding-top: 63px;
 
-	.profile {
-		width: 100%;
-		display: flex;
+  .profile {
+    width: 100%;
+    display: flex;
 
-		.leftBlock {
+    .leftBlock {
 
-			.avatarContainer {
-				width: 230px;
-				border-radius: 15px;
-				border: 1px solid $borderDark;
-				background-color: $bgSecondaryDark;
-				padding: 15px;
-				@include flex(column, center, center);
+      .avatarContainer {
+        width: 230px;
+        border-radius: 15px;
+        border: 1px solid $borderDark;
+        background-color: $bgSecondaryDark;
+        padding: 15px;
+        @include flex(column, center, center);
 
-				.avatar {
-					width: 100%;
-				}
+        .avatar {
+          width: 100%;
+        }
 
-				.editLink {
-					margin-top: 12px;
-					height: 30px;
-					width: 100%;
-					background-color: #484848;
-					border-radius: 10px;
-					@include flex(row, center, center);
+        .editLink {
+          margin-top: 12px;
+          height: 30px;
+          width: 100%;
+          background-color: #484848;
+          border-radius: 10px;
+          @include flex(row, center, center);
 
-					&:hover {
-						background-color: #555555;
-						cursor: pointer;
-					}
-				}
-			}
-		}
+          &:hover {
+            background-color: #555555;
+            cursor: pointer;
+          }
+        }
+      }
+    }
 
-		.rightBlock {
-			margin-left: 13px;
-		}
-	}
+    .rightBlock {
+      margin-left: 13px;
+    }
+  }
 }

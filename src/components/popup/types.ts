@@ -1,3 +1,3 @@
 export type PopupPropsType = {
-	setIsActivePopup: (isActivePopup: boolean) => void
+  setIsActivePopup: (isActivePopup: boolean) => void
 }

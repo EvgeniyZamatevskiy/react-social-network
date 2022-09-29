@@ -5,19 +5,19 @@ import { Icon20ViewOutline } from '@vkontakte/icons'
 import { Icon20HideOutline } from '@vkontakte/icons'
 import style from './Eye.module.scss'
 
-export const Eye: FC<EyePropsType> = ({ inputType, setInputType, errorPasswordMessage }): ReturnComponentType => {
+export const Eye: FC<EyePropsType> = ({inputType, setInputType, errorPasswordMessage}): ReturnComponentType => {
 
-	const setInputTypeTextClick = (): void => setInputType('text')
+  const setInputTypeTextClick = (): void => setInputType('text')
 
-	const setInputTypePasswordClick = (): void => setInputType('password')
+  const setInputTypePasswordClick = (): void => setInputType('password')
 
-	const classNameEye = `${style.eye} ${errorPasswordMessage && style.secondaryEye}`
+  const classNameEye = `${style.eye} ${errorPasswordMessage && style.secondaryEye}`
 
-	return (
-		<>
-			{inputType === 'password'
-				? <Icon20ViewOutline className={classNameEye} width={24} height={24} onClick={setInputTypeTextClick} />
-				: <Icon20HideOutline className={classNameEye} width={24} height={24} onClick={setInputTypePasswordClick} />}
-		</>
-	)
+  return (
+    <>
+      {inputType === 'password'
+        ? <Icon20ViewOutline className={classNameEye} width={24} height={24} onClick={setInputTypeTextClick}/>
+        : <Icon20HideOutline className={classNameEye} width={24} height={24} onClick={setInputTypePasswordClick}/>}
+    </>
+  )
 }

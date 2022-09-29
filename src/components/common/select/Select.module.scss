@@ -1,33 +1,33 @@
-	@import 'styles/sass/variables.scss';
+@import 'styles/sass/variables.scss';
 
-	.select {
-		padding: 0px 5px;
-		border: none;
-		appearance: none;
-		color: $colorSecondary;
-		background-color: transparent;
+.select {
+  padding: 0px 5px;
+  border: none;
+  appearance: none;
+  color: $colorSecondary;
+  background-color: transparent;
 
-		&:focus {
-			border: none;
-		}
+  &:focus {
+    border: none;
+  }
 
-		&:hover {
-			text-decoration: underline;
-		}
-	}
+  &:hover {
+    text-decoration: underline;
+  }
+}
 
-	.option {
-		color: $colorSecondary;
+.option {
+  color: $colorSecondary;
 
-		&:checked {
-			background-color: #FFFFFF;
-		}
+  &:checked {
+    background-color: #FFFFFF;
+  }
 
-		&.optionDark {
-			background-color: $bgSecondaryDark;
+  &.optionDark {
+    background-color: $bgSecondaryDark;
 
-			&:checked {
-				background-color: #3D3D3D;
-			}
-		}
-	}
+    &:checked {
+      background-color: #3D3D3D;
+    }
+  }
+}

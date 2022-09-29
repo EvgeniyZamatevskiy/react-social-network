@@ -1,77 +1,77 @@
 @import 'styles/sass/mixins.scss';
 
 .user {
-	border-top: 1px solid #DCE1E6;
-	@include flex(row, space-between, stretch);
-	padding: 12px 0px;
+  border-top: 1px solid #DCE1E6;
+  @include flex(row, space-between, stretch);
+  padding: 12px 0px;
 
-	.body {
-		display: flex;
+  .body {
+    display: flex;
 
-		.userAvatar {
-			width: 80px;
-			height: 80px;
-			border-radius: 50%;
-			cursor: pointer;
-		}
+    .userAvatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
 
-		.content {
-			padding: 7px 0px;
-			margin-left: 16px;
+    .content {
+      padding: 7px 0px;
+      margin-left: 16px;
 
-			.name {
-				font-weight: 700;
-				max-height: 16px;
-				overflow: hidden;
+      .name {
+        font-weight: 700;
+        max-height: 16px;
+        overflow: hidden;
 
-				&:hover {
-					text-decoration: underline;
-					cursor: pointer;
-				}
-			}
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
 
-			.status {
-				margin-top: 10px;
-				color: #939393;
-				max-height: 16px;
-				overflow: hidden;
-			}
-		}
-	}
+      .status {
+        margin-top: 10px;
+        color: #939393;
+        max-height: 16px;
+        overflow: hidden;
+      }
+    }
+  }
 
-	.follow {
-		background-color: #447BBA;
-		color: #FFF;
-		width: 85px;
-		margin-left: 20px;
-		align-self: center;
-		height: 26px;
-		border-radius: 5px;
-		@include flex(row, center, center);
+  .follow {
+    background-color: #447BBA;
+    color: #FFF;
+    width: 85px;
+    margin-left: 20px;
+    align-self: center;
+    height: 26px;
+    border-radius: 5px;
+    @include flex(row, center, center);
 
-		&:hover {
-			background-color: #5B8BC3;
-		}
+    &:hover {
+      background-color: #5B8BC3;
+    }
 
-		&.followDark {
-			background-color: #E1E3E6;
-			color: #000;
+    &.followDark {
+      background-color: #E1E3E6;
+      color: #000;
 
-			&:hover {
-				background-color: #CACBCE;
-			}
-		}
-	}
+      &:hover {
+        background-color: #CACBCE;
+      }
+    }
+  }
 
-	&:first-child {
-		border-top: none;
-	}
+  &:first-child {
+    border-top: none;
+  }
 
-	&.userDark {
-		border-top: 1px solid #484848;
+  &.userDark {
+    border-top: 1px solid #484848;
 
-		&:first-child {
-			border-top: none;
-		}
-	}
+    &:first-child {
+      border-top: none;
+    }
+  }
 }

@@ -2,76 +2,76 @@
 @import 'styles/sass/variables.scss';
 
 .container {
-	padding-top: 63px;
-	width: 100%;
+  padding-top: 63px;
+  width: 100%;
 
-	.users {
-		margin-bottom: 76px;
-		border-radius: 10px;
-		background-color: #FFFFFF;
-		border-top: 1px solid $borderLight;
-		border-right: 1px solid $borderLight;
-		border-left: 1px solid $borderLight;
-		border-bottom: 1px solid #DCE1E6;
+  .users {
+    margin-bottom: 76px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    border-top: 1px solid $borderLight;
+    border-right: 1px solid $borderLight;
+    border-left: 1px solid $borderLight;
+    border-bottom: 1px solid #DCE1E6;
 
-		.title {
-			border-bottom: 1px solid #DCE1E6;
-			background-color: #FAFBFC;
-			padding: 20px;
-			border-top-left-radius: 10px;
-			border-top-right-radius: 10px;
+    .title {
+      border-bottom: 1px solid #DCE1E6;
+      background-color: #FAFBFC;
+      padding: 20px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
 
-			&.titleDark {
-				background-color: $bgSecondaryDark;
-				border-bottom: 1px solid #484848;
-			}
-		}
+      &.titleDark {
+        background-color: $bgSecondaryDark;
+        border-bottom: 1px solid #484848;
+      }
+    }
 
-		.filterContainer {
-			@include flex(row, space-between, center);
-			padding-right: 20px;
-			border-bottom: 1px solid #DCE1E6;
+    .filterContainer {
+      @include flex(row, space-between, center);
+      padding-right: 20px;
+      border-bottom: 1px solid #DCE1E6;
 
-			.searchInputContainer {
-				position: relative;
-				width: 100%;
+      .searchInputContainer {
+        position: relative;
+        width: 100%;
 
-				.searchIcon {
-					position: absolute;
-					bottom: 14px;
-					left: 17px;
-					color: #828282;
-				}
+        .searchIcon {
+          position: absolute;
+          bottom: 14px;
+          left: 17px;
+          color: #828282;
+        }
 
-				.searchInput {
-					background-color: transparent;
-					border: transparent;
-					width: 100%;
-					padding-left: 46px;
-					padding-right: 32px;
-					height: 45px;
+        .searchInput {
+          background-color: transparent;
+          border: transparent;
+          width: 100%;
+          padding-left: 46px;
+          padding-right: 32px;
+          height: 45px;
 
-					&::placeholder {
-						color: #B2B2B2;
-					}
-				}
-			}
+          &::placeholder {
+            color: #B2B2B2;
+          }
+        }
+      }
 
-			&.filterContainerDark {
-				border-bottom: 1px solid #484848;
-			}
-		}
+      &.filterContainerDark {
+        border-bottom: 1px solid #484848;
+      }
+    }
 
-		.userContainer {
-			padding: 0px 20px;
-		}
+    .userContainer {
+      padding: 0px 20px;
+    }
 
-		&.usersDark {
-			background-color: #292929;
-			border-top: 1px solid $borderDark;
-			border-right: 1px solid $borderDark;
-			border-left: 1px solid $borderDark;
-			border-bottom: 1px solid #484848;
-		}
-	}
+    &.usersDark {
+      background-color: #292929;
+      border-top: 1px solid $borderDark;
+      border-right: 1px solid $borderDark;
+      border-left: 1px solid $borderDark;
+      border-bottom: 1px solid #484848;
+    }
+  }
 }

@@ -1,40 +1,40 @@
 .container {
-	margin-right: 6px;
-	padding-top: 63px;
+  margin-right: 6px;
+  padding-top: 63px;
 
-	.navBar {
-		width: 100px;
-		width: 163px;
-		display: flex;
-		flex-direction: column;
+  .navBar {
+    width: 100px;
+    width: 163px;
+    display: flex;
+    flex-direction: column;
 
-		.link {
-			display: flex;
-			align-items: center;
-			height: 30px;
-			margin-top: 10px;
-			padding-left: 6px;
+    .link {
+      display: flex;
+      align-items: center;
+      height: 30px;
+      margin-top: 10px;
+      padding-left: 6px;
 
-			.icon {
-				margin-right: 9.5px;
-				color: #71AAEB;
-			}
+      .icon {
+        margin-right: 9.5px;
+        color: #71AAEB;
+      }
 
-			&:hover {
-				background-color: #E5E7EB;
-				border-radius: 5px;
-			}
+      &:hover {
+        background-color: #E5E7EB;
+        border-radius: 5px;
+      }
 
-			&:first-child {
-				margin-top: 0px;
-			}
+      &:first-child {
+        margin-top: 0px;
+      }
 
-			&.linkDark {
+      &.linkDark {
 
-				&:hover {
-					background-color: #262626;
-				}
-			}
-		}
-	}
+        &:hover {
+          background-color: #262626;
+        }
+      }
+    }
+  }
 }

@@ -15,49 +15,49 @@ import style from './Popup.module.scss'
 
 const themes: ThemeType[] = ['light', 'dark']
 
-export const Popup: FC<PopupPropsType> = ({ setIsActivePopup }): ReturnComponentType => {
+export const Popup: FC<PopupPropsType> = ({setIsActivePopup}): ReturnComponentType => {
 
-	const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
 
-	const theme = useSelector(selectTheme)
+  const theme = useSelector(selectTheme)
 
-	const [isHover, setIsHover] = useState(false)
+  const [isHover, setIsHover] = useState(false)
 
-	const isDarkTheme = useTheme('dark')
+  const isDarkTheme = useTheme('dark')
 
-	const onThemeChange = (theme: string): void => {
-		dispatch(setTheme(theme as ThemeType))
-	}
+  const onThemeChange = (theme: string): void => {
+    dispatch(setTheme(theme as ThemeType))
+  }
 
-	const onLogOutMouseEnter = (): void => setIsHover(true)
+  const onLogOutMouseEnter = (): void => setIsHover(true)
 
-	const onLogOutMouseLeave = (): void => setIsHover(false)
+  const onLogOutMouseLeave = (): void => setIsHover(false)
 
-	const onLogOutClick = (): void => {
-		dispatch(logOut())
-		setIsActivePopup(false)
-	}
+  const onLogOutClick = (): void => {
+    dispatch(logOut())
+    setIsActivePopup(false)
+  }
 
-	return (
-		<div className={`${style.popup} ${isDarkTheme && style.dark}`} >
-			<div className={style.watercolorContainer}>
-				<Icon28PaletteOutline className={style.watercolorIcon} width={17} height={17} fill={'#71AAEB'} />
-				Theme: <Select
-					options={themes}
-					value={theme}
-					setValue={onThemeChange}
-				/>
-			</div>
-			<Button
-				className={style.logOutBtn}
-				style={{ backgroundColor: getBackgroundColor(isHover, theme, '#F5F6F8', '#333333') }}
-				onClick={onLogOutClick}
-				onMouseEnter={onLogOutMouseEnter}
-				onMouseLeave={onLogOutMouseLeave}
-			>
-				<Icon20DoorArrowRightOutline className={style.logOutIcon} width={17} height={17} fill={'#71AAEB'} />
-				Log out
-			</Button>
-		</div>
-	)
+  return (
+    <div className={`${style.popup} ${isDarkTheme && style.dark}`}>
+      <div className={style.watercolorContainer}>
+        <Icon28PaletteOutline className={style.watercolorIcon} width={17} height={17} fill={'#71AAEB'}/>
+        Theme: <Select
+        options={themes}
+        value={theme}
+        setValue={onThemeChange}
+      />
+      </div>
+      <Button
+        className={style.logOutBtn}
+        style={{backgroundColor: getBackgroundColor(isHover, theme, '#F5F6F8', '#333333')}}
+        onClick={onLogOutClick}
+        onMouseEnter={onLogOutMouseEnter}
+        onMouseLeave={onLogOutMouseLeave}
+      >
+        <Icon20DoorArrowRightOutline className={style.logOutIcon} width={17} height={17} fill={'#71AAEB'}/>
+        Log out
+      </Button>
+    </div>
+  )
 }

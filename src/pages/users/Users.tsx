@@ -14,48 +14,49 @@ import style from './Users.module.scss'
 
 export const Users: FC = (): ReturnComponentType => {
 
-	const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
 
-	const users = useSelector(selectUsers)
-	const isAuth = useSelector(selectIsAuth)
-	const isLoadingUsers = useSelector(selectIsLoadingUsers)
+  const users = useSelector(selectUsers)
+  const isAuth = useSelector(selectIsAuth)
+  const isLoadingUsers = useSelector(selectIsLoadingUsers)
 
-	const [searchValue, setSearchValue] = useState(EMPTY_STRING)
+  const [searchValue, setSearchValue] = useState(EMPTY_STRING)
 
-	const isDarkTheme = useTheme('dark')
+  const isDarkTheme = useTheme('dark')
 
-	const usersRender = users.map(({ id, followed, name, photos, status, followedStatus }) => {
-		return <User key={id} id={id} followed={followed} name={name} photos={photos} status={status} followedStatus={followedStatus} />
-	})
+  const usersRender = users.map(({id, followed, name, photos, status, followedStatus}) => {
+    return <User key={id} id={id} followed={followed} name={name} photos={photos} status={status}
+                 followedStatus={followedStatus}/>
+  })
 
-	useEffect(() => {
-		dispatch(getUsers())
-	}, [])
+  useEffect(() => {
+    dispatch(getUsers())
+  }, [])
 
-	if (!isAuth) {
-		return <Navigate to={Path.LOGIN} />
-	}
+  if (!isAuth) {
+    return <Navigate to={Path.LOGIN}/>
+  }
 
-	if (isLoadingUsers) {
-		return <Loader />
-	}
+  if (isLoadingUsers) {
+    return <Loader/>
+  }
 
-	return (
-		<div className={style.container}>
-			<div className={`${style.users} ${isDarkTheme && style.usersDark}`}>
-				<h2 className={`${style.title} ${isDarkTheme && style.titleDark}`}>Users</h2>
-				<div className={`${style.filterContainer} ${isDarkTheme && style.filterContainerDark}`}>
-					<div className={style.searchInputContainer}>
-						<Icon20Search className={style.searchIcon} />
-						<Input placeholder='Search' className={style.searchInput} value={searchValue} setValue={setSearchValue} />
-					</div>
-					<Select value={'Params'} options={['Params', 'Params']} />
-					<Icon12Dropdown width={14} height={14} fill='#92A0B1' />
-				</div>
-				<div className={style.userContainer}>
-					{usersRender}
-				</div>
-			</div>
-		</div>
-	)
+  return (
+    <div className={style.container}>
+      <div className={`${style.users} ${isDarkTheme && style.usersDark}`}>
+        <h2 className={`${style.title} ${isDarkTheme && style.titleDark}`}>Users</h2>
+        <div className={`${style.filterContainer} ${isDarkTheme && style.filterContainerDark}`}>
+          <div className={style.searchInputContainer}>
+            <Icon20Search className={style.searchIcon}/>
+            <Input placeholder="Search" className={style.searchInput} value={searchValue} setValue={setSearchValue}/>
+          </div>
+          <Select value={'Params'} options={['Params', 'Params']}/>
+          <Icon12Dropdown width={14} height={14} fill="#92A0B1"/>
+        </div>
+        <div className={style.userContainer}>
+          {usersRender}
+        </div>
+      </div>
+    </div>
+  )
 }
