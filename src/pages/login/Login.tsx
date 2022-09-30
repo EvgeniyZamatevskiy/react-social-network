@@ -116,7 +116,7 @@ export const Login: FC = (): ReturnComponentType => {
             disabled={!isValid || isDisabled}
             type="submit"
           >
-            {isLoading ? <SmallLoader/> : 'Login'}
+            {isLoading ? <SmallLoader darkColor={'#000'} lightColor={'#fff'}/> : 'Login'}
           </button>
         </form>
       </div>

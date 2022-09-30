@@ -1,10 +1,14 @@
 import { instance } from 'api/config'
 import { CommonResponseType } from 'api/types'
+import { EMPTY_STRING } from 'constants/base'
 import { UsersResponseType } from './types'
 
 export const USERS = {
-  getUsers() {
-    return instance.get<UsersResponseType>('users')
+  getUsers(term: string) {
+
+    const currentTerm = term ? `term=${term}` : EMPTY_STRING
+
+    return instance.get<UsersResponseType>(`users?${currentTerm}`)
   },
   follow(userId: number) {
     return instance.post<CommonResponseType>(`follow/${userId}`)

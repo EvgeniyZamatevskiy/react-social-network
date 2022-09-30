@@ -36,14 +36,14 @@ export const User: FC<UserPropsType> = ({id, followed, name, photos, status, fol
           disabled={followedStatus.isDisabled}
           onClick={onUnfollowClick}
         >
-          {followedStatus.isLoading ? <SmallLoader/> : 'Unfollow'}
+          {followedStatus.isLoading ? <SmallLoader darkColor={'#000'} lightColor={'#fff'}/> : 'Unfollow'}
         </button>
         : <button
           className={`${style.follow} ${isDarkTheme && style.followDark}`}
           disabled={followedStatus.isDisabled}
           onClick={onFollowClick}
         >
-          {followedStatus.isLoading ? <SmallLoader/> : 'Follow'}
+          {followedStatus.isLoading ? <SmallLoader darkColor={'#000'} lightColor={'#fff'}/> : 'Follow'}
         </button>}
     </div>
   )

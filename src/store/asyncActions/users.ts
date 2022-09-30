@@ -6,10 +6,10 @@ import { FIRST_ELEMENT_ARRAY } from 'constants/base'
 import { ResponseCode } from 'enums'
 import { handleServerNetworkError } from 'utils'
 
-export const getUsers = createAsyncThunk<{ users: UserType[], totalCount: number }, undefined, { rejectValue: { error: string } }>
-('users/getUsers', async (_, {rejectWithValue}) => {
+export const getUsers = createAsyncThunk<{ users: UserType[], totalCount: number }, { term: string }, { rejectValue: { error: string } }>
+('users/getUsers', async (params, {rejectWithValue}) => {
   try {
-    const response = await USERS.getUsers()
+    const response = await USERS.getUsers(params.term)
     const {items: users, totalCount} = response.data
 
     return {users, totalCount}

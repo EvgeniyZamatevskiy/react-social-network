@@ -6,3 +6,7 @@ export const selectUsers = (state: RootStateType): UserSupplementedType[] => sta
 export const selectTotalUsersCount = (state: RootStateType): number => state.users.totalUsersCount
 
 export const selectIsLoadingUsers = (state: RootStateType): boolean => state.users.isLoadingUsers
+
+export const selectTerm = (state: RootStateType): string => state.users.term
+
+export const selectIsLoadingTerm = (state: RootStateType): boolean => state.users.isLoadingTerm

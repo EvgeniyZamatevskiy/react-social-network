@@ -1,18 +1,28 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {UserType} from 'api/users/types'
-import {follow, getUsers, unfollow} from 'store/asyncActions'
-import {UsersSliceInitialStateType} from './types'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { UserType } from 'api/users/types'
+import { EMPTY_STRING } from 'constants/base'
+import { follow, getUsers, unfollow } from 'store/asyncActions'
+import { UsersSliceInitialStateType } from './types'
 
 const initialState: UsersSliceInitialStateType = {
   users: [],
   totalUsersCount: 0,
   isLoadingUsers: false,
+  term: EMPTY_STRING,
+  isLoadingTerm: false
 }
 
 export const usersSlice = createSlice({
   initialState,
   name: 'users',
-  reducers: {},
+  reducers: {
+    setTerm(state, action: PayloadAction<string>) {
+      state.term = action.payload
+    },
+    setIsLoadingTerm(state, action: PayloadAction<boolean>) {
+      state.isLoadingTerm = action.payload
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(getUsers.pending, (state) => {
@@ -28,6 +38,7 @@ export const usersSlice = createSlice({
         }))
         state.totalUsersCount = action.payload.totalCount
         state.isLoadingUsers = false
+        state.isLoadingTerm = false
       })
       .addCase(follow.pending, (state, action) => {
         const user = state.users.find(user => user.id === action.meta.arg)
@@ -84,4 +95,4 @@ export const usersSlice = createSlice({
 
 export default usersSlice.reducer
 
-export const {} = usersSlice.actions
+export const {setTerm, setIsLoadingTerm} = usersSlice.actions
