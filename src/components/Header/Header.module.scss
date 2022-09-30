@@ -2,52 +2,53 @@
 @import 'styles/sass/variables.scss';
 
 .header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	height: 49px;
-	width: 100%;
-	background-color: $bgSecondaryLight;
-	@include flex(row, center, stretch);
-	border-bottom: 1px solid $borderLight;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  height: 49px;
+  width: 100%;
+  background-color: $bgSecondaryLight;
+  @include flex(row, center, stretch);
+  border-bottom: 1px solid $borderLight;
 
-	.container {
-		width: 960px;
-		@include flex(row, space-between, center);
+  .container {
+    width: 960px;
+    @include flex(row, space-between, center);
 
-		.title {
-			font-weight: 900;
-			font-size: 16px;
-			text-transform: uppercase;
-			letter-spacing: 1px;
-		}
+    .title {
+      font-weight: 900;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-		.authorizedUserContainer {
-			position: relative;
-			height: 100%;
+    .authorizedUserContainer {
+      position: relative;
+      height: 100%;
 
-			.authorizedUser {
-				padding: 0px 10px;
-				width: 68px;
-				height: 100%;
-				@include flex(row, space-between, center);
-				cursor: pointer;
+      .authorizedUser {
+        padding: 0px 10px;
+        width: 68px;
+        height: 100%;
+        @include flex(row, space-between, center);
+        cursor: pointer;
 
-				.avatar {
-					width: 32px;
-					height: 32px;
-					border-radius: 50%;
-				}
+        .avatar {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+        }
 
-				.arrowDownIcon {
-					margin-left: 6px;
-				}
-			}
-		}
-	}
+        .arrowDownIcon {
+          margin-left: 6px;
+        }
+      }
+    }
+  }
 
-	&.darkHeader {
-		background-color: $bgSecondaryDark;
-		border-bottom: 1px solid $borderDark;
-	}
+  &.darkHeader {
+    background-color: $bgSecondaryDark;
+    border-bottom: 1px solid $borderDark;
+  }
 }
