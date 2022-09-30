@@ -1,0 +1,12 @@
+@import 'styles/sass/mixins.scss';
+
+.usersEmpty {
+  @include flex(row, center, center);
+  height: 82px;
+  color: #818C99;
+  font-size: 14px;
+
+  &.usersEmptyDark {
+    color: #b2b2b2;
+  }
+}
