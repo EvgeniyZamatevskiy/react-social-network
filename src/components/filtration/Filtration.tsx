@@ -20,7 +20,6 @@ export const Filtration: FC = (): ReturnComponentType => {
   const [search, setSearch] = useState(term)
 
   const isMounted = useRef(false)
-  const isTouchedSearch = useRef(false)
 
   const isDarkTheme = useTheme('dark')
 
@@ -35,11 +34,9 @@ export const Filtration: FC = (): ReturnComponentType => {
   }, [debouncedValue])
 
   useEffect(() => {
-    if (isTouchedSearch.current && !isLoadingTerm) {
+    if (!isLoadingTerm && search) {
       dispatch(setIsLoadingTerm(true))
     }
-
-    isTouchedSearch.current = true
   }, [search])
 
   return (
