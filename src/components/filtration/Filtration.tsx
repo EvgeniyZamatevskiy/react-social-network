@@ -3,11 +3,11 @@ import { ReturnComponentType } from 'types'
 import { useAppDispatch, useDebounce, useTheme } from 'hooks'
 import { Input } from '../common/input'
 import { Icon12Dropdown, Icon20Search } from '@vkontakte/icons'
-import { Select } from '../common/select'
 import { selectIsLoadingTerm, selectTerm } from '../../store/selectors'
 import { useSelector } from 'react-redux'
 import { setIsLoadingTerm, setTerm } from 'store/slices/users'
 import { SmallLoader } from '../common/loaders'
+import { Button } from '../common'
 import style from './Filtration.module.scss'
 
 export const Filtration: FC = (): ReturnComponentType => {
@@ -18,6 +18,7 @@ export const Filtration: FC = (): ReturnComponentType => {
   const term = useSelector(selectTerm)
 
   const [search, setSearch] = useState(term)
+  const [isVisibleParamsPopup, setIsVisibleParamsPopup] = useState(false)
 
   const isMounted = useRef(false)
 
@@ -39,6 +40,10 @@ export const Filtration: FC = (): ReturnComponentType => {
     }
   }, [search])
 
+  const onToggleVisibleParamsPopupClick = (): void => {
+    setIsVisibleParamsPopup(!isVisibleParamsPopup)
+  }
+
   return (
     <div className={`${style.filterContainer} ${isDarkTheme && style.filterContainerDark}`}>
       <div className={style.searchInputContainer}>
@@ -48,8 +53,17 @@ export const Filtration: FC = (): ReturnComponentType => {
       {isLoadingTerm ?
         <SmallLoader darkColor={'#828282'} lightColor={'#99A2AE'}/>
         : <>
-          <Select value={'Params'} options={['Params', 'Params']}/>
-          <Icon12Dropdown width={14} height={14} fill="#92A0B1"/>
+          <div className={style.findContainer}>
+            <Button className={style.find} onClick={onToggleVisibleParamsPopupClick}>
+              <div className={`${style.params} ${isDarkTheme && style.paramsDark}`}>Params</div>
+              <Icon12Dropdown className={style.arrowDownIcon} width={14} height={14} fill="#92A0B1"/>
+            </Button>
+
+            {isVisibleParamsPopup &&
+              <div className={style.paramsPopup}>
+                radio...
+              </div>}
+          </div>
         </>}
     </div>
   )

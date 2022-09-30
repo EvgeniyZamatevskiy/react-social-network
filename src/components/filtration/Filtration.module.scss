@@ -30,6 +30,41 @@
     }
   }
 
+  .findContainer {
+    position: relative;
+
+    .find {
+      @include flex(row, space-between, center);
+      padding: 14px 0px 14px 14px;
+
+      .params {
+        color: #2a5885;
+
+        &.paramsDark {
+          color: #71aaeb;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .arrowDownIcon {
+        margin-left: 3px;
+      }
+    }
+
+    .paramsPopup {
+      position: absolute;
+      top: 35px;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background-color: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 20px 40px 0 rgb(0 0 0 / 30%);
+    }
+  }
+
   &.filterContainerDark {
     border-bottom: 1px solid #484848;
   }
