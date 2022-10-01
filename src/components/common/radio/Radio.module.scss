@@ -1,0 +1,37 @@
+@import 'styles/sass/mixins.scss';
+@import 'styles/sass/variables.scss';
+
+.label {
+  @include flex(row, stretch, center);
+  min-width: 120px;
+  line-height: 24px;
+
+  .radio {
+    appearance: none;
+    height: 14px;
+    width: 14px;
+    margin-right: 7px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1.5px solid #b4b6be;
+
+    &:hover {
+      background-color: rgba(220, 225, 230, 0.41);
+    }
+
+    &:checked {
+      appearance: revert;
+      height: 14px;
+      width: 14px;
+    }
+
+    &.radioDark {
+      background-color: #292929;
+      border: 1.5px solid #646464;
+
+      &:hover {
+        background-color: #424242;
+      }
+    }
+  }
+}
