@@ -6,12 +6,12 @@ import { convertFriend } from 'utils'
 import { UsersResponseType } from './types'
 
 export const USERS = {
-  getUsers(term: string, friend: FriendValuesType) {
+  getUsers(term: string, friend: FriendValuesType, page: number, pageCount: number) {
 
     const currentTerm = term ? `&term=${term}` : EMPTY_STRING
     const currentFriend = friend !== 'All' ? `&friend=${convertFriend(friend)}` : EMPTY_STRING
 
-    return instance.get<UsersResponseType>(`users?page=${1}&count=${10}${currentTerm}${currentFriend}`)
+    return instance.get<UsersResponseType>(`users?page=${page}&count=${pageCount}${currentTerm}${currentFriend}`)
   },
   follow(userId: number) {
     return instance.post<CommonResponseType>(`follow/${userId}`)

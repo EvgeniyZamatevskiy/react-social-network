@@ -12,3 +12,7 @@ export const selectTerm = (state: RootStateType): string => state.users.term
 export const selectIsLoadingTerm = (state: RootStateType): boolean => state.users.isLoadingTerm
 
 export const selectFriend = (state: RootStateType): FriendValuesType => state.users.friend
+
+export const selectPage = (state: RootStateType): number => state.users.page
+
+export const selectPageCount = (state: RootStateType): number => state.users.pageCount

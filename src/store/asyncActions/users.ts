@@ -7,10 +7,10 @@ import { ResponseCode } from 'enums'
 import { handleServerNetworkError } from 'utils'
 import { FriendValuesType } from '../slices/users/types'
 
-export const getUsers = createAsyncThunk<{ users: UserType[], totalCount: number }, { term: string, friend: FriendValuesType }, { rejectValue: { error: string } }>
+export const getUsers = createAsyncThunk<{ users: UserType[], totalCount: number }, { term: string, friend: FriendValuesType, page: number, pageCount: number }, { rejectValue: { error: string } }>
 ('users/getUsers', async (params, {rejectWithValue}) => {
   try {
-    const response = await USERS.getUsers(params.term, params.friend)
+    const response = await USERS.getUsers(params.term, params.friend, params.page, params.pageCount)
     const {items: users, totalCount} = response.data
 
     return {users, totalCount}

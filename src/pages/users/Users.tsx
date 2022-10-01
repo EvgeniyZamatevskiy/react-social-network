@@ -1,10 +1,18 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Loader, User, Filtration, UsersEmpty } from 'components'
 import { ReturnComponentType } from 'types'
 import { useSelector } from 'react-redux'
 import { useAppDispatch, useTheme } from 'hooks'
 import { getUsers } from 'store/asyncActions'
-import { selectFriend, selectIsAuth, selectIsLoadingUsers, selectTerm, selectUsers } from 'store/selectors'
+import {
+  selectFriend,
+  selectIsAuth,
+  selectIsLoadingUsers,
+  selectPageCount,
+  selectTerm,
+  selectUsers,
+  selectPage
+} from 'store/selectors'
 import { Navigate } from 'react-router-dom'
 import { Path } from 'enums'
 import style from './Users.module.scss'
@@ -18,16 +26,15 @@ export const Users: FC = (): ReturnComponentType => {
   const isLoadingUsers = useSelector(selectIsLoadingUsers)
   const term = useSelector(selectTerm)
   const friend = useSelector(selectFriend)
+  const page = useSelector(selectPage)
+  const pageCount = useSelector(selectPageCount)
 
   const isDarkTheme = useTheme('dark')
 
-  const usersRender = users.map(({id, followed, name, photos, status, followedStatus}) => {
-    return <User key={id} id={id} followed={followed} name={name} photos={photos} status={status}
-                 followedStatus={followedStatus}/>
-  })
+  const usersRender = users.map((user) => <User key={user.id} user={user}/>)
 
   useEffect(() => {
-    dispatch(getUsers({term, friend}))
+    dispatch(getUsers({term, friend, page, pageCount}))
   }, [term, friend])
 
   if (!isAuth) {

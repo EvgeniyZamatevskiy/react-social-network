@@ -10,7 +10,9 @@ const initialState: UsersSliceInitialStateType = {
   isLoadingUsers: false,
   term: EMPTY_STRING,
   isLoadingTerm: false,
-  friend: 'All'
+  friend: 'All',
+  page: 1,
+  pageCount: 10
 }
 
 export const usersSlice = createSlice({

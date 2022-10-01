@@ -7,6 +7,8 @@ export type UsersSliceInitialStateType = {
   term: string
   isLoadingTerm: boolean
   friend: FriendValuesType
+  page: number
+  pageCount: number
 }
 
 export type UserSupplementedType = UserType & {

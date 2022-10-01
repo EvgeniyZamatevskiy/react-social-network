@@ -7,7 +7,9 @@ import { SmallLoader } from 'components/common'
 import defaultAvatar from 'assets/images/defaultAvatar.png'
 import style from './User.module.scss'
 
-export const User: FC<UserPropsType> = ({id, followed, name, photos, status, followedStatus}): ReturnComponentType => {
+export const User: FC<UserPropsType> = ({user}): ReturnComponentType => {
+
+  const {id, followed, followedStatus, status, photos, name} = user
 
   const dispatch = useAppDispatch()
 
