@@ -9,7 +9,8 @@ const initialState: UsersSliceInitialStateType = {
   totalUsersCount: 0,
   isLoadingUsers: false,
   term: EMPTY_STRING,
-  isLoadingTerm: false
+  isLoadingTerm: false,
+  friend: EMPTY_STRING
 }
 
 export const usersSlice = createSlice({
@@ -21,6 +22,9 @@ export const usersSlice = createSlice({
     },
     setIsLoadingTerm(state, action: PayloadAction<boolean>) {
       state.isLoadingTerm = action.payload
+    },
+    setFriend(state, action: PayloadAction<boolean | string>) {
+      state.friend = action.payload
     },
   },
   extraReducers(builder) {
@@ -95,4 +99,4 @@ export const usersSlice = createSlice({
 
 export default usersSlice.reducer
 
-export const {setTerm, setIsLoadingTerm} = usersSlice.actions
+export const {setTerm, setIsLoadingTerm, setFriend} = usersSlice.actions

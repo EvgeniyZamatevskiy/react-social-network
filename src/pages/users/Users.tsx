@@ -4,7 +4,7 @@ import { ReturnComponentType } from 'types'
 import { useSelector } from 'react-redux'
 import { useAppDispatch, useTheme } from 'hooks'
 import { getUsers } from 'store/asyncActions'
-import { selectIsAuth, selectIsLoadingUsers, selectTerm, selectUsers } from 'store/selectors'
+import { selectFriend, selectIsAuth, selectIsLoadingUsers, selectTerm, selectUsers } from 'store/selectors'
 import { Navigate } from 'react-router-dom'
 import { Path } from 'enums'
 import style from './Users.module.scss'
@@ -17,6 +17,7 @@ export const Users: FC = (): ReturnComponentType => {
   const isAuth = useSelector(selectIsAuth)
   const isLoadingUsers = useSelector(selectIsLoadingUsers)
   const term = useSelector(selectTerm)
+  const friend = useSelector(selectFriend)
 
   const isDarkTheme = useTheme('dark')
 
@@ -26,8 +27,8 @@ export const Users: FC = (): ReturnComponentType => {
   })
 
   useEffect(() => {
-    dispatch(getUsers({term}))
-  }, [term])
+    dispatch(getUsers({term, friend}))
+  }, [term, friend])
 
   if (!isAuth) {
     return <Navigate to={Path.LOGIN}/>

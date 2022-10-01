@@ -1,13 +1,12 @@
 import React, { FC, useEffect, useRef, useState } from 'react'
 import { ReturnComponentType } from 'types'
 import { useAppDispatch, useDebounce, useTheme } from 'hooks'
-import { Input } from '../common/input'
+import { Button, Input, SmallLoader } from '../common'
 import { Icon12Dropdown, Icon20Search } from '@vkontakte/icons'
 import { selectIsLoadingTerm, selectTerm } from '../../store/selectors'
 import { useSelector } from 'react-redux'
 import { setIsLoadingTerm, setTerm } from 'store/slices/users'
-import { SmallLoader } from '../common/loaders'
-import { Button } from '../common'
+import { ParamsPopup } from '../paramsPopup'
 import style from './Filtration.module.scss'
 
 export const Filtration: FC = (): ReturnComponentType => {
@@ -23,7 +22,6 @@ export const Filtration: FC = (): ReturnComponentType => {
   const isMounted = useRef(false)
 
   const isDarkTheme = useTheme('dark')
-
   const debouncedValue = useDebounce(search, 500)
 
   useEffect(() => {
@@ -44,14 +42,19 @@ export const Filtration: FC = (): ReturnComponentType => {
     setIsVisibleParamsPopup(!isVisibleParamsPopup)
   }
 
+  const onSetIsVisibleParamsPopupMouseLeave = (): void => {
+    setIsVisibleParamsPopup(false)
+  }
+
   return (
     <div className={`${style.filterContainer} ${isDarkTheme && style.filterContainerDark}`}>
       <div className={style.searchInputContainer}>
         <Icon20Search className={style.searchIcon}/>
         <Input placeholder="Search" className={style.searchInput} value={search} setValue={setSearch}/>
       </div>
-      {isLoadingTerm ?
-        <SmallLoader darkColor={'#828282'} lightColor={'#99A2AE'}/>
+
+      {isLoadingTerm
+        ? <SmallLoader darkColor={'#828282'} lightColor={'#99A2AE'}/>
         : <>
           <div className={style.findContainer}>
             <Button className={style.find} onClick={onToggleVisibleParamsPopupClick}>
@@ -59,10 +62,7 @@ export const Filtration: FC = (): ReturnComponentType => {
               <Icon12Dropdown className={style.arrowDownIcon} width={14} height={14} fill="#92A0B1"/>
             </Button>
 
-            {isVisibleParamsPopup &&
-              <div className={style.paramsPopup}>
-                radio...
-              </div>}
+            {isVisibleParamsPopup && <ParamsPopup/>}
           </div>
         </>}
     </div>

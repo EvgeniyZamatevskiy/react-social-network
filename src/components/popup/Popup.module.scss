@@ -27,8 +27,8 @@
   }
 
   &.dark {
-    color: $colorDark;
     background-color: #292929;
+    color: $colorDark;
     border: 1px solid $borderDark;
   }
 }

@@ -1,4 +1,5 @@
 @import 'styles/sass/mixins.scss';
+@import 'styles/sass/variables.scss';
 
 .filterContainer {
   @include flex(row, space-between, center);
@@ -52,16 +53,6 @@
       .arrowDownIcon {
         margin-left: 3px;
       }
-    }
-
-    .paramsPopup {
-      position: absolute;
-      top: 35px;
-      right: 0;
-      width: 200px;
-      height: 200px;
-      background-color: rgba(255, 255, 255, 0.86);
-      box-shadow: 0 20px 40px 0 rgb(0 0 0 / 30%);
     }
   }
 

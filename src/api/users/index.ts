@@ -4,11 +4,12 @@ import { EMPTY_STRING } from 'constants/base'
 import { UsersResponseType } from './types'
 
 export const USERS = {
-  getUsers(term: string) {
+  getUsers(term: string, friend: boolean | string) {
 
     const currentTerm = term ? `term=${term}` : EMPTY_STRING
+    const currentFriend = typeof friend === 'boolean' ? `friend=${friend}` : EMPTY_STRING
 
-    return instance.get<UsersResponseType>(`users?${currentTerm}`)
+    return instance.get<UsersResponseType>(`users?${currentTerm}${currentFriend}`)
   },
   follow(userId: number) {
     return instance.post<CommonResponseType>(`follow/${userId}`)

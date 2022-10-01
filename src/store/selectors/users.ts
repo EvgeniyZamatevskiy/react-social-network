@@ -10,3 +10,5 @@ export const selectIsLoadingUsers = (state: RootStateType): boolean => state.use
 export const selectTerm = (state: RootStateType): string => state.users.term
 
 export const selectIsLoadingTerm = (state: RootStateType): boolean => state.users.isLoadingTerm
+
+export const selectFriend = (state: RootStateType): boolean | string => state.users.friend
