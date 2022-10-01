@@ -6,7 +6,7 @@ export type UsersSliceInitialStateType = {
   isLoadingUsers: boolean
   term: string
   isLoadingTerm: boolean
-  friend: string | boolean
+  friend: FriendValuesType
 }
 
 export type UserSupplementedType = UserType & {
@@ -17,3 +17,5 @@ export type FollowedStatusType = {
   isDisabled: boolean
   isLoading: boolean
 }
+
+export type FriendValuesType = 'All' | 'Only followed' | 'Only unfollowed'

@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { UserType } from 'api/users/types'
 import { EMPTY_STRING } from 'constants/base'
 import { follow, getUsers, unfollow } from 'store/asyncActions'
-import { UsersSliceInitialStateType } from './types'
+import { FriendValuesType, UsersSliceInitialStateType } from './types'
 
 const initialState: UsersSliceInitialStateType = {
   users: [],
@@ -10,7 +10,7 @@ const initialState: UsersSliceInitialStateType = {
   isLoadingUsers: false,
   term: EMPTY_STRING,
   isLoadingTerm: false,
-  friend: EMPTY_STRING
+  friend: 'All'
 }
 
 export const usersSlice = createSlice({
@@ -23,7 +23,7 @@ export const usersSlice = createSlice({
     setIsLoadingTerm(state, action: PayloadAction<boolean>) {
       state.isLoadingTerm = action.payload
     },
-    setFriend(state, action: PayloadAction<boolean | string>) {
+    setFriend(state, action: PayloadAction<FriendValuesType>) {
       state.friend = action.payload
     },
   },

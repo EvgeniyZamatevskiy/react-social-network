@@ -56,7 +56,7 @@ export const Filtration: FC = (): ReturnComponentType => {
       {isLoadingTerm
         ? <SmallLoader darkColor={'#828282'} lightColor={'#99A2AE'}/>
         : <>
-          <div className={style.findContainer}>
+          <div className={style.findContainer} onMouseLeave={onSetIsVisibleParamsPopupMouseLeave}>
             <Button className={style.find} onClick={onToggleVisibleParamsPopupClick}>
               <div className={`${style.params} ${isDarkTheme && style.paramsDark}`}>Params</div>
               <Icon12Dropdown className={style.arrowDownIcon} width={14} height={14} fill="#92A0B1"/>

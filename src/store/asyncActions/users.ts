@@ -5,8 +5,9 @@ import { AxiosError } from 'axios'
 import { FIRST_ELEMENT_ARRAY } from 'constants/base'
 import { ResponseCode } from 'enums'
 import { handleServerNetworkError } from 'utils'
+import { FriendValuesType } from '../slices/users/types'
 
-export const getUsers = createAsyncThunk<{ users: UserType[], totalCount: number }, { term: string, friend: boolean | string }, { rejectValue: { error: string } }>
+export const getUsers = createAsyncThunk<{ users: UserType[], totalCount: number }, { term: string, friend: FriendValuesType }, { rejectValue: { error: string } }>
 ('users/getUsers', async (params, {rejectWithValue}) => {
   try {
     const response = await USERS.getUsers(params.term, params.friend)

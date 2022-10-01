@@ -1,5 +1,5 @@
 import { RootStateType } from 'store'
-import { UserSupplementedType } from 'store/slices/users/types'
+import { FriendValuesType, UserSupplementedType } from 'store/slices/users/types'
 
 export const selectUsers = (state: RootStateType): UserSupplementedType[] => state.users.users
 
@@ -11,4 +11,4 @@ export const selectTerm = (state: RootStateType): string => state.users.term
 
 export const selectIsLoadingTerm = (state: RootStateType): boolean => state.users.isLoadingTerm
 
-export const selectFriend = (state: RootStateType): boolean | string => state.users.friend
+export const selectFriend = (state: RootStateType): FriendValuesType => state.users.friend
