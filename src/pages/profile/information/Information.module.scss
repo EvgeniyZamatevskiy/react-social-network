@@ -1,0 +1,155 @@
+@import 'src/styles/sass/mixins.scss';
+@import 'src/styles/sass/variables.scss';
+
+.container {
+  width: 552px;
+  background-color: #fff;
+  //min-height: 162px;
+  border: 1px solid $borderLight;
+  padding: 15px 20px;
+  border-radius: 15px;
+
+  .nameContainer {
+    @include flex(row, space-between, center);
+
+    .name {
+      font-size: 19px;
+    }
+
+    .online {
+      color: #8B95A1;
+      font-size: 12.5px;
+    }
+  }
+
+  .statusContainer {
+    margin: -4px -6px;
+    margin-top: 0.1px;
+    margin-bottom: 17px;
+  }
+}
+
+//
+//.container {
+//  min-height: 162px;
+//  border-radius: 15px;
+//  background-color: #fff;
+//  border: 1px solid $borderLight;
+//  padding: 15px 0px;
+//
+//  .nameContainer {
+//    @include flex(row, space-between, stretch);
+//    padding: 0px 20px;
+//
+//    .name {
+//      font-size: 19px;
+//      line-height: 25px;
+//    }
+//
+//    .online {
+//      color: #8B95A1;
+//      font-size: 12.5px;
+//      line-height: 18px;
+//    }
+//  }
+//
+//  .statusContainer {
+//    padding: 0px 15px;
+//
+//    .status {
+//      text-align: left;
+//      width: 100%;
+//      color: #939393;
+//      padding: 4px;
+//
+//      &:hover {
+//        background-color: #F5F6F8;
+//      }
+//    }
+//  }
+//
+//  .lineContainer {
+//    padding: 0px 19px;
+//    margin-top: 11px;
+//
+//    .line {
+//      display: block;
+//      border-top: 1px solid #DCE1E6;
+//    }
+//  }
+//
+//  .jobContainer {
+//    display: flex;
+//    margin-top: 20px;
+//    padding: 0px 20px;
+//
+//    .job {
+//      margin-right: 79px;
+//      color: #818C99;
+//    }
+//
+//    .isLookingJob {
+//      color: #2A5885;
+//    }
+//  }
+//
+//  .infoContainer {
+//    margin-top: 11px;
+//    padding: 0px 20px;
+//
+//    .infoBtn {
+//      width: 100%;
+//      padding: 10px 0px;
+//      border-radius: 10px;
+//      color: #2A5885;
+//
+//      &:hover {
+//        background-color: #F5F6F8;
+//      }
+//    }
+//  }
+//
+//  &.rewrittenContainer {
+//    border-radius: 15px 15px 0px 0px;
+//    border-bottom: none;
+//  }
+//}
+//
+//.detailedInformation {
+//  background-color: #FFF;
+//  width: 100%;
+//  border: 1px solid $borderLight;
+//  border-top: none;
+//  border-radius: 0px 0px 15px 15px;
+//  padding: 0px 20px 20px 20px;
+//
+//  .aboutContainer {
+//    @include flex(row, stretch, center);
+//
+//    .aboutLine {
+//      border-top: 1px solid #DCE1E6;
+//      width: 100%;
+//      margin-left: 7px;
+//    }
+//  }
+//
+//  .aboutItem {
+//    color: #818C99;
+//    margin-top: 19px;
+//
+//    span {
+//      color: #2A5885;
+//    }
+//  }
+//
+//  .contactsContainer {
+//    @include flex(row, stretch, center);
+//    margin-top: 19px;
+//
+//    .contactsLine {
+//      border-top: 1px solid #DCE1E6;
+//      width: 100%;
+//      margin-left: 7px;
+//    }
+//  }
+//}

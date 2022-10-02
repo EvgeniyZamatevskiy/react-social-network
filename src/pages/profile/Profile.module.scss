@@ -3,6 +3,7 @@
 
 .container {
   padding-top: 63px;
+  width: 100%;
 
   .profile {
     width: 100%;
@@ -10,28 +11,45 @@
 
     .leftBlock {
 
-      .avatarContainer {
+      .content {
         width: 230px;
         border-radius: 15px;
-        border: 1px solid $borderDark;
-        background-color: $bgSecondaryDark;
+        border: 1px solid $borderLight;
+        background-color: $bgSecondaryLight;
         padding: 15px;
         @include flex(column, center, center);
 
-        .avatar {
-          width: 100%;
+        .avatarImageContainer {
+          position: relative;
+
+          .avatarImage {
+            width: 100%;
+            cursor: pointer;
+          }
+
+          .editPhoto {
+            position: absolute;
+            bottom: 20px;
+            left: 55px;
+            color: #2A5885;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
         }
 
         .editLink {
           margin-top: 12px;
           height: 30px;
           width: 100%;
-          background-color: #484848;
+          background-color: #E5EBF1;
           border-radius: 10px;
           @include flex(row, center, center);
+          color: #2A5885;
 
           &:hover {
-            background-color: #555555;
+            background-color: rgb(226, 229, 234);
             cursor: pointer;
           }
         }
@@ -40,6 +58,7 @@
 
     .rightBlock {
       margin-left: 13px;
+      width: 100%;
     }
   }
 }
