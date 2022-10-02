@@ -25,7 +25,13 @@ export const ParamsPopup: FC = (): ReturnComponentType => {
   return (
     <div className={`${style.paramsPopup} ${isDarkTheme && style.paramsPopupDark}`}>
       <div className={style.findValue}>Find</div>
-      <Radio options={friendOptions} name={'friend'} value={friend} onChange={onFriendChange}/>
+      <Radio
+        options={friendOptions}
+        name={'friend'}
+        value={friend}
+        onChange={onFriendChange}
+        isDarkTheme={isDarkTheme}
+      />
     </div>
   )
 }

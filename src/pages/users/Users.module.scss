@@ -1,5 +1,5 @@
-@import 'styles/sass/mixins.scss';
-@import 'styles/sass/variables.scss';
+@import 'src/styles/sass/mixins.scss';
+@import 'src/styles/sass/variables.scss';
 
 .container {
   padding-top: 63px;
@@ -14,14 +14,15 @@
     border-left: 1px solid $borderLight;
     border-bottom: 1px solid #DCE1E6;
 
-    .title {
+    .body {
       border-bottom: 1px solid #DCE1E6;
       background-color: #FAFBFC;
-      padding: 20px;
+      padding: 15px;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
+      @include flex(row, space-between, center);
 
-      &.titleDark {
+      &.bodyDark {
         background-color: $bgSecondaryDark;
         border-bottom: 1px solid #484848;
       }

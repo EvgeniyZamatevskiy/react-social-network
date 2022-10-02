@@ -28,6 +28,9 @@ export const usersSlice = createSlice({
     setFriend(state, action: PayloadAction<FriendValuesType>) {
       state.friend = action.payload
     },
+    setPage(state, action: PayloadAction<number>) {
+      state.page = action.payload
+    },
   },
   extraReducers(builder) {
     builder
@@ -101,4 +104,4 @@ export const usersSlice = createSlice({
 
 export default usersSlice.reducer
 
-export const {setTerm, setIsLoadingTerm, setFriend} = usersSlice.actions
+export const {setTerm, setIsLoadingTerm, setFriend, setPage} = usersSlice.actions

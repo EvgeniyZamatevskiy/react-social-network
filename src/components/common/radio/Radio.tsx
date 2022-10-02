@@ -1,7 +1,6 @@
 import React, { ChangeEvent, FC } from 'react'
 import { ReturnComponentType } from 'types'
 import { RadioPropsType } from './types'
-import { useTheme } from 'hooks'
 import style from './Radio.module.scss'
 
 export const Radio: FC<RadioPropsType> =
@@ -10,13 +9,12 @@ export const Radio: FC<RadioPropsType> =
      options,
      name,
      value,
+     isDarkTheme,
      onChange,
      setValue,
      setIndex,
      ...restProps
    }): ReturnComponentType => {
-
-    const isDarkTheme = useTheme('dark')
 
     const optionsRender = options.map((option, index) => {
 

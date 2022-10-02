@@ -1,9 +1,12 @@
-import React, { FC, useEffect, useState } from 'react'
-import { Loader, User, Filtration, UsersEmpty } from 'components'
+import React, { FC, useEffect } from 'react'
+import { Loader, User, Filtration, UsersEmpty, Pagination } from 'components'
 import { ReturnComponentType } from 'types'
 import { useSelector } from 'react-redux'
 import { useAppDispatch, useTheme } from 'hooks'
 import { getUsers } from 'store/asyncActions'
+import { Navigate } from 'react-router-dom'
+import { Path } from 'enums'
+import { setPage } from 'store/slices/users'
 import {
   selectFriend,
   selectIsAuth,
@@ -11,10 +14,9 @@ import {
   selectPageCount,
   selectTerm,
   selectUsers,
-  selectPage
+  selectPage,
+  selectTotalUsersCount
 } from 'store/selectors'
-import { Navigate } from 'react-router-dom'
-import { Path } from 'enums'
 import style from './Users.module.scss'
 
 export const Users: FC = (): ReturnComponentType => {
@@ -28,6 +30,7 @@ export const Users: FC = (): ReturnComponentType => {
   const friend = useSelector(selectFriend)
   const page = useSelector(selectPage)
   const pageCount = useSelector(selectPageCount)
+  const totalUsersCount = useSelector(selectTotalUsersCount)
 
   const isDarkTheme = useTheme('dark')
 
@@ -35,7 +38,11 @@ export const Users: FC = (): ReturnComponentType => {
 
   useEffect(() => {
     dispatch(getUsers({term, friend, page, pageCount}))
-  }, [term, friend])
+  }, [term, friend, page])
+
+  const handleSetPageClick = (page: number) => {
+    dispatch(setPage(page))
+  }
 
   if (!isAuth) {
     return <Navigate to={Path.LOGIN}/>
@@ -44,7 +51,16 @@ export const Users: FC = (): ReturnComponentType => {
   return (
     <div className={style.container}>
       <div className={`${style.users} ${isDarkTheme && style.usersDark}`}>
-        <h2 className={`${style.title} ${isDarkTheme && style.titleDark}`}>Users</h2>
+        <div className={`${style.body} ${isDarkTheme && style.bodyDark}`}>
+          <h2 className={style.title}>Users</h2>
+          <Pagination
+            totalItemsCount={totalUsersCount}
+            pageCount={pageCount}
+            page={page}
+            handleSetPageClick={handleSetPageClick}
+            isDarkTheme={isDarkTheme}
+          />
+        </div>
         <Filtration/>
         <div className={style.userContainer}>
           {isLoadingUsers

@@ -39,7 +39,7 @@ export const Popup: FC<PopupPropsType> = ({setIsActivePopup}): ReturnComponentTy
   }
 
   return (
-    <div className={`${style.popup} ${isDarkTheme && style.dark}`}>
+    <div className={`${style.popup} ${isDarkTheme && style.popupDark}`}>
       <div className={style.watercolorContainer}>
         <Icon28PaletteOutline className={style.watercolorIcon} width={17} height={17} fill={'#71AAEB'}/>
         Theme: <Select

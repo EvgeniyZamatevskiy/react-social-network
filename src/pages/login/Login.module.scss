@@ -1,5 +1,5 @@
-@import 'styles/sass/mixins.scss';
-@import 'styles/sass/variables.scss';
+@import 'src/styles/sass/mixins.scss';
+@import 'src/styles/sass/variables.scss';
 
 .login {
   @include flex(row, center, center);
