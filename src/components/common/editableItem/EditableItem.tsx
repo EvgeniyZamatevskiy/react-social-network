@@ -57,7 +57,7 @@ export const EditableItem: FC<EditableItemPropsType> =
             className={style.editableItemBtn}
             onClick={onSetIsEditModeClick}
           >
-            {currentTitle}
+            {currentTitle || 'Set status'}
           </button>}
       </>
     )

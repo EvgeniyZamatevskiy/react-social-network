@@ -19,4 +19,7 @@ export const USERS = {
   unfollow(userId: number) {
     return instance.delete<CommonResponseType>(`follow/${userId}`)
   },
+  getFollowedStatus(userId: number) {
+    return instance.get<boolean>(`follow/${userId}`)
+  },
 }

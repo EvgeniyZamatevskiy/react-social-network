@@ -9,6 +9,7 @@ export type UsersSliceInitialStateType = {
   friend: FriendValuesType
   page: number
   pageCount: number
+  isFollowed: boolean
 }
 
 export type UserSupplementedType = UserType & {

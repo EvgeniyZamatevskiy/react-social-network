@@ -2,9 +2,17 @@ import { EditableItem, Line } from 'components'
 import React, { FC, useState } from 'react'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { InformationPropsType } from './types'
+import { useAppDispatch } from 'hooks'
+import { useSelector } from 'react-redux'
+import { selectStatus } from 'store/selectors'
+import { updateStatus } from 'store/asyncActions'
 import style from './Information.module.scss'
 
-export const Information: FC<InformationPropsType> = ({fullName}): ReturnComponentType => {
+export const Information: FC<InformationPropsType> = ({fullName, isOwner}): ReturnComponentType => {
+
+  const dispatch = useAppDispatch()
+
+  const status = useSelector(selectStatus)
 
   const [isShowDetailedInformation, setIsShowDetailedInformation] = useState(false)
 
@@ -13,7 +21,7 @@ export const Information: FC<InformationPropsType> = ({fullName}): ReturnCompone
   }
 
   const handleUpdateStatusClick = (updatedTitle: string): void => {
-    // console.log(updatedTitle)
+    dispatch(updateStatus(updatedTitle))
   }
 
   return (
@@ -22,13 +30,14 @@ export const Information: FC<InformationPropsType> = ({fullName}): ReturnCompone
 
         <div className={style.nameContainer}>
           <div className={style.name}>{fullName}</div>
-          <span className={style.online}>online</span>
+          <span className={style.online}>{isOwner ? 'online' : 'seen recently'}</span>
         </div>
 
         <div className={style.statusContainer}>
-          <EditableItem currentTitle={'example'} handleUpdateTitleClick={handleUpdateStatusClick}/>
+          {isOwner
+            ? <EditableItem currentTitle={status} handleUpdateTitleClick={handleUpdateStatusClick}/>
+            : <div className={style.status}>{status}</div>}
         </div>
-
         <Line/>
       </div>
 

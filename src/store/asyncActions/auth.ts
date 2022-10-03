@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { AUTH } from 'api'
 import { AuthorizedUserDataType, LoginDataType } from 'api/auth/types'
 import { AxiosError } from 'axios'
-import { FIRST_ELEMENT_ARRAY } from 'constants/base'
+import { FIRST_ELEMENTS_INDEX } from 'constants/base'
 import { ResponseCode } from 'enums'
 import { handleServerNetworkError } from 'utils'
 
@@ -15,7 +15,7 @@ export const getAuthorizedUserData = createAsyncThunk<AuthorizedUserDataType, un
     if (resultCode === ResponseCode.SUCCESS) {
       return authorizedUserData
     } else {
-      return rejectWithValue({error: messages[FIRST_ELEMENT_ARRAY]})
+      return rejectWithValue({error: messages[FIRST_ELEMENTS_INDEX]})
     }
   } catch (error) {
     return handleServerNetworkError(error as AxiosError | Error, rejectWithValue)
@@ -30,13 +30,13 @@ export const login = createAsyncThunk<void, LoginDataType, { rejectValue: { erro
 
     if (resultCode === ResponseCode.CAPTCHA_IS_REQUIRED) {
       dispatch(getCaptchaUrl())
-      return rejectWithValue({error: messages[FIRST_ELEMENT_ARRAY]})
+      return rejectWithValue({error: messages[FIRST_ELEMENTS_INDEX]})
     }
 
     if (resultCode === ResponseCode.SUCCESS) {
       dispatch(getAuthorizedUserData())
     } else {
-      return rejectWithValue({error: messages[FIRST_ELEMENT_ARRAY]})
+      return rejectWithValue({error: messages[FIRST_ELEMENTS_INDEX]})
     }
   } catch (error) {
     return handleServerNetworkError(error as AxiosError | Error, rejectWithValue)
@@ -50,7 +50,7 @@ export const logOut = createAsyncThunk<void, undefined, { rejectValue: { error: 
     const {messages, resultCode} = response.data
 
     if (resultCode !== ResponseCode.SUCCESS) {
-      return rejectWithValue({error: messages[FIRST_ELEMENT_ARRAY]})
+      return rejectWithValue({error: messages[FIRST_ELEMENTS_INDEX]})
     }
 
   } catch (error) {

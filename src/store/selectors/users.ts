@@ -16,3 +16,5 @@ export const selectFriend = (state: RootStateType): FriendValuesType => state.us
 export const selectPage = (state: RootStateType): number => state.users.page
 
 export const selectPageCount = (state: RootStateType): number => state.users.pageCount
+
+export const selectIsFollowed = (state: RootStateType): boolean => state.users.isFollowed

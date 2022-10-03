@@ -3,14 +3,13 @@ import { Path } from 'enums'
 import { useSelector } from 'react-redux'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { ReturnComponentType } from 'types'
-import { selectAuthorizedUserDataId, selectIsAuth, selectUserProfile } from 'store/selectors'
+import { selectAuthorizedUserDataId, selectIsAuth, selectIsFollowed, selectUserProfile } from 'store/selectors'
 import { useAppDispatch } from 'hooks'
-import { getUserProfile } from 'store/asyncActions'
+import { follow, getFollowedStatus, getStatus, getUserProfile, unfollow } from 'store/asyncActions'
 import { Information } from './information'
-import { Icon12CancelOutline } from '@vkontakte/icons'
-import { Icon24Forward } from '@vkontakte/icons'
 import defaultAvatar from 'assets/images/defaultAvatar.png'
 import style from './Profile.module.scss'
+import { File } from 'components'
 
 export const Profile: FC = (): ReturnComponentType => {
 
@@ -21,23 +20,35 @@ export const Profile: FC = (): ReturnComponentType => {
   const isAuth = useSelector(selectIsAuth)
   const userProfile = useSelector(selectUserProfile)
   const authorizedUserDataId = useSelector(selectAuthorizedUserDataId)
+  const isFollowed = useSelector(selectIsFollowed)
 
   const [isHoverAvatar, setIsHoverAvatar] = useState(false)
 
   const isOwner = !userId
+  const userAvatar = userProfile.photos?.small || userProfile.photos?.large
 
   useEffect(() => {
     const id = isOwner ? authorizedUserDataId : userId
 
     dispatch(getUserProfile(Number(id)))
+    dispatch(getStatus(Number(id)))
+    dispatch(getFollowedStatus(Number(id)))
   }, [userId])
 
-  const onMouseEnter = () => {
+  const onMouseEnter = (): void => {
     setIsHoverAvatar(true)
   }
 
-  const onMouseLeave = () => {
+  const onMouseLeave = (): void => {
     setIsHoverAvatar(false)
+  }
+
+  const onFollowClick = (): void => {
+    dispatch(follow(Number(userId)))
+  }
+
+  const onUnfollowClick = (): void => {
+    dispatch(unfollow(Number(userId)))
   }
 
   if (!isAuth) {
@@ -51,31 +62,31 @@ export const Profile: FC = (): ReturnComponentType => {
 
           <div className={style.content}>
             <div className={style.avatarImageContainer}>
-              {userProfile.photos?.small
-                ? <>
-                  <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-                    <img className={style.avatarImageTest} src={userProfile.photos?.small} alt="avatar"/>
-                    {isHoverAvatar &&
-                      <>
-                        <div className={style.deleteAvatarContainer}>
-                          <button className={style.deleteAvatar}><Icon12CancelOutline height={15} width={15}/></button>
-                        </div>
-                        <button className={style.updatePhotoBtn}>Update photo</button>
-                      </>}
-                  </div>
-                </>
-                : <>
+              {userAvatar
+                ?
+                <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                  <img className={style.avatarImage} src={userAvatar} alt="avatar"/>
+                  {isHoverAvatar && isOwner && <File classNameButton={style.changeAvatarBtn}>Change avatar</File>}
+                </div>
+                :
+                <File>
                   <img className={style.defaultAvatarImage} src={defaultAvatar} alt="default avatar"/>
-                  <button className={style.editPhoto}>Upload a photo</button>
-                </>}
+                  <div className={style.uploadPhoto}>Upload a profile photo</div>
+                </File>}
             </div>
-            <div className={style.editLink}>
-              <Link to={Path.EDIT}>Edit</Link>
-            </div>
+            {isOwner
+              ? <div className={style.editLink}>
+                <Link to={Path.EDIT}>Edit</Link>
+              </div>
+              : isFollowed ? <button className={style.followBtn} onClick={onUnfollowClick}>Unfollow</button> :
+                <button className={style.followBtn} onClick={onFollowClick}>Follow</button>}
           </div>
         </div>
         <div className={style.rightBlock}>
-          <Information fullName={userProfile.fullName}/>
+          <Information
+            fullName={userProfile.fullName}
+            isOwner={isOwner}
+          />
         </div>
       </div>
     </div>
