@@ -7,7 +7,7 @@ import { FIRST_ELEMENTS_INDEX } from 'constants/base'
 import { FilePropsType } from './types'
 import style from './File.module.scss'
 
-const MAX_FILE_SIZE = 1000000
+const MAX_FILE_SIZE = 10000000
 const ERROR_MESSAGE = 'The file is too large'
 
 export const File: FC<FilePropsType> = ({classNameButton, children}): ReturnComponentType => {

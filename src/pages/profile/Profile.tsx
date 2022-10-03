@@ -75,11 +75,13 @@ export const Profile: FC = (): ReturnComponentType => {
                 </File>}
             </div>
             {isOwner
-              ? <div className={style.editLink}>
+              ?
+              <div className={style.editLink}>
                 <Link to={Path.EDIT}>Edit</Link>
               </div>
-              : isFollowed ? <button className={style.followBtn} onClick={onUnfollowClick}>Unfollow</button> :
-                <button className={style.followBtn} onClick={onFollowClick}>Follow</button>}
+              : isFollowed
+                ? <button className={style.followBtn} onClick={onUnfollowClick}>Unfollow</button>
+                : <button className={style.followBtn} onClick={onFollowClick}>Follow</button>}
           </div>
         </div>
         <div className={style.rightBlock}>

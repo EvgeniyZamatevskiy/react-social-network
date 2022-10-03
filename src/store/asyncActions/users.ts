@@ -53,12 +53,12 @@ export const unfollow = createAsyncThunk<number, number, { rejectValue: { error:
   }
 })
 
-export const getFollowedStatus = createAsyncThunk<boolean, number, { rejectValue: { error: string } }>
+export const getFollowedStatus = createAsyncThunk<{ followedStatus: boolean, userId: number }, number, { rejectValue: { error: string } }>
 ('users/getFollowedStatus', async (userId, {rejectWithValue}) => {
   try {
     const {data: followedStatus} = await USERS.getFollowedStatus(userId)
 
-    return followedStatus
+    return {followedStatus, userId}
   } catch (error) {
     return handleServerNetworkError(error as AxiosError | Error, rejectWithValue)
   }
