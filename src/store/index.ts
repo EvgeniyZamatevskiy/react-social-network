@@ -5,12 +5,14 @@ import { ThemeType } from './slices/app/types'
 import appSlice from './slices/app'
 import authSlice from './slices/auth'
 import usersSlice from './slices/users'
+import profileSlice from './slices/profile'
 
 export const store = configureStore({
   reducer: {
     app: appSlice,
     auth: authSlice,
     users: usersSlice,
+    profile: profileSlice,
   },
   preloadedState: getParseLocalStorageData(LocalStorageKey.THEME, {})
 })

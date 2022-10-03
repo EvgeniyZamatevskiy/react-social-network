@@ -6,3 +6,8 @@ export type CommonResponseType<T = {}> = {
   messages: string[]
   resultCode: ResponseCode
 }
+
+export type PhotoType = {
+  small: string
+  large: string
+}

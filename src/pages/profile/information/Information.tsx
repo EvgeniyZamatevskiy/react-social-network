@@ -1,9 +1,10 @@
 import { EditableItem, Line } from 'components'
 import React, { FC, useState } from 'react'
 import { ReturnComponentType } from 'types/ReturnComponentType'
+import { InformationPropsType } from './types'
 import style from './Information.module.scss'
 
-export const Information: FC = (): ReturnComponentType => {
+export const Information: FC<InformationPropsType> = ({fullName}): ReturnComponentType => {
 
   const [isShowDetailedInformation, setIsShowDetailedInformation] = useState(false)
 
@@ -20,7 +21,7 @@ export const Information: FC = (): ReturnComponentType => {
       <div className={style.container}>
 
         <div className={style.nameContainer}>
-          <div className={style.name}>Ivan Ivanov</div>
+          <div className={style.name}>{fullName}</div>
           <span className={style.online}>online</span>
         </div>
 

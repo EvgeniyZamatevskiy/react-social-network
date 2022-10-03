@@ -21,8 +21,9 @@
 
         .avatarImageContainer {
           position: relative;
+          width: 100%;
 
-          .avatarImage {
+          .defaultAvatarImage {
             width: 100%;
             cursor: pointer;
           }
@@ -61,4 +62,40 @@
       width: 100%;
     }
   }
+}
+
+.avatarImageTest {
+  width: 100%;
+}
+
+.deleteAvatarContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 0px 0px 0px 2px;
+  background-color: #1f1f20;
+  opacity: 0.8;
+  @include flex(row, center, center);
+
+  .deleteAvatar {
+    color: rgba(255, 255, 255, 0.73);
+    transition: color 0.1s ease-in-out 0s;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.updatePhotoBtn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 0px;
+  background-color: #000;
+  opacity: 0.8;
+  color: #fff;
 }

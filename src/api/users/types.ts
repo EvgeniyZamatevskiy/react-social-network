@@ -1,3 +1,5 @@
+import { PhotoType } from '../types'
+
 export type UsersResponseType = {
   items: UserType[]
   totalCount: number
@@ -11,9 +13,4 @@ export type UserType = {
   photos: PhotoType
   status: string
   followed: boolean
-}
-
-export type PhotoType = {
-  small: string
-  large: string
 }
