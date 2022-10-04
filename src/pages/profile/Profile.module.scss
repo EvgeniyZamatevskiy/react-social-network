@@ -27,6 +27,17 @@
             width: 100%;
           }
 
+          .changeAvatarBtn {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px 0px;
+            background-color: #000;
+            opacity: 0.8;
+            color: #fff;
+          }
+
           .defaultAvatarImage {
             width: 100%;
             cursor: pointer;
@@ -84,13 +95,3 @@
   }
 }
 
-.changeAvatarBtn {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 10px 0px;
-  background-color: #000;
-  opacity: 0.8;
-  color: #fff;
-}

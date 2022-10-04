@@ -63,22 +63,19 @@ export const Profile: FC = (): ReturnComponentType => {
           <div className={style.content}>
             <div className={style.avatarImageContainer}>
               {userAvatar
-                ?
-                <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                ? <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                   <img className={style.avatarImage} src={userAvatar} alt="avatar"/>
                   {isHoverAvatar && isOwner && <File classNameButton={style.changeAvatarBtn}>Change avatar</File>}
                 </div>
-                :
-                <File>
-                  <img className={style.defaultAvatarImage} src={defaultAvatar} alt="default avatar"/>
-                  <div className={style.uploadPhoto}>Upload a profile photo</div>
-                </File>}
+                : isOwner
+                  ? <File>
+                    <img className={style.defaultAvatarImage} src={defaultAvatar} alt="default avatar"/>
+                    <div className={style.uploadPhoto}>Upload a profile photo</div>
+                  </File>
+                  : <img className={style.defaultAvatarImage} src={defaultAvatar} alt="default avatar"/>}
             </div>
             {isOwner
-              ?
-              <div className={style.editLink}>
-                <Link to={Path.EDIT}>Edit</Link>
-              </div>
+              ? <Link className={style.editLink} to={Path.EDIT}>Edit</Link>
               : isFollowed
                 ? <button className={style.followBtn} onClick={onUnfollowClick}>Unfollow</button>
                 : <button className={style.followBtn} onClick={onFollowClick}>Follow</button>}

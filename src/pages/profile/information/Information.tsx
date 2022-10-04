@@ -39,65 +39,45 @@ export const Information: FC<InformationPropsType> = ({fullName, isOwner}): Retu
             : <div className={style.status}>{status}</div>}
         </div>
         <Line/>
+
+        <div className={style.jobContainer}>
+          <div className={style.item}>lookingForAJob:</div>
+          <span>Yes</span>
+        </div>
+
+        <button
+          className={style.showInformationBtn}
+          onClick={onToggleIsShowDetailedInformationClick}
+        >
+          {isShowDetailedInformation ? 'Hide full information' : 'Show full information'}
+        </button>
+
+        {isShowDetailedInformation &&
+          <>
+            <div className={style.aboutContainer}>
+              <div className={style.about}>About</div>
+              <Line/>
+            </div>
+            <div className={style.field}>Full name: <span>ZaM</span></div>
+            <div className={style.field}>My professional skills: <span>all</span></div>
+            <div className={style.field}>About me: <span>Front-end developer</span></div>
+
+            <>
+              <div className={style.contactsContainer}>
+                <div className={style.contacts}>Contacts</div>
+                <Line/>
+              </div>
+              <div className={style.field}>github: <span>ZaM</span></div>
+              <div className={style.field}>vk: <span>all</span></div>
+              <div className={style.field}>facebook: <span>https://www.youtube.com/</span></div>
+              <div className={style.field}>instagram: <span>https://www.youtube.com/</span></div>
+              <div className={style.field}>twitter: <span>https://www.youtube.com/</span></div>
+              <div className={style.field}>website: <span>https://www.youtube.com/</span></div>
+              <div className={style.field}>youtube: <span>https://www.youtube.com/</span></div>
+              <div className={style.field}>mainLink: <span>https://www.youtube.com/</span></div>
+            </>
+          </>}
       </div>
-
-      {/*<div className={`${style.container} ${isShowDetailedInformation && style.rewrittenContainer}`}>*/}
-
-      {/*  <div className={style.nameContainer}>*/}
-      {/*    <div className={style.name}>Ivan Ivanov</div>*/}
-      {/*    <span className={style.online}>online</span>*/}
-      {/*  </div>*/}
-
-      {/*  <div className={style.statusContainer}>*/}
-      {/*    <button className={style.status}>Set status</button>*/}
-      {/*  </div>*/}
-
-      {/*  <div className={style.lineContainer}>*/}
-      {/*    <span className={style.line}></span>*/}
-      {/*  </div>*/}
-
-      {/*  <div className={style.jobContainer}>*/}
-      {/*    <div className={style.job}>Birthday:</div>*/}
-      {/*    <div className={style.isLookingJob}>September 1, 1995</div>*/}
-      {/*  </div>*/}
-
-      {/*  <div className={style.infoContainer}>*/}
-      {/*    <button*/}
-      {/*      className={style.infoBtn}*/}
-      {/*      onClick={onToggleIsShowDetailedInformationClick}*/}
-      {/*    >*/}
-      {/*      {isShowDetailedInformation ? 'Hide full information' : 'Show full information'}*/}
-      {/*    </button>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
-
-      {/*{isShowDetailedInformation &&*/}
-      {/*  <div className={style.detailedInformation}>*/}
-
-      {/*    <div className={style.aboutContainer}>*/}
-      {/*      <div className={style.about}>About</div>*/}
-      {/*      <div className={style.aboutLine}></div>*/}
-      {/*    </div>*/}
-
-      {/*    <div className={style.aboutItem}>Full name: <span>ZaM</span></div>*/}
-      {/*    <div className={style.aboutItem}>My professional skills: <span>all</span></div>*/}
-      {/*    <div className={style.aboutItem}>About me:: <span>Front-end developer</span></div>*/}
-
-      {/*    <div className={style.contactsContainer}>*/}
-      {/*      <div className={style.contacts}>Contacts</div>*/}
-      {/*      <div className={style.contactsLine}></div>*/}
-      {/*    </div>*/}
-
-      {/*    <div className={style.aboutItem}>Facebook:<span>https://www.youtube.com/</span></div>*/}
-      {/*    <div className={style.aboutItem}>Website: <span>https://www.youtube.com/</span></div>*/}
-      {/*    <div className={style.aboutItem}>Vk: <span>https://www.youtube.com/</span></div>*/}
-      {/*    <div className={style.aboutItem}>Twitter: <span>https://www.youtube.com/</span></div>*/}
-      {/*    <div className={style.aboutItem}>Instagram: <span>https://www.youtube.com/</span></div>*/}
-      {/*    <div className={style.aboutItem}>Youtube: <span>https://www.youtube.com/</span></div>*/}
-      {/*    <div className={style.aboutItem}>Github: <span>https://www.youtube.com/</span></div>*/}
-      {/*    <div className={style.aboutItem}>MainLink: <span>https://www.youtube.com/</span></div>*/}
-      {/*  </div>*/}
-      {/*}*/}
     </>
   )
 }

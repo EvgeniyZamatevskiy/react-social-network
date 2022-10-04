@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 import { Path } from 'enums'
 import { Link } from 'react-router-dom'
 import { ReturnComponentType } from 'types'
-import { Icon16MessageOutline } from '@vkontakte/icons'
 import { Icon16Users2Outline } from '@vkontakte/icons'
 import { Icon20UserCircleOutline } from '@vkontakte/icons'
 import { useTheme } from 'hooks'
@@ -21,10 +20,6 @@ export const NavBar: FC = (): ReturnComponentType => {
           <Icon20UserCircleOutline className={style.icon} height={20} width={20}/>
           My page
         </Link>
-        {/*<Link className={linkClassName} to={Path.MESSAGES}>*/}
-        {/*  <Icon16MessageOutline className={style.icon} height={20} width={20}/>*/}
-        {/*  Messages*/}
-        {/*</Link>*/}
         <Link className={linkClassName} to={Path.USERS}>
           <Icon16Users2Outline className={style.icon} height={20} width={20}/>
           Users
