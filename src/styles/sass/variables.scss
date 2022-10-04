@@ -1,16 +1,41 @@
-$bgPrimaryLight: #EDEEF0;
-$bgSecondaryLight: #FFFFFF;
+// DarkTheme:
 $bgPrimaryDark: #141414;
-$bgSecondaryDark: #222222;
+$bgSecondaryDark: #222;
 
-$colorDark: #E1E3E6;
-$colorLight: #000000;
-$colorSecondary: #71AAEB;
+$bgButtonDark: #E1E3E6;
 
-$borderDark: #333333;
-$borderLight: rgba(231, 232, 236, 0.82);
+$bgHoverDark: #333;
 
+$colorPrimaryDark: #E1E3E6;
+$colorSecondaryDark: #939393;
+$colorAncillaryDark: #71AAEB;
+
+$colorIconDark: #71AAEB;
+
+$borderDark: #292929;
+$decorBorderDark: #484848;
+
+// LightTheme:
+$bgPrimaryLight: #EDEEF0;
+$bgSecondaryLight: #FFF;
+
+$bgButtonLight: #447BBA;
+
+$bgHoverLight: #F5F6F8;
+
+$colorPrimaryLight: #000;
+$colorSecondaryLight: #626D7A;
+$colorAncillaryLight: #2A5885;
+
+$colorIconLight: #447BBA;
+
+$borderLight: #E7E8EC;
+$decorBorderLight: #DCE1E6;
+
+// Common:
 $fontSize: 13px;
-$textColor: #000;
-$fontFamily: sans-serif;
 $fontWeight: 400;
+$fontFamily: 'Roboto';
+
+// Additionally:
+$boxShadowPopup: 0 20px 40px 0 rgb(0 0 0 / 30%);

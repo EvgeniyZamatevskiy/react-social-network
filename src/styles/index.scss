@@ -3,11 +3,11 @@
 @import './sass/templates.scss';
 
 body {
-  color: $textColor;
-  font-family: $fontFamily;
   font-size: $fontSize;
   font-weight: $fontWeight;
+  font-family: $fontFamily;
   overflow-y: scroll;
+  color: $colorPrimaryLight;
 }
 
 .app {
@@ -22,6 +22,6 @@ body {
 
   &.darkApp {
     background: $bgPrimaryDark;
-    color: $colorDark;
+    color: $colorPrimaryDark;
   }
 }
