@@ -25,4 +25,4 @@ yarn-error.log*
 .idea
 .env
 /srcExamples
-/src/Testing.tsx
+/src/testing

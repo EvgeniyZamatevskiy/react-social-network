@@ -1,0 +1,24 @@
+@import 'src/styles/sass/variables.scss';
+@import 'src/styles/sass/mixins.scss';
+
+.button {
+  height: 30px;
+  width: 200px;
+  background-color: $bgButtonLight;
+  border-radius: 10px;
+  color: #fff;
+  @include flex(row, center, center);
+
+  &:hover {
+    background-color: #5B8BC3;
+  }
+
+  &.darkButton {
+    background-color: $bgButtonDark;
+    color: #000;
+
+    &:hover {
+      background-color: #CACBCE;
+    }
+  }
+}

@@ -1,10 +1,12 @@
 import { ReactNode } from 'react'
 
 export type ButtonPropsType = {
-  children: ReactNode
+  isDarkTheme?: boolean
+  isPrimary?: boolean
   className?: string
-  style?: {}
   onClick?: () => void
   onMouseEnter?: () => void
   onMouseLeave?: () => void
+  style?: {}
+  children: ReactNode
 }
