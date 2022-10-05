@@ -18,7 +18,7 @@ export const NavBar: FC = (): ReturnComponentType => {
       <div className={style.navBar}>
         <Link className={linkClassName} to={Path.PROFILE}>
           <Icon20UserCircleOutline className={style.icon} height={20} width={20}/>
-          My page
+          My profile
         </Link>
         <Link className={linkClassName} to={Path.USERS}>
           <Icon16Users2Outline className={style.icon} height={20} width={20}/>
