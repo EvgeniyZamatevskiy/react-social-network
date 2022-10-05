@@ -1,0 +1,25 @@
+@import 'src/styles/sass/mixins.scss';
+@import 'src/styles/sass/variables.scss';
+
+.paramsPopup {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  padding: 12px;
+  background-color: #fff;
+  box-shadow: 0 20px 40px 0 rgb(0 0 0 / 30%);
+  @include flex(column, space-between, stretch);
+  border-radius: 5px;
+  border: 1px solid $borderLight;
+
+  .findValue {
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  &.paramsPopupDark {
+    background-color: #292929;
+    color: $colorPrimaryDark;
+    border: 1px solid $borderDark;
+  }
+}

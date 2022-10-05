@@ -1,0 +1,82 @@
+@import 'src/styles/sass/mixins.scss';
+@import 'src/styles/sass/variables.scss';
+
+.container {
+  width: 552px;
+  background-color: #fff;
+  //min-height: 162px;
+  border: 1px solid $borderLight;
+  padding: 15px 20px;
+  border-radius: 15px;
+
+  .nameContainer {
+    @include flex(row, space-between, center);
+
+    .name {
+      font-size: 19px;
+    }
+
+    .online {
+      color: #8B95A1;
+      font-size: 12.5px;
+    }
+  }
+
+  .statusContainer {
+    margin: -4px -6px;
+    margin-top: 0.1px;
+    margin-bottom: 17px;
+
+    .status {
+      padding: 4px 6px;
+      color: #939393;
+      width: 100%;
+      text-align: left;
+    }
+  }
+
+  .jobContainer {
+    @include flex(row, flex-start, center);
+    margin-top: 18px;
+
+    .item {
+      color: #818C99;
+    }
+
+    span {
+      color: #2A5885;
+    }
+  }
+
+  .showInformationBtn {
+    @include flex(row, center, center);
+    margin-top: 10px;
+    border-radius: 8px;
+    height: 35px;
+    width: 100%;
+    color: #2A5885;
+
+    &:hover {
+      background-color: #EDEEF0;
+    }
+  }
+
+  .aboutContainer,
+  .contactsContainer {
+    @include flex(row, stretch, center);
+    margin-top: 20px;
+
+    .about {
+      padding-right: 10px;
+    }
+  }
+
+  .field {
+    margin-top: 10px;
+    color: #818C99;
+
+    span {
+      color: #2A5885;
+    }
+  }
+}

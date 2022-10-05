@@ -1,0 +1,96 @@
+input,
+textarea,
+button,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+// ---
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: transparent;
+}
+
+button {
+  border: none;
+}
+
+textarea {
+  resize: none;
+}
+
+textarea,
+input,
+select,
+button {
+  outline: none;
+}
+
+input[type='checkbox'],
+input[type='range'],
+input[type='radio'],
+label,
+select,
+button {
+  cursor: pointer;
+}
+
+button,
+input {
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input[type='range'],
+input[type='email'],
+input[type='password'],
+input[type='checkbox'],
+button,
+select {
+
+  &:disabled {
+    opacity: 0.64;
+    cursor: default;
+    transition: opacity 0.1s ease-in-out 0s;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+// input:-webkit-autofill,
+// input:-webkit-autofill:hover,
+// input:-webkit-autofill:focus,
+// textarea:-webkit-autofill,
+// textarea:-webkit-autofill:hover,
+// textarea:-webkit-autofill:focus,
+// select:-webkit-autofill,
+// select:-webkit-autofill:hover,
+// select:-webkit-autofill:focus {
+// 	border: 1px solid #71AAEB;
+// 	-webkit-text-fill-color: #FFF;
+// 	-webkit-box-shadow: 0 0 0px 1000px #303847 inset;
+// 	transition: background-color 5000s ease-in-out 0s;
+// 	caret-color: #FFF;
+// }

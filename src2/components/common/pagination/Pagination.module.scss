@@ -1,0 +1,31 @@
+@import 'src/styles/sass/variables.scss';
+
+.pagination {
+
+  .button {
+    font-size: 13px;
+    padding: 5px 10px;
+    text-decoration: none;
+    transition: background-color .3s;
+
+    &:hover:not(.active) {
+      background-color: #d1e1ff;
+    }
+
+    &.buttonDark {
+      color: rgba(255, 255, 255, 0.91);
+
+      &:hover:not(.active) {
+        background-color: #484848;
+      }
+
+      &.active {
+        background-color: #676767;
+      }
+    }
+
+    &.active {
+      background-color: #9cc8fc;
+    }
+  }
+}

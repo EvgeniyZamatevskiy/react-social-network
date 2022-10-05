@@ -1,0 +1,234 @@
+@import 'src/styles/sass/mixins.scss';
+@import 'src/styles/sass/variables.scss';
+
+.login {
+  @include flex(row, center, center);
+  height: 100vh;
+  width: 100%;
+
+  .container {
+    width: 400px;
+    min-height: 450px;
+    border-radius: 10px;
+    background-color: $bgSecondaryLight;
+    border-top: 1px solid $borderLight;
+    border-left: 1px solid $borderLight;
+    border-right: 1px solid $borderLight;
+    border-bottom: 1px solid $decorBorderLight;
+    @include flex(column, space-between, center);
+    padding: 52px 24px;
+
+    .title {
+      font-weight: 900;
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      margin-top: 20px;
+    }
+
+    .form {
+      margin-top: 40px;
+      width: 100%;
+      @include flex(column, space-between, stretch);
+
+      .emailInputContainer {
+        position: relative;
+
+        .emailInput {
+          width: 100%;
+          border-radius: 8px;
+          padding: 9.5px 38px 9.5px 12px;
+          background-color: #F0F2F5;
+          border: 1px solid #D3D5D7;
+
+          &:focus {
+            border: 1px solid #71AAEB;
+          }
+
+          &.errorEmailInput {
+            background-color: #FAEBEB;
+            border: 1px solid #FF5C5B;
+
+            &::placeholder {
+              color: rgb(170, 174, 179);
+            }
+          }
+
+          &.emailInputDark {
+            background-color: #292929;
+            border: 1px solid #545454;
+
+            &:focus {
+              border: 1px solid #447BBA;
+            }
+
+            &.errorEmailInput {
+              background-color: #522E2E;
+              border: 1px solid #FF5C5B;
+
+              &::placeholder {
+                color: rgb(170, 174, 179);
+              }
+            }
+
+            &:-webkit-autofill {
+              -webkit-text-fill-color: #FFF;
+              -webkit-box-shadow: 0 0 0px 1000px #303847 inset;
+              transition: background-color 5000s ease-in-out 0s;
+              caret-color: #FFF;
+            }
+          }
+        }
+      }
+
+      .passwordInputContainer {
+        margin-top: 20px;
+        position: relative;
+
+        .passwordInput {
+          width: 100%;
+          border-radius: 8px;
+          padding: 9.5px 38px 9.5px 12px;
+          background-color: #F0F2F5;
+          border: 1px solid #D3D5D7;
+
+          &:focus {
+            border: 1px solid #71AAEB;
+          }
+
+          &.errorPasswordInput {
+            background-color: #FAEBEB;
+            border: 1px solid #FF5C5B;
+            padding-right: 75px;
+
+            &::placeholder {
+              color: rgb(170, 174, 179);
+            }
+          }
+
+          &.passwordInputDark {
+            background-color: #292929;
+            border: 1px solid #545454;
+
+            &:focus {
+              border: 1px solid #447BBA;
+            }
+
+            &.errorPasswordInput {
+              background-color: #522E2E;
+              border: 1px solid #FF5C5B;
+
+              &::placeholder {
+                color: rgb(170, 174, 179);
+              }
+            }
+          }
+        }
+      }
+
+      .label {
+        margin-top: 20px;
+        @include flex(row, stretch, center);
+
+        .rememberMeCheckbox {
+          appearance: none;
+          width: 16px;
+          height: 16px;
+          border: 1.5px solid #AEB7C1;
+          border-radius: 4px;
+          margin-right: 9px;
+
+          &:checked {
+            appearance: none;
+            background-color: #2196F3;
+            border: none;
+            background-image: url('../../assets/icons/checkedLight.png');
+            background-size: cover;
+            background-position: center;
+          }
+
+          &.rememberMeCheckboxDark {
+            border: 1.5px solid #656565;
+
+            &:checked {
+              appearance: none;
+              background-color: #fff;
+              border: none;
+              background-image: url('../../assets/icons/checkedDark.png');
+              background-size: cover;
+              background-position: center;
+            }
+          }
+        }
+
+        .rememberMe {
+          color: #828282;
+        }
+      }
+
+      .captcha {
+        @include flex(column, stretch, center);
+        margin-top: 20px;
+
+        .captchaImage {
+          border-radius: 10px;
+          border: 1px solid #D3D5D7;
+        }
+
+        .captchaInput {
+          margin-top: 20px;
+          width: 100%;
+          border-radius: 8px;
+          padding: 9.5px 38px 9.5px 12px;
+          color: inherit;
+          background-color: #F0F2F5;
+          border: 1px solid #D3D5D7;
+
+          &:focus {
+            border: 1px solid #447BBA;
+          }
+
+          &.captchaInputDark {
+            background-color: #292929;
+            border: 1px solid #545454;
+
+            &:focus {
+              border: 1px solid #71AAEB;
+            }
+          }
+        }
+      }
+
+      .loginBtn {
+        height: 36px;
+        margin-top: 40px;
+        background-color: #0077FF;
+        color: #FFF;
+        border-radius: 8px;
+        transition: opacity 0.1s ease-in-out 0s;
+        @include flex(column, center, center);
+        text-align: center;
+
+        &.loginBtnDark {
+          background-color: #FFF;
+          color: #000;
+        }
+      }
+    }
+
+    &.containerDark {
+      background-color: $bgSecondaryDark;
+      border-top: 1px solid $borderDark;
+      border-left: 1px solid $borderDark;
+      border-right: 1px solid $borderDark;
+      border-bottom: 1px solid $decorBorderDark;
+    }
+  }
+}
+
+.errorEmailMessage,
+.errorPasswordMessage {
+  color: #FF5C5B;
+  text-align: center;
+  margin-top: 5px;
+}

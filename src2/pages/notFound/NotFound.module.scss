@@ -1,0 +1,11 @@
+@import 'src/styles/sass/mixins.scss';
+
+.container {
+  height: 100vh;
+  width: 100%;
+  @include flex(row, center, center);
+
+  .notFoundImage {
+    width: 100%;
+  }
+}
