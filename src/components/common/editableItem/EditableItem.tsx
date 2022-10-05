@@ -1,4 +1,4 @@
-import React, { ChangeEvent, KeyboardEvent, FC, useState } from 'react'
+import React, { ChangeEvent, KeyboardEvent, FC, useState, useRef, useEffect } from 'react'
 import { ReturnComponentType } from 'types'
 import { EditableItemPropsType } from './types'
 import { EMPTY_STRING } from 'constants/base'
@@ -8,11 +8,20 @@ import style from './EditableItem.module.scss'
 export const EditableItem: FC<EditableItemPropsType> =
   ({
      currentTitle,
-     handleUpdateTitleClick
+     handleUpdateTitle,
+     isDarkTheme,
    }): ReturnComponentType => {
 
     const [isEditMode, setIsEditMode] = useState(false)
     const [updatedTitle, setUpdatedTitle] = useState(EMPTY_STRING)
+
+    const inputRef = useRef<HTMLInputElement>(null)
+
+    useEffect(() => {
+      if (isEditMode) {
+        inputRef.current?.select()
+      }
+    }, [isEditMode])
 
     const onUpdatedTitleChange = (event: ChangeEvent<HTMLInputElement>): void => {
       setUpdatedTitle(event.currentTarget.value)
@@ -23,15 +32,23 @@ export const EditableItem: FC<EditableItemPropsType> =
       setUpdatedTitle(currentTitle)
     }
 
+    const handleUpdateTitleBlurOrKeyDown = (): void => {
+      const updatedTitleTrimmed = updatedTitle.replace(/\s+/g, ' ').trim()
+
+      if (currentTitle !== updatedTitleTrimmed) {
+        handleUpdateTitle(updatedTitleTrimmed)
+      }
+    }
+
     const onSetIsEditModeBlur = (): void => {
       setIsEditMode(false)
-      handleUpdateTitleClick(updatedTitle)
+      handleUpdateTitleBlurOrKeyDown()
     }
 
     const onSetIsEditModeKeyDown = (event: KeyboardEvent<HTMLInputElement>): void => {
       if (event.key === Key.ENTER) {
         setIsEditMode(false)
-        handleUpdateTitleClick(updatedTitle)
+        handleUpdateTitleBlurOrKeyDown()
         return
       }
 
@@ -51,6 +68,7 @@ export const EditableItem: FC<EditableItemPropsType> =
             onChange={onUpdatedTitleChange}
             onBlur={onSetIsEditModeBlur}
             onKeyDown={onSetIsEditModeKeyDown}
+            ref={inputRef}
             autoFocus
           />
           : <button

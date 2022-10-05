@@ -37,7 +37,9 @@ export const Users: FC = (): ReturnComponentType => {
   const usersRender = users.map((user) => <User key={user.id} user={user}/>)
 
   useEffect(() => {
-    dispatch(getUsers({term, friend, page, pageCount}))
+    if (isAuth) {
+      dispatch(getUsers({term, friend, page, pageCount}))
+    }
   }, [term, friend, page])
 
   const handleSetPageClick = (page: number) => {

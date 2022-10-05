@@ -2,7 +2,7 @@ import { EditableItem, Line } from 'components'
 import React, { FC, useState } from 'react'
 import { ReturnComponentType } from 'types/ReturnComponentType'
 import { InformationPropsType } from './types'
-import { useAppDispatch } from 'hooks'
+import { useAppDispatch, useTheme } from 'hooks'
 import { useSelector } from 'react-redux'
 import { selectStatus } from 'store/selectors'
 import { updateStatus } from 'store/asyncActions'
@@ -16,11 +16,13 @@ export const Information: FC<InformationPropsType> = ({fullName, isOwner}): Retu
 
   const [isShowDetailedInformation, setIsShowDetailedInformation] = useState(false)
 
+  const isDarkTheme = useTheme('dark')
+
   const onToggleIsShowDetailedInformationClick = (): void => {
     setIsShowDetailedInformation(!isShowDetailedInformation)
   }
 
-  const handleUpdateStatusClick = (updatedTitle: string): void => {
+  const handleUpdateStatus = (updatedTitle: string): void => {
     dispatch(updateStatus(updatedTitle))
   }
 
@@ -35,7 +37,7 @@ export const Information: FC<InformationPropsType> = ({fullName, isOwner}): Retu
 
         <div className={style.statusContainer}>
           {isOwner
-            ? <EditableItem currentTitle={status} handleUpdateTitleClick={handleUpdateStatusClick}/>
+            ? <EditableItem currentTitle={status} handleUpdateTitle={handleUpdateStatus} isDarkTheme={isDarkTheme}/>
             : <div className={style.status}>{status}</div>}
         </div>
         <Line/>

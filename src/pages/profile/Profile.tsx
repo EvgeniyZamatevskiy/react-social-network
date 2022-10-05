@@ -7,9 +7,9 @@ import { selectAuthorizedUserDataId, selectIsAuth, selectIsFollowed, selectUserP
 import { useAppDispatch } from 'hooks'
 import { follow, getFollowedStatus, getStatus, getUserProfile, unfollow } from 'store/asyncActions'
 import { Information } from './information'
+import { File } from 'components'
 import defaultAvatar from 'assets/images/defaultAvatar.png'
 import style from './Profile.module.scss'
-import { File } from 'components'
 
 export const Profile: FC = (): ReturnComponentType => {
 
@@ -30,9 +30,11 @@ export const Profile: FC = (): ReturnComponentType => {
   useEffect(() => {
     const id = isOwner ? authorizedUserDataId : userId
 
-    dispatch(getUserProfile(Number(id)))
-    dispatch(getStatus(Number(id)))
-    dispatch(getFollowedStatus(Number(id)))
+    if (isAuth) {
+      dispatch(getUserProfile(Number(id)))
+      dispatch(getStatus(Number(id)))
+      dispatch(getFollowedStatus(Number(id)))
+    }
   }, [userId])
 
   const onMouseEnter = (): void => {

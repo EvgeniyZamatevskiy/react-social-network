@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { ReturnComponentType } from 'types/ReturnComponentType'
-import { Button } from '../components'
 import { useTheme } from '../hooks'
 import style from './Testing.module.scss'
+import { Login } from '../pages/login'
 
 export const Testing: FC = (): ReturnComponentType => {
 
@@ -10,12 +10,7 @@ export const Testing: FC = (): ReturnComponentType => {
 
   return (
     <div className={style.testing}>
-      <Button
-        isDarkTheme={isDarkTheme}
-        isPrimary
-      >
-        Save
-      </Button>
+      <Login/>
     </div>
   )
 }

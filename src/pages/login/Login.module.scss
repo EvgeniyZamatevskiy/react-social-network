@@ -11,13 +11,16 @@
     min-height: 450px;
     border-radius: 10px;
     background-color: $bgSecondaryLight;
-    border: 1px solid $borderLight;
+    border-top: 1px solid $borderLight;
+    border-left: 1px solid $borderLight;
+    border-right: 1px solid $borderLight;
+    border-bottom: 1px solid $decorBorderLight;
     @include flex(column, space-between, center);
     padding: 52px 24px;
 
     .title {
       font-weight: 900;
-      font-size: 25px;
+      font-size: 24px;
       text-transform: uppercase;
       letter-spacing: 5px;
       margin-top: 20px;
@@ -215,7 +218,10 @@
 
     &.containerDark {
       background-color: $bgSecondaryDark;
-      border: 1px solid $borderDark;
+      border-top: 1px solid $borderDark;
+      border-left: 1px solid $borderDark;
+      border-right: 1px solid $borderDark;
+      border-bottom: 1px solid $decorBorderDark;
     }
   }
 }

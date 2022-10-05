@@ -11,13 +11,13 @@ export const Eye: FC<EyePropsType> = ({inputType, setInputType, errorPasswordMes
 
   const setInputTypePasswordClick = (): void => setInputType('password')
 
-  const classNameEye = `${style.eye} ${errorPasswordMessage && style.secondaryEye}`
+  const eyeClassName = `${style.eye} ${errorPasswordMessage && style.secondaryEye}`
 
   return (
     <>
       {inputType === 'password'
-        ? <Icon20ViewOutline className={classNameEye} width={24} height={24} onClick={setInputTypeTextClick}/>
-        : <Icon20HideOutline className={classNameEye} width={24} height={24} onClick={setInputTypePasswordClick}/>}
+        ? <Icon20ViewOutline className={eyeClassName} width={24} height={24} onClick={setInputTypeTextClick}/>
+        : <Icon20HideOutline className={eyeClassName} width={24} height={24} onClick={setInputTypePasswordClick}/>}
     </>
   )
 }
