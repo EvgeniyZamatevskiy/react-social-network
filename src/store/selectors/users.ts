@@ -18,3 +18,7 @@ export const selectPage = (state: RootStateType): number => state.users.page
 export const selectPageCount = (state: RootStateType): number => state.users.pageCount
 
 export const selectIsFollowed = (state: RootStateType): boolean => state.users.isFollowed
+
+export const selectIsLoadingFollowed = (state: RootStateType): boolean => state.users.isLoadingFollowed
+
+export const selectIsDisabledFollowed = (state: RootStateType): boolean => state.users.isDisabledFollowed

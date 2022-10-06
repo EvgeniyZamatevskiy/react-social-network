@@ -3,11 +3,17 @@ import { Path } from 'enums'
 import { useSelector } from 'react-redux'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { ReturnComponentType } from 'types'
-import { selectAuthorizedUserDataId, selectIsAuth, selectIsFollowed, selectUserProfile } from 'store/selectors'
+import {
+  selectAuthorizedUserDataId,
+  selectIsAuth, selectIsDisabledFollowed,
+  selectIsFollowed, selectIsLoadingFollowed,
+  selectIsLoadingStatus, selectIsLoadingUserProfile,
+  selectUserProfile
+} from 'store/selectors'
 import { useAppDispatch } from 'hooks'
 import { follow, getFollowedStatus, getStatus, getUserProfile, unfollow } from 'store/asyncActions'
 import { Information } from './information'
-import { File } from 'components'
+import { File, SmallLoader } from 'components'
 import defaultAvatar from 'assets/images/defaultAvatar.png'
 import style from './Profile.module.scss'
 
@@ -21,6 +27,10 @@ export const Profile: FC = (): ReturnComponentType => {
   const userProfile = useSelector(selectUserProfile)
   const authorizedUserDataId = useSelector(selectAuthorizedUserDataId)
   const isFollowed = useSelector(selectIsFollowed)
+  const isLoadingStatus = useSelector(selectIsLoadingStatus)
+  const isLoadingUserProfile = useSelector(selectIsLoadingUserProfile)
+  const isLoadingFollowed = useSelector(selectIsLoadingFollowed)
+  const isDisabledFollowed = useSelector(selectIsDisabledFollowed)
 
   const [isHoverAvatar, setIsHoverAvatar] = useState(false)
 
@@ -31,9 +41,9 @@ export const Profile: FC = (): ReturnComponentType => {
     const id = isOwner ? authorizedUserDataId : userId
 
     if (isAuth) {
-      dispatch(getUserProfile(Number(id)))
       dispatch(getStatus(Number(id)))
       dispatch(getFollowedStatus(Number(id)))
+      dispatch(getUserProfile(Number(id)))
     }
   }, [userId])
 
@@ -57,6 +67,10 @@ export const Profile: FC = (): ReturnComponentType => {
     return <Navigate to={Path.LOGIN}/>
   }
 
+  // if (isLoadingUserProfile) {
+  //   return <Loader/>
+  // }
+
   return (
     <div className={style.container}>
       <div className={style.profile}>
@@ -79,15 +93,24 @@ export const Profile: FC = (): ReturnComponentType => {
             {isOwner
               ? <Link className={style.editLink} to={Path.EDIT}>Edit</Link>
               : isFollowed
-                ? <button className={style.followBtn} onClick={onUnfollowClick}>Unfollow</button>
-                : <button className={style.followBtn} onClick={onFollowClick}>Follow</button>}
+                ? <button
+                  className={style.followBtn}
+                  onClick={onUnfollowClick}
+                  disabled={isDisabledFollowed}
+                >
+                  {isLoadingFollowed ? <SmallLoader darkColor={'#000'} lightColor={'#fff'}/> : 'Unfollow'}
+                </button>
+                : <button
+                  className={style.followBtn}
+                  onClick={onFollowClick}
+                  disabled={isDisabledFollowed}
+                >
+                  {isLoadingFollowed ? <SmallLoader darkColor={'#000'} lightColor={'#fff'}/> : 'Follow'}
+                </button>}
           </div>
         </div>
         <div className={style.rightBlock}>
-          <Information
-            fullName={userProfile.fullName}
-            isOwner={isOwner}
-          />
+          <Information fullName={userProfile.fullName} isOwner={isOwner}/>
         </div>
       </div>
     </div>

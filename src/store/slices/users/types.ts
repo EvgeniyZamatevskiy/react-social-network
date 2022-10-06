@@ -10,6 +10,8 @@ export type UsersSliceInitialStateType = {
   page: number
   pageCount: number
   isFollowed: boolean
+  isLoadingFollowed: boolean
+  isDisabledFollowed: boolean
 }
 
 export type UserSupplementedType = UserType & {

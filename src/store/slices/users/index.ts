@@ -13,7 +13,9 @@ const initialState: UsersSliceInitialStateType = {
   friend: 'All',
   page: 1,
   pageCount: 10,
-  isFollowed: false
+  isFollowed: false,
+  isLoadingFollowed: false,
+  isDisabledFollowed: false,
 }
 
 export const usersSlice = createSlice({
@@ -50,56 +52,28 @@ export const usersSlice = createSlice({
         state.isLoadingUsers = false
         state.isLoadingTerm = false
       })
-      // .addCase(follow.pending, (state, action) => {
-      //   const user = state.users.find(user => user.id === action.meta.arg)
-      //
-      //   if (user) {
-      //     user.followedStatus.isDisabled = true
-      //     user.followedStatus.isLoading = true
-      //   }
-      // })
-      // .addCase(follow.rejected, (state, action) => {
-      //   const user = state.users.find(user => user.id === action.meta.arg)
-      //
-      //   if (user) {
-      //     user.followedStatus.isDisabled = false
-      //     user.followedStatus.isLoading = false
-      //   }
-      // })
-      // .addCase(follow.fulfilled, (state, action: PayloadAction<number>) => {
-      //   const user = state.users.find(user => user.id === action.payload)
-      //
-      //   if (user) {
-      //     user.followed = true
-      //     user.followedStatus.isDisabled = false
-      //     user.followedStatus.isLoading = false
-      //   }
-      // })
-      // .addCase(unfollow.pending, (state, action) => {
-      //   const user = state.users.find(user => user.id === action.meta.arg)
-      //
-      //   if (user) {
-      //     user.followedStatus.isDisabled = true
-      //     user.followedStatus.isLoading = true
-      //   }
-      // })
-      // .addCase(unfollow.rejected, (state, action) => {
-      //   const user = state.users.find(user => user.id === action.meta.arg)
-      //
-      //   if (user) {
-      //     user.followedStatus.isDisabled = false
-      //     user.followedStatus.isLoading = false
-      //   }
-      // })
-      // .addCase(unfollow.fulfilled, (state, action: PayloadAction<number>) => {
-      //   const user = state.users.find(user => user.id === action.payload)
-      //
-      //   if (user) {
-      //     user.followed = false
-      //     user.followedStatus.isDisabled = false
-      //     user.followedStatus.isLoading = false
-      //   }
-      // })
+      .addCase(follow.pending, (state, action) => {
+        const user = state.users.find(user => user.id === action.meta.arg)
+
+        if (user) {
+          user.followedStatus.isDisabled = true
+          user.followedStatus.isLoading = true
+        }
+
+        state.isLoadingFollowed = true
+        state.isDisabledFollowed = true
+      })
+      .addCase(unfollow.pending, (state, action) => {
+        const user = state.users.find(user => user.id === action.meta.arg)
+
+        if (user) {
+          user.followedStatus.isDisabled = true
+          user.followedStatus.isLoading = true
+        }
+
+        state.isLoadingFollowed = true
+        state.isDisabledFollowed = true
+      })
       .addCase(getFollowedStatus.fulfilled, (state, action: PayloadAction<{ followedStatus: boolean, userId: number }>) => {
         state.isFollowed = action.payload.followedStatus
 
@@ -107,7 +81,11 @@ export const usersSlice = createSlice({
 
         if (user) {
           user.followed = action.payload.followedStatus
+          user.followedStatus.isDisabled = false
+          user.followedStatus.isLoading = false
         }
+        state.isLoadingFollowed = false
+        state.isDisabledFollowed = false
       })
   },
 })
