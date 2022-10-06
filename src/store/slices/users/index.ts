@@ -74,6 +74,10 @@ export const usersSlice = createSlice({
         state.isLoadingFollowed = true
         state.isDisabledFollowed = true
       })
+      .addCase(getFollowedStatus.pending, (state, action) => {
+        state.isLoadingFollowed = true
+        state.isDisabledFollowed = true
+      })
       .addCase(getFollowedStatus.fulfilled, (state, action: PayloadAction<{ followedStatus: boolean, userId: number }>) => {
         state.isFollowed = action.payload.followedStatus
 

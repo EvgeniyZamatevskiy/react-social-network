@@ -7,7 +7,7 @@ import {
   selectAuthorizedUserDataId,
   selectIsAuth, selectIsDisabledFollowed,
   selectIsFollowed, selectIsLoadingFollowed,
-  selectIsLoadingStatus, selectIsLoadingUserProfile,
+  selectIsLoadingUserProfile,
   selectUserProfile
 } from 'store/selectors'
 import { useAppDispatch } from 'hooks'
@@ -27,7 +27,6 @@ export const Profile: FC = (): ReturnComponentType => {
   const userProfile = useSelector(selectUserProfile)
   const authorizedUserDataId = useSelector(selectAuthorizedUserDataId)
   const isFollowed = useSelector(selectIsFollowed)
-  const isLoadingStatus = useSelector(selectIsLoadingStatus)
   const isLoadingUserProfile = useSelector(selectIsLoadingUserProfile)
   const isLoadingFollowed = useSelector(selectIsLoadingFollowed)
   const isDisabledFollowed = useSelector(selectIsDisabledFollowed)
@@ -66,10 +65,6 @@ export const Profile: FC = (): ReturnComponentType => {
   if (!isAuth) {
     return <Navigate to={Path.LOGIN}/>
   }
-
-  // if (isLoadingUserProfile) {
-  //   return <Loader/>
-  // }
 
   return (
     <div className={style.container}>
