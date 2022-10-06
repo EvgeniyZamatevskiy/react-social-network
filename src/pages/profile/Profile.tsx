@@ -1,13 +1,14 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect } from 'react'
 import { Path } from 'enums'
 import { useSelector } from 'react-redux'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import { ReturnComponentType } from 'types'
 import {
   selectAuthorizedUserDataId,
-  selectIsAuth, selectIsDisabledFollowed,
-  selectIsFollowed, selectIsLoadingFollowed,
-  selectIsLoadingUserProfile,
+  selectIsAuth,
+  selectIsDisabledFollowed,
+  selectIsFollowed,
+  selectIsLoadingFollowed,
   selectUserProfile
 } from 'store/selectors'
 import { useAppDispatch } from 'hooks'
@@ -27,11 +28,8 @@ export const Profile: FC = (): ReturnComponentType => {
   const userProfile = useSelector(selectUserProfile)
   const authorizedUserDataId = useSelector(selectAuthorizedUserDataId)
   const isFollowed = useSelector(selectIsFollowed)
-  const isLoadingUserProfile = useSelector(selectIsLoadingUserProfile)
   const isLoadingFollowed = useSelector(selectIsLoadingFollowed)
   const isDisabledFollowed = useSelector(selectIsDisabledFollowed)
-
-  const [isHoverAvatar, setIsHoverAvatar] = useState(false)
 
   const isOwner = !userId
   const userAvatar = userProfile.photos?.small || userProfile.photos?.large
@@ -45,14 +43,6 @@ export const Profile: FC = (): ReturnComponentType => {
       dispatch(getUserProfile(Number(id)))
     }
   }, [userId])
-
-  const onMouseEnter = (): void => {
-    setIsHoverAvatar(true)
-  }
-
-  const onMouseLeave = (): void => {
-    setIsHoverAvatar(false)
-  }
 
   const onFollowClick = (): void => {
     dispatch(follow(Number(userId)))
@@ -74,10 +64,7 @@ export const Profile: FC = (): ReturnComponentType => {
           <div className={style.content}>
             <div className={style.avatarImageContainer}>
               {userAvatar
-                ? <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-                  <img className={style.avatarImage} src={userAvatar} alt="avatar"/>
-                  {isHoverAvatar && isOwner && <File classNameButton={style.changeAvatarBtn}>Change avatar</File>}
-                </div>
+                ? <img className={style.avatarImage} src={userAvatar} alt="avatar"/>
                 : isOwner
                   ? <File>
                     <img className={style.defaultAvatarImage} src={defaultAvatar} alt="default avatar"/>
@@ -86,7 +73,7 @@ export const Profile: FC = (): ReturnComponentType => {
                   : <img className={style.defaultAvatarImage} src={defaultAvatar} alt="default avatar"/>}
             </div>
             {isOwner
-              ? <Link className={style.editLink} to={Path.EDIT}>Edit</Link>
+              ? <File classNameButton={style.editLink}>Change avatar</File>
               : isFollowed
                 ? <button
                   className={style.followBtn}

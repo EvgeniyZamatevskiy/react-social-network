@@ -34,49 +34,4 @@
       text-align: left;
     }
   }
-
-  .jobContainer {
-    @include flex(row, flex-start, center);
-    margin-top: 18px;
-
-    .item {
-      color: #818C99;
-    }
-
-    span {
-      color: #2A5885;
-    }
-  }
-
-  .showInformationBtn {
-    @include flex(row, center, center);
-    margin-top: 10px;
-    border-radius: 8px;
-    height: 35px;
-    width: 100%;
-    color: #2A5885;
-
-    &:hover {
-      background-color: #EDEEF0;
-    }
-  }
-
-  .aboutContainer,
-  .contactsContainer {
-    @include flex(row, stretch, center);
-    margin-top: 20px;
-
-    .about {
-      padding-right: 10px;
-    }
-  }
-
-  .field {
-    margin-top: 10px;
-    color: #818C99;
-
-    span {
-      color: #2A5885;
-    }
-  }
 }

@@ -7,6 +7,7 @@ import { ResponseCode } from 'enums'
 import { handleServerNetworkError } from 'utils'
 import { RootStateType } from '../index'
 import { PhotoType } from 'api/types'
+import { LoginParamsType } from '../../../srcExamples/api/auth/types';
 
 export const getUserProfile = createAsyncThunk<UserProfileType, number, { rejectValue: { error: string } }>
 ('profile/getUserProfile', async (userId, {rejectWithValue}) => {
@@ -57,6 +58,22 @@ export const updatePhoto = createAsyncThunk<{ photos: PhotoType }, File, { rejec
 
     if (resultCode === ResponseCode.SUCCESS) {
       return photos
+    } else {
+      return rejectWithValue({error: messages[FIRST_ELEMENTS_INDEX]})
+    }
+  } catch (error) {
+    return handleServerNetworkError(error as AxiosError | Error, rejectWithValue)
+  }
+})
+
+export const updateUserProfile = createAsyncThunk<UserProfileType, UserProfileType, { rejectValue: { error: string } }>
+('profile/updateUserProfile', async (updatedUserProfile, {rejectWithValue}) => {
+  try {
+    const response = await PROFILE.updateUserProfile(updatedUserProfile)
+    const {resultCode, messages} = response.data
+
+    if (resultCode === ResponseCode.SUCCESS) {
+      return updatedUserProfile
     } else {
       return rejectWithValue({error: messages[FIRST_ELEMENTS_INDEX]})
     }

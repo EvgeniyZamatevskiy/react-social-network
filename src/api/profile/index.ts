@@ -24,4 +24,7 @@ export const PROFILE = {
 
     return instance.put<CommonResponseType<{ photos: PhotoType }>>('profile/photo', formData, settings)
   },
+  updateUserProfile(userProfile: UserProfileType) {
+    return instance.put<CommonResponseType>('profile', userProfile)
+  },
 }
