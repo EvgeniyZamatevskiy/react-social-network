@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { UserProfileType } from 'api/profile/types'
-import { getStatus, getUserProfile, updatePhoto } from 'store/asyncActions'
+import { getStatus, getUserProfile, updatePhoto, updateUserProfile } from 'store/asyncActions'
 import { ProfileSliceInitialStateType } from './types'
 import { EMPTY_STRING } from 'constants/base'
 import { PhotoType } from 'api/types'
+import { Nullable } from 'types'
 
 const initialState: ProfileSliceInitialStateType = {
-  userProfile: {} as UserProfileType,
+  userProfile: null,
   status: EMPTY_STRING,
   isLoadingUserProfile: false,
 }
@@ -32,7 +33,12 @@ export const profileSlice = createSlice({
         state.status = action.payload
       })
       .addCase(updatePhoto.fulfilled, (state, action: PayloadAction<{ photos: PhotoType }>) => {
-        state.userProfile.photos = {...action.payload.photos}
+        if (state.userProfile) {
+          state.userProfile.photos = {...action.payload.photos}
+        }
+      })
+      .addCase(updateUserProfile.fulfilled, (state, action: PayloadAction<UserProfileType>) => {
+        state.userProfile = action.payload
       })
   },
 })

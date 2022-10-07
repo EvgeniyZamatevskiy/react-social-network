@@ -1,46 +1,14 @@
-@import 'src/styles/sass/mixins.scss';
 @import 'src/styles/sass/variables.scss';
 
-.jobContainer {
-  @include flex(row, flex-start, center);
-  margin-top: 18px;
-
-  .item {
-    color: #818C99;
-  }
-
-  span {
-    color: #2A5885;
-  }
-}
-
-.showInformationBtn {
-  @include flex(row, center, center);
+.container {
   margin-top: 10px;
-  border-radius: 8px;
-  height: 35px;
-  width: 100%;
-  color: #2A5885;
+  color: $colorSecondaryLight;
 
-  &:hover {
-    background-color: #EDEEF0;
+  .link {
+    color: $colorAncillaryLight;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
-}
-
-.contactsContainer {
-  margin-top: 20px;
-}
-
-.field {
-  margin-top: 10px;
-  color: #818C99;
-
-  span {
-    color: #2A5885;
-  }
-}
-
-.editBtn {
-  margin-top: 20px;
-  width: 59.8px;
 }

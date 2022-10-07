@@ -8,5 +8,6 @@ export type ButtonPropsType = {
   onMouseEnter?: () => void
   onMouseLeave?: () => void
   style?: {}
+  type?: 'button' | 'submit' | 'reset' | undefined
   children: ReactNode
 }

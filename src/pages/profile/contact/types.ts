@@ -1,4 +1,4 @@
 export type ContactPropsType = {
   title: string
-  value: string
+  link: string
 }

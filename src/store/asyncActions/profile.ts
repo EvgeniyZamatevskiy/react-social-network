@@ -7,7 +7,6 @@ import { ResponseCode } from 'enums'
 import { handleServerNetworkError } from 'utils'
 import { RootStateType } from '../index'
 import { PhotoType } from 'api/types'
-import { LoginParamsType } from '../../../srcExamples/api/auth/types';
 
 export const getUserProfile = createAsyncThunk<UserProfileType, number, { rejectValue: { error: string } }>
 ('profile/getUserProfile', async (userId, {rejectWithValue}) => {

@@ -32,7 +32,7 @@ export const Profile: FC = (): ReturnComponentType => {
   const isDisabledFollowed = useSelector(selectIsDisabledFollowed)
 
   const isOwner = !userId
-  const userAvatar = userProfile.photos?.small || userProfile.photos?.large
+  const userAvatar = userProfile?.photos?.small || userProfile?.photos?.large
 
   useEffect(() => {
     const id = isOwner ? authorizedUserDataId : userId
@@ -92,7 +92,7 @@ export const Profile: FC = (): ReturnComponentType => {
           </div>
         </div>
         <div className={style.rightBlock}>
-          <Information fullName={userProfile.fullName} isOwner={isOwner}/>
+          <Information fullName={userProfile!?.fullName} isOwner={isOwner}/>
         </div>
       </div>
     </div>

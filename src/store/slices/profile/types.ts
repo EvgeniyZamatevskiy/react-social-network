@@ -1,7 +1,8 @@
 import { UserProfileType } from 'api/profile/types'
+import { Nullable } from 'types'
 
 export type ProfileSliceInitialStateType = {
-  userProfile: UserProfileType
+  userProfile: Nullable<UserProfileType>
   status: string
   isLoadingUserProfile: boolean
 }

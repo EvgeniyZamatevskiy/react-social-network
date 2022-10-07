@@ -8,6 +8,16 @@
   span {
     color: $colorAncillaryLight;
   }
+
+  .input {
+    color: #000;
+    padding: 4px 6px;
+    margin: 4px 0px;
+    width: 100%;
+    text-align: left;
+    border-radius: 7px;
+    border: 1px solid #DCE1E6;
+  }
 }
 
 .fullInfoBtn {
@@ -23,11 +33,17 @@
   }
 }
 
-.lineContainer {
+.buttons {
+  @include flex(row, space-between, center);
   margin-top: 20px;
+
+  .editBtn,
+  .backBtn {
+    width: 59.8px;
+  }
 }
 
-.editBtn {
-  margin-top: 20px;
-  width: 59.8px;
+.errorMessage {
+  margin-top: 5px;
+  color: red;
 }

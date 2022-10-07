@@ -41,9 +41,7 @@ export const Information: FC<InformationPropsType> = ({fullName, isOwner}): Retu
 
       {isEditFullInfo
         ? <EditData setIsEditFullInfo={setIsEditFullInfo}/>
-        : <Data
-          setIsEditFullInfo={setIsEditFullInfo}
-        />}
+        : <Data setIsEditFullInfo={setIsEditFullInfo} isOwner={isOwner}/>}
     </div>
   )
 }
