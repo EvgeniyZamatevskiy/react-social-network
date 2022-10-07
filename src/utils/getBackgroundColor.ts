@@ -5,11 +5,11 @@ export const getBackgroundColor = (condition: boolean, theme: ThemeType, bgLight
   let backgroundColor = EMPTY_STRING
 
   if (condition && theme === 'dark') {
-    return backgroundColor = bgDark
+    backgroundColor = bgDark
   }
 
   if (condition && theme === 'light') {
-    return backgroundColor = bgLight
+    backgroundColor = bgLight
   }
 
   return backgroundColor
