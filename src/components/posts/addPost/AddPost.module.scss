@@ -1,0 +1,28 @@
+@import 'src/styles/sass/mixins.scss';
+@import 'src/styles/sass/variables.scss';
+
+.container {
+  margin-top: 13px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  width: 552px;
+  background-color: $bgSecondaryLight;
+  border: 1px solid $borderLight;
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+
+    .body {
+      display: flex;
+
+      .avatar {
+
+      }
+
+      .input {
+
+      }
+    }
+  }
+}

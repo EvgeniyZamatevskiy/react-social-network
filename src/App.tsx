@@ -6,7 +6,7 @@ import { ReturnComponentType } from 'types/ReturnComponentType'
 import { ROUTES } from 'router'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { useAppDispatch, useTheme } from 'hooks'
-import { getAuthorizedUserData } from 'store/asyncActions'
+import { getAuthorizedUser } from 'store/asyncActions'
 import { Path } from 'enums'
 
 export const App: FC = (): ReturnComponentType => {
@@ -21,7 +21,7 @@ export const App: FC = (): ReturnComponentType => {
   const isInitializedApp = useSelector(selectIsInitializedApp)
 
   useEffect(() => {
-    dispatch(getAuthorizedUserData())
+    dispatch(getAuthorizedUser())
   }, [])
 
   if (!isInitializedApp) {

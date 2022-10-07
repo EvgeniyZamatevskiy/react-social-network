@@ -1,12 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { AUTH } from 'api'
-import { AuthorizedUserDataType, LoginDataType } from 'api/auth/types'
+import { AuthorizedUserType, LoginDataType } from 'api/auth/types'
 import { AxiosError } from 'axios'
 import { FIRST_ELEMENTS_INDEX } from 'constants/base'
 import { ResponseCode } from 'enums'
 import { handleServerNetworkError } from 'utils'
 
-export const getAuthorizedUserData = createAsyncThunk<AuthorizedUserDataType, undefined, { rejectValue: { error: string } }>
+export const getAuthorizedUser = createAsyncThunk<AuthorizedUserType, undefined, { rejectValue: { error: string } }>
 ('auth/getAuthorizedUserData', async (_, {rejectWithValue}) => {
   try {
     const response = await AUTH.me()
@@ -34,7 +34,7 @@ export const login = createAsyncThunk<void, LoginDataType, { rejectValue: { erro
     }
 
     if (resultCode === ResponseCode.SUCCESS) {
-      dispatch(getAuthorizedUserData())
+      dispatch(getAuthorizedUser())
     } else {
       return rejectWithValue({error: messages[FIRST_ELEMENTS_INDEX]})
     }

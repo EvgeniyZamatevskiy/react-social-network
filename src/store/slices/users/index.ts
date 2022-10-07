@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { UserType } from 'api/users/types'
 import { EMPTY_STRING } from 'constants/base'
-import { follow, getFollowedStatus, getUsers, unfollow } from 'store/asyncActions'
+import { follow, getFollowedStatus, getUsers, logOut, unfollow } from 'store/asyncActions'
 import { FriendValuesType, UsersSliceInitialStateType } from './types'
 
 const initialState: UsersSliceInitialStateType = {
@@ -88,8 +88,18 @@ export const usersSlice = createSlice({
           user.followedStatus.isDisabled = false
           user.followedStatus.isLoading = false
         }
+
         state.isLoadingFollowed = false
         state.isDisabledFollowed = false
+      })
+      .addCase(logOut.fulfilled, (state) => {
+        state.users = []
+        state.totalUsersCount = 0
+        state.term = EMPTY_STRING
+        state.friend = 'All'
+        state.page = 1
+        state.pageCount = 10
+        state.isFollowed = false
       })
   },
 })

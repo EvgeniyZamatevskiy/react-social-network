@@ -3,14 +3,22 @@ import { Button, Line } from 'components'
 import { ReturnComponentType } from 'types'
 import { DataPropsType } from './types'
 import { useSelector } from 'react-redux'
-import { selectUserProfile } from 'store/selectors'
 import { ContactType } from 'api/profile/types'
 import { Contact } from '../contact'
+import {
+  selectContacts,
+  selectLookingForAJob,
+  selectLookingForAJobDescription,
+  selectAboutMe,
+} from 'store/selectors'
 import style from './Data.module.scss'
 
 export const Data: FC<DataPropsType> = ({setIsEditFullInfo, isOwner}): ReturnComponentType => {
 
-  const userProfile = useSelector(selectUserProfile)
+  const contacts = useSelector(selectContacts)
+  const lookingForAJob = useSelector(selectLookingForAJob)
+  const lookingForAJobDescription = useSelector(selectLookingForAJobDescription)
+  const aboutMe = useSelector(selectAboutMe)
 
   const [isShowFullInfo, setIsShowFullInfo] = useState(false)
 
@@ -22,19 +30,19 @@ export const Data: FC<DataPropsType> = ({setIsEditFullInfo, isOwner}): ReturnCom
     setIsEditFullInfo(true)
   }
 
-  if (!userProfile) {
+  if (!contacts) {
     return null
   }
 
-  const contactKeys = Object.keys(userProfile.contacts)
+  const contactKeys = Object.keys(contacts)
 
   return (
     <>
       <div className={style.field}>
-        Readiness to work: <span>{userProfile.lookingForAJob ? 'Looking for a job' : 'Not looking for a job'}</span>
+        Readiness to work: <span>{lookingForAJob ? 'Looking for a job' : 'Not looking for a job'}</span>
       </div>
-      <div className={style.field}>My professional skills: <span>{userProfile.lookingForAJobDescription}</span></div>
-      <div className={style.field}>About me: <span>{userProfile.aboutMe}</span></div>
+      <div className={style.field}>My professional skills: <span>{lookingForAJobDescription}</span></div>
+      <div className={style.field}>About me: <span>{aboutMe}</span></div>
 
       <Button className={style.fullInfoBtn} onClick={onToggleIsShowFullInfoClick}>
         {isShowFullInfo ? 'Hide full information' : 'Show full information'}
@@ -46,7 +54,7 @@ export const Data: FC<DataPropsType> = ({setIsEditFullInfo, isOwner}): ReturnCom
           </div>
 
           {contactKeys.map((key) => {
-            return <Contact key={key} title={key} link={userProfile.contacts[key as keyof ContactType]}/>
+            return <Contact key={key} title={key} link={contacts[key as keyof ContactType]}/>
           })}
 
           {isOwner &&

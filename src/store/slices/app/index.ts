@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { EMPTY_STRING } from 'constants/base'
-import { getAuthorizedUserData, login } from 'store/asyncActions'
+import { getAuthorizedUser, login } from 'store/asyncActions'
 import { isErrorRejected } from 'store/helpers'
 import { AppSliceInitialStateType, ThemeType } from './types'
 
@@ -33,12 +33,12 @@ export const appSlice = createSlice({
         state.isLoading = false
         state.isDisabled = false
       })
-      .addCase(getAuthorizedUserData.fulfilled, (state) => {
+      .addCase(getAuthorizedUser.fulfilled, (state) => {
         state.isInitializedApp = true
         state.isDisabled = false
         state.isLoading = false
       })
-      .addCase(getAuthorizedUserData.rejected, (state) => {
+      .addCase(getAuthorizedUser.rejected, (state) => {
         state.isInitializedApp = true
         state.isLoading = false
         state.isDisabled = false

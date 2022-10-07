@@ -33,7 +33,7 @@ export const getStatus = createAsyncThunk<string, number, { rejectValue: { error
 export const updateStatus = createAsyncThunk<void, string, { rejectValue: { error: string }, state: RootStateType }>
 ('profile/updateStatus', async (status, {rejectWithValue, dispatch, getState}) => {
   try {
-    const authorizedUserId = getState().auth.authorizedUserData?.id as number
+    const authorizedUserId = getState().auth.authorizedUser?.id as number
 
     const response = await PROFILE.updateStatus(status)
     const {messages, resultCode} = response.data

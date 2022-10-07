@@ -1,8 +1,8 @@
-import { AuthorizedUserDataType } from 'api/auth/types'
+import { AuthorizedUserType } from 'api/auth/types'
 import { Nullable } from 'types'
 
 export type AuthSliceInitialStateType = {
-  authorizedUserData: Nullable<AuthorizedUserDataType>
+  authorizedUser: Nullable<AuthorizedUserType>
   isAuth: boolean
   captchaUrl: string
 }

@@ -1,15 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { UserProfileType } from 'api/profile/types'
-import { getStatus, getUserProfile, updatePhoto, updateUserProfile } from 'store/asyncActions'
+import { getStatus, getUserProfile, logOut, updatePhoto, updateUserProfile } from 'store/asyncActions'
 import { ProfileSliceInitialStateType } from './types'
 import { EMPTY_STRING } from 'constants/base'
 import { PhotoType } from 'api/types'
-import { Nullable } from 'types'
 
 const initialState: ProfileSliceInitialStateType = {
   userProfile: null,
   status: EMPTY_STRING,
-  isLoadingUserProfile: false,
 }
 
 export const profileSlice = createSlice({
@@ -22,12 +20,8 @@ export const profileSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(getUserProfile.pending, (state) => {
-        state.isLoadingUserProfile = true
-      })
       .addCase(getUserProfile.fulfilled, (state, action: PayloadAction<UserProfileType>) => {
         state.userProfile = action.payload
-        state.isLoadingUserProfile = false
       })
       .addCase(getStatus.fulfilled, (state, action: PayloadAction<string>) => {
         state.status = action.payload
@@ -39,6 +33,10 @@ export const profileSlice = createSlice({
       })
       .addCase(updateUserProfile.fulfilled, (state, action: PayloadAction<UserProfileType>) => {
         state.userProfile = action.payload
+      })
+      .addCase(logOut.fulfilled, (state) => {
+        state.userProfile = null
+        state.status = EMPTY_STRING
       })
   },
 })

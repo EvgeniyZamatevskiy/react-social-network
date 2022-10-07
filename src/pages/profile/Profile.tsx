@@ -4,17 +4,16 @@ import { useSelector } from 'react-redux'
 import { Navigate, useParams } from 'react-router-dom'
 import { ReturnComponentType } from 'types'
 import {
-  selectAuthorizedUserDataId,
+  selectAuthorizedUserId,
   selectIsAuth,
   selectIsDisabledFollowed,
   selectIsFollowed,
-  selectIsLoadingFollowed,
-  selectUserProfile
+  selectIsLoadingFollowed, selectPhotoLarge, selectPhotoSmall
 } from 'store/selectors'
 import { useAppDispatch } from 'hooks'
 import { follow, getFollowedStatus, getStatus, getUserProfile, unfollow } from 'store/asyncActions'
 import { Information } from './information'
-import { File, SmallLoader } from 'components'
+import { AddPost, File, Posts, SmallLoader } from 'components'
 import defaultAvatar from 'assets/images/defaultAvatar.png'
 import style from './Profile.module.scss'
 
@@ -25,17 +24,18 @@ export const Profile: FC = (): ReturnComponentType => {
   const dispatch = useAppDispatch()
 
   const isAuth = useSelector(selectIsAuth)
-  const userProfile = useSelector(selectUserProfile)
-  const authorizedUserDataId = useSelector(selectAuthorizedUserDataId)
+  const photoLarge = useSelector(selectPhotoLarge)
+  const photoSmall = useSelector(selectPhotoSmall)
+  const authorizedUserId = useSelector(selectAuthorizedUserId)
   const isFollowed = useSelector(selectIsFollowed)
   const isLoadingFollowed = useSelector(selectIsLoadingFollowed)
   const isDisabledFollowed = useSelector(selectIsDisabledFollowed)
 
   const isOwner = !userId
-  const userAvatar = userProfile?.photos?.small || userProfile?.photos?.large
+  const userAvatar = photoSmall || photoLarge
 
   useEffect(() => {
-    const id = isOwner ? authorizedUserDataId : userId
+    const id = isOwner ? authorizedUserId : userId
 
     if (isAuth) {
       dispatch(getStatus(Number(id)))
@@ -92,7 +92,8 @@ export const Profile: FC = (): ReturnComponentType => {
           </div>
         </div>
         <div className={style.rightBlock}>
-          <Information fullName={userProfile!?.fullName} isOwner={isOwner}/>
+          <Information isOwner={isOwner}/>
+          <AddPost/>
         </div>
       </div>
     </div>

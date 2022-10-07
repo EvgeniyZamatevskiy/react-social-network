@@ -1,10 +1,10 @@
 import { RootStateType } from 'store'
 
-export const selectAuthorizedUserDataId = (state: RootStateType): number => state.auth.authorizedUserData!?.id
+export const selectAuthorizedUserId = (state: RootStateType): number | undefined => state.auth.authorizedUser?.id
 
-export const selectAuthorizedUserDataEmail = (state: RootStateType): string => state.auth.authorizedUserData!?.email
+export const selectAuthorizedUserEmail = (state: RootStateType): string | undefined => state.auth.authorizedUser?.email
 
-export const selectAuthorizedUserDataLogin = (state: RootStateType): string => state.auth.authorizedUserData!?.login
+export const selectAuthorizedUserLogin = (state: RootStateType): string | undefined => state.auth.authorizedUser?.login
 
 export const selectIsAuth = (state: RootStateType): boolean => state.auth.isAuth
 

@@ -1,9 +1,23 @@
 import { RootStateType } from 'store'
-import { UserProfileType } from 'api/profile/types'
+import { ContactType, UserProfileType } from 'api/profile/types'
 import { Nullable } from 'types'
-
-export const selectUserProfile = (state: RootStateType): Nullable<UserProfileType> => state.profile.userProfile
 
 export const selectStatus = (state: RootStateType): string => state.profile.status
 
-export const selectIsLoadingUserProfile = (state: RootStateType): boolean => state.profile.isLoadingUserProfile
+export const selectUserProfile = (state: RootStateType): Nullable<UserProfileType> => state.profile!?.userProfile
+
+export const selectUserId = (state: RootStateType): number => state.profile.userProfile!?.userId
+
+export const selectPhotoSmall = (state: RootStateType): string => state.profile.userProfile!?.photos.small
+
+export const selectPhotoLarge = (state: RootStateType): string => state.profile.userProfile!?.photos.large
+
+export const selectAboutMe = (state: RootStateType): string => state.profile.userProfile!?.aboutMe
+
+export const selectFullName = (state: RootStateType): string => state.profile.userProfile!?.fullName
+
+export const selectLookingForAJob = (state: RootStateType): boolean => state.profile.userProfile!?.lookingForAJob
+
+export const selectLookingForAJobDescription = (state: RootStateType): string => state.profile.userProfile!?.lookingForAJobDescription
+
+export const selectContacts = (state: RootStateType): ContactType => state.profile.userProfile!?.contacts

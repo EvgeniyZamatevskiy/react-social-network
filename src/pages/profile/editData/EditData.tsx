@@ -5,9 +5,9 @@ import { ContactType, UserProfileType } from 'api/profile/types'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useAppDispatch } from 'hooks'
 import { useSelector } from 'react-redux'
-import { selectUserProfile } from 'store/selectors'
 import { Button } from 'components'
 import { updateUserProfile } from 'store/asyncActions'
+import { selectContacts, selectUserProfile } from 'store/selectors'
 import style from './EditData.module.scss'
 
 export const EditData: FC<EditDataPropsType> = ({setIsEditFullInfo}): ReturnComponentType => {
@@ -15,6 +15,8 @@ export const EditData: FC<EditDataPropsType> = ({setIsEditFullInfo}): ReturnComp
   const dispatch = useAppDispatch()
 
   const userProfile = useSelector(selectUserProfile)
+
+  const contacts = useSelector(selectContacts)
 
   const {register, handleSubmit, formState: {errors}} = useForm<UserProfileType>({
     mode: 'onBlur',
@@ -30,7 +32,7 @@ export const EditData: FC<EditDataPropsType> = ({setIsEditFullInfo}): ReturnComp
     pattern: {value: /(http|https):\/\/([\w.]+\/?)\S*/, message: 'Incorrect title',}
   }
 
-  const contactRender = Object.keys(userProfile!?.contacts)
+  const contactRender = Object.keys(contacts)
 
   const onSetIsEditFullInfoClick = (): void => {
     setIsEditFullInfo(false)
