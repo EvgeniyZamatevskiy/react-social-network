@@ -7,8 +7,8 @@ import { useSelector } from 'react-redux'
 import { selectStatus } from 'store/selectors'
 import { updateStatus } from 'store/asyncActions'
 import { Data } from '../data'
+import { EditData } from '../editData'
 import style from './Information.module.scss'
-import { EditData } from '../editData';
 
 export const Information: FC<InformationPropsType> = ({fullName, isOwner}): ReturnComponentType => {
 
@@ -16,13 +16,9 @@ export const Information: FC<InformationPropsType> = ({fullName, isOwner}): Retu
 
   const status = useSelector(selectStatus)
 
-  const [isEditDetailedInfo, setIsEditDetailedInfo] = useState(false)
+  const [isEditFullInfo, setIsEditFullInfo] = useState(false)
 
   const isDarkTheme = useTheme('dark')
-
-  const handleToggleIsEditDetailedInfoClick = (): void => {
-    setIsEditDetailedInfo(!isEditDetailedInfo)
-  }
 
   const handleUpdateStatus = (updatedTitle: string): void => {
     dispatch(updateStatus(updatedTitle))
@@ -43,16 +39,11 @@ export const Information: FC<InformationPropsType> = ({fullName, isOwner}): Retu
       </div>
       <Line/>
 
-      {isEditDetailedInfo
-        ? <EditData
-          isEditDetailedInfo={isEditDetailedInfo}
-          onToggleIsEditDetailedInfoClick={handleToggleIsEditDetailedInfoClick}
-        />
+      {isEditFullInfo
+        ? <EditData setIsEditFullInfo={setIsEditFullInfo}/>
         : <Data
-          isEditDetailedInfo={isEditDetailedInfo}
-          onToggleIsEditDetailedInfoClick={handleToggleIsEditDetailedInfoClick}
+          setIsEditFullInfo={setIsEditFullInfo}
         />}
-
     </div>
   )
 }
