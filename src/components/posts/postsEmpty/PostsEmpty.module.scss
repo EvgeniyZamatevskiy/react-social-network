@@ -10,6 +10,7 @@
   padding: 15px 20px 12px 20px;
   @extend %borderLight;
   border-top: none;
+  @include flex(row, center, center);
 
   .body {
     height: 87px;
