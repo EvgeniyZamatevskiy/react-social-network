@@ -7,10 +7,10 @@
   width: 552px;
   background-color: $bgSecondaryLight;
   border-radius: 10px;
-  height: 52px;
+  height: 54px;
   padding: 0px 20px;
   @extend %borderLight;
-  
+
   .content {
     height: 100%;
     @include flex(row, space-between, center);

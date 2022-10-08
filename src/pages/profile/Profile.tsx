@@ -13,7 +13,7 @@ import {
 import { useAppDispatch } from 'hooks'
 import { follow, getFollowedStatus, getStatus, getUserProfile, unfollow } from 'store/asyncActions'
 import { Information } from './information'
-import { AddPost, File, Posts, SmallLoader } from 'components'
+import { AddPost, File, Posts, PostsEmpty, SmallLoader } from 'components'
 import defaultAvatar from 'assets/images/defaultAvatar.png'
 import style from './Profile.module.scss'
 
@@ -93,7 +93,7 @@ export const Profile: FC = (): ReturnComponentType => {
         </div>
         <div className={style.rightBlock}>
           <Information isOwner={isOwner}/>
-          <AddPost/>
+          {isOwner ? <Posts/> : <PostsEmpty/>}
         </div>
       </div>
     </div>

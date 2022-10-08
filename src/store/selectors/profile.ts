@@ -1,6 +1,7 @@
 import { RootStateType } from 'store'
 import { ContactType, UserProfileType } from 'api/profile/types'
 import { Nullable } from 'types'
+import { PostType } from '../slices/profile/types'
 
 export const selectStatus = (state: RootStateType): string => state.profile.status
 
@@ -21,3 +22,5 @@ export const selectLookingForAJob = (state: RootStateType): boolean => state.pro
 export const selectLookingForAJobDescription = (state: RootStateType): string => state.profile.userProfile!?.lookingForAJobDescription
 
 export const selectContacts = (state: RootStateType): ContactType => state.profile.userProfile!?.contacts
+
+export const selectPosts = (state: RootStateType): PostType[] => state.profile.posts

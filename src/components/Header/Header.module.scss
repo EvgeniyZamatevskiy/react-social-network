@@ -31,18 +31,8 @@
         padding: 0px 10px;
         width: 68px;
         height: 100%;
-        @include flex(row, space-between, center);
+        @include flex(row, center, center);
         cursor: pointer;
-
-        .avatar {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-        }
-
-        .arrowDownIcon {
-          margin-left: 6px;
-        }
       }
     }
   }

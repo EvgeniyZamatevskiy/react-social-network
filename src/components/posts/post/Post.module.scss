@@ -1,0 +1,80 @@
+@import 'src/styles/sass/mixins.scss';
+@import 'src/styles/sass/variables.scss';
+@import 'src/styles/sass/templates.scss';
+
+.container {
+  margin-top: 13px;
+  width: 552px;
+  background-color: $bgSecondaryLight;
+  border-radius: 10px;
+  min-height: 159px;
+  padding: 15px 20px 12px 20px;
+  @extend %borderLight;
+
+  .userInfo {
+    @include flex(row, space-between, center);
+
+    .content {
+      @include flex(row, stretch, center);
+
+      .userAvatarImage {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+
+      .body {
+        @include flex(column, space-between, stretch);
+        margin-left: 15px;
+        height: 33px;
+
+        .name {
+          color: $colorAncillaryLight;
+          font-weight: 500;
+          font-size: 13px;
+        }
+
+        .time {
+          color: $colorSecondaryLight;
+        }
+      }
+
+      .editBtn {
+      }
+    }
+
+    .threeDots {
+      color: #AEB7C1;
+      cursor: pointer;
+    }
+  }
+
+  .message {
+    margin-top: 18px;
+    margin-bottom: 22px;
+    line-height: 1.6;
+    max-width: 508px;
+    overflow-wrap: break-word;
+  }
+
+  .noAuthorizedUserLike {
+    padding: 0px 13px;
+    height: 32px;
+    border-radius: 15px;
+    @include flex(row, center, center);
+    background-color: #F0F2F5;
+
+    .amount {
+      color: $colorSecondaryLight;
+      font-weight: 500;
+
+      &.test {
+        margin-left: 4.1px
+      }
+    }
+
+    &.haveAuthorizedUserLike {
+      background-color: #FFEDED;
+    }
+  }
+}

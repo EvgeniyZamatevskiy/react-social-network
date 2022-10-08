@@ -1,0 +1,27 @@
+@import 'src/styles/sass/mixins.scss';
+@import 'src/styles/sass/variables.scss';
+@import 'src/styles/sass/templates.scss';
+
+.container {
+  margin-top: 13px;
+  width: 552px;
+  background-color: $bgSecondaryLight;
+  border-radius: 10px;
+  height: 204px;
+  padding: 0px 20px;
+  @extend %borderLight;
+  @include flex(row, center, center);
+
+  .body {
+    height: 87px;
+    @include flex(column, space-between, center);
+
+    .icon {
+      color: #AEB7C1;
+    }
+
+    .text {
+      color: $colorSecondaryLight;
+    }
+  }
+}

@@ -6,7 +6,6 @@ import { selectIsAuth, selectTheme } from 'store/selectors'
 import { getBackgroundColor } from 'utils'
 import { Icon12Dropdown } from '@vkontakte/icons'
 import { useTheme } from 'hooks'
-import defaultAvatar from 'assets/images/defaultAvatar.png'
 import style from './Header.module.scss'
 
 export const Header: FC = (): ReturnComponentType => {
@@ -81,8 +80,7 @@ export const Header: FC = (): ReturnComponentType => {
               style={authorizedUserStyle}
               onClick={onToggleIsActivePopupClick}
             >
-              <img className={style.avatar} src={defaultAvatar} alt="avatar"/>
-              <Icon12Dropdown className={style.arrowDownIcon} width={12} height={8} fill={'#656565'}/>
+              <Icon12Dropdown className={style.arrowDownIcon} width={24} height={16} fill={'#656565'}/>
             </div>
             {isActivePopup && <Popup setIsActivePopup={setIsActivePopup}/>}
           </div>}
