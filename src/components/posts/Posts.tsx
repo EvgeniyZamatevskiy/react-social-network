@@ -15,6 +15,11 @@ export const Posts: FC<PostsPropsType> = (): ReturnComponentType => {
   return (
     <>
       <AddPost/>
+
+      <div className={style.searchPosts}>
+        {posts.length ? 'All posts' : 'No posts yet'}
+      </div>
+
       {posts.length ? postsRender : <PostsEmpty/>}
     </>
   )

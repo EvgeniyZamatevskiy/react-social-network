@@ -17,7 +17,6 @@ const initialState: ProfileSliceInitialStateType = {
       time: '18:00:00'
     }
   ],
-  remotePosts: []
 }
 
 export const profileSlice = createSlice({
@@ -32,7 +31,7 @@ export const profileSlice = createSlice({
         time: action.payload.time,
         isAuthorizedUserLiked: false
       }
-      state.posts.push(post)
+      state.posts.unshift(post)
     },
     addLike(state, action: PayloadAction<number>) {
       const post = state.posts.find(post => post.id === action.payload)
@@ -50,8 +49,7 @@ export const profileSlice = createSlice({
     removePost(state, action: PayloadAction<number>) {
       const index = state.posts.findIndex((arrow) => arrow.id === action.payload)
       if (index > -1) {
-        const remotePost = state.posts.splice(index, 1)
-        // state.remotePosts = [...state.remotePosts, ...remotePost]
+        state.posts.splice(index, 1)
       }
     },
   },

@@ -93,7 +93,15 @@ export const Profile: FC = (): ReturnComponentType => {
         </div>
         <div className={style.rightBlock}>
           <Information isOwner={isOwner}/>
-          {isOwner ? <Posts/> : <PostsEmpty/>}
+          {isOwner ? <Posts/>
+            : <>
+              <div className={style.searchPosts}>
+                No posts yet
+              </div>
+              <PostsEmpty/>
+            </>
+
+          }
         </div>
       </div>
     </div>
