@@ -1,28 +1,45 @@
 @import 'src/styles/sass/mixins.scss';
 @import 'src/styles/sass/variables.scss';
+@import 'src/styles/sass/templates.scss';
 
 .container {
   margin-top: 13px;
-  padding: 12px 20px;
-  border-radius: 10px;
   width: 552px;
   background-color: $bgSecondaryLight;
-  border: 1px solid $borderLight;
-
+  border-radius: 10px;
+  height: 52px;
+  padding: 0px 20px;
+  @extend %borderLight;
+  
   .content {
-    display: flex;
-    justify-content: space-between;
+    height: 100%;
+    @include flex(row, space-between, center);
 
     .body {
-      display: flex;
+      height: 100%;
+      width: 85%;
+      @include flex(row, stretch, center);
 
       .avatar {
-
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        margin-right: 12px;
       }
 
       .input {
+        border: none;
+        height: 100%;
+        width: 100%;
 
+        &::placeholder {
+          color: $colorSecondaryLight;
+        }
       }
+    }
+
+    .postBtn {
+      width: 59.8px;
     }
   }
 }
