@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_social_network=self.webpackChunkreact_social_network||[]).push([[187],{4880:function(n,e,o){o.r(e),o.d(e,{NotFound:function(){return r}});o(2791);var t="NotFound_container__9YUYA",c="NotFound_notFoundImage__VvlDv",a=o(184),r=function(){return(0,a.jsx)("div",{className:t,children:(0,a.jsx)("div",{className:c})})}}}]);
+//# sourceMappingURL=NotFound.77f27955.chunk.js.map
