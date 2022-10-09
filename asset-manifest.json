@@ -1,36 +1,36 @@
 {
   "files": {
-    "main.css": "/react-social-network/static/css/main.a3596f99.css",
-    "main.js": "/react-social-network/static/js/main.9c73fdcb.js",
+    "main.css": "/react-social-network/static/css/main.23212c4c.css",
+    "main.js": "/react-social-network/static/js/main.593646a1.js",
     "NotFound.css": "/react-social-network/static/css/NotFound.fba0cddf.chunk.css",
     "NotFound.js": "/react-social-network/static/js/NotFound.77f27955.chunk.js",
     "Login.css": "/react-social-network/static/css/Login.c54d8901.chunk.css",
-    "Login.js": "/react-social-network/static/js/Login.0dec7c53.chunk.js",
+    "Login.js": "/react-social-network/static/js/Login.17e46b99.chunk.js",
     "Profile.css": "/react-social-network/static/css/Profile.fd6196cf.chunk.css",
-    "Profile.js": "/react-social-network/static/js/Profile.d3f356ac.chunk.js",
+    "Profile.js": "/react-social-network/static/js/Profile.f10b317d.chunk.js",
     "Users.css": "/react-social-network/static/css/Users.83ba15df.chunk.css",
-    "Users.js": "/react-social-network/static/js/Users.fa85f06f.chunk.js",
+    "Users.js": "/react-social-network/static/js/Users.b4dd000c.chunk.js",
     "static/js/787.8bc1f637.chunk.js": "/react-social-network/static/js/787.8bc1f637.chunk.js",
     "static/js/251.1a7b87b3.chunk.js": "/react-social-network/static/js/251.1a7b87b3.chunk.js",
     "static/media/defaultAvatar.png": "/react-social-network/static/media/defaultAvatar.50de003852f6a5a1c730.png",
     "static/media/notFound.png": "/react-social-network/static/media/notFound.2feb8116e7b9f5fbf0b8.png",
     "static/media/checkedLight.png": "/react-social-network/static/media/checkedLight.f306c52678eeef9af6d6.png",
     "index.html": "/react-social-network/index.html",
-    "main.a3596f99.css.map": "/react-social-network/static/css/main.a3596f99.css.map",
-    "main.9c73fdcb.js.map": "/react-social-network/static/js/main.9c73fdcb.js.map",
+    "main.23212c4c.css.map": "/react-social-network/static/css/main.23212c4c.css.map",
+    "main.593646a1.js.map": "/react-social-network/static/js/main.593646a1.js.map",
     "NotFound.fba0cddf.chunk.css.map": "/react-social-network/static/css/NotFound.fba0cddf.chunk.css.map",
     "NotFound.77f27955.chunk.js.map": "/react-social-network/static/js/NotFound.77f27955.chunk.js.map",
     "Login.c54d8901.chunk.css.map": "/react-social-network/static/css/Login.c54d8901.chunk.css.map",
-    "Login.0dec7c53.chunk.js.map": "/react-social-network/static/js/Login.0dec7c53.chunk.js.map",
+    "Login.17e46b99.chunk.js.map": "/react-social-network/static/js/Login.17e46b99.chunk.js.map",
     "Profile.fd6196cf.chunk.css.map": "/react-social-network/static/css/Profile.fd6196cf.chunk.css.map",
-    "Profile.d3f356ac.chunk.js.map": "/react-social-network/static/js/Profile.d3f356ac.chunk.js.map",
+    "Profile.f10b317d.chunk.js.map": "/react-social-network/static/js/Profile.f10b317d.chunk.js.map",
     "Users.83ba15df.chunk.css.map": "/react-social-network/static/css/Users.83ba15df.chunk.css.map",
-    "Users.fa85f06f.chunk.js.map": "/react-social-network/static/js/Users.fa85f06f.chunk.js.map",
+    "Users.b4dd000c.chunk.js.map": "/react-social-network/static/js/Users.b4dd000c.chunk.js.map",
     "787.8bc1f637.chunk.js.map": "/react-social-network/static/js/787.8bc1f637.chunk.js.map",
     "251.1a7b87b3.chunk.js.map": "/react-social-network/static/js/251.1a7b87b3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a3596f99.css",
-    "static/js/main.9c73fdcb.js"
+    "static/css/main.23212c4c.css",
+    "static/js/main.593646a1.js"
   ]
 }
