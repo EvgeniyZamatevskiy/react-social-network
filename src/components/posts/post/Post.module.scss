@@ -10,6 +10,7 @@
   padding: 15px 20px 12px 20px;
   @extend %borderLight;
   border-top: none;
+  margin-bottom: 13px;
 
   .userInfo {
     @include flex(row, space-between, center);
@@ -44,7 +45,7 @@
     }
 
     .threeDots {
-      color: #AEB7C1;
+      color: #aeb7c1;
       cursor: pointer;
     }
   }
@@ -62,19 +63,23 @@
     height: 32px;
     border-radius: 15px;
     @include flex(row, center, center);
-    background-color: #F0F2F5;
+    background-color: #f0f2f5;
 
     .amount {
       color: $colorSecondaryLight;
       font-weight: 500;
 
       &.test {
-        margin-left: 4.1px
+        margin-left: 4.1px;
       }
     }
 
     &.haveAuthorizedUserLike {
-      background-color: #FFEDED;
+      background-color: #ffeded;
     }
+  }
+
+  &:last-child {
+    margin: 0;
   }
 }

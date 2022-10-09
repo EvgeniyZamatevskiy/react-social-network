@@ -2,7 +2,7 @@
 @import 'src/styles/sass/variables.scss';
 @import 'src/styles/sass/templates.scss';
 
-.searchPosts {
+.allPosts {
   margin-top: 13px;
   width: 552px;
   height: 45px;
@@ -11,4 +11,10 @@
   padding: 15px 20px 12px 20px;
   @extend %borderLight;
   border-top: none;
+  @include flex(row, space-between, stretch);
+
+  .search {
+    color: #aeb9cd;
+    cursor: pointer;
+  }
 }

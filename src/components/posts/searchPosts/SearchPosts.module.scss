@@ -1,0 +1,42 @@
+@import 'src/styles/sass/mixins.scss';
+@import 'src/styles/sass/variables.scss';
+@import 'src/styles/sass/templates.scss';
+
+.searchPosts {
+  margin-top: 13px;
+  width: 552px;
+  height: 45px;
+  background-color: $bgSecondaryLight;
+  border-radius: 10px 10px 0px 0px;
+  @extend %borderLight;
+  border-top: none;
+  position: relative;
+
+  .searchIcon {
+    color: #93a3bc;
+    cursor: text;
+    position: absolute;
+    top: 12.5px;
+    left: 17px;
+  }
+
+  .searchInput {
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 0px 48px;
+  }
+
+  .close {
+    position: absolute;
+    top: 12.5px;
+    right: 19px;
+    color: #b3b9c2;
+    cursor: pointer;
+    transition: color 0.1s ease-in-out 0s;
+
+    &:hover {
+      color: #9ea2ab;
+    }
+  }
+}

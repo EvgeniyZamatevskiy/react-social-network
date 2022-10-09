@@ -5,6 +5,7 @@ export type ProfileSliceInitialStateType = {
   userProfile: Nullable<UserProfileType>
   status: string
   posts: PostType[]
+  searchPostsMessage: string
 }
 
 export type PostType = {
