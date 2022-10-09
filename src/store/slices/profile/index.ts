@@ -79,7 +79,7 @@ export const profileSlice = createSlice({
         updatePhoto.fulfilled,
         (state, action: PayloadAction<{ photos: PhotoType }>) => {
           if (state.userProfile) {
-            state.userProfile.photos = { ...action.payload.photos }
+            state.userProfile.photos = {...action.payload.photos}
           }
         }
       )
@@ -98,5 +98,4 @@ export const profileSlice = createSlice({
 
 export default profileSlice.reducer
 
-export const { addPost, addLike, removePost, setSearchPostsMessage } =
-  profileSlice.actions
+export const {addPost, addLike, removePost, setSearchPostsMessage} = profileSlice.actions

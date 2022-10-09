@@ -26,7 +26,7 @@ import defaultAvatar from 'assets/images/defaultAvatar.png'
 import style from './Profile.module.scss'
 
 export const Profile: FC = (): ReturnComponentType => {
-  const { userId } = useParams<{ userId: string }>()
+  const {userId} = useParams<{ userId: string }>()
 
   const dispatch = useAppDispatch()
 
@@ -60,7 +60,7 @@ export const Profile: FC = (): ReturnComponentType => {
   }
 
   if (!isAuth) {
-    return <Navigate to={Path.LOGIN} />
+    return <Navigate to={Path.LOGIN}/>
   }
 
   return (
@@ -68,71 +68,38 @@ export const Profile: FC = (): ReturnComponentType => {
       <div className={style.profile}>
         <div className={style.leftBlock}>
           <div className={style.content}>
+
             <div className={style.avatarImageContainer}>
-              {userAvatar ? (
-                <img
-                  className={style.avatarImage}
-                  src={userAvatar}
-                  alt='avatar'
-                />
-              ) : isOwner ? (
-                <File>
-                  <img
-                    className={style.defaultAvatarImage}
-                    src={defaultAvatar}
-                    alt='default avatar'
-                  />
-                  <div className={style.uploadPhoto}>
-                    Upload a profile photo
-                  </div>
-                </File>
-              ) : (
-                <img
-                  className={style.defaultAvatarImage}
-                  src={defaultAvatar}
-                  alt='default avatar'
-                />
-              )}
+              {userAvatar ? <img className={style.avatarImage} src={userAvatar} alt='avatar'/>
+                : isOwner
+                  ? <File>
+                    <img className={style.defaultAvatarImage} src={defaultAvatar} alt='default avatar'/>
+                    <div className={style.uploadPhoto}>Upload a profile photo</div>
+                  </File>
+                  : <img className={style.defaultAvatarImage} src={defaultAvatar} alt='default avatar'/>}
             </div>
-            {isOwner ? (
+
+            {isOwner ?
               <File classNameButton={style.editLink}>Change avatar</File>
-            ) : isFollowed ? (
-              <button
-                className={style.followBtn}
-                onClick={onUnfollowClick}
-                disabled={isDisabledFollowed}
-              >
-                {isLoadingFollowed ? (
-                  <SmallLoader darkColor={'#000'} lightColor={'#fff'} />
-                ) : (
-                  'Unfollow'
-                )}
-              </button>
-            ) : (
-              <button
-                className={style.followBtn}
-                onClick={onFollowClick}
-                disabled={isDisabledFollowed}
-              >
-                {isLoadingFollowed ? (
-                  <SmallLoader darkColor={'#000'} lightColor={'#fff'} />
-                ) : (
-                  'Follow'
-                )}
-              </button>
-            )}
+              : isFollowed
+                ? <button className={style.followBtn} onClick={onUnfollowClick} disabled={isDisabledFollowed}>
+                  {isLoadingFollowed ? <SmallLoader darkColor={'#000'} lightColor={'#fff'}/> : 'Unfollow'}
+                </button>
+                : <button className={style.followBtn} onClick={onFollowClick} disabled={isDisabledFollowed}>
+                  {isLoadingFollowed ? <SmallLoader darkColor={'#000'} lightColor={'#fff'}/> : 'Follow'}
+                </button>
+            }
           </div>
         </div>
         <div className={style.rightBlock}>
-          <Information isOwner={isOwner} />
-          {isOwner ? (
-            <Posts />
-          ) : (
-            <>
+          <Information isOwner={isOwner}/>
+          {isOwner
+            ? <Posts/>
+            : <>
               <div className={style.searchPosts}>No posts yet</div>
-              <PostsEmpty />
+              <PostsEmpty/>
             </>
-          )}
+          }
         </div>
       </div>
     </div>

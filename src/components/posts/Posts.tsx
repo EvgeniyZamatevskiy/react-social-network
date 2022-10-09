@@ -9,16 +9,15 @@ import { EMPTY_STRING } from 'constants/base'
 import style from './Posts.module.scss'
 
 export const Posts: FC<PostsPropsType> = (): ReturnComponentType => {
+
   const posts = useSelector(selectPosts)
   const searchPostsMessage = useSelector(selectSearchPostsMessage)
 
   const [isSearchPosts, setIsSearchPosts] = useState(false)
 
   const postsRender = posts
-    .filter(post =>
-      post.message.toLowerCase().includes(searchPostsMessage.toLowerCase())
-    )
-    .map(post => <Post key={post.id} post={post} />)
+    .filter(post => post.message.toLowerCase().includes(searchPostsMessage.toLowerCase()))
+    .map(post => <Post key={post.id} post={post}/>)
 
   const onSetIsSearchPostsClick = (): void => {
     setIsSearchPosts(true)
@@ -26,27 +25,20 @@ export const Posts: FC<PostsPropsType> = (): ReturnComponentType => {
 
   return (
     <>
-      <AddPost />
+      <AddPost/>
 
-      {isSearchPosts ? (
-        <SearchPosts setIsSearchPosts={setIsSearchPosts} />
-      ) : (
-        <div className={style.allPosts}>
+      {isSearchPosts
+        ? <SearchPosts setIsSearchPosts={setIsSearchPosts}/>
+        : <div className={style.allPosts}>
           {posts.length ? 'All posts' : 'No posts yet'}
-          {posts.length ? (
-            <Icon20Search
-              className={style.search}
-              height={19}
-              width={19}
-              onClick={onSetIsSearchPostsClick}
-            />
-          ) : (
-            EMPTY_STRING
-          )}
+          {posts.length
+            ? <Icon20Search className={style.search} height={19} width={19} onClick={onSetIsSearchPostsClick}/>
+            : EMPTY_STRING
+          }
         </div>
-      )}
+      }
 
-      {posts.length ? postsRender : <PostsEmpty />}
+      {posts.length ? postsRender : <PostsEmpty/>}
     </>
   )
 }
