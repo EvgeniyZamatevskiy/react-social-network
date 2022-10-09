@@ -1,12 +1,12 @@
-import React, { FC, useState } from 'react'
-import { ReturnComponentType } from 'types'
-import { PostsPropsType } from './types'
-import { AddPost, Post, PostsEmpty, SearchPosts } from '.'
-import { useSelector } from 'react-redux'
-import { selectPosts, selectSearchPostsMessage } from 'store/selectors'
-import { Icon20Search } from '@vkontakte/icons'
-import { EMPTY_STRING } from 'constants/base'
-import style from './Posts.module.scss'
+import React, {FC, useState} from "react"
+import {ReturnComponentType} from "types"
+import {PostsPropsType} from "./types"
+import {AddPost, Post, PostsEmpty, SearchPosts} from "."
+import {useSelector} from "react-redux"
+import {selectPosts, selectSearchPostsMessage} from "store/selectors"
+import {Icon20Search} from "@vkontakte/icons"
+import {EMPTY_STRING} from "constants/base"
+import style from "./Posts.module.scss"
 
 export const Posts: FC<PostsPropsType> = (): ReturnComponentType => {
 
@@ -24,13 +24,13 @@ export const Posts: FC<PostsPropsType> = (): ReturnComponentType => {
   }
 
   return (
-    <>
+    <div className={style.posts}>
       <AddPost/>
 
       {isSearchPosts
         ? <SearchPosts setIsSearchPosts={setIsSearchPosts}/>
         : <div className={style.allPosts}>
-          {posts.length ? 'All posts' : 'No posts yet'}
+          {posts.length ? "All posts" : "No posts yet"}
           {posts.length
             ? <Icon20Search className={style.search} height={19} width={19} onClick={onSetIsSearchPostsClick}/>
             : EMPTY_STRING
@@ -39,6 +39,6 @@ export const Posts: FC<PostsPropsType> = (): ReturnComponentType => {
       }
 
       {posts.length ? postsRender : <PostsEmpty/>}
-    </>
+    </div>
   )
 }

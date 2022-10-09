@@ -1,15 +1,15 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { UserProfileType } from 'api/profile/types'
+import {createSlice, PayloadAction} from "@reduxjs/toolkit"
+import {UserProfileType} from "api/profile/types"
 import {
   getStatus,
   getUserProfile,
   logOut,
   updatePhoto,
   updateUserProfile
-} from 'store/asyncActions'
-import { ProfileSliceInitialStateType } from './types'
-import { EMPTY_STRING } from 'constants/base'
-import { PhotoType } from 'api/types'
+} from "store/asyncActions"
+import {ProfileSliceInitialStateType} from "./types"
+import {EMPTY_STRING} from "constants/base"
+import {PhotoType} from "api/types"
 
 const initialState: ProfileSliceInitialStateType = {
   userProfile: null,
@@ -19,9 +19,9 @@ const initialState: ProfileSliceInitialStateType = {
       id: 1,
       like: 65,
       message:
-        'There are two ways of constructing a software design. One way is to make it so simple that there are obviously no deficiencies. And the other way is to make it so complicated that there are no obvious deficiencies.',
+        "There are two ways of constructing a software design. One way is to make it so simple that there are obviously no deficiencies. And the other way is to make it so complicated that there are no obvious deficiencies.",
       isAuthorizedUserLiked: false,
-      time: '18:00:00'
+      time: "18:00:00"
     }
   ],
   searchPostsMessage: EMPTY_STRING
@@ -29,7 +29,7 @@ const initialState: ProfileSliceInitialStateType = {
 
 export const profileSlice = createSlice({
   initialState,
-  name: 'profile',
+  name: "profile",
   reducers: {
     addPost(state, action: PayloadAction<{ message: string; time: string }>) {
       const post = {
@@ -62,6 +62,13 @@ export const profileSlice = createSlice({
     },
     setSearchPostsMessage(state, action: PayloadAction<string>) {
       state.searchPostsMessage = action.payload
+    },
+    setEditMessage(state, action: PayloadAction<{ id: number, message: string }>) {
+      const post = state.posts.find(post => post.id === action.payload.id)
+
+      if (post) {
+        post.message = action.payload.message
+      }
     }
   },
   extraReducers(builder) {
@@ -98,4 +105,4 @@ export const profileSlice = createSlice({
 
 export default profileSlice.reducer
 
-export const {addPost, addLike, removePost, setSearchPostsMessage} = profileSlice.actions
+export const {addPost, addLike, removePost, setSearchPostsMessage, setEditMessage} = profileSlice.actions
