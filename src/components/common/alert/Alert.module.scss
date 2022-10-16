@@ -1,0 +1,54 @@
+@import 'src/styles/sass/mixins.scss';
+
+.alert {
+  min-width: 300px;
+  @include flex(row, space-between, center);
+  position: relative;
+  padding: 10px 10px 10px 10px;
+  border-radius: 10px;
+
+  .body {
+    @include flex(row, stretch, center);
+
+    .icon {
+
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    .message {
+      margin-right: 20px;
+      max-width: 1500px;
+      overflow-wrap: break-word;
+      color: #fff;
+      letter-spacing: 0.5px;
+      line-height: 1.5;
+    }
+  }
+
+  .closeAlertButton {
+    color: #fff;
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+}
+
+.error {
+  background-color: #D32F2F;
+}
+
+.warning {
+  background-color: #F57C00;
+}
+
+.info {
+  background-color: #0288D1;
+}
+
+.success {
+  background-color: #388E3C;
+}

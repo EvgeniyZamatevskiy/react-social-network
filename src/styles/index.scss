@@ -18,6 +18,12 @@ body {
     display: flex;
     max-width: 975px;
     margin: 0 auto;
+
+    .errorAlertContainer {
+      position: fixed;
+      bottom: 15px;
+      left: 15px;
+    }
   }
 
   &.darkApp {

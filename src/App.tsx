@@ -1,5 +1,5 @@
 import React, {FC, Suspense, useEffect} from "react"
-import {ErrorAlert, Header, Loader, NavBar} from "components"
+import {Alert, Header, Loader, NavBar} from "components"
 import {useSelector} from "react-redux"
 import {selectErrorMessage, selectIsInitializedApp} from "store/selectors"
 import {ReturnComponentType} from "types/ReturnComponentType"
@@ -7,7 +7,7 @@ import {ROUTES} from "router"
 import {Route, Routes, useLocation} from "react-router-dom"
 import {getAuthorizedUser} from "store/asyncActions"
 import {Path} from "enums"
-import {useAppDispatch, useTheme} from "hooks"
+import {useAppDispatch, useErrorAlert, useTheme} from "hooks"
 
 export const App: FC = (): ReturnComponentType => {
 
@@ -16,6 +16,7 @@ export const App: FC = (): ReturnComponentType => {
   const {pathname} = useLocation()
 
   const isDarkTheme = useTheme("dark")
+  const closeAlert = useErrorAlert(3000)
 
   const errorMessage = useSelector(selectErrorMessage)
   const isInitializedApp = useSelector(selectIsInitializedApp)
@@ -35,7 +36,11 @@ export const App: FC = (): ReturnComponentType => {
         {pathname !== `/${Path.NOT_FOUND_404}` && pathname !== Path.LOGIN && (
           <NavBar/>
         )}
-        {errorMessage && <ErrorAlert/>}
+        {errorMessage &&
+          <div className="errorAlertContainer">
+            <Alert message={errorMessage} onCloseAlertClick={closeAlert} type={"error"}/>
+          </div>
+        }
         <Suspense fallback={<Loader/>}>
           <Routes>
             {ROUTES.map(({path, element}) => (
