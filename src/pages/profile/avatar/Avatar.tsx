@@ -1,8 +1,7 @@
 import React, {FC} from "react"
 import {ReturnComponentType} from "types"
 import {AvatarPropsType} from "./types"
-import {File, SmallLoader} from "components"
-import defaultAvatar from "assets/images/defaultAvatar.png"
+import {Button, File, SmallLoader} from "components"
 import {useSelector} from "react-redux"
 import {
   selectIsDisabledFollowed,
@@ -13,6 +12,7 @@ import {
 } from "store/selectors"
 import {follow, unfollow} from "store/asyncActions"
 import {useAppDispatch} from "hooks"
+import defaultAvatar from "assets/images/defaultAvatar.png"
 import style from "./Avatar.module.scss"
 
 export const Avatar: FC<AvatarPropsType> = ({isOwner, userId}): ReturnComponentType => {
@@ -45,12 +45,12 @@ export const Avatar: FC<AvatarPropsType> = ({isOwner, userId}): ReturnComponentT
       {isOwner
         ? <File classNameButton={style.editLink}>Change avatar</File>
         : isFollowed
-          ? <button className={style.followBtn} onClick={onUnfollowClick} disabled={isDisabledFollowed}>
+          ? <Button className={style.followBtn} onClick={onUnfollowClick} disabled={isDisabledFollowed}>
             {isLoadingFollowed ? <SmallLoader color={"#fff"}/> : "Unfollow"}
-          </button>
-          : <button className={style.followBtn} onClick={onFollowClick} disabled={isDisabledFollowed}>
+          </Button>
+          : <Button className={style.followBtn} onClick={onFollowClick} disabled={isDisabledFollowed}>
             {isLoadingFollowed ? <SmallLoader color={"#fff"}/> : "Follow"}
-          </button>
+          </Button>
       }
     </div>
   )

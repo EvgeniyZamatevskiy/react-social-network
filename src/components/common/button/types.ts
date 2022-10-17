@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import {ReactNode} from "react"
 
 export type ButtonPropsType = {
   isDarkTheme?: boolean
@@ -8,6 +8,7 @@ export type ButtonPropsType = {
   onMouseEnter?: () => void
   onMouseLeave?: () => void
   style?: {}
-  type?: 'button' | 'submit' | 'reset' | undefined
+  type?: "button" | "submit" | "reset" | undefined
   children: ReactNode
+  disabled?: boolean
 }

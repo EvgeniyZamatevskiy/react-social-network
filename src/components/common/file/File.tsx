@@ -1,14 +1,15 @@
-import React, { ChangeEvent, FC, useRef } from 'react'
-import { useAppDispatch } from 'hooks'
-import { setErrorMessage } from 'store/slices/app'
-import { ReturnComponentType } from 'types'
-import { updatePhoto } from 'store/asyncActions'
-import { FIRST_ELEMENTS_INDEX } from 'constants/base'
-import { FilePropsType } from './types'
-import style from './File.module.scss'
+import React, {ChangeEvent, FC, useRef} from "react"
+import {useAppDispatch} from "hooks"
+import {setErrorMessage} from "store/slices/app"
+import {ReturnComponentType} from "types"
+import {updatePhoto} from "store/asyncActions"
+import {FIRST_ELEMENTS_INDEX} from "constants/base"
+import {FilePropsType} from "./types"
+import {Button} from "components/common/button"
+import style from "./File.module.scss"
 
 const MAX_FILE_SIZE = 10000000
-const ERROR_MESSAGE = 'The file is too large'
+const ERROR_MESSAGE = "The file is too large"
 
 export const File: FC<FilePropsType> = ({classNameButton, children}): ReturnComponentType => {
 
@@ -18,7 +19,7 @@ export const File: FC<FilePropsType> = ({classNameButton, children}): ReturnComp
 
   const onSelectFileClick = (): void => fileRef && fileRef.current?.click()
 
-  const onFileChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  const onUploadFileChange = (event: ChangeEvent<HTMLInputElement>): void => {
     if (event.currentTarget.files && event.currentTarget.files.length) {
       const file = event.currentTarget.files[FIRST_ELEMENTS_INDEX]
 
@@ -32,10 +33,10 @@ export const File: FC<FilePropsType> = ({classNameButton, children}): ReturnComp
 
   return (
     <label className={style.label}>
-      <input className={style.file} type="file" onChange={onFileChange} ref={fileRef}/>
-      <button className={classNameButton} onClick={onSelectFileClick}>
+      <input className={style.file} type="file" onChange={onUploadFileChange} ref={fileRef}/>
+      <Button className={classNameButton} onClick={onSelectFileClick}>
         {children}
-      </button>
+      </Button>
     </label>
   )
 }
