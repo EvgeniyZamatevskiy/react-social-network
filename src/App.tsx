@@ -1,5 +1,4 @@
 import React, {FC, Suspense, useEffect} from "react"
-import {Alert, Header, Loader, NavBar} from "components"
 import {useSelector} from "react-redux"
 import {selectErrorMessage, selectIsInitializedApp} from "store/selectors"
 import {ReturnComponentType} from "types/ReturnComponentType"
@@ -8,6 +7,7 @@ import {Route, Routes, useLocation} from "react-router-dom"
 import {getAuthorizedUser} from "store/asyncActions"
 import {Path} from "enums"
 import {useAppDispatch, useErrorAlert, useTheme} from "hooks"
+import {Alert, Header, Loader, NavBar} from "components"
 
 export const App: FC = (): ReturnComponentType => {
 
