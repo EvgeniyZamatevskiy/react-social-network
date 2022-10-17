@@ -1,7 +1,7 @@
-import React, { FC, useEffect, useState } from 'react'
-import { ReturnComponentType } from 'types/ReturnComponentType'
-import { PaginationPropsType } from './types'
-import style from './Pagination.module.scss'
+import React, {FC, useEffect, useState} from "react"
+import {ReturnComponentType} from "types/ReturnComponentType"
+import {PaginationPropsType} from "./types"
+import style from "./Pagination.module.scss"
 
 export const Pagination: FC<PaginationPropsType> =
   ({
@@ -9,7 +9,6 @@ export const Pagination: FC<PaginationPropsType> =
      pageCount,
      page,
      handleSetPageClick,
-     isDarkTheme,
      portionSize = 10
    }): ReturnComponentType => {
 
@@ -33,7 +32,7 @@ export const Pagination: FC<PaginationPropsType> =
       return (
         <button
           key={p}
-          className={`${style.button} ${isDarkTheme && style.buttonDark} ${page === p && style.active}`}
+          className={`${style.button} ${page === p && style.active}`}
           onClick={onSetPageClick}
         >
           {p}

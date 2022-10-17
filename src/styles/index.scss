@@ -18,17 +18,11 @@ body {
     display: flex;
     max-width: 975px;
     margin: 0 auto;
-    border: 1px solid red;
 
     .errorAlertContainer {
       position: fixed;
       bottom: 15px;
       left: 15px;
     }
-  }
-
-  &.darkApp {
-    background: $bgPrimaryDark;
-    color: $colorPrimaryDark;
   }
 }

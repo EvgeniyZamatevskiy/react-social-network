@@ -41,10 +41,6 @@
       .params {
         color: #2a5885;
 
-        &.paramsDark {
-          color: #71aaeb;
-        }
-
         &:hover {
           text-decoration: underline;
         }
@@ -54,9 +50,5 @@
         margin-left: 3px;
       }
     }
-  }
-
-  &.filterContainerDark {
-    border-bottom: 1px solid #484848;
   }
 }

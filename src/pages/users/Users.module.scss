@@ -22,23 +22,10 @@
       padding: 0px 15px;
       height: 45px;
       @include flex(row, space-between, center);
-
-      &.bodyDark {
-        background-color: $bgSecondaryDark;
-        border-bottom: 1px solid #484848;
-      }
     }
 
     .userContainer {
       padding: 0px 20px;
-    }
-
-    &.usersDark {
-      background-color: #292929;
-      border-top: 1px solid $borderDark;
-      border-right: 1px solid $borderDark;
-      border-left: 1px solid $borderDark;
-      border-bottom: 1px solid #484848;
     }
   }
 }

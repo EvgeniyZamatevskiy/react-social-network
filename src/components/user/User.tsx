@@ -1,14 +1,13 @@
 import React, {FC} from "react"
 import {ReturnComponentType} from "types"
 import {UserPropsType} from "./types"
-import {useAppDispatch, useTheme} from "hooks"
+import {useAppDispatch} from "hooks"
 import {follow, unfollow} from "store/asyncActions"
 import {SmallLoader} from "components/common"
 import {Link} from "react-router-dom"
 import {Path} from "enums"
 import defaultAvatar from "assets/images/defaultAvatar.png"
 import style from "./User.module.scss"
-import {Theme} from "store/slices/app/types";
 
 export const User: FC<UserPropsType> = ({user}): ReturnComponentType => {
 
@@ -16,7 +15,6 @@ export const User: FC<UserPropsType> = ({user}): ReturnComponentType => {
 
   const dispatch = useAppDispatch()
 
-  const isDarkTheme = useTheme(Theme.DARK)
 
   const onFollowClick = (): void => {
     dispatch(follow(id))
@@ -27,7 +25,7 @@ export const User: FC<UserPropsType> = ({user}): ReturnComponentType => {
   }
 
   return (
-    <div className={`${style.user} ${isDarkTheme && style.userDark}`}>
+    <div className={style.user}>
       <div className={style.body}>
         <Link to={`${Path.PROFILE}/${id}`}>
           <img className={style.userAvatar} src={photos.small || defaultAvatar} alt="avatar"/>
@@ -39,14 +37,14 @@ export const User: FC<UserPropsType> = ({user}): ReturnComponentType => {
       </div>
       {followed
         ? <button
-          className={`${style.follow} ${isDarkTheme && style.followDark}`}
+          className={style.follow}
           disabled={followedStatus.isDisabled}
           onClick={onUnfollowClick}
         >
           {followedStatus.isLoading ? <SmallLoader darkColor={"#000"} lightColor={"#fff"}/> : "Unfollow"}
         </button>
         : <button
-          className={`${style.follow} ${isDarkTheme && style.followDark}`}
+          className={style.follow}
           disabled={followedStatus.isDisabled}
           onClick={onFollowClick}
         >

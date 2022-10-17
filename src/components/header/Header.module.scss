@@ -23,22 +23,18 @@
       letter-spacing: 1px;
     }
 
-    .authorizedUserContainer {
-      position: relative;
+    .logOutBtn {
       height: 100%;
+      padding: 0 10px;
+      @include flex(row, stretch, center);
 
-      .authorizedUser {
-        padding: 0px 10px;
-        width: 68px;
-        height: 100%;
-        @include flex(row, center, center);
-        cursor: pointer;
+      .logOutIcon {
+        margin-right: 10px;
+      }
+
+      &:hover {
+        background-color: $bgHoverLight;
       }
     }
-  }
-
-  &.darkHeader {
-    background-color: $bgSecondaryDark;
-    border-bottom: 1px solid $borderDark;
   }
 }

@@ -1,7 +1,7 @@
-import React, { ChangeEvent, FC } from 'react'
-import { ReturnComponentType } from 'types'
-import { RadioPropsType } from './types'
-import style from './Radio.module.scss'
+import React, {ChangeEvent, FC} from "react"
+import {ReturnComponentType} from "types"
+import {RadioPropsType} from "./types"
+import style from "./Radio.module.scss"
 
 export const Radio: FC<RadioPropsType> =
   ({
@@ -9,7 +9,6 @@ export const Radio: FC<RadioPropsType> =
      options,
      name,
      value,
-     isDarkTheme,
      onChange,
      setValue,
      setIndex,
@@ -27,7 +26,7 @@ export const Radio: FC<RadioPropsType> =
       return (
         <label key={index} className={style.label}>
           <input
-            className={`${style.radio} ${isDarkTheme && style.radioDark}`}
+            className={style.radio}
             type="radio"
             name={name}
             value={option}

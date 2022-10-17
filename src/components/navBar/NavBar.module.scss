@@ -25,14 +25,7 @@
       }
 
       &:first-child {
-        margin-top: 0px;
-      }
-
-      &.darkLink {
-
-        &:hover {
-          background-color: #262626;
-        }
+        margin-top: 0;
       }
     }
   }

@@ -6,9 +6,8 @@ import {ROUTES} from "router"
 import {Route, Routes, useLocation} from "react-router-dom"
 import {getAuthorizedUser} from "store/asyncActions"
 import {Path} from "enums"
-import {useAppDispatch, useErrorAlert, useTheme} from "hooks"
+import {useAppDispatch, useErrorAlert} from "hooks"
 import {Alert, Header, Loader, NavBar} from "components"
-import {Theme} from "store/slices/app/types";
 
 export const App: FC = (): ReturnComponentType => {
 
@@ -16,7 +15,6 @@ export const App: FC = (): ReturnComponentType => {
 
   const {pathname} = useLocation()
 
-  const isDarkTheme = useTheme(Theme.DARK)
   const closeAlert = useErrorAlert(3000)
 
   const errorMessage = useSelector(selectErrorMessage)
@@ -31,7 +29,7 @@ export const App: FC = (): ReturnComponentType => {
   }
 
   return (
-    <div className={`${"app"} ${isDarkTheme && "darkApp"}`}>
+    <div className={`app`}>
       {pathname !== `/${Path.NOT_FOUND_404}` && <Header/>}
       <div className="container">
         {pathname !== `/${Path.NOT_FOUND_404}` && pathname !== Path.LOGIN && (

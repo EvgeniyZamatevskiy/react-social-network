@@ -1,7 +1,7 @@
 @import 'src/styles/sass/variables.scss';
 
 .select {
-  padding: 0px 5px;
+  padding: 0 5px;
   border: none;
   appearance: none;
   color: #71AAEB;
@@ -21,13 +21,5 @@
 
   &:checked {
     background-color: #FFFFFF;
-  }
-
-  &.optionDark {
-    background-color: $bgSecondaryDark;
-
-    &:checked {
-      background-color: #3D3D3D;
-    }
   }
 }

@@ -1,15 +1,14 @@
-import React, { ChangeEvent, KeyboardEvent, FC, useState, useRef, useEffect } from 'react'
-import { ReturnComponentType } from 'types'
-import { EditableItemPropsType } from './types'
-import { EMPTY_STRING } from 'constants/base'
-import { Key } from 'enums'
-import style from './EditableItem.module.scss'
+import React, {ChangeEvent, KeyboardEvent, FC, useState, useRef, useEffect} from "react"
+import {ReturnComponentType} from "types"
+import {EditableItemPropsType} from "./types"
+import {EMPTY_STRING} from "constants/base"
+import {Key} from "enums"
+import style from "./EditableItem.module.scss"
 
 export const EditableItem: FC<EditableItemPropsType> =
   ({
      currentTitle,
      handleUpdateTitle,
-     isDarkTheme,
    }): ReturnComponentType => {
 
     const [isEditMode, setIsEditMode] = useState(false)
@@ -33,7 +32,7 @@ export const EditableItem: FC<EditableItemPropsType> =
     }
 
     const handleUpdateTitleBlurOrKeyDown = (): void => {
-      const updatedTitleTrimmed = updatedTitle.replace(/\s+/g, ' ').trim()
+      const updatedTitleTrimmed = updatedTitle.replace(/\s+/g, " ").trim()
 
       if (currentTitle !== updatedTitleTrimmed) {
         handleUpdateTitle(updatedTitleTrimmed)
@@ -75,7 +74,7 @@ export const EditableItem: FC<EditableItemPropsType> =
             className={style.editableItemBtn}
             onClick={onSetIsEditModeClick}
           >
-            {currentTitle || 'Set status'}
+            {currentTitle || "Set status"}
           </button>}
       </>
     )

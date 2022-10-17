@@ -2,10 +2,9 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit"
 import {EMPTY_STRING} from "constants/base"
 import {getAuthorizedUser, login} from "store/asyncActions"
 import {isErrorRejected} from "store/helpers"
-import {AppSliceInitialStateType, Theme} from "./types"
+import {AppSliceInitialStateType} from "./types"
 
 const initialState: AppSliceInitialStateType = {
-  theme: Theme.DEFAULT,
   errorMessage: EMPTY_STRING,
   isLoading: false,
   isInitializedApp: false,
@@ -16,9 +15,6 @@ export const appSlice = createSlice({
   initialState,
   name: "app",
   reducers: {
-    setTheme(state, action: PayloadAction<Theme>) {
-      state.theme = action.payload
-    },
     setErrorMessage(state, action: PayloadAction<string>) {
       state.errorMessage = action.payload
     },
@@ -51,4 +47,4 @@ export const appSlice = createSlice({
 
 export default appSlice.reducer
 
-export const {setTheme, setErrorMessage} = appSlice.actions
+export const {setErrorMessage} = appSlice.actions

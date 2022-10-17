@@ -52,26 +52,9 @@
     &:hover {
       background-color: #5B8BC3;
     }
-
-    &.followDark {
-      background-color: #E1E3E6;
-      color: #000;
-
-      &:hover {
-        background-color: #CACBCE;
-      }
-    }
   }
 
   &:first-child {
     border-top: none;
-  }
-
-  &.userDark {
-    border-top: 1px solid #484848;
-
-    &:first-child {
-      border-top: none;
-    }
   }
 }

@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useRef, useState} from "react"
 import {ReturnComponentType} from "types"
-import {useAppDispatch, useDebounce, useTheme} from "hooks"
+import {useAppDispatch, useDebounce} from "hooks"
 import {Button, Input, SmallLoader} from "../common"
 import {Icon12Dropdown, Icon20Search} from "@vkontakte/icons"
 import {selectIsLoadingTerm, selectTerm} from "../../store/selectors"
@@ -8,7 +8,6 @@ import {useSelector} from "react-redux"
 import {setIsLoadingTerm, setTerm} from "store/slices/users"
 import {ParamsPopup} from "../paramsPopup"
 import style from "./Filtration.module.scss"
-import {Theme} from "store/slices/app/types";
 
 export const Filtration: FC = (): ReturnComponentType => {
 
@@ -22,7 +21,6 @@ export const Filtration: FC = (): ReturnComponentType => {
 
   const isMounted = useRef(false)
 
-  const isDarkTheme = useTheme(Theme.DARK)
   const debouncedValue = useDebounce(search, 500)
 
   useEffect(() => {
@@ -48,7 +46,7 @@ export const Filtration: FC = (): ReturnComponentType => {
   }
 
   return (
-    <div className={`${style.filterContainer} ${isDarkTheme && style.filterContainerDark}`}>
+    <div className={style.filterContainer}>
       <div className={style.searchInputContainer}>
         <Icon20Search className={style.searchIcon}/>
         <Input placeholder="Search" className={style.searchInput} value={search} setValue={setSearch}/>
@@ -59,7 +57,7 @@ export const Filtration: FC = (): ReturnComponentType => {
         : <>
           <div className={style.findContainer} onMouseLeave={onSetIsVisibleParamsPopupMouseLeave}>
             <Button className={style.find} onClick={onToggleVisibleParamsPopupClick}>
-              <div className={`${style.params} ${isDarkTheme && style.paramsDark}`}>Params</div>
+              <div className={style.params}>Params</div>
               <Icon12Dropdown className={style.arrowDownIcon} width={14} height={14} fill="#92A0B1"/>
             </Button>
 

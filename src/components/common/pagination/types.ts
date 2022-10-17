@@ -3,6 +3,5 @@ export type PaginationPropsType = {
   pageCount: number
   page: number
   handleSetPageClick: (page: number) => void
-  isDarkTheme: boolean
   portionSize?: number
 }

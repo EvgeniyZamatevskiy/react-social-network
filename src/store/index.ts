@@ -1,7 +1,6 @@
 import {configureStore} from "@reduxjs/toolkit"
 import {LocalStorageKey} from "enums"
 import {setDataToLocalStorage, getParseLocalStorageData} from "services"
-import {Theme} from "./slices/app/types"
 import appSlice from "./slices/app"
 import authSlice from "./slices/auth"
 import usersSlice from "./slices/users"
@@ -14,12 +13,12 @@ export const store = configureStore({
     users: usersSlice,
     profile: profileSlice,
   },
-  preloadedState: getParseLocalStorageData(LocalStorageKey.THEME, {})
+  // preloadedState: getParseLocalStorageData(LocalStorageKey.THEME, {})
 })
 
 export type RootStateType = ReturnType<typeof store.getState>
 export type DispatchType = typeof store.dispatch
 
 store.subscribe(() => {
-  setDataToLocalStorage<{ app: { theme: Theme } }>(LocalStorageKey.THEME, {app: {theme: store.getState().app.theme}})
+  // setDataToLocalStorage<{ app: { theme: Theme } }>(LocalStorageKey.THEME, {app: {theme: store.getState().app.theme}})
 })

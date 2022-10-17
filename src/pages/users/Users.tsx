@@ -1,8 +1,8 @@
 import React, {FC, useEffect} from "react"
-import {Loader, User, Filtration, UsersEmpty, Pagination} from "components"
+import {Filtration, Loader, Pagination, User, UsersEmpty} from "components"
 import {ReturnComponentType} from "types"
 import {useSelector} from "react-redux"
-import {useAppDispatch, useTheme} from "hooks"
+import {useAppDispatch} from "hooks"
 import {getUsers} from "store/asyncActions"
 import {Navigate} from "react-router-dom"
 import {Path} from "enums"
@@ -11,14 +11,13 @@ import {
   selectFriend,
   selectIsAuth,
   selectIsLoadingUsers,
+  selectPage,
   selectPageCount,
   selectTerm,
-  selectUsers,
-  selectPage,
-  selectTotalUsersCount
+  selectTotalUsersCount,
+  selectUsers
 } from "store/selectors"
 import style from "./Users.module.scss"
-import {Theme} from "store/slices/app/types";
 
 export const Users: FC = (): ReturnComponentType => {
 
@@ -33,7 +32,6 @@ export const Users: FC = (): ReturnComponentType => {
   const pageCount = useSelector(selectPageCount)
   const totalUsersCount = useSelector(selectTotalUsersCount)
 
-  const isDarkTheme = useTheme(Theme.DARK)
 
   const usersRender = users.map((user) => <User key={user.id} user={user}/>)
 
@@ -53,15 +51,14 @@ export const Users: FC = (): ReturnComponentType => {
 
   return (
     <div className={style.container}>
-      <div className={`${style.users} ${isDarkTheme && style.usersDark}`}>
-        <div className={`${style.body} ${isDarkTheme && style.bodyDark}`}>
+      <div className={style.users}>
+        <div className={style.body}>
           <h2 className={style.title}>Users</h2>
           <Pagination
             totalItemsCount={totalUsersCount}
             pageCount={pageCount}
             page={page}
             handleSetPageClick={handleSetPageClick}
-            isDarkTheme={isDarkTheme}
           />
         </div>
         <Filtration/>

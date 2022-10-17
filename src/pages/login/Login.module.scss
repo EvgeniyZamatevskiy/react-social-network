@@ -53,31 +53,6 @@
               color: rgb(170, 174, 179);
             }
           }
-
-          &.emailInputDark {
-            background-color: #292929;
-            border: 1px solid #545454;
-
-            &:focus {
-              border: 1px solid #447BBA;
-            }
-
-            &.errorEmailInput {
-              background-color: #522E2E;
-              border: 1px solid #FF5C5B;
-
-              &::placeholder {
-                color: rgb(170, 174, 179);
-              }
-            }
-
-            &:-webkit-autofill {
-              -webkit-text-fill-color: #FFF;
-              -webkit-box-shadow: 0 0 0px 1000px #303847 inset;
-              transition: background-color 5000s ease-in-out 0s;
-              caret-color: #FFF;
-            }
-          }
         }
       }
 
@@ -105,24 +80,6 @@
               color: rgb(170, 174, 179);
             }
           }
-
-          &.passwordInputDark {
-            background-color: #292929;
-            border: 1px solid #545454;
-
-            &:focus {
-              border: 1px solid #447BBA;
-            }
-
-            &.errorPasswordInput {
-              background-color: #522E2E;
-              border: 1px solid #FF5C5B;
-
-              &::placeholder {
-                color: rgb(170, 174, 179);
-              }
-            }
-          }
         }
       }
 
@@ -145,19 +102,6 @@
             background-image: url('../../assets/icons/checkedLight.png');
             background-size: cover;
             background-position: center;
-          }
-
-          &.rememberMeCheckboxDark {
-            border: 1.5px solid #656565;
-
-            &:checked {
-              appearance: none;
-              background-color: #fff;
-              border: none;
-              background-image: url('../../assets/icons/checkedDark.png');
-              background-size: cover;
-              background-position: center;
-            }
           }
         }
 
@@ -187,15 +131,6 @@
           &:focus {
             border: 1px solid #447BBA;
           }
-
-          &.captchaInputDark {
-            background-color: #292929;
-            border: 1px solid #545454;
-
-            &:focus {
-              border: 1px solid #71AAEB;
-            }
-          }
         }
       }
 
@@ -208,20 +143,7 @@
         transition: opacity 0.1s ease-in-out 0s;
         @include flex(column, center, center);
         text-align: center;
-
-        &.loginBtnDark {
-          background-color: #FFF;
-          color: #000;
-        }
       }
-    }
-
-    &.containerDark {
-      background-color: $bgSecondaryDark;
-      border-top: 1px solid $borderDark;
-      border-left: 1px solid $borderDark;
-      border-right: 1px solid $borderDark;
-      border-bottom: 1px solid $decorBorderDark;
     }
   }
 }
