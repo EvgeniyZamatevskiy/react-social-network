@@ -6,4 +6,9 @@ export type AppSliceInitialStateType = {
   isDisabled: boolean
 }
 
-export type ThemeType = 'dark' | 'light'
+export enum Theme {
+  DEFAULT = "light",
+  DARK = "dark"
+}
+
+export type ThemeType = "dark" | "light"

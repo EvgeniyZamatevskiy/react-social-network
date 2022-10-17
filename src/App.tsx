@@ -32,7 +32,7 @@ export const App: FC = (): ReturnComponentType => {
   return (
     <div className={`${"app"} ${isDarkTheme && "darkApp"}`}>
       {pathname !== `/${Path.NOT_FOUND_404}` && <Header/>}
-      <div className="content">
+      <div className="container">
         {pathname !== `/${Path.NOT_FOUND_404}` && pathname !== Path.LOGIN && (
           <NavBar/>
         )}

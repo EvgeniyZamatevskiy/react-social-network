@@ -14,10 +14,11 @@ body {
   background: $bgPrimaryLight;
   min-height: 100vh;
 
-  .content {
+  .container {
     display: flex;
     max-width: 975px;
     margin: 0 auto;
+    border: 1px solid red;
 
     .errorAlertContainer {
       position: fixed;
