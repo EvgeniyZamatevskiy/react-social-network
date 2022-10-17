@@ -41,14 +41,14 @@ export const User: FC<UserPropsType> = ({user}): ReturnComponentType => {
           disabled={followedStatus.isDisabled}
           onClick={onUnfollowClick}
         >
-          {followedStatus.isLoading ? <SmallLoader darkColor={"#000"} lightColor={"#fff"}/> : "Unfollow"}
+          {followedStatus.isLoading ? <SmallLoader color={"#fff"}/> : "Unfollow"}
         </button>
         : <button
           className={style.follow}
           disabled={followedStatus.isDisabled}
           onClick={onFollowClick}
         >
-          {followedStatus.isLoading ? <SmallLoader darkColor={"#000"} lightColor={"#fff"}/> : "Follow"}
+          {followedStatus.isLoading ? <SmallLoader color={"#fff"}/> : "Follow"}
         </button>}
     </div>
   )

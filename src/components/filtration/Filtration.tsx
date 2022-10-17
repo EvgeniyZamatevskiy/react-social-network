@@ -53,7 +53,7 @@ export const Filtration: FC = (): ReturnComponentType => {
       </div>
 
       {isLoadingTerm
-        ? <SmallLoader darkColor={"#828282"} lightColor={"#99A2AE"}/>
+        ? <SmallLoader color={"#99A2AE"}/>
         : <>
           <div className={style.findContainer} onMouseLeave={onSetIsVisibleParamsPopupMouseLeave}>
             <Button className={style.find} onClick={onToggleVisibleParamsPopupClick}>

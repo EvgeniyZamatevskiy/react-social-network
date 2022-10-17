@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { UserType } from 'api/users/types'
-import { EMPTY_STRING } from 'constants/base'
-import { follow, getFollowedStatus, getUsers, logOut, unfollow } from 'store/asyncActions'
-import { FriendValuesType, UsersSliceInitialStateType } from './types'
+import {createSlice, PayloadAction} from "@reduxjs/toolkit"
+import {UserType} from "api/users/types"
+import {EMPTY_STRING} from "constants/base"
+import {follow, getFollowedStatus, getUsers, logOut, unfollow} from "store/asyncActions"
+import {FriendValuesType, UsersSliceInitialStateType} from "./types"
 
 const initialState: UsersSliceInitialStateType = {
   users: [],
@@ -10,7 +10,7 @@ const initialState: UsersSliceInitialStateType = {
   isLoadingUsers: false,
   term: EMPTY_STRING,
   isLoadingTerm: false,
-  friend: 'All',
+  friend: "All",
   page: 1,
   pageCount: 10,
   isFollowed: false,
@@ -20,7 +20,7 @@ const initialState: UsersSliceInitialStateType = {
 
 export const usersSlice = createSlice({
   initialState,
-  name: 'users',
+  name: "users",
   reducers: {
     setTerm(state, action: PayloadAction<string>) {
       state.term = action.payload
@@ -96,7 +96,7 @@ export const usersSlice = createSlice({
         state.users = []
         state.totalUsersCount = 0
         state.term = EMPTY_STRING
-        state.friend = 'All'
+        state.friend = "All"
         state.page = 1
         state.pageCount = 10
         state.isFollowed = false

@@ -1,0 +1,44 @@
+@import 'src/styles/sass/mixins.scss';
+@import 'src/styles/sass/variables.scss';
+@import 'src/styles/sass/templates.scss';
+
+.avatar {
+  border-radius: 15px;
+  @extend %borderLight;
+  background-color: $bgSecondaryLight;
+  padding: 15px;
+
+  .userAvatarImage,
+  .defaultAvatarImage {
+    width: 100%;
+  }
+
+  .editLink {
+    margin-top: 12px;
+    height: 30px;
+    width: 100%;
+    background-color: #E5EBF1;
+    border-radius: 10px;
+    @include flex(row, center, center);
+    color: #2A5885;
+
+    &:hover {
+      background-color: rgb(226, 229, 234);
+      cursor: pointer;
+    }
+  }
+
+  .followBtn {
+    margin-top: 12px;
+    height: 30px;
+    width: 100%;
+    background-color: #447BBA;
+    border-radius: 10px;
+    color: #fff;
+    @include flex(row, center, center);
+
+    &:hover {
+      background-color: #5B8BC3;
+    }
+  }
+}

@@ -1,4 +1,3 @@
 export type SmallLoaderPropsType = {
-  darkColor: string
-  lightColor: string
+  color: string
 }

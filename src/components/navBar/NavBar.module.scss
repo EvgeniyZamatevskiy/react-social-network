@@ -3,7 +3,6 @@
 
 .navBar {
   margin-right: 10px;
-  padding-top: 62px;
 
   .container {
     width: 163px;
@@ -22,10 +21,6 @@
 
       &:hover {
         background-color: #E5E7EB;
-      }
-
-      &:first-child {
-        margin-top: 0;
       }
     }
   }

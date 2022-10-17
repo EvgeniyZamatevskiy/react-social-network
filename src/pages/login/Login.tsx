@@ -131,7 +131,7 @@ export const Login: FC = (): ReturnComponentType => {
             type="submit"
           >
             {isLoading ? (
-              <SmallLoader darkColor={"#000"} lightColor={"#fff"}/>
+              <SmallLoader color={"#fff"}/>
             ) : (
               "Login"
             )}
