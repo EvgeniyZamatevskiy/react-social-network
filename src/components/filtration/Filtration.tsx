@@ -1,13 +1,14 @@
-import React, { FC, useEffect, useRef, useState } from 'react'
-import { ReturnComponentType } from 'types'
-import { useAppDispatch, useDebounce, useTheme } from 'hooks'
-import { Button, Input, SmallLoader } from '../common'
-import { Icon12Dropdown, Icon20Search } from '@vkontakte/icons'
-import { selectIsLoadingTerm, selectTerm } from '../../store/selectors'
-import { useSelector } from 'react-redux'
-import { setIsLoadingTerm, setTerm } from 'store/slices/users'
-import { ParamsPopup } from '../paramsPopup'
-import style from './Filtration.module.scss'
+import React, {FC, useEffect, useRef, useState} from "react"
+import {ReturnComponentType} from "types"
+import {useAppDispatch, useDebounce, useTheme} from "hooks"
+import {Button, Input, SmallLoader} from "../common"
+import {Icon12Dropdown, Icon20Search} from "@vkontakte/icons"
+import {selectIsLoadingTerm, selectTerm} from "../../store/selectors"
+import {useSelector} from "react-redux"
+import {setIsLoadingTerm, setTerm} from "store/slices/users"
+import {ParamsPopup} from "../paramsPopup"
+import style from "./Filtration.module.scss"
+import {Theme} from "store/slices/app/types";
 
 export const Filtration: FC = (): ReturnComponentType => {
 
@@ -21,7 +22,7 @@ export const Filtration: FC = (): ReturnComponentType => {
 
   const isMounted = useRef(false)
 
-  const isDarkTheme = useTheme('dark')
+  const isDarkTheme = useTheme(Theme.DARK)
   const debouncedValue = useDebounce(search, 500)
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export const Filtration: FC = (): ReturnComponentType => {
       </div>
 
       {isLoadingTerm
-        ? <SmallLoader darkColor={'#828282'} lightColor={'#99A2AE'}/>
+        ? <SmallLoader darkColor={"#828282"} lightColor={"#99A2AE"}/>
         : <>
           <div className={style.findContainer} onMouseLeave={onSetIsVisibleParamsPopupMouseLeave}>
             <Button className={style.find} onClick={onToggleVisibleParamsPopupClick}>

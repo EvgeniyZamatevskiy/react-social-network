@@ -1,14 +1,15 @@
-import React, { FC, useState } from 'react'
-import { EditableItem, Line } from 'components'
-import { ReturnComponentType } from 'types/ReturnComponentType'
-import { InformationPropsType } from './types'
-import { useAppDispatch, useTheme } from 'hooks'
-import { useSelector } from 'react-redux'
-import { selectFullName, selectStatus } from 'store/selectors'
-import { updateStatus } from 'store/asyncActions'
-import { Data } from '../data'
-import { EditData } from '../editData'
-import style from './Information.module.scss'
+import React, {FC, useState} from "react"
+import {EditableItem, Line} from "components"
+import {ReturnComponentType} from "types/ReturnComponentType"
+import {InformationPropsType} from "./types"
+import {useAppDispatch, useTheme} from "hooks"
+import {useSelector} from "react-redux"
+import {selectFullName, selectStatus} from "store/selectors"
+import {updateStatus} from "store/asyncActions"
+import {Data} from "../data"
+import {EditData} from "../editData"
+import style from "./Information.module.scss"
+import {Theme} from "store/slices/app/types";
 
 export const Information: FC<InformationPropsType> = ({isOwner}): ReturnComponentType => {
 
@@ -19,7 +20,7 @@ export const Information: FC<InformationPropsType> = ({isOwner}): ReturnComponen
 
   const [isEditFullInfo, setIsEditFullInfo] = useState(false)
 
-  const isDarkTheme = useTheme('dark')
+  const isDarkTheme = useTheme(Theme.DARK)
 
   const handleUpdateStatus = (updatedTitle: string): void => {
     dispatch(updateStatus(updatedTitle))
@@ -30,7 +31,7 @@ export const Information: FC<InformationPropsType> = ({isOwner}): ReturnComponen
 
       <div className={style.nameContainer}>
         <div className={style.name}>{fullName}</div>
-        <span className={style.online}>{isOwner ? 'online' : 'seen recently'}</span>
+        <span className={style.online}>{isOwner ? "online" : "seen recently"}</span>
       </div>
 
       <div className={style.statusContainer}>

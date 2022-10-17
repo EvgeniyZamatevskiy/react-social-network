@@ -1,12 +1,13 @@
-import React, { FC, useEffect, useRef, useState } from 'react'
-import { ReturnComponentType } from 'types'
-import { Popup } from 'components/popup'
-import { useSelector } from 'react-redux'
-import { selectIsAuth, selectTheme } from 'store/selectors'
-import { getBackgroundColor } from 'utils'
-import { Icon12Dropdown } from '@vkontakte/icons'
-import { useTheme } from 'hooks'
-import style from './Header.module.scss'
+import React, {FC, useEffect, useRef, useState} from "react"
+import {ReturnComponentType} from "types"
+import {Popup} from "components/popup"
+import {useSelector} from "react-redux"
+import {selectIsAuth, selectTheme} from "store/selectors"
+import {getBackgroundColor} from "utils"
+import {Icon12Dropdown} from "@vkontakte/icons"
+import {useTheme} from "hooks"
+import style from "./Header.module.scss"
+import {Theme} from "store/slices/app/types";
 
 export const Header: FC = (): ReturnComponentType => {
 
@@ -18,13 +19,13 @@ export const Header: FC = (): ReturnComponentType => {
 
   const authorizedUserContainerRef = useRef<HTMLDivElement>(null)
 
-  const isDarkTheme = useTheme('dark')
+  const isDarkTheme = useTheme(Theme.DARK)
 
   const authorizedUserContainerStyle = {
-    backgroundColor: getBackgroundColor(isActivePopup, theme, '#F2F3F5', '#3D3D3D')
+    backgroundColor: getBackgroundColor(isActivePopup, theme, "#F2F3F5", "#3D3D3D")
   }
   const authorizedUserStyle = {
-    backgroundColor: getBackgroundColor(isHover, theme, '#F5F6F8', '#333333')
+    backgroundColor: getBackgroundColor(isHover, theme, "#F5F6F8", "#333333")
   }
 
   useEffect(() => {
@@ -36,10 +37,10 @@ export const Header: FC = (): ReturnComponentType => {
       }
     }
 
-    document.body.addEventListener('click', onOutsideClick)
+    document.body.addEventListener("click", onOutsideClick)
 
     return () => {
-      document.body.removeEventListener('click', onOutsideClick)
+      document.body.removeEventListener("click", onOutsideClick)
     }
   }, [])
 
@@ -80,7 +81,7 @@ export const Header: FC = (): ReturnComponentType => {
               style={authorizedUserStyle}
               onClick={onToggleIsActivePopupClick}
             >
-              <Icon12Dropdown className={style.arrowDownIcon} width={24} height={16} fill={'#656565'}/>
+              <Icon12Dropdown className={style.arrowDownIcon} width={24} height={16} fill={"#656565"}/>
             </div>
             {isActivePopup && <Popup setIsActivePopup={setIsActivePopup}/>}
           </div>}

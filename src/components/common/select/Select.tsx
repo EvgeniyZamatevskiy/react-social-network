@@ -1,8 +1,9 @@
-import React, { ChangeEvent, FC } from 'react'
-import { ReturnComponentType } from 'types'
-import { SelectPropsType } from './types'
-import style from './Select.module.scss'
-import { useTheme } from 'hooks'
+import React, {ChangeEvent, FC} from "react"
+import {ReturnComponentType} from "types"
+import {SelectPropsType} from "./types"
+import style from "./Select.module.scss"
+import {useTheme} from "hooks"
+import {Theme} from "store/slices/app/types";
 
 export const Select: FC<SelectPropsType> =
   ({
@@ -12,7 +13,7 @@ export const Select: FC<SelectPropsType> =
      ...restProps
    }): ReturnComponentType => {
 
-    const isDarkTheme = useTheme('dark')
+    const isDarkTheme = useTheme(Theme.DARK)
 
     const optionsRender = options.map((option, index) => {
       return <option key={index} className={`${style.option} ${isDarkTheme && style.optionDark}`}>{option}</option>

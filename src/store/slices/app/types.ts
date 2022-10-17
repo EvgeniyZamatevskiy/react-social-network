@@ -1,5 +1,5 @@
 export type AppSliceInitialStateType = {
-  theme: ThemeType
+  theme: Theme
   errorMessage: string
   isLoading: boolean
   isInitializedApp: boolean
@@ -10,5 +10,3 @@ export enum Theme {
   DEFAULT = "light",
   DARK = "dark"
 }
-
-export type ThemeType = "dark" | "light"

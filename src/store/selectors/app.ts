@@ -1,7 +1,7 @@
-import { RootStateType } from 'store'
-import { ThemeType } from 'store/slices/app/types'
+import {RootStateType} from "store"
+import {Theme} from "store/slices/app/types"
 
-export const selectTheme = (state: RootStateType): ThemeType => state.app.theme
+export const selectTheme = (state: RootStateType): Theme => state.app.theme
 
 export const selectErrorMessage = (state: RootStateType): string => state.app.errorMessage
 

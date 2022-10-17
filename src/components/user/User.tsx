@@ -1,13 +1,14 @@
-import React, { FC } from 'react'
-import { ReturnComponentType } from 'types'
-import { UserPropsType } from './types'
-import { useAppDispatch, useTheme } from 'hooks'
-import { follow, unfollow } from 'store/asyncActions'
-import { SmallLoader } from 'components/common'
-import { Link } from 'react-router-dom'
-import { Path } from 'enums'
-import defaultAvatar from 'assets/images/defaultAvatar.png'
-import style from './User.module.scss'
+import React, {FC} from "react"
+import {ReturnComponentType} from "types"
+import {UserPropsType} from "./types"
+import {useAppDispatch, useTheme} from "hooks"
+import {follow, unfollow} from "store/asyncActions"
+import {SmallLoader} from "components/common"
+import {Link} from "react-router-dom"
+import {Path} from "enums"
+import defaultAvatar from "assets/images/defaultAvatar.png"
+import style from "./User.module.scss"
+import {Theme} from "store/slices/app/types";
 
 export const User: FC<UserPropsType> = ({user}): ReturnComponentType => {
 
@@ -15,7 +16,7 @@ export const User: FC<UserPropsType> = ({user}): ReturnComponentType => {
 
   const dispatch = useAppDispatch()
 
-  const isDarkTheme = useTheme('dark')
+  const isDarkTheme = useTheme(Theme.DARK)
 
   const onFollowClick = (): void => {
     dispatch(follow(id))
@@ -42,14 +43,14 @@ export const User: FC<UserPropsType> = ({user}): ReturnComponentType => {
           disabled={followedStatus.isDisabled}
           onClick={onUnfollowClick}
         >
-          {followedStatus.isLoading ? <SmallLoader darkColor={'#000'} lightColor={'#fff'}/> : 'Unfollow'}
+          {followedStatus.isLoading ? <SmallLoader darkColor={"#000"} lightColor={"#fff"}/> : "Unfollow"}
         </button>
         : <button
           className={`${style.follow} ${isDarkTheme && style.followDark}`}
           disabled={followedStatus.isDisabled}
           onClick={onFollowClick}
         >
-          {followedStatus.isLoading ? <SmallLoader darkColor={'#000'} lightColor={'#fff'}/> : 'Follow'}
+          {followedStatus.isLoading ? <SmallLoader darkColor={"#000"} lightColor={"#fff"}/> : "Follow"}
         </button>}
     </div>
   )

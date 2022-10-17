@@ -8,6 +8,7 @@ import {getAuthorizedUser} from "store/asyncActions"
 import {Path} from "enums"
 import {useAppDispatch, useErrorAlert, useTheme} from "hooks"
 import {Alert, Header, Loader, NavBar} from "components"
+import {Theme} from "store/slices/app/types";
 
 export const App: FC = (): ReturnComponentType => {
 
@@ -15,7 +16,7 @@ export const App: FC = (): ReturnComponentType => {
 
   const {pathname} = useLocation()
 
-  const isDarkTheme = useTheme("dark")
+  const isDarkTheme = useTheme(Theme.DARK)
   const closeAlert = useErrorAlert(3000)
 
   const errorMessage = useSelector(selectErrorMessage)

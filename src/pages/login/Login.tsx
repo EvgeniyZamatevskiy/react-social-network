@@ -16,6 +16,7 @@ import {login} from "store/asyncActions"
 import {Navigate} from "react-router-dom"
 import {Path} from "enums"
 import style from "./Login.module.scss"
+import {Theme} from "store/slices/app/types";
 
 export const Login: FC = (): ReturnComponentType => {
   const dispatch = useAppDispatch()
@@ -27,7 +28,7 @@ export const Login: FC = (): ReturnComponentType => {
 
   const [inputType, setInputType] = useState<InputType>("password")
 
-  const isDarkTheme = useTheme("dark")
+  const isDarkTheme = useTheme(Theme.DARK)
 
   const {
     register,

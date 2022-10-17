@@ -1,14 +1,14 @@
-import { EMPTY_STRING } from 'constants/base'
-import { ThemeType } from 'store/slices/app/types'
+import {EMPTY_STRING} from "constants/base"
+import {Theme} from "store/slices/app/types"
 
-export const getBackgroundColor = (condition: boolean, theme: ThemeType, bgLight: string, bgDark: string): string => {
+export const getBackgroundColor = (condition: boolean, theme: Theme, bgLight: string, bgDark: string): string => {
   let backgroundColor = EMPTY_STRING
 
-  if (condition && theme === 'dark') {
+  if (condition && theme === Theme.DARK) {
     backgroundColor = bgDark
   }
 
-  if (condition && theme === 'light') {
+  if (condition && theme === Theme.DEFAULT) {
     backgroundColor = bgLight
   }
 

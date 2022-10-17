@@ -1,12 +1,12 @@
-import React, { FC, useEffect } from 'react'
-import { Loader, User, Filtration, UsersEmpty, Pagination } from 'components'
-import { ReturnComponentType } from 'types'
-import { useSelector } from 'react-redux'
-import { useAppDispatch, useTheme } from 'hooks'
-import { getUsers } from 'store/asyncActions'
-import { Navigate } from 'react-router-dom'
-import { Path } from 'enums'
-import { setPage } from 'store/slices/users'
+import React, {FC, useEffect} from "react"
+import {Loader, User, Filtration, UsersEmpty, Pagination} from "components"
+import {ReturnComponentType} from "types"
+import {useSelector} from "react-redux"
+import {useAppDispatch, useTheme} from "hooks"
+import {getUsers} from "store/asyncActions"
+import {Navigate} from "react-router-dom"
+import {Path} from "enums"
+import {setPage} from "store/slices/users"
 import {
   selectFriend,
   selectIsAuth,
@@ -16,8 +16,9 @@ import {
   selectUsers,
   selectPage,
   selectTotalUsersCount
-} from 'store/selectors'
-import style from './Users.module.scss'
+} from "store/selectors"
+import style from "./Users.module.scss"
+import {Theme} from "store/slices/app/types";
 
 export const Users: FC = (): ReturnComponentType => {
 
@@ -32,7 +33,7 @@ export const Users: FC = (): ReturnComponentType => {
   const pageCount = useSelector(selectPageCount)
   const totalUsersCount = useSelector(selectTotalUsersCount)
 
-  const isDarkTheme = useTheme('dark')
+  const isDarkTheme = useTheme(Theme.DARK)
 
   const usersRender = users.map((user) => <User key={user.id} user={user}/>)
 
