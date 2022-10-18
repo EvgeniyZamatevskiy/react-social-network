@@ -1,17 +1,17 @@
-import { Path } from 'enums'
-import { lazy } from 'react'
-import { Navigate } from 'react-router-dom'
+import {Path} from "enums"
+import {lazy} from "react"
+import {Navigate} from "react-router-dom"
 
-const NotFound = lazy(() => import(/* webpackChunkName: 'NotFound' */'pages/notFound')
+const NotFound = lazy(() => import(/* webpackChunkName: 'NotFound' */"pages")
   .then(module => ({default: module.NotFound})))
 
-const Login = lazy(() => import(/* webpackChunkName: 'Login' */'pages/login')
+const Login = lazy(() => import(/* webpackChunkName: 'Login' */"pages")
   .then(module => ({default: module.Login})))
 
-const Profile = lazy(() => import(/* webpackChunkName: 'Profile' */'pages/profile')
+const Profile = lazy(() => import(/* webpackChunkName: 'Profile' */"pages")
   .then(module => ({default: module.Profile})))
 
-const Users = lazy(() => import(/* webpackChunkName: 'Users' */'pages/users')
+const Users = lazy(() => import(/* webpackChunkName: 'Users' */"pages")
   .then(module => ({default: module.Users})))
 
 export const ROUTES = [

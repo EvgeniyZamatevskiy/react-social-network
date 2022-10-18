@@ -1,1 +1,0 @@
-export { SearchPosts } from './SearchPosts'

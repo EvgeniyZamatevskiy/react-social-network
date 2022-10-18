@@ -1,34 +1,5 @@
-@import 'src/styles/sass/mixins.scss';
-@import 'src/styles/sass/variables.scss';
-@import 'src/styles/sass/templates.scss';
-
 .profile {
   padding-bottom: 100px;
   width: 100%;
-
-  .container {
-    width: 100%;
-    display: flex;
-
-    .avatarContainer {
-
-    }
-
-    .rightBlock {
-      margin-left: 13px;
-      width: 100%;
-
-      .searchPosts {
-        margin-top: 13px;
-        width: 552px;
-        height: 45px;
-        background-color: $bgSecondaryLight;
-        border-radius: 10px 10px 0px 0px;
-        padding: 15px 20px 12px 20px;
-        @extend %borderLight;
-        border-top: none;
-      }
-    }
-  }
+  display: flex;
 }
-

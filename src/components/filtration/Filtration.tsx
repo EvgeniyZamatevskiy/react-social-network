@@ -6,7 +6,7 @@ import {Icon12Dropdown, Icon20Search} from "@vkontakte/icons"
 import {selectIsLoadingTerm, selectTerm} from "store/selectors"
 import {useSelector} from "react-redux"
 import {setIsLoadingTerm, setTerm} from "store/slices/users"
-import {ParamsPopup} from "../paramsPopup"
+import {ParamsPopup} from "./paramsPopup"
 import style from "./Filtration.module.scss"
 
 export const Filtration: FC = (): ReturnComponentType => {

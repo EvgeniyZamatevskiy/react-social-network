@@ -1,1 +1,2 @@
-export { Filtration } from './Filtration'
+export {Filtration} from "./Filtration"
+export {ParamsPopup} from "./paramsPopup"

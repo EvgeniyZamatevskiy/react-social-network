@@ -6,10 +6,9 @@ import {Navigate, useParams} from "react-router-dom"
 import {ReturnComponentType} from "types"
 import {selectAuthorizedUserId, selectIsAuth} from "store/selectors"
 import {getFollowedStatus, getStatus, getUserProfile} from "store/asyncActions"
-import {Information} from "./information"
-import {Posts, PostsEmpty} from "components"
-import {Avatar} from "./avatar"
 import style from "./Profile.module.scss"
+import {ProfileLeftBlock} from "./profileLeftBlock"
+import {ProfileRightBlock} from "./profileRightBlock"
 
 export const Profile: FC = (): ReturnComponentType => {
 
@@ -38,23 +37,8 @@ export const Profile: FC = (): ReturnComponentType => {
 
   return (
     <div className={style.profile}>
-      <div className={style.container}>
-
-        <div className={style.avatarContainer}>
-          <Avatar isOwner={isOwner} userId={Number(userId)}/>
-        </div>
-
-        <div className={style.rightBlock}>
-          <Information isOwner={isOwner}/>
-          {isOwner
-            ? <Posts/>
-            : <>
-              <div className={style.searchPosts}>No posts yet</div>
-              <PostsEmpty/>
-            </>
-          }
-        </div>
-      </div>
+      <ProfileLeftBlock isOwner={isOwner} userId={Number(userId)}/>
+      <ProfileRightBlock isOwner={isOwner}/>
     </div>
   )
 }

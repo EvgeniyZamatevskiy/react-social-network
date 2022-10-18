@@ -1,6 +1,6 @@
 import React, {FC} from "react"
 import {ReturnComponentType} from "types"
-import {AvatarPropsType} from "./types"
+import {AvatarPropsType} from "pages/profile/profileLeftBlock/avatar/types"
 import {Button, File, SmallLoader} from "components"
 import {useSelector} from "react-redux"
 import {
@@ -12,7 +12,7 @@ import {
 } from "store/selectors"
 import {useAppDispatch, useFollow} from "hooks"
 import defaultAvatar from "assets/images/defaultAvatar.png"
-import style from "./Avatar.module.scss"
+import style from "pages/profile/profileLeftBlock/avatar/Avatar.module.scss"
 import {updatePhoto} from "store/asyncActions";
 import {setErrorMessage} from "store/slices/app";
 
