@@ -23,7 +23,6 @@ export const Login: FC = (): ReturnComponentType => {
 
   const [inputType, setInputType] = useState<InputType>("password")
 
-
   const {
     register,
     handleSubmit,
@@ -57,16 +56,10 @@ export const Login: FC = (): ReturnComponentType => {
 
   return (
     <div className={style.login}>
-      <div
-        className={style.container}
-      >
+      <div className={style.container}>
         <h2 className={style.title}>welcome</h2>
 
-        <form
-          noValidate
-          className={style.form}
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form noValidate className={style.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={style.emailInputContainer}>
             <input
               className={`${style.emailInput} ${errorEmailMessage && style.errorEmailInput}`}
@@ -89,11 +82,7 @@ export const Login: FC = (): ReturnComponentType => {
               placeholder="Enter password"
               {...register("password", passwordSettings)}
             />
-            <Eye
-              inputType={inputType}
-              setInputType={setInputType}
-              errorPasswordMessage={errorPasswordMessage}
-            />
+            <Eye type={inputType} setType={setInputType} errorPasswordMessage={errorPasswordMessage}/>
 
             {errors?.password && (
               <>
@@ -106,11 +95,7 @@ export const Login: FC = (): ReturnComponentType => {
           </div>
 
           <label className={style.label}>
-            <input
-              className={style.rememberMeCheckbox}
-              type="checkbox"
-              {...register("rememberMe")}
-            />
+            <input className={style.rememberMeCheckbox} type="checkbox"{...register("rememberMe")}/>
             <span className={style.rememberMe}>Remember me</span>
           </label>
 
@@ -120,22 +105,12 @@ export const Login: FC = (): ReturnComponentType => {
               <input
                 className={style.captchaInput}
                 type="text"
-                placeholder="Code from the picture"
-                {...register("captcha")}
-              />
+                placeholder="Code from the picture"{...register("captcha")}/>
             </div>
           )}
 
-          <button
-            className={style.loginBtn}
-            disabled={!isValid || isDisabled}
-            type="submit"
-          >
-            {isLoading ? (
-              <SmallLoader/>
-            ) : (
-              "Login"
-            )}
+          <button className={style.loginBtn} disabled={!isValid || isDisabled} type="submit">
+            {isLoading ? <SmallLoader/> : "Login"}
           </button>
         </form>
       </div>

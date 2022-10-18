@@ -1,7 +1,7 @@
 export type EyePropsType = {
-  inputType: InputType
-  setInputType: (inputType: InputType) => void
+  type: InputType
+  setType: (type: InputType) => void
   errorPasswordMessage: string | undefined
 }
 
-export type InputType = 'password' | 'text'
+export type InputType = "password" | "text"
