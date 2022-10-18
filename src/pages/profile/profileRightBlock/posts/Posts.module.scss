@@ -1,0 +1,23 @@
+@import 'src/styles/sass/mixins.scss';
+@import 'src/styles/sass/variables.scss';
+@import 'src/styles/sass/templates.scss';
+
+.posts {
+  width: 100%;
+  margin-top: 13px;
+
+  .allPosts {
+    margin-top: 13px;
+    height: 45px;
+    background-color: $bgSecondaryLight;
+    border-radius: 10px 10px 0 0;
+    padding: 15px 20px 12px 20px;
+    @extend %borderLight;
+    @include flex(row, space-between, center);
+
+    .icon {
+      color: #aeb9cd;
+      cursor: pointer;
+    }
+  }
+}
