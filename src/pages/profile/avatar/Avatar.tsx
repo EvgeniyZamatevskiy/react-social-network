@@ -10,11 +10,15 @@ import {
   selectPhotoLarge,
   selectPhotoSmall
 } from "store/selectors"
-import {useFollow} from "hooks"
+import {useAppDispatch, useFollow} from "hooks"
 import defaultAvatar from "assets/images/defaultAvatar.png"
 import style from "./Avatar.module.scss"
+import {updatePhoto} from "store/asyncActions";
+import {setErrorMessage} from "store/slices/app";
 
 export const Avatar: FC<AvatarPropsType> = ({isOwner, userId}): ReturnComponentType => {
+
+  const dispatch = useAppDispatch()
 
   const photoLarge = useSelector(selectPhotoLarge)
   const photoSmall = useSelector(selectPhotoSmall)
@@ -26,6 +30,14 @@ export const Avatar: FC<AvatarPropsType> = ({isOwner, userId}): ReturnComponentT
 
   const userAvatar = photoSmall || photoLarge
 
+  const handleUpdatePhotoChange = (file: File): void => {
+    dispatch(updatePhoto(file))
+  }
+
+  const handleSetErrorMessage = (errorMessage: string): void => {
+    dispatch(setErrorMessage(errorMessage))
+  }
+
   return (
     <div className={style.avatar}>
 
@@ -34,7 +46,13 @@ export const Avatar: FC<AvatarPropsType> = ({isOwner, userId}): ReturnComponentT
         : <img className={style.defaultAvatarImage} src={defaultAvatar} alt="default avatar"/>}
 
       {isOwner
-        ? <File classNameButton={style.editLink}>Change avatar</File>
+        ? <File
+          handleUpdatePhotoChange={handleUpdatePhotoChange}
+          handleSetErrorMessage={handleSetErrorMessage}
+          buttonClass={style.changeAvatar}
+        >
+          Change avatar
+        </File>
         : isFollowed
           ? <Button className={style.followButton} isPrimary onClick={unfollow} disabled={isDisabledFollowed}>
             {isLoadingFollowed ? <SmallLoader/> : "Unfollow"}
@@ -43,7 +61,6 @@ export const Avatar: FC<AvatarPropsType> = ({isOwner, userId}): ReturnComponentT
           : <Button className={style.followButton} isPrimary onClick={follow} disabled={isDisabledFollowed}>
             {isLoadingFollowed ? <SmallLoader/> : "Follow"}
           </Button>
-
       }
     </div>
   )

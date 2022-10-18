@@ -1,6 +1,8 @@
-import { ReactNode } from 'react'
+import {ReactNode} from "react"
 
 export type FilePropsType = {
-  classNameButton?: string
+  buttonClass?: string
   children: ReactNode
+  handleUpdatePhotoChange: (file: File) => void
+  handleSetErrorMessage: (errorMessage: string) => void
 }

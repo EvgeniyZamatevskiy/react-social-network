@@ -1,2 +1,2 @@
-export { Loader } from './Loader'
-export { SmallLoader } from './smallLoader'
+export {Loader} from "./Loader"
+export {SmallLoader} from "./smallLoader"

@@ -1,5 +1,4 @@
 export * from "./loaders"
-export {Select} from "./select"
 export {Button} from "./button"
 export {Input} from "./input"
 export {Eye} from "./eye"
