@@ -1,11 +1,11 @@
 @import 'src/styles/sass/mixins.scss';
 @import 'src/styles/sass/variables.scss';
+@import 'src/styles/sass/templates.scss';
 
-.container {
+.information {
   width: 552px;
   background-color: #fff;
-  //min-height: 162px;
-  border: 1px solid $borderLight;
+  @extend %borderLight;
   padding: 15px 20px;
   border-radius: 15px;
 
@@ -16,7 +16,7 @@
       font-size: 19px;
     }
 
-    .online {
+    span {
       color: #8B95A1;
       font-size: 12.5px;
     }
@@ -26,12 +26,11 @@
     margin: -4px -6px;
     margin-top: 0.1px;
     margin-bottom: 17px;
+    height: 24px;
 
     .status {
-      padding: 4px 6px;
+      padding: 5px 6px;
       color: #939393;
-      width: 100%;
-      text-align: left;
     }
   }
 }

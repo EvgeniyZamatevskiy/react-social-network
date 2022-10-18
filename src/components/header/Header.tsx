@@ -23,8 +23,8 @@ export const Header: FC = (): ReturnComponentType => {
       <div className={style.container}>
         <h1 className={style.title}>social network</h1>
         {isAuth &&
-          <Button className={style.logOutBtn} onClick={onLogOutClick}>
-            <Icon20DoorArrowRightOutline className={style.logOutIcon} width={17} height={17} fill={"#71AAEB"}/>
+          <Button className={style.logOutButton} onClick={onLogOutClick}>
+            <Icon20DoorArrowRightOutline className={style.logOutIcon} width={17} height={17}/>
             Log out
           </Button>
         }

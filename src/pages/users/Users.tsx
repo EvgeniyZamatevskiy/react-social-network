@@ -32,7 +32,6 @@ export const Users: FC = (): ReturnComponentType => {
   const pageCount = useSelector(selectPageCount)
   const totalUsersCount = useSelector(selectTotalUsersCount)
 
-
   const usersRender = users.map((user) => <User key={user.id} user={user}/>)
 
   useEffect(() => {

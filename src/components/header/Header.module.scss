@@ -23,13 +23,14 @@
       letter-spacing: 1px;
     }
 
-    .logOutBtn {
+    .logOutButton {
       height: 100%;
       padding: 0 10px;
       @include flex(row, stretch, center);
 
       .logOutIcon {
         margin-right: 10px;
+        color: $colorIconLight;
       }
 
       &:hover {

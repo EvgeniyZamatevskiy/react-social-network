@@ -1,1 +1,0 @@
-export { ErrorCircle } from './ErrorCircle'

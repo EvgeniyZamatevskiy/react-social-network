@@ -12,7 +12,7 @@
   .input {
     color: #000;
     padding: 4px 6px;
-    margin: 4px 0px;
+    margin: 4px 0;
     width: 100%;
     text-align: left;
     border-radius: 7px;
@@ -20,25 +20,12 @@
   }
 }
 
-.fullInfoBtn {
-  @include flex(row, center, center);
-  margin-top: 10px;
-  border-radius: 8px;
-  height: 35px;
-  width: 100%;
-  color: #2A5885;
-
-  &:hover {
-    background-color: #EDEEF0;
-  }
-}
-
 .buttons {
   @include flex(row, space-between, center);
   margin-top: 20px;
 
-  .editBtn,
-  .backBtn {
+  .saveButton,
+  .backButton {
     width: 59.8px;
   }
 }

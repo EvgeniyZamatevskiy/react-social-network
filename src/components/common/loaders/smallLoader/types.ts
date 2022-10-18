@@ -1,3 +1,3 @@
 export type SmallLoaderPropsType = {
-  color: string
+  color?: string
 }

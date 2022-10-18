@@ -1,1 +1,1 @@
-export { EditableItem } from './EditableItem'
+export {EditableItem} from "./EditableItem"

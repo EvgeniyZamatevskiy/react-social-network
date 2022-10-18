@@ -19,17 +19,16 @@ export const Information: FC<InformationPropsType> = ({isOwner}): ReturnComponen
 
   const [isEditFullInfo, setIsEditFullInfo] = useState(false)
 
-
   const handleUpdateStatus = (updatedTitle: string): void => {
     dispatch(updateStatus(updatedTitle))
   }
 
   return (
-    <div className={style.container}>
+    <div className={style.information}>
 
       <div className={style.nameContainer}>
         <div className={style.name}>{fullName}</div>
-        <span className={style.online}>{isOwner ? "online" : "seen recently"}</span>
+        <span>{isOwner ? "online" : "seen recently"}</span>
       </div>
 
       <div className={style.statusContainer}>

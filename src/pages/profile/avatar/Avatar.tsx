@@ -10,14 +10,11 @@ import {
   selectPhotoLarge,
   selectPhotoSmall
 } from "store/selectors"
-import {follow, unfollow} from "store/asyncActions"
-import {useAppDispatch} from "hooks"
+import {useFollow} from "hooks"
 import defaultAvatar from "assets/images/defaultAvatar.png"
 import style from "./Avatar.module.scss"
 
 export const Avatar: FC<AvatarPropsType> = ({isOwner, userId}): ReturnComponentType => {
-
-  const dispatch = useAppDispatch()
 
   const photoLarge = useSelector(selectPhotoLarge)
   const photoSmall = useSelector(selectPhotoSmall)
@@ -25,15 +22,9 @@ export const Avatar: FC<AvatarPropsType> = ({isOwner, userId}): ReturnComponentT
   const isLoadingFollowed = useSelector(selectIsLoadingFollowed)
   const isDisabledFollowed = useSelector(selectIsDisabledFollowed)
 
+  const {follow, unfollow} = useFollow(userId)
+
   const userAvatar = photoSmall || photoLarge
-
-  const onFollowClick = (): void => {
-    dispatch(follow(userId))
-  }
-
-  const onUnfollowClick = (): void => {
-    dispatch(unfollow(userId))
-  }
 
   return (
     <div className={style.avatar}>
@@ -45,12 +36,14 @@ export const Avatar: FC<AvatarPropsType> = ({isOwner, userId}): ReturnComponentT
       {isOwner
         ? <File classNameButton={style.editLink}>Change avatar</File>
         : isFollowed
-          ? <Button className={style.followBtn} onClick={onUnfollowClick} disabled={isDisabledFollowed}>
-            {isLoadingFollowed ? <SmallLoader color={"#fff"}/> : "Unfollow"}
+          ? <Button className={style.followButton} isPrimary onClick={unfollow} disabled={isDisabledFollowed}>
+            {isLoadingFollowed ? <SmallLoader/> : "Unfollow"}
           </Button>
-          : <Button className={style.followBtn} onClick={onFollowClick} disabled={isDisabledFollowed}>
-            {isLoadingFollowed ? <SmallLoader color={"#fff"}/> : "Follow"}
+
+          : <Button className={style.followButton} isPrimary onClick={follow} disabled={isDisabledFollowed}>
+            {isLoadingFollowed ? <SmallLoader/> : "Follow"}
           </Button>
+
       }
     </div>
   )

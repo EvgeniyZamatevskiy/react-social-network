@@ -34,7 +34,7 @@ export const File: FC<FilePropsType> = ({classNameButton, children}): ReturnComp
   return (
     <label className={style.label}>
       <input className={style.file} type="file" onChange={onUploadFileChange} ref={fileRef}/>
-      <Button className={classNameButton} onClick={onSelectFileClick}>
+      <Button isPrimary className={classNameButton} onClick={onSelectFileClick}>
         {children}
       </Button>
     </label>

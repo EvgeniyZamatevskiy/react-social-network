@@ -4,12 +4,13 @@ import {ReturnComponentType} from "types"
 import {useSelector} from "react-redux"
 import {selectCaptchaUrl, selectIsAuth, selectIsDisabled, selectIsLoading} from "store/selectors"
 import {InputType} from "components/common/eye/types"
-import {ErrorCircle, Eye, SmallLoader} from "components"
+import {Eye, SmallLoader} from "components"
 import {LoginDataType} from "api/auth/types"
 import {useAppDispatch} from "hooks"
 import {login} from "store/asyncActions"
 import {Navigate} from "react-router-dom"
 import {Path} from "enums"
+import {Icon20ErrorCircleOutline} from "@vkontakte/icons"
 import style from "./Login.module.scss"
 
 export const Login: FC = (): ReturnComponentType => {
@@ -75,7 +76,7 @@ export const Login: FC = (): ReturnComponentType => {
             />
             {errors?.email && (
               <>
-                <ErrorCircle/>
+                <Icon20ErrorCircleOutline className={style.errorCircle} width={18.86} height={18.86}/>
                 <p className={style.errorEmailMessage}>{errorEmailMessage}</p>
               </>
             )}
@@ -96,7 +97,7 @@ export const Login: FC = (): ReturnComponentType => {
 
             {errors?.password && (
               <>
-                <ErrorCircle/>
+                <Icon20ErrorCircleOutline className={style.errorCircle} width={18.86} height={18.86}/>
                 <p className={style.errorPasswordMessage}>
                   {errorPasswordMessage}
                 </p>
@@ -131,7 +132,7 @@ export const Login: FC = (): ReturnComponentType => {
             type="submit"
           >
             {isLoading ? (
-              <SmallLoader color={"#fff"}/>
+              <SmallLoader/>
             ) : (
               "Login"
             )}

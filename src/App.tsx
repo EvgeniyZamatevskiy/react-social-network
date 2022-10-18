@@ -29,7 +29,7 @@ export const App: FC = (): ReturnComponentType => {
   }
 
   return (
-    <div className={`app`}>
+    <div className="app">
       {pathname !== `/${Path.NOT_FOUND_404}` && <Header/>}
       <div className="container">
         {pathname !== `/${Path.NOT_FOUND_404}` && pathname !== Path.LOGIN && (

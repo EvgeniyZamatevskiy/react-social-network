@@ -1,9 +1,8 @@
 import React, {FC} from "react"
 import {ReturnComponentType} from "types"
 import {UserPropsType} from "./types"
-import {useAppDispatch} from "hooks"
-import {follow, unfollow} from "store/asyncActions"
-import {SmallLoader} from "components/common"
+import {useFollow} from "hooks"
+import {Button, SmallLoader} from "components/common"
 import {Link} from "react-router-dom"
 import {Path} from "enums"
 import defaultAvatar from "assets/images/defaultAvatar.png"
@@ -13,16 +12,7 @@ export const User: FC<UserPropsType> = ({user}): ReturnComponentType => {
 
   const {id, followed, followedStatus, status, photos, name} = user
 
-  const dispatch = useAppDispatch()
-
-
-  const onFollowClick = (): void => {
-    dispatch(follow(id))
-  }
-
-  const onUnfollowClick = (): void => {
-    dispatch(unfollow(id))
-  }
+  const {follow, unfollow} = useFollow(id)
 
   return (
     <div className={style.user}>
@@ -36,20 +26,12 @@ export const User: FC<UserPropsType> = ({user}): ReturnComponentType => {
         </div>
       </div>
       {followed
-        ? <button
-          className={style.follow}
-          disabled={followedStatus.isDisabled}
-          onClick={onUnfollowClick}
-        >
-          {followedStatus.isLoading ? <SmallLoader color={"#fff"}/> : "Unfollow"}
-        </button>
-        : <button
-          className={style.follow}
-          disabled={followedStatus.isDisabled}
-          onClick={onFollowClick}
-        >
-          {followedStatus.isLoading ? <SmallLoader color={"#fff"}/> : "Follow"}
-        </button>}
+        ? <Button isPrimary className={style.followButton} disabled={followedStatus.isDisabled} onClick={unfollow}>
+          {followedStatus.isLoading ? <SmallLoader/> : "Unfollow"}
+        </Button>
+        : <Button isPrimary className={style.followButton} disabled={followedStatus.isDisabled} onClick={follow}>
+          {followedStatus.isLoading ? <SmallLoader/> : "Follow"}
+        </Button>}
     </div>
   )
 }

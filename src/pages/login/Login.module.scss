@@ -148,6 +148,13 @@
   }
 }
 
+.errorCircle {
+  color: #E64645;
+  position: absolute;
+  top: 8.5px;
+  right: 11px;
+}
+
 .errorEmailMessage,
 .errorPasswordMessage {
   color: #FF5C5B;

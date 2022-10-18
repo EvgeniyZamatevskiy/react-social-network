@@ -10,13 +10,13 @@
   }
 }
 
-.fullInfoBtn {
+.fullInfoButton {
   @include flex(row, center, center);
   margin-top: 10px;
   border-radius: 8px;
   height: 35px;
   width: 100%;
-  color: #2A5885;
+  color: $colorAncillaryLight;
 
   &:hover {
     background-color: #EDEEF0;
@@ -27,7 +27,7 @@
   margin-top: 20px;
 }
 
-.editBtn {
+.editButton {
   margin-top: 20px;
   width: 59.8px;
 }

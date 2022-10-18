@@ -3,22 +3,16 @@
 
 .button {
   height: 30px;
-  width: 200px;
+  line-height: 30px;
+  width: 100%;
+  @include flex(row, center, center);
+  text-align: center;
   background-color: $bgButtonLight;
   border-radius: 10px;
   color: #fff;
-  @include flex(row, center, center);
+  @include anim(0.2s, 0s);
 
   &:hover {
     background-color: #5B8BC3;
-  }
-
-  &.darkButton {
-    background-color: $bgButtonDark;
-    color: #000;
-
-    &:hover {
-      background-color: #CACBCE;
-    }
   }
 }

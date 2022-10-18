@@ -1,14 +1,14 @@
 import {ReactNode} from "react"
 
 export type ButtonPropsType = {
-  isDarkTheme?: boolean
   isPrimary?: boolean
+  isSecondary?: boolean
   className?: string
   onClick?: () => void
   onMouseEnter?: () => void
   onMouseLeave?: () => void
   style?: {}
-  type?: "button" | "submit" | "reset" | undefined
+  type?: "button" | "submit" | "reset"
   children: ReactNode
   disabled?: boolean
 }

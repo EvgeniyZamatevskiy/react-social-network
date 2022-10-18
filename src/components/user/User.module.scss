@@ -39,19 +39,9 @@
     }
   }
 
-  .follow {
-    background-color: #447BBA;
-    color: #FFF;
+  .followButton {
     width: 85px;
-    margin-left: 20px;
     align-self: center;
-    height: 26px;
-    border-radius: 5px;
-    @include flex(row, center, center);
-
-    &:hover {
-      background-color: #5B8BC3;
-    }
   }
 
   &:first-child {

@@ -1,11 +1,11 @@
-import React, { ChangeEvent, FC, useState } from 'react'
-import { ReturnComponentType } from 'types'
-import { useAppDispatch, useAvatar } from 'hooks'
-import { Button } from '../../common'
-import { EMPTY_STRING } from 'constants/base'
-import { addPost } from 'store/slices/profile'
-import { getDate } from 'utils'
-import style from './AddPost.module.scss'
+import React, {ChangeEvent, FC, useState} from "react"
+import {ReturnComponentType} from "types"
+import {useAppDispatch, useAvatar} from "hooks"
+import {Button} from "../../common"
+import {EMPTY_STRING} from "constants/base"
+import {addPost} from "store/slices/profile"
+import {getDate} from "utils"
+import style from "./AddPost.module.scss"
 
 export const AddPost: FC = (): ReturnComponentType => {
 
@@ -42,7 +42,8 @@ export const AddPost: FC = (): ReturnComponentType => {
             placeholder="What`s new?"
           />
         </div>
-        {message.length > 0 && <Button className={style.postBtn} isPrimary onClick={onAddPostClick}>Post</Button>}
+        {message.length > 0 &&
+          <Button className={style.postButton} isPrimary onClick={onAddPostClick}>Post</Button>}
       </div>
     </div>
   )

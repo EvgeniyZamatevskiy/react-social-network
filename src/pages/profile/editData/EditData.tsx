@@ -1,14 +1,14 @@
-import React, { FC } from 'react'
-import { ReturnComponentType } from 'types'
-import { EditDataPropsType } from './types'
-import { ContactType, UserProfileType } from 'api/profile/types'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { useAppDispatch } from 'hooks'
-import { useSelector } from 'react-redux'
-import { Button } from 'components'
-import { updateUserProfile } from 'store/asyncActions'
-import { selectContacts, selectUserProfile } from 'store/selectors'
-import style from './EditData.module.scss'
+import React, {FC} from "react"
+import {ReturnComponentType} from "types"
+import {EditDataPropsType} from "./types"
+import {ContactType, UserProfileType} from "api/profile/types"
+import {SubmitHandler, useForm} from "react-hook-form"
+import {useAppDispatch} from "hooks"
+import {useSelector} from "react-redux"
+import {Button} from "components"
+import {updateUserProfile} from "store/asyncActions"
+import {selectContacts, selectUserProfile} from "store/selectors"
+import style from "./EditData.module.scss"
 
 export const EditData: FC<EditDataPropsType> = ({setIsEditFullInfo}): ReturnComponentType => {
 
@@ -19,17 +19,17 @@ export const EditData: FC<EditDataPropsType> = ({setIsEditFullInfo}): ReturnComp
   const contacts = useSelector(selectContacts)
 
   const {register, handleSubmit, formState: {errors}} = useForm<UserProfileType>({
-    mode: 'onBlur',
+    mode: "onBlur",
     defaultValues: {...userProfile},
   })
 
   const aboutValidate = {
-    required: 'Field is required',
-    minLength: {value: 3, message: 'Min 3 characters'},
+    required: "Field is required",
+    minLength: {value: 3, message: "Min 3 characters"},
   }
 
   const contactsValidate = {
-    pattern: {value: /(http|https):\/\/([\w.]+\/?)\S*/, message: 'Incorrect title',}
+    pattern: {value: /(http|https):\/\/([\w.]+\/?)\S*/, message: "Incorrect title",}
   }
 
   const contactRender = Object.keys(contacts)
@@ -51,7 +51,7 @@ export const EditData: FC<EditDataPropsType> = ({setIsEditFullInfo}): ReturnComp
         <input
           className={style.input}
           type="text"
-          {...register('fullName', aboutValidate)}
+          {...register("fullName", aboutValidate)}
         />
         {errors?.fullName && <p className={style.errorMessage}>{errors?.fullName?.message}</p>}
       </div>
@@ -59,7 +59,7 @@ export const EditData: FC<EditDataPropsType> = ({setIsEditFullInfo}): ReturnComp
       <div className={style.field}>Readiness to work:
         <input
           type="checkbox"
-          {...register('lookingForAJob')}
+          {...register("lookingForAJob")}
         />
       </div>
 
@@ -67,7 +67,7 @@ export const EditData: FC<EditDataPropsType> = ({setIsEditFullInfo}): ReturnComp
         <input
           className={style.input}
           type="text"
-          {...register('lookingForAJobDescription', aboutValidate)}
+          {...register("lookingForAJobDescription", aboutValidate)}
         />
         {errors?.lookingForAJobDescription &&
           <p className={style.errorMessage}>{errors?.lookingForAJobDescription?.message}</p>}
@@ -77,7 +77,7 @@ export const EditData: FC<EditDataPropsType> = ({setIsEditFullInfo}): ReturnComp
         <input
           className={style.input}
           type="text"
-          {...register('aboutMe', aboutValidate)}
+          {...register("aboutMe", aboutValidate)}
         />
         {errors?.aboutMe && <p className={style.errorMessage}>{errors?.aboutMe?.message}</p>}
       </div>
@@ -100,8 +100,8 @@ export const EditData: FC<EditDataPropsType> = ({setIsEditFullInfo}): ReturnComp
       })}
 
       <div className={style.buttons}>
-        <Button type="submit" isPrimary className={style.editBtn}>Save</Button>
-        <Button type="button" isPrimary className={style.backBtn} onClick={onSetIsEditFullInfoClick}>Back</Button>
+        <Button type="submit" isPrimary className={style.saveButton}>Save</Button>
+        <Button type="button" isPrimary className={style.backButton} onClick={onSetIsEditFullInfoClick}>Back</Button>
       </div>
     </form>
   )

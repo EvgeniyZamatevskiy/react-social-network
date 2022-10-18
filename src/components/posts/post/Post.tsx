@@ -88,8 +88,8 @@ export const Post: FC<PostPropsType> = ({post}): ReturnComponentType => {
 
               {isActivePostInfoPopup &&
                 <div className={style.postInfoPopup}>
-                  <button className={style.deletePostBtn} onClick={onRemovePostClick}>Delete post</button>
-                  <button className={style.deletePostBtn} onClick={onSetIsEditPostClick}>Edit post</button>
+                  <Button className={style.deletePostButton} onClick={onRemovePostClick}>Delete post</Button>
+                  <Button className={style.editPostButton} onClick={onSetIsEditPostClick}>Edit post</Button>
                 </div>
               }
             </div>
@@ -112,11 +112,11 @@ export const Post: FC<PostPropsType> = ({post}): ReturnComponentType => {
 
       {isEditPost
         && <div className={style.buttons}>
-          <Button className={style.cancelBtn} isPrimary onClick={onDeactivateEditPostClick}>Cancel</Button>
-          <Button className={style.cancelSave} isPrimary onClick={onEditMessageClick}>Save</Button>
+          <Button className={style.saveButton} isPrimary onClick={onEditMessageClick}>Save</Button>
+          <Button className={style.cancelButton} isPrimary onClick={onDeactivateEditPostClick}>Cancel</Button>
         </div>}
 
-      <button
+      <Button
         className={`${style.noAuthorizedUserLike} ${isAuthorizedUserLiked && style.haveAuthorizedUserLike}`}
         onClick={onAddLikeClick}
       >
@@ -127,7 +127,7 @@ export const Post: FC<PostPropsType> = ({post}): ReturnComponentType => {
         <div className={`${style.amount} ${like > 0 && style.test}`}>
           {like > 0 && like}
         </div>
-      </button>
+      </Button>
 
     </div>
   )

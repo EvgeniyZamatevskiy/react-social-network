@@ -1,17 +1,17 @@
-import React, { FC, useState } from 'react'
-import { Button, Line } from 'components'
-import { ReturnComponentType } from 'types'
-import { DataPropsType } from './types'
-import { useSelector } from 'react-redux'
-import { ContactType } from 'api/profile/types'
-import { Contact } from '../contact'
+import React, {FC, useState} from "react"
+import {Button, Line} from "components"
+import {ReturnComponentType} from "types"
+import {DataPropsType} from "./types"
+import {useSelector} from "react-redux"
+import {ContactType} from "api/profile/types"
+import {Contact} from "../contact"
 import {
   selectContacts,
   selectLookingForAJob,
   selectLookingForAJobDescription,
   selectAboutMe,
-} from 'store/selectors'
-import style from './Data.module.scss'
+} from "store/selectors"
+import style from "./Data.module.scss"
 
 export const Data: FC<DataPropsType> = ({setIsEditFullInfo, isOwner}): ReturnComponentType => {
 
@@ -39,13 +39,13 @@ export const Data: FC<DataPropsType> = ({setIsEditFullInfo, isOwner}): ReturnCom
   return (
     <>
       <div className={style.field}>
-        Readiness to work: <span>{lookingForAJob ? 'Looking for a job' : 'Not looking for a job'}</span>
+        Readiness to work: <span>{lookingForAJob ? "Looking for a job" : "Not looking for a job"}</span>
       </div>
       <div className={style.field}>My professional skills: <span>{lookingForAJobDescription}</span></div>
       <div className={style.field}>About me: <span>{aboutMe}</span></div>
 
-      <Button className={style.fullInfoBtn} onClick={onToggleIsShowFullInfoClick}>
-        {isShowFullInfo ? 'Hide full information' : 'Show full information'}
+      <Button className={style.fullInfoButton} onClick={onToggleIsShowFullInfoClick}>
+        {isShowFullInfo ? "Hide full information" : "Show full information"}
       </Button>
       {isShowFullInfo &&
         <>
@@ -58,7 +58,7 @@ export const Data: FC<DataPropsType> = ({setIsEditFullInfo, isOwner}): ReturnCom
           })}
 
           {isOwner &&
-            <Button isPrimary className={style.editBtn} onClick={onSetIsEditFullInfoClick}>Edit</Button>}
+            <Button isPrimary className={style.editButton} onClick={onSetIsEditFullInfoClick}>Edit</Button>}
         </>
       }
     </>
