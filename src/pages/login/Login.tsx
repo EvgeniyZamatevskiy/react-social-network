@@ -8,12 +8,14 @@ import {Eye, SmallLoader} from "components"
 import {LoginDataType} from "api/auth/types"
 import {useAppDispatch} from "hooks"
 import {login} from "store/asyncActions"
-import {Navigate} from "react-router-dom"
-import {Path} from "enums"
+import {Navigate, useLocation} from "react-router-dom"
 import {Icon20ErrorCircleOutline} from "@vkontakte/icons"
+import {LocationStateType} from "./types"
 import style from "./Login.module.scss"
 
 export const Login: FC = (): ReturnComponentType => {
+
+  const location = useLocation()
 
   const dispatch = useAppDispatch()
 
@@ -29,6 +31,7 @@ export const Login: FC = (): ReturnComponentType => {
     defaultValues: {email: "free@samuraijs.com", password: "free"}
   })
 
+  const fromPage = (location.state as LocationStateType)?.from?.pathname || "/"
   const errorEmailMessage = errors?.email?.message
   const errorPasswordMessage = errors?.password?.message
   const emailSettings = {
@@ -48,7 +51,7 @@ export const Login: FC = (): ReturnComponentType => {
   }
 
   if (isAuth) {
-    return <Navigate to={Path.PROFILE}/>
+    return <Navigate to={fromPage}/>
   }
 
   return (

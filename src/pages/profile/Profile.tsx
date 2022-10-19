@@ -1,6 +1,5 @@
 import React, {FC, useEffect} from "react"
 import {useAppDispatch} from "hooks"
-import {Path} from "enums"
 import {useSelector} from "react-redux"
 import {Navigate, useParams} from "react-router-dom"
 import {ReturnComponentType} from "types"
@@ -8,9 +7,11 @@ import {selectAuthorizedUserId, selectIsAuth} from "store/selectors"
 import {getFollowedStatus, getStatus, getUserProfile} from "store/asyncActions"
 import {ProfileLeftBlock} from "./profileLeftBlock"
 import {ProfileRightBlock} from "./profileRightBlock"
+import {WithRequireAuth} from "hocs"
 import style from "./Profile.module.scss"
+import {Path} from "enums";
 
-export const Profile: FC = (): ReturnComponentType => {
+export const Profile: FC = WithRequireAuth((): ReturnComponentType => {
 
   const {userId} = useParams<{ userId: string }>()
 
@@ -41,4 +42,4 @@ export const Profile: FC = (): ReturnComponentType => {
       <ProfileRightBlock isOwner={isOwner}/>
     </div>
   )
-}
+})

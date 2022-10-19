@@ -18,9 +18,10 @@ import {
   selectUsers
 } from "store/selectors"
 import {User, UsersEmpty, UsersSearch} from "./"
+import {WithRequireAuth} from "hocs"
 import style from "./Users.module.scss"
 
-export const Users: FC = (): ReturnComponentType => {
+export const Users: FC = WithRequireAuth((): ReturnComponentType => {
 
   const dispatch = useAppDispatch()
 
@@ -68,4 +69,4 @@ export const Users: FC = (): ReturnComponentType => {
       </div>
     </div>
   )
-}
+})
