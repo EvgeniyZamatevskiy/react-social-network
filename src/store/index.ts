@@ -13,12 +13,12 @@ export const store = configureStore({
     users: usersSlice,
     profile: profileSlice,
   },
-  // preloadedState: getParseLocalStorageData(LocalStorageKey.THEME, {})
+  // preloadedState: getParseLocalStorageData(LocalStorageKey.POSTS, {})
 })
 
 export type RootStateType = ReturnType<typeof store.getState>
 export type DispatchType = typeof store.dispatch
 
-store.subscribe(() => {
-  // setDataToLocalStorage<{ app: { theme: Theme } }>(LocalStorageKey.THEME, {app: {theme: store.getState().app.theme}})
-})
+// store.subscribe(() => {
+//   setDataToLocalStorage<{ profile: { posts: PostType[] } }>(LocalStorageKey.POSTS, {profile: {posts: store.getState().profile.posts}})
+// })

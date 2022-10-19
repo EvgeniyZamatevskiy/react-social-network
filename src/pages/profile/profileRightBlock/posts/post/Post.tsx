@@ -1,15 +1,16 @@
 import React, {ChangeEvent, FC, useRef, useState} from "react"
 import {ReturnComponentType} from "types"
 import {PostPropsType} from "./types"
-import {useAppDispatch, useAvatar} from "hooks"
+import {useAppDispatch} from "hooks"
 import {Icon20LikeCircleFillGray, Icon20LikeCircleFillRed, Icon24MoreHorizontal} from "@vkontakte/icons"
 import {addLike, setEditMessage} from "store/slices/profile"
 import {useSelector} from "react-redux"
-import {selectFullName} from "store/selectors"
+import {selectFullName, selectPhotoLarge, selectPhotoSmall} from "store/selectors"
 import {EMPTY_STRING} from "constants/base"
 import {Button, Input} from "components/common"
-import style from "./Post.module.scss"
 import {PostInfoPopup} from "../postInfoPopup"
+import defaultAvatar from "assets/images/defaultAvatar.png"
+import style from "./Post.module.scss"
 
 export const Post: FC<PostPropsType> = ({post}): ReturnComponentType => {
 
@@ -18,16 +19,17 @@ export const Post: FC<PostPropsType> = ({post}): ReturnComponentType => {
   const dispatch = useAppDispatch()
 
   const fullName = useSelector(selectFullName)
+  const photoLarge = useSelector(selectPhotoLarge)
+  const photoSmall = useSelector(selectPhotoSmall)
 
   const [isActivePostInfoPopup, setIsActivePostInfoPopup] = useState(false)
   const [isEditPost, setIsEditPost] = useState(false)
   const [modifiedMessage, setModifiedMessage] = useState(EMPTY_STRING)
 
-  const userAvatar = useAvatar()
-
   const editPostRef = useRef<HTMLInputElement>(null)
 
   const isLiked = like > 0
+  const userAvatar = photoSmall || photoLarge || defaultAvatar
 
   const onAddLikeClick = (): void => {
     dispatch(addLike(id))

@@ -6,12 +6,12 @@
   flex-wrap: $flexWrap;
 }
 
-@mixin flexOrder($val) {
-  -webkit-box-ordinal-group: $val;
-  -moz-box-ordinal-group: $val;
-  -ms-flex-order: $val;
-  -webkit-order: $val;
-  order: $val;
+@mixin flexOrder($value) {
+  -webkit-box-ordinal-group: $value;
+  -moz-box-ordinal-group: $value;
+  -ms-flex-order: $value;
+  -webkit-order: $value;
+  order: $value;
 }
 
 @mixin anim($time, $delay) {

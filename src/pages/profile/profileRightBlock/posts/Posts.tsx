@@ -33,8 +33,7 @@ export const Posts: FC<PostsPropsType> = (): ReturnComponentType => {
           {posts.length ? "All posts" : "No posts yet"}
           {posts.length
             ? <Icon20Search className={style.icon} height={20} width={20} onClick={onSetIsSearchPostsClick}/>
-            : EMPTY_STRING
-          }
+            : EMPTY_STRING}
         </div>
       }
 
