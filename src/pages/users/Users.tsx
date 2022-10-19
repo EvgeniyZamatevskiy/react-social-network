@@ -17,7 +17,7 @@ import {
   selectTotalUsersCount,
   selectUsers
 } from "store/selectors"
-import {Filtration, User, UsersEmpty} from "./"
+import {User, UsersEmpty, UsersSearch} from "./"
 import style from "./Users.module.scss"
 
 export const Users: FC = (): ReturnComponentType => {
@@ -60,7 +60,7 @@ export const Users: FC = (): ReturnComponentType => {
           handleSetPageClick={handleSetPageClick}
         />
       </div>
-      <Filtration/>
+      <UsersSearch/>
       <div className={style.userContainer}>
         {isLoadingUsers
           ? <Loader/>
