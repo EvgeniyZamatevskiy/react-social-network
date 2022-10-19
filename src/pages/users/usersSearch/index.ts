@@ -1,2 +1,2 @@
-export {Filtration} from "./Filtration"
+export {UsersSearch} from "./UsersSearch"
 export {ParamsPopup} from "./paramsPopup"

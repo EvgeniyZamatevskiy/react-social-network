@@ -22,13 +22,8 @@ export const ParamsPopup: FC = (): ReturnComponentType => {
 
   return (
     <div className={style.paramsPopup}>
-      <div className={style.findValue}>Find</div>
-      <Radio
-        options={friendOptions}
-        name={"friend"}
-        value={friend}
-        onChange={onFriendChange}
-      />
+      <h6>Find</h6>
+      <Radio options={friendOptions} name="friend" value={friend} onChange={onFriendChange}/>
     </div>
   )
 }
