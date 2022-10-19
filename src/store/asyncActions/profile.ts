@@ -1,15 +1,16 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import { PROFILE } from 'api'
-import { UserProfileType } from 'api/profile/types'
-import { AxiosError } from 'axios'
-import { FIRST_ELEMENTS_INDEX } from 'constants/base'
-import { ResponseCode } from 'enums'
-import { handleServerNetworkError } from 'utils'
-import { RootStateType } from '../index'
-import { PhotoType } from 'api/types'
+import {createAsyncThunk} from "@reduxjs/toolkit"
+import {PROFILE} from "api"
+import {UserProfileType} from "api/profile/types"
+import {AxiosError} from "axios"
+import {FIRST_ELEMENTS_INDEX} from "constants/base"
+import {LocalStorageKey, ResponseCode} from "enums"
+import {handleServerNetworkError} from "utils"
+import {RootStateType} from "../index"
+import {PhotoType} from "api/types"
+import {setDataToLocalStorage} from "services";
 
 export const getUserProfile = createAsyncThunk<UserProfileType, number, { rejectValue: { error: string } }>
-('profile/getUserProfile', async (userId, {rejectWithValue}) => {
+("profile/getUserProfile", async (userId, {rejectWithValue}) => {
   try {
     const {data: userProfile} = await PROFILE.getUserProfile(userId)
 
@@ -20,7 +21,7 @@ export const getUserProfile = createAsyncThunk<UserProfileType, number, { reject
 })
 
 export const getStatus = createAsyncThunk<string, number, { rejectValue: { error: string } }>
-('profile/getStatus', async (userId, {rejectWithValue}) => {
+("profile/getStatus", async (userId, {rejectWithValue}) => {
   try {
     const {data: status} = await PROFILE.getStatus(userId)
 
@@ -31,7 +32,7 @@ export const getStatus = createAsyncThunk<string, number, { rejectValue: { error
 })
 
 export const updateStatus = createAsyncThunk<void, string, { rejectValue: { error: string }, state: RootStateType }>
-('profile/updateStatus', async (status, {rejectWithValue, dispatch, getState}) => {
+("profile/updateStatus", async (status, {rejectWithValue, dispatch, getState}) => {
   try {
     const authorizedUserId = getState().auth.authorizedUser?.id as number
 
@@ -50,7 +51,7 @@ export const updateStatus = createAsyncThunk<void, string, { rejectValue: { erro
 })
 
 export const updatePhoto = createAsyncThunk<{ photos: PhotoType }, File, { rejectValue: { error: string } }>
-('profile/updatePhoto', async (image, {rejectWithValue}) => {
+("profile/updatePhoto", async (image, {rejectWithValue}) => {
   try {
     const response = await PROFILE.updatePhoto(image)
     const {data: photos, messages, resultCode} = response.data
@@ -66,7 +67,7 @@ export const updatePhoto = createAsyncThunk<{ photos: PhotoType }, File, { rejec
 })
 
 export const updateUserProfile = createAsyncThunk<UserProfileType, UserProfileType, { rejectValue: { error: string } }>
-('profile/updateUserProfile', async (updatedUserProfile, {rejectWithValue}) => {
+("profile/updateUserProfile", async (updatedUserProfile, {rejectWithValue}) => {
   try {
     const response = await PROFILE.updateUserProfile(updatedUserProfile)
     const {resultCode, messages} = response.data

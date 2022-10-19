@@ -1,4 +1,4 @@
-import React, {FC, useState} from "react"
+import React, {FC, useEffect, useRef, useState} from "react"
 import {ReturnComponentType} from "types"
 import {PostsPropsType} from "./types"
 import {useSelector} from "react-redux"
@@ -6,6 +6,9 @@ import {selectPosts, selectSearchPostsMessage} from "store/selectors"
 import {Icon20Search} from "@vkontakte/icons"
 import {EMPTY_STRING} from "constants/base"
 import {AddPost, Post, PostsEmpty, SearchPosts} from "."
+import {setDataToLocalStorage} from "services"
+import {LocalStorageKey} from "enums"
+import {PostType} from "store/slices/profile/types"
 import style from "./Posts.module.scss"
 
 export const Posts: FC<PostsPropsType> = (): ReturnComponentType => {
@@ -15,9 +18,19 @@ export const Posts: FC<PostsPropsType> = (): ReturnComponentType => {
 
   const [isSearchPosts, setIsSearchPosts] = useState(false)
 
+  const isMounted = useRef(false)
+
   const postsRender = posts
     .filter(post => post.message.toLowerCase().includes(searchPostsMessage.toLowerCase()))
     .map(post => <Post key={post.id} post={post}/>)
+
+  useEffect(() => {
+    if (isMounted.current) {
+      setDataToLocalStorage<PostType[]>(LocalStorageKey.POSTS, posts)
+    }
+
+    isMounted.current = true
+  }, [posts])
 
   const onSetIsSearchPostsClick = (): void => {
     setIsSearchPosts(true)

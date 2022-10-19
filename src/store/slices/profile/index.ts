@@ -7,23 +7,16 @@ import {
   updatePhoto,
   updateUserProfile
 } from "store/asyncActions"
-import {ProfileSliceInitialStateType} from "./types"
+import {PostType, ProfileSliceInitialStateType} from "./types"
 import {EMPTY_STRING} from "constants/base"
 import {PhotoType} from "api/types"
+import {getParseLocalStorageData} from "services"
+import {LocalStorageKey} from "enums"
 
 const initialState: ProfileSliceInitialStateType = {
   userProfile: null,
   status: EMPTY_STRING,
-  posts: [
-    {
-      id: 1,
-      like: 65,
-      message:
-        "There are two ways of constructing a software design. One way is to make it so simple that there are obviously no deficiencies. And the other way is to make it so complicated that there are no obvious deficiencies.",
-      isAuthorizedUserLiked: false,
-      time: "18:00:00"
-    }
-  ],
+  posts: getParseLocalStorageData<PostType[]>(LocalStorageKey.POSTS, []),
   searchPostsMessage: EMPTY_STRING
 }
 
