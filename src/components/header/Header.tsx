@@ -4,9 +4,9 @@ import {ReturnComponentType} from "types"
 import {Icon20DoorArrowRightOutline} from "@vkontakte/icons"
 import {useAppDispatch} from "hooks"
 import {logOut} from "store/asyncActions"
-import style from "./Header.module.scss"
 import {useSelector} from "react-redux"
 import {selectIsAuth} from "store/selectors"
+import style from "./Header.module.scss"
 
 export const Header: FC = (): ReturnComponentType => {
 
@@ -21,13 +21,12 @@ export const Header: FC = (): ReturnComponentType => {
   return (
     <header className={style.header}>
       <div className={style.container}>
-        <h1 className={style.title}>social network</h1>
+        <h1>social network</h1>
         {isAuth &&
-          <Button className={style.logOutButton} onClick={onLogOutClick}>
-            <Icon20DoorArrowRightOutline className={style.logOutIcon} width={17} height={17}/>
+          <Button className={style.button} onClick={onLogOutClick}>
+            <Icon20DoorArrowRightOutline className={style.icon} width={17} height={17}/>
             Log out
-          </Button>
-        }
+          </Button>}
       </div>
     </header>
   )

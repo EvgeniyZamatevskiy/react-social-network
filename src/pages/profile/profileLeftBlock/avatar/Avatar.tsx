@@ -1,6 +1,5 @@
 import React, {FC} from "react"
 import {ReturnComponentType} from "types"
-import {AvatarPropsType} from "pages/profile/profileLeftBlock/avatar/types"
 import {Button, File, SmallLoader} from "components"
 import {useSelector} from "react-redux"
 import {
@@ -11,10 +10,11 @@ import {
   selectPhotoSmall
 } from "store/selectors"
 import {useAppDispatch, useFollow} from "hooks"
+import {updatePhoto} from "store/asyncActions"
+import {setErrorMessage} from "store/slices/app"
+import {AvatarPropsType} from "./types"
 import defaultAvatar from "assets/images/defaultAvatar.png"
-import style from "pages/profile/profileLeftBlock/avatar/Avatar.module.scss"
-import {updatePhoto} from "store/asyncActions";
-import {setErrorMessage} from "store/slices/app";
+import style from "./Avatar.module.scss"
 
 export const Avatar: FC<AvatarPropsType> = ({isOwner, userId}): ReturnComponentType => {
 

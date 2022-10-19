@@ -1,14 +1,19 @@
 @import 'src/styles/sass/mixins.scss';
+@import 'src/styles/sass/variables.scss';
 
 .user {
   border-top: 1px solid #DCE1E6;
   @include flex(row, space-between, stretch);
-  padding: 12px 0px;
+  padding: 12px 0;
+
+  &:first-child {
+    border-top: none;
+  }
 
   .body {
-    display: flex;
+    @include flex(row, stretch, flex-start);
 
-    .userAvatar {
+    img {
       width: 80px;
       height: 80px;
       border-radius: 50%;
@@ -16,25 +21,23 @@
     }
 
     .content {
-      padding: 7px 0px;
+      padding: 7px 0;
       margin-left: 16px;
+      max-width: 500px;
+      overflow-wrap: break-word;
 
       .name {
         font-weight: 700;
-        max-height: 16px;
-        overflow: hidden;
+        color: $colorAncillaryLight;
 
         &:hover {
           text-decoration: underline;
-          cursor: pointer;
         }
       }
 
       .status {
         margin-top: 10px;
         color: #939393;
-        max-height: 16px;
-        overflow: hidden;
       }
     }
   }
@@ -42,9 +45,5 @@
   .followButton {
     width: 85px;
     align-self: center;
-  }
-
-  &:first-child {
-    border-top: none;
   }
 }

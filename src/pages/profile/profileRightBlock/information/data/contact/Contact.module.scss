@@ -1,10 +1,10 @@
 @import 'src/styles/sass/variables.scss';
 
-.container {
+.contact {
   margin-top: 10px;
   color: $colorSecondaryLight;
 
-  .link {
+  a {
     color: $colorAncillaryLight;
 
     &:hover {

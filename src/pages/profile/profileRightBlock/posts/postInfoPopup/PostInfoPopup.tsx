@@ -2,9 +2,9 @@ import React, {FC} from "react"
 import {ReturnComponentType} from "types"
 import {removePost} from "store/slices/profile"
 import {useAppDispatch} from "hooks"
-import style from "./PostInfoPopup.module.scss"
 import {PostInfoPopupPropsType} from "./types"
 import {Button} from "components"
+import style from "./PostInfoPopup.module.scss"
 
 export const PostInfoPopup: FC<PostInfoPopupPropsType> = ({postId, onSetIsEditPostClick,}): ReturnComponentType => {
 

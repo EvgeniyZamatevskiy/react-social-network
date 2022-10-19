@@ -1,24 +1,20 @@
 @import 'src/styles/sass/mixins.scss';
 @import 'src/styles/sass/variables.scss';
+@import 'src/styles/sass/templates.scss';
 
 .login {
-  @include flex(row, center, center);
-  height: 93.4vh;
-  width: 100%;
+  @extend %alignCenter;
 
   .container {
     width: 400px;
     min-height: 450px;
     border-radius: 10px;
     background-color: $bgSecondaryLight;
-    border-top: 1px solid $borderLight;
-    border-left: 1px solid $borderLight;
-    border-right: 1px solid $borderLight;
-    border-bottom: 1px solid $decorBorderLight;
+    @extend %borderLight;
     @include flex(column, space-between, center);
     padding: 52px 24px;
 
-    .title {
+    h2 {
       font-weight: 900;
       font-size: 24px;
       text-transform: uppercase;
@@ -26,7 +22,7 @@
       margin-top: 20px;
     }
 
-    .form {
+    form {
       margin-top: 40px;
       width: 100%;
       @include flex(column, space-between, stretch);
@@ -83,11 +79,11 @@
         }
       }
 
-      .label {
+      label {
         margin-top: 20px;
         @include flex(row, stretch, center);
 
-        .rememberMeCheckbox {
+        .checkbox {
           appearance: none;
           width: 16px;
           height: 16px;
@@ -105,7 +101,7 @@
           }
         }
 
-        .rememberMe {
+        span {
           color: #828282;
         }
       }
@@ -114,7 +110,7 @@
         @include flex(column, stretch, center);
         margin-top: 20px;
 
-        .captchaImage {
+        img {
           border-radius: 10px;
           border: 1px solid #D3D5D7;
         }
@@ -134,8 +130,9 @@
         }
       }
 
-      .loginBtn {
+      .loginButton {
         height: 36px;
+        line-height: 36px;
         margin-top: 40px;
         background-color: #0077FF;
         color: #FFF;

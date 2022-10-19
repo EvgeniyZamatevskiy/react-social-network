@@ -1,5 +1,5 @@
 import React, {FC, useEffect} from "react"
-import {Filtration, Loader, Pagination, User, UsersEmpty} from "components"
+import {Loader, Pagination} from "components"
 import {ReturnComponentType} from "types"
 import {useSelector} from "react-redux"
 import {useAppDispatch} from "hooks"
@@ -17,6 +17,7 @@ import {
   selectTotalUsersCount,
   selectUsers
 } from "store/selectors"
+import {Filtration, User, UsersEmpty} from "./"
 import style from "./Users.module.scss"
 
 export const Users: FC = (): ReturnComponentType => {
@@ -40,7 +41,7 @@ export const Users: FC = (): ReturnComponentType => {
     }
   }, [term, friend, page])
 
-  const handleSetPageClick = (page: number) => {
+  const handleSetPageClick = (page: number): void => {
     dispatch(setPage(page))
   }
 
@@ -49,23 +50,21 @@ export const Users: FC = (): ReturnComponentType => {
   }
 
   return (
-    <div className={style.container}>
-      <div className={style.users}>
-        <div className={style.body}>
-          <h2 className={style.title}>Users</h2>
-          <Pagination
-            totalItemsCount={totalUsersCount}
-            pageCount={pageCount}
-            page={page}
-            handleSetPageClick={handleSetPageClick}
-          />
-        </div>
-        <Filtration/>
-        <div className={style.userContainer}>
-          {isLoadingUsers
-            ? <Loader/>
-            : usersRender.length ? usersRender : <UsersEmpty/>}
-        </div>
+    <div className={style.users}>
+      <div className={style.body}>
+        <h2>Users</h2>
+        <Pagination
+          totalItemsCount={totalUsersCount}
+          pageCount={pageCount}
+          page={page}
+          handleSetPageClick={handleSetPageClick}
+        />
+      </div>
+      <Filtration/>
+      <div className={style.userContainer}>
+        {isLoadingUsers
+          ? <Loader/>
+          : usersRender.length ? usersRender : <UsersEmpty/>}
       </div>
     </div>
   )

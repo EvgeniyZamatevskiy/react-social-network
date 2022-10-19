@@ -1,7 +1,3 @@
 export {Header} from "./header"
-export {User} from "./user"
-export {Filtration} from "./filtration"
-export {UsersEmpty} from "./usersEmpty"
-export {ParamsPopup} from "./filtration/paramsPopup"
 export {NavBar} from "./navBar"
 export * from "./common"

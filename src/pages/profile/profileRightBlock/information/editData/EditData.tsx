@@ -1,6 +1,5 @@
 import React, {FC} from "react"
 import {ReturnComponentType} from "types"
-import {EditDataPropsType} from "./types"
 import {ContactType, UserProfileType} from "api/profile/types"
 import {SubmitHandler, useForm} from "react-hook-form"
 import {useAppDispatch} from "hooks"
@@ -8,6 +7,7 @@ import {useSelector} from "react-redux"
 import {Button} from "components"
 import {updateUserProfile} from "store/asyncActions"
 import {selectContacts, selectUserProfile} from "store/selectors"
+import {EditDataPropsType} from "./types"
 import style from "./EditData.module.scss"
 
 export const EditData: FC<EditDataPropsType> = ({setIsEditFullInfo}): ReturnComponentType => {

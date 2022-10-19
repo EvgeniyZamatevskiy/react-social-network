@@ -1,11 +1,10 @@
-@import 'src/styles/sass/mixins.scss';
-
-.container {
+.notFound {
   position: absolute;
-  left: 0px;
-  top: 0px;
+  left: 0;
+  top: 0;
 
-  .notFoundImage {
+  span {
+    display: block;
     width: 99vw;
     height: 100vh;
     background-image: url('../../assets/images/notFound.png');

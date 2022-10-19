@@ -1,0 +1,42 @@
+@import 'src/styles/sass/variables.scss';
+@import 'src/styles/sass/mixins.scss';
+
+.data {
+  margin-top: 18px;
+
+  .field {
+    color: #818C99;
+    margin-top: 18px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    span {
+      color: $colorAncillaryLight;
+    }
+  }
+
+  .fullInfoButton {
+    @include flex(row, center, center);
+    margin-top: 10px;
+    border-radius: 8px;
+    height: 35px;
+    line-height: 35px;
+    width: 100%;
+    color: $colorAncillaryLight;
+
+    &:hover {
+      background-color: #EDEEF0;
+    }
+  }
+
+  .lineContainer {
+    margin-top: 20px;
+  }
+
+  .editButton {
+    margin-top: 20px;
+    width: 59.8px;
+  }
+}

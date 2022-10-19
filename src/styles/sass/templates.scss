@@ -7,3 +7,10 @@
   border-left: 1px solid $borderLight;
   border-bottom: 1px solid $decorBorderLight;
 }
+
+%alignCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

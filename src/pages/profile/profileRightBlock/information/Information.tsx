@@ -1,13 +1,13 @@
 import React, {FC, useState} from "react"
 import {EditableItem, Line} from "components"
-import {ReturnComponentType} from "types/ReturnComponentType"
-import {InformationPropsType} from "./types"
 import {useAppDispatch} from "hooks"
 import {useSelector} from "react-redux"
 import {selectFullName, selectStatus} from "store/selectors"
 import {updateStatus} from "store/asyncActions"
-import {Data} from "../data"
-import {EditData} from "../editData"
+import {InformationPropsType} from "./types"
+import {EditData} from "./editData"
+import {Data} from "./data"
+import {ReturnComponentType} from "types"
 import style from "./Information.module.scss"
 
 export const Information: FC<InformationPropsType> = ({isOwner}): ReturnComponentType => {
@@ -26,7 +26,7 @@ export const Information: FC<InformationPropsType> = ({isOwner}): ReturnComponen
   return (
     <div className={style.information}>
 
-      <div className={style.nameContainer}>
+      <div className={style.body}>
         <div className={style.name}>{fullName}</div>
         <span>{isOwner ? "online" : "seen recently"}</span>
       </div>
@@ -36,6 +36,7 @@ export const Information: FC<InformationPropsType> = ({isOwner}): ReturnComponen
           ? <EditableItem currentTitle={status} handleUpdateTitle={handleUpdateStatus}/>
           : <div className={style.status}>{status}</div>}
       </div>
+
       <Line/>
 
       {isEditFullInfo

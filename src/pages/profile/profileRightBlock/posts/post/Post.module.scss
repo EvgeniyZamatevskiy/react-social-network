@@ -12,6 +12,10 @@
   margin-bottom: 13px;
   width: 100%;
 
+  &:last-child {
+    margin-bottom: 0;
+  }
+
   .userInfo {
     @include flex(row, space-between, center);
 
@@ -106,6 +110,10 @@
     @include flex(row, center, center);
     background-color: #f0f2f5;
 
+    &.additionalAddLike {
+      background-color: #ffeded;
+    }
+
     .amount {
       color: $colorSecondaryLight;
       font-weight: 500;
@@ -113,10 +121,6 @@
       &.additionalAmount {
         margin-left: 4.1px;
       }
-    }
-
-    &.additionalAddLike {
-      background-color: #ffeded;
     }
   }
 }

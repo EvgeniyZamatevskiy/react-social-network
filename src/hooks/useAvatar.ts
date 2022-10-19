@@ -1,6 +1,6 @@
-import { useSelector } from 'react-redux'
-import { selectPhotoLarge, selectPhotoSmall } from 'store/selectors'
-import defaultAvatar from 'assets/images/defaultAvatar.png'
+import {useSelector} from "react-redux"
+import {selectPhotoLarge, selectPhotoSmall} from "store/selectors"
+import defaultAvatar from "assets/images/defaultAvatar.png"
 
 export const useAvatar = () => {
 

@@ -6,9 +6,9 @@ import {Navigate, useParams} from "react-router-dom"
 import {ReturnComponentType} from "types"
 import {selectAuthorizedUserId, selectIsAuth} from "store/selectors"
 import {getFollowedStatus, getStatus, getUserProfile} from "store/asyncActions"
-import style from "./Profile.module.scss"
 import {ProfileLeftBlock} from "./profileLeftBlock"
 import {ProfileRightBlock} from "./profileRightBlock"
+import style from "./Profile.module.scss"
 
 export const Profile: FC = (): ReturnComponentType => {
 

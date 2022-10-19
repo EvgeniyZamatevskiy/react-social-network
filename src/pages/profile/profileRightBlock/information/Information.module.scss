@@ -1,6 +1,6 @@
-@import 'src/styles/sass/mixins.scss';
 @import 'src/styles/sass/variables.scss';
 @import 'src/styles/sass/templates.scss';
+@import 'src/styles/sass/mixins.scss';
 
 .information {
   background-color: #fff;
@@ -8,7 +8,7 @@
   padding: 15px 20px;
   border-radius: 15px;
 
-  .nameContainer {
+  .body {
     @include flex(row, space-between, center);
 
     .name {
@@ -25,7 +25,7 @@
     margin: -4px -6px;
     margin-top: 0.1px;
     margin-bottom: 17px;
-    height: 24px;
+    min-height: 24px;
 
     .status {
       padding: 5px 6px;

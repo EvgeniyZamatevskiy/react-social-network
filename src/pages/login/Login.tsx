@@ -14,6 +14,7 @@ import {Icon20ErrorCircleOutline} from "@vkontakte/icons"
 import style from "./Login.module.scss"
 
 export const Login: FC = (): ReturnComponentType => {
+
   const dispatch = useAppDispatch()
 
   const isAuth = useSelector(selectIsAuth)
@@ -23,11 +24,7 @@ export const Login: FC = (): ReturnComponentType => {
 
   const [inputType, setInputType] = useState<InputType>("password")
 
-  const {
-    register,
-    handleSubmit,
-    formState: {errors, isValid}
-  } = useForm<LoginDataType>({
+  const {register, handleSubmit, formState: {errors, isValid}} = useForm<LoginDataType>({
     mode: "onChange",
     defaultValues: {email: "free@samuraijs.com", password: "free"}
   })
@@ -57,9 +54,9 @@ export const Login: FC = (): ReturnComponentType => {
   return (
     <div className={style.login}>
       <div className={style.container}>
-        <h2 className={style.title}>welcome</h2>
+        <h2>welcome</h2>
 
-        <form noValidate className={style.form} onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className={style.emailInputContainer}>
             <input
               className={`${style.emailInput} ${errorEmailMessage && style.errorEmailInput}`}
@@ -67,12 +64,11 @@ export const Login: FC = (): ReturnComponentType => {
               type="email"
               {...register("email", emailSettings)}
             />
-            {errors?.email && (
+            {errors?.email &&
               <>
                 <Icon20ErrorCircleOutline className={style.errorCircle} width={18.86} height={18.86}/>
                 <p className={style.errorEmailMessage}>{errorEmailMessage}</p>
-              </>
-            )}
+              </>}
           </div>
 
           <div className={style.passwordInputContainer}>
@@ -84,32 +80,32 @@ export const Login: FC = (): ReturnComponentType => {
             />
             <Eye type={inputType} setType={setInputType} errorPasswordMessage={errorPasswordMessage}/>
 
-            {errors?.password && (
+            {errors?.password &&
               <>
                 <Icon20ErrorCircleOutline className={style.errorCircle} width={18.86} height={18.86}/>
                 <p className={style.errorPasswordMessage}>
                   {errorPasswordMessage}
                 </p>
-              </>
-            )}
+              </>}
           </div>
 
-          <label className={style.label}>
-            <input className={style.rememberMeCheckbox} type="checkbox"{...register("rememberMe")}/>
-            <span className={style.rememberMe}>Remember me</span>
+          <label>
+            <input className={style.checkbox} type="checkbox"{...register("rememberMe")}/>
+            <span>Remember me</span>
           </label>
 
-          {captchaUrl && (
+          {captchaUrl &&
             <div className={style.captcha}>
-              <img className={style.captchaImage} src={captchaUrl}/>
+              <img src={captchaUrl} alt="captcha url"/>
               <input
                 className={style.captchaInput}
                 type="text"
-                placeholder="Code from the picture"{...register("captcha")}/>
-            </div>
-          )}
+                placeholder="Code from the picture"
+                {...register("captcha")}
+              />
+            </div>}
 
-          <button className={style.loginBtn} disabled={!isValid || isDisabled} type="submit">
+          <button className={style.loginButton} disabled={!isValid || isDisabled} type="submit">
             {isLoading ? <SmallLoader/> : "Login"}
           </button>
         </form>
