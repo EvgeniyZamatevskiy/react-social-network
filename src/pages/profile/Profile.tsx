@@ -3,13 +3,14 @@ import {useAppDispatch} from "hooks"
 import {useSelector} from "react-redux"
 import {Navigate, useParams} from "react-router-dom"
 import {ReturnComponentType} from "types"
-import {selectAuthorizedUserId, selectIsAuth} from "store/selectors"
+import {selectAuthorizedUserId, selectIsAuth, selectIsLoadingUserProfile} from "store/selectors"
 import {getFollowedStatus, getStatus, getUserProfile} from "store/asyncActions"
 import {ProfileLeftBlock} from "./profileLeftBlock"
 import {ProfileRightBlock} from "./profileRightBlock"
 import {WithRequireAuth} from "hocs"
+import {Path} from "enums"
+import {Loader} from "components"
 import style from "./Profile.module.scss"
-import {Path} from "enums";
 
 export const Profile: FC = WithRequireAuth((): ReturnComponentType => {
 
@@ -19,6 +20,7 @@ export const Profile: FC = WithRequireAuth((): ReturnComponentType => {
 
   const isAuth = useSelector(selectIsAuth)
   const authorizedUserId = useSelector(selectAuthorizedUserId)
+  const isLoadingUserProfile = useSelector(selectIsLoadingUserProfile)
 
   const isOwner = !userId
 
@@ -31,6 +33,10 @@ export const Profile: FC = WithRequireAuth((): ReturnComponentType => {
       dispatch(getUserProfile(Number(id)))
     }
   }, [userId])
+
+  if (isLoadingUserProfile) {
+    return <Loader/>
+  }
 
   if (!isAuth) {
     return <Navigate to={Path.LOGIN}/>

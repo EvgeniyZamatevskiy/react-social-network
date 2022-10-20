@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit"
 import {EMPTY_STRING} from "constants/base"
-import {getAuthorizedUser, login} from "store/asyncActions"
+import {getAuthorizedUser, getUserProfile, login} from "store/asyncActions"
 import {isErrorRejected} from "store/helpers"
 import {AppSliceInitialStateType} from "./types"
 
@@ -8,7 +8,8 @@ const initialState: AppSliceInitialStateType = {
   errorMessage: EMPTY_STRING,
   isLoading: false,
   isInitializedApp: false,
-  isDisabled: false
+  isDisabled: false,
+  isLoadingUserProfile: false
 }
 
 export const appSlice = createSlice({
@@ -38,6 +39,15 @@ export const appSlice = createSlice({
         state.isInitializedApp = true
         state.isLoading = false
         state.isDisabled = false
+      })
+      .addCase(getUserProfile.pending, (state) => {
+        state.isLoadingUserProfile = true
+      })
+      .addCase(getUserProfile.fulfilled, (state) => {
+        state.isLoadingUserProfile = false
+      })
+      .addCase(getUserProfile.rejected, (state) => {
+        state.isLoadingUserProfile = false
       })
       .addMatcher(isErrorRejected, (state, action: PayloadAction<{ error: string }>) => {
         state.errorMessage = action.payload.error

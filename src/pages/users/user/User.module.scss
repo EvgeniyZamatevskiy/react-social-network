@@ -45,5 +45,10 @@
   .followButton {
     width: 85px;
     align-self: center;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: no-drop;
+    }
   }
 }

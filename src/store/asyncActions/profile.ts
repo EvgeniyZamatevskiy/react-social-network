@@ -3,11 +3,10 @@ import {PROFILE} from "api"
 import {UserProfileType} from "api/profile/types"
 import {AxiosError} from "axios"
 import {FIRST_ELEMENTS_INDEX} from "constants/base"
-import {LocalStorageKey, ResponseCode} from "enums"
+import {ResponseCode} from "enums"
 import {handleServerNetworkError} from "utils"
 import {RootStateType} from "../index"
 import {PhotoType} from "api/types"
-import {setDataToLocalStorage} from "services";
 
 export const getUserProfile = createAsyncThunk<UserProfileType, number, { rejectValue: { error: string } }>
 ("profile/getUserProfile", async (userId, {rejectWithValue}) => {

@@ -7,7 +7,7 @@ import {ResponseCode} from "enums"
 import {handleServerNetworkError} from "utils"
 
 export const getAuthorizedUser = createAsyncThunk<AuthorizedUserType, undefined, { rejectValue: { error: string } }>
-("auth/getAuthorizedUserData", async (_, {rejectWithValue}) => {
+("auth/getAuthorizedUser", async (_, {rejectWithValue}) => {
   try {
     const response = await AUTH.me()
     const {data: authorizedUserData, messages, resultCode} = response.data

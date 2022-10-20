@@ -42,8 +42,10 @@ export const Users: FC = WithRequireAuth((): ReturnComponentType => {
     }
   }, [term, friend, page])
 
-  const handleSetPageClick = (page: number): void => {
-    dispatch(setPage(page))
+  const handleSetPageClick = (currentPage: number): void => {
+    if (currentPage !== page) {
+      dispatch(setPage(currentPage))
+    }
   }
 
   if (!isAuth) {
