@@ -16,6 +16,37 @@
     margin-bottom: 0;
   }
 
+  .deletePost {
+    @include flex(column, space-between, stretch);
+    height: 100px;
+
+    span {
+      display: block;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .buttonsContainer {
+      margin-top: 20px;
+      @include flex(row, space-between, center);
+
+      .yesButton {
+        width: 200px;
+      }
+
+      .noButton {
+        width: 200px;
+        color: $colorAncillaryLight;
+        background-color: transparent;
+
+        &:hover {
+          background-color: $bgHoverLight;
+        }
+      }
+    }
+  }
+
   .userInfo {
     @include flex(row, space-between, center);
 

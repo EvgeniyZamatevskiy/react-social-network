@@ -1,0 +1,72 @@
+@import 'src/styles/sass/mixins.scss';
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  @include anim(0.5s, 0s);
+  z-index: 100;
+}
+
+.modal {
+  background-color: #fff;
+  width: 70%;
+  max-width: 500px;
+  max-height: 300px;
+  //min-height: 300px;
+  padding: 40px 30px;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  @include anim(0.5s, 0s);
+
+  img {
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  .crossContainer {
+    background-color: transparent;
+    position: absolute;
+    right: 4.5px;
+    top: 4.5px;
+    height: 35px;
+    width: 35px;
+    opacity: 0.3;
+    cursor: pointer;
+    @include anim(0.1s, 0s);
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.overlay.animated {
+  opacity: 0;
+  visibility: hidden;
+
+  .modal {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -30%);
+    transition-delay: 0.2s;
+  }
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+
+    .modal {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

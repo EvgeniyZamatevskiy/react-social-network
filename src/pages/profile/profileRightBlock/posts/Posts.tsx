@@ -6,10 +6,10 @@ import {selectPosts, selectSearchPostsMessage} from "store/selectors"
 import {Icon20Search} from "@vkontakte/icons"
 import {EMPTY_STRING} from "constants/base"
 import {AddPost, Post, PostsEmpty, SearchPosts} from "."
-import {setDataToLocalStorage} from "services"
 import {LocalStorageKey} from "enums"
 import {PostType} from "store/slices/profile/types"
 import style from "./Posts.module.scss"
+import {setDataToLocalStorage} from "services"
 
 export const Posts: FC<PostsPropsType> = (): ReturnComponentType => {
 

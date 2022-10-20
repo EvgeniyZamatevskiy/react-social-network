@@ -1,5 +1,5 @@
-import { RootStateType } from 'store'
-import { FriendValuesType, UserSupplementedType } from 'store/slices/users/types'
+import {RootStateType} from "store"
+import {FriendValuesType, UserSupplementedType} from "store/slices/users/types"
 
 export const selectUsers = (state: RootStateType): UserSupplementedType[] => state.users.users
 

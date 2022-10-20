@@ -1,14 +1,14 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import { USERS } from 'api'
-import { UserType } from 'api/users/types'
-import { AxiosError } from 'axios'
-import { FIRST_ELEMENTS_INDEX } from 'constants/base'
-import { ResponseCode } from 'enums'
-import { handleServerNetworkError } from 'utils'
-import { FriendValuesType } from '../slices/users/types'
+import {createAsyncThunk} from "@reduxjs/toolkit"
+import {USERS} from "api"
+import {UserType} from "api/users/types"
+import {AxiosError} from "axios"
+import {FIRST_ELEMENTS_INDEX} from "constants/base"
+import {ResponseCode} from "enums"
+import {handleServerNetworkError} from "utils"
+import {FriendValuesType} from "../slices/users/types"
 
 export const getUsers = createAsyncThunk<{ users: UserType[], totalCount: number }, { term: string, friend: FriendValuesType, page: number, pageCount: number }, { rejectValue: { error: string } }>
-('users/getUsers', async (params, {rejectWithValue}) => {
+("users/getUsers", async (params, {rejectWithValue}) => {
   try {
     const response = await USERS.getUsers(params.term, params.friend, params.page, params.pageCount)
     const {items: users, totalCount} = response.data
@@ -20,7 +20,7 @@ export const getUsers = createAsyncThunk<{ users: UserType[], totalCount: number
 })
 
 export const follow = createAsyncThunk<number, number, { rejectValue: { error: string } }>
-('users/follow', async (userId, {rejectWithValue, dispatch}) => {
+("users/follow", async (userId, {rejectWithValue, dispatch}) => {
   try {
     const response = await USERS.follow(userId)
     const {messages, resultCode} = response.data
@@ -37,7 +37,7 @@ export const follow = createAsyncThunk<number, number, { rejectValue: { error: s
 })
 
 export const unfollow = createAsyncThunk<number, number, { rejectValue: { error: string } }>
-('users/unfollow', async (userId, {rejectWithValue, dispatch}) => {
+("users/unfollow", async (userId, {rejectWithValue, dispatch}) => {
   try {
     const response = await USERS.unfollow(userId)
     const {messages, resultCode} = response.data
@@ -54,7 +54,7 @@ export const unfollow = createAsyncThunk<number, number, { rejectValue: { error:
 })
 
 export const getFollowedStatus = createAsyncThunk<{ followedStatus: boolean, userId: number }, number, { rejectValue: { error: string } }>
-('users/getFollowedStatus', async (userId, {rejectWithValue}) => {
+("users/getFollowedStatus", async (userId, {rejectWithValue}) => {
   try {
     const {data: followedStatus} = await USERS.getFollowedStatus(userId)
 

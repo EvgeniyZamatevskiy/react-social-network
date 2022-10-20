@@ -1,3 +1,5 @@
 export type LocationStateType = {
-  from: { pathname: string }
+  from: {
+    pathname: string
+  }
 }

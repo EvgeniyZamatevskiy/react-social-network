@@ -5,10 +5,10 @@ import {Button, Input} from "components"
 import {EMPTY_STRING} from "constants/base"
 import {addPost} from "store/slices/profile"
 import {getDate} from "utils"
-import style from "./AddPost.module.scss"
 import {useSelector} from "react-redux"
 import {selectPhotoLarge, selectPhotoSmall} from "store/selectors"
 import defaultAvatar from "assets/images/defaultAvatar.png"
+import style from "./AddPost.module.scss"
 
 export const AddPost: FC = (): ReturnComponentType => {
 

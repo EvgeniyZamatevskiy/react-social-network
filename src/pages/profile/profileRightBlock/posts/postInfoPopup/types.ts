@@ -1,4 +1,4 @@
 export type PostInfoPopupPropsType = {
-  postId: number
   onSetIsEditPostClick: () => void
+  onActivateModalClick: () => void
 }

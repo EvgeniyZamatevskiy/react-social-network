@@ -10,14 +10,15 @@ import {
 import {PostType, ProfileSliceInitialStateType} from "./types"
 import {EMPTY_STRING} from "constants/base"
 import {PhotoType} from "api/types"
-import {getParseLocalStorageData} from "services"
 import {LocalStorageKey} from "enums"
+import {getParseLocalStorageData} from "services"
 
 const initialState: ProfileSliceInitialStateType = {
   userProfile: null,
   status: EMPTY_STRING,
   posts: getParseLocalStorageData<PostType[]>(LocalStorageKey.POSTS, []),
-  searchPostsMessage: EMPTY_STRING
+  searchPostsMessage: EMPTY_STRING,
+  isLoadingUserProfile: false
 }
 
 export const profileSlice = createSlice({
@@ -66,12 +67,16 @@ export const profileSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(
-        getUserProfile.fulfilled,
-        (state, action: PayloadAction<UserProfileType>) => {
-          state.userProfile = action.payload
-        }
-      )
+      .addCase(getUserProfile.pending, (state) => {
+        state.isLoadingUserProfile = true
+      })
+      .addCase(getUserProfile.fulfilled, (state, action: PayloadAction<UserProfileType>) => {
+        state.userProfile = action.payload
+        state.isLoadingUserProfile = false
+      })
+      .addCase(getUserProfile.rejected, (state) => {
+        state.isLoadingUserProfile = false
+      })
       .addCase(getStatus.fulfilled, (state, action: PayloadAction<string>) => {
         state.status = action.payload
       })

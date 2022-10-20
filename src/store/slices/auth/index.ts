@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AuthorizedUserType } from 'api/auth/types'
-import { EMPTY_STRING } from 'constants/base'
-import { getAuthorizedUser, getCaptchaUrl, logOut } from 'store/asyncActions'
-import { AuthSliceInitialStateType } from './types'
+import {createSlice, PayloadAction} from "@reduxjs/toolkit"
+import {AuthorizedUserType} from "api/auth/types"
+import {EMPTY_STRING} from "constants/base"
+import {getAuthorizedUser, getCaptchaUrl, logOut} from "store/asyncActions"
+import {AuthSliceInitialStateType} from "./types"
 
 const initialState: AuthSliceInitialStateType = {
   authorizedUser: null,
@@ -12,7 +12,7 @@ const initialState: AuthSliceInitialStateType = {
 
 export const authSlice = createSlice({
   initialState,
-  name: 'auth',
+  name: "auth",
   reducers: {},
   extraReducers(builder) {
     builder

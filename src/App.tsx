@@ -32,19 +32,14 @@ export const App: FC = (): ReturnComponentType => {
     <div className="app">
       {pathname !== `/${Path.NOT_FOUND_404}` && <Header/>}
       <div className="container">
-        {pathname !== `/${Path.NOT_FOUND_404}` && pathname !== Path.LOGIN && (
-          <NavBar/>
-        )}
+        {pathname !== `/${Path.NOT_FOUND_404}` && pathname !== Path.LOGIN && <NavBar/>}
         {errorMessage &&
           <div className="errorAlertContainer">
             <Alert message={errorMessage} onCloseAlertClick={closeAlert} type={"error"}/>
-          </div>
-        }
+          </div>}
         <Suspense fallback={<Loader/>}>
           <Routes>
-            {ROUTES.map(({path, element}) => (
-              <Route key={path} path={path} element={element}/>
-            ))}
+            {ROUTES.map(({path, element}) => <Route key={path} path={path} element={element}/>)}
           </Routes>
         </Suspense>
       </div>

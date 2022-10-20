@@ -3,11 +3,11 @@ import {ReturnComponentType} from "types"
 import {PostPropsType} from "./types"
 import {useAppDispatch} from "hooks"
 import {Icon20LikeCircleFillGray, Icon20LikeCircleFillRed, Icon24MoreHorizontal} from "@vkontakte/icons"
-import {addLike, setEditMessage} from "store/slices/profile"
+import {addLike, removePost, setEditMessage} from "store/slices/profile"
 import {useSelector} from "react-redux"
 import {selectFullName, selectPhotoLarge, selectPhotoSmall} from "store/selectors"
 import {EMPTY_STRING} from "constants/base"
-import {Button, Input} from "components/common"
+import {Button, Input, Modal} from "components/common"
 import {PostInfoPopup} from "../postInfoPopup"
 import defaultAvatar from "assets/images/defaultAvatar.png"
 import style from "./Post.module.scss"
@@ -25,6 +25,7 @@ export const Post: FC<PostPropsType> = ({post}): ReturnComponentType => {
   const [isActivePostInfoPopup, setIsActivePostInfoPopup] = useState(false)
   const [isEditPost, setIsEditPost] = useState(false)
   const [modifiedMessage, setModifiedMessage] = useState(EMPTY_STRING)
+  const [isActiveModal, setIsActiveModal] = useState(false)
 
   const editPostRef = useRef<HTMLInputElement>(null)
 
@@ -67,9 +68,31 @@ export const Post: FC<PostPropsType> = ({post}): ReturnComponentType => {
     setModifiedMessage(message)
   }
 
+  const handleDeactivateModalClick = (): void => {
+    setIsActiveModal(false)
+  }
+
+  const handleActivateModalClick = (): void => {
+    setIsActiveModal(true)
+  }
+
+  const onRemovePostClick = (): void => {
+    dispatch(removePost(id))
+  }
+
   return (
     <div className={style.post}>
+      <Modal isActiveModal={isActiveModal} onDeactivateModalClick={handleDeactivateModalClick}>
+        <div className={style.deletePost}>
+          <span>Вы действительно хотите удалить этот пост?</span>
 
+          <div className={style.buttonsContainer}>
+            <Button isPrimary className={style.yesButton} onClick={onRemovePostClick}>Да</Button>
+            <Button isPrimary className={style.noButton} onClick={handleDeactivateModalClick}>Нет</Button>
+          </div>
+
+        </div>
+      </Modal>
       <div className={style.userInfo}>
         <div className={style.content}>
           <img src={userAvatar} alt="user avatar"/>
@@ -87,10 +110,12 @@ export const Post: FC<PostPropsType> = ({post}): ReturnComponentType => {
             <div className={style.threeDotsIcon}>
               <Icon24MoreHorizontal/>
 
-              {isActivePostInfoPopup && <PostInfoPopup postId={id} onSetIsEditPostClick={handleSetIsEditPostClick}/>}
+              {isActivePostInfoPopup &&
+                <PostInfoPopup
+                  onSetIsEditPostClick={handleSetIsEditPostClick}
+                  onActivateModalClick={handleActivateModalClick}/>}
             </div>
-          </div>
-        }
+          </div>}
       </div>
 
       <div className={style.messageContainer}>
