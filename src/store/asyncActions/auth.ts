@@ -1,13 +1,13 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import { AUTH } from 'api'
-import { AuthorizedUserType, LoginDataType } from 'api/auth/types'
-import { AxiosError } from 'axios'
-import { FIRST_ELEMENTS_INDEX } from 'constants/base'
-import { ResponseCode } from 'enums'
-import { handleServerNetworkError } from 'utils'
+import {createAsyncThunk} from "@reduxjs/toolkit"
+import {AUTH} from "api"
+import {AuthorizedUserType, LoginDataType} from "api/auth/types"
+import {AxiosError} from "axios"
+import {FIRST_ELEMENTS_INDEX} from "constants/base"
+import {ResponseCode} from "enums"
+import {handleServerNetworkError} from "utils"
 
 export const getAuthorizedUser = createAsyncThunk<AuthorizedUserType, undefined, { rejectValue: { error: string } }>
-('auth/getAuthorizedUserData', async (_, {rejectWithValue}) => {
+("auth/getAuthorizedUserData", async (_, {rejectWithValue}) => {
   try {
     const response = await AUTH.me()
     const {data: authorizedUserData, messages, resultCode} = response.data
@@ -23,7 +23,7 @@ export const getAuthorizedUser = createAsyncThunk<AuthorizedUserType, undefined,
 })
 
 export const login = createAsyncThunk<void, LoginDataType, { rejectValue: { error: string } }>
-('auth/login', async (loginData, {rejectWithValue, dispatch}) => {
+("auth/login", async (loginData, {rejectWithValue, dispatch}) => {
   try {
     const response = await AUTH.login(loginData)
     const {messages, resultCode} = response.data
@@ -44,7 +44,7 @@ export const login = createAsyncThunk<void, LoginDataType, { rejectValue: { erro
 })
 
 export const logOut = createAsyncThunk<void, undefined, { rejectValue: { error: string } }>
-('auth/logOut', async (_, {rejectWithValue}) => {
+("auth/logOut", async (_, {rejectWithValue}) => {
   try {
     const response = await AUTH.logOut()
     const {messages, resultCode} = response.data
@@ -59,7 +59,7 @@ export const logOut = createAsyncThunk<void, undefined, { rejectValue: { error: 
 })
 
 export const getCaptchaUrl = createAsyncThunk<string, undefined, { rejectValue: { error: string } }>
-('auth/getCaptchaUrl', async (_, {rejectWithValue}) => {
+("auth/getCaptchaUrl", async (_, {rejectWithValue}) => {
   try {
     const response = await AUTH.getCaptchaUrl()
     const url = response.data.url

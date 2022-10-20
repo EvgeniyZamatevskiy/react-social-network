@@ -11,6 +11,7 @@ import {login} from "store/asyncActions"
 import {Navigate, useLocation} from "react-router-dom"
 import {Icon20ErrorCircleOutline} from "@vkontakte/icons"
 import {LocationStateType} from "./types"
+import {Path} from "enums"
 import style from "./Login.module.scss"
 
 export const Login: FC = (): ReturnComponentType => {
@@ -31,7 +32,7 @@ export const Login: FC = (): ReturnComponentType => {
     defaultValues: {email: "free@samuraijs.com", password: "free"}
   })
 
-  const fromPage = (location.state as LocationStateType)?.from?.pathname || "/"
+  const fromPage = (location.state as LocationStateType)?.from?.pathname || Path.HOME
   const errorEmailMessage = errors?.email?.message
   const errorPasswordMessage = errors?.password?.message
   const emailSettings = {
